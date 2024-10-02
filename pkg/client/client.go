@@ -7,11 +7,11 @@ import (
 	"os"
 
 	"github.com/hooklift/gowsdl/soap"
-	"github.com/valuetechdev/api-client-24so/pkg/so24/account24"
-	"github.com/valuetechdev/api-client-24so/pkg/so24/auth24"
-	"github.com/valuetechdev/api-client-24so/pkg/so24/company24"
-	"github.com/valuetechdev/api-client-24so/pkg/so24/invoice24"
-	"github.com/valuetechdev/api-client-24so/pkg/so24/product24"
+	"github.com/valuetechdev/api-client-24so/pkg/client/account24"
+	"github.com/valuetechdev/api-client-24so/pkg/client/auth24"
+	"github.com/valuetechdev/api-client-24so/pkg/client/company24"
+	"github.com/valuetechdev/api-client-24so/pkg/client/invoice24"
+	"github.com/valuetechdev/api-client-24so/pkg/client/product24"
 )
 
 const (
