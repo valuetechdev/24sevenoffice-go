@@ -7,19 +7,19 @@ import (
 	"os"
 
 	"github.com/hooklift/gowsdl/soap"
-	"github.com/valuetechdev/api-client-24so/pkg/client/account24"
-	"github.com/valuetechdev/api-client-24so/pkg/client/auth24"
-	"github.com/valuetechdev/api-client-24so/pkg/client/company24"
-	"github.com/valuetechdev/api-client-24so/pkg/client/invoice24"
-	"github.com/valuetechdev/api-client-24so/pkg/client/product24"
+	"github.com/valuetechdev/api-client-24so/so24/account24"
+	"github.com/valuetechdev/api-client-24so/so24/auth24"
+	"github.com/valuetechdev/api-client-24so/so24/company24"
+	"github.com/valuetechdev/api-client-24so/so24/invoice24"
+	"github.com/valuetechdev/api-client-24so/so24/product24"
 )
 
 const (
-	AUTH_URL    = "https://api.24sevenoffice.com/authenticate/v001/authenticate.asmx"
-	INVOICE_URL = "https://api.24sevenoffice.com/Economy/InvoiceOrder/V001/InvoiceService.asmx"
-	ACCOUNT_URL = "https://api.24sevenoffice.com/Economy/Account/V004/Accountservice.asmx"
-	PRODUCT_URL = "https://api.24sevenoffice.com/Logistics/Product/V001/ProductService.asmx"
-	COMPANY_URL = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
+	auth_url    = "https://api.24sevenoffice.com/authenticate/v001/authenticate.asmx"
+	invoice_url = "https://api.24sevenoffice.com/Economy/InvoiceOrder/V001/InvoiceService.asmx"
+	account_url = "https://api.24sevenoffice.com/Economy/Account/V004/Accountservice.asmx"
+	product_url = "https://api.24sevenoffice.com/Logistics/Product/V001/ProductService.asmx"
+	company_url = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
 )
 
 // holds the different soap clients for the different services
@@ -44,7 +44,7 @@ func NewAuthenticatedClient() (*Client, error) {
 	withHeaders := soap.WithHTTPHeaders(headers)
 
 	authService := auth24.NewAuthenticateSoap(
-		soap.NewClient(AUTH_URL, withHeaders),
+		soap.NewClient(auth_url, withHeaders),
 	)
 
 	credentials, err := getCredentials()
@@ -65,16 +65,16 @@ func NewAuthenticatedClient() (*Client, error) {
 
 	// create the required services
 	invoiceService := invoice24.NewInvoiceServiceSoap(
-		soap.NewClient(INVOICE_URL, withHeaders),
+		soap.NewClient(invoice_url, withHeaders),
 	)
 	productService := product24.NewProductServiceSoap(
-		soap.NewClient(PRODUCT_URL, withHeaders),
+		soap.NewClient(product_url, withHeaders),
 	)
 	accountService := account24.NewAccountServiceSoap(
-		soap.NewClient(ACCOUNT_URL, withHeaders),
+		soap.NewClient(account_url, withHeaders),
 	)
 	companyService := company24.NewCompanyServiceSoap(
-		soap.NewClient(COMPANY_URL, withHeaders),
+		soap.NewClient(company_url, withHeaders),
 	)
 
 	client := Client{

@@ -15,7 +15,7 @@ type Client struct {
 	wsdlPath    string
 }
 
-const WSDL_BASE_PATH = "../../wsdl/so24/"
+const WSDL_BASE_PATH = "../wsdl/so24/"
 
 var clientsToGenerate = []Client{
 	{packagename: "auth24", wsdlPath: WSDL_BASE_PATH + "authService.wsdl"},
