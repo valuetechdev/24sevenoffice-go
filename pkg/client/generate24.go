@@ -45,13 +45,13 @@ func main() {
 		res, _ := gw.Start()
 
 		pkgAndFileName := fmt.Sprintf("%s/%s.gen.go", c.packagename, c.packagename)
-		path, _ := filepath.Abs(fmt.Sprintf("%s/internal/%s", cwd, pkgAndFileName))
+		path, _ := filepath.Abs(fmt.Sprintf("%s/%s", cwd, pkgAndFileName))
 
 		header, _ := res["header"]
 		types, _ := res["types"]
 		operations, _ := res["operations"]
 
-		dir := fmt.Sprintf("%s/internal/%s", cwd, c.packagename)
+		dir := fmt.Sprintf("%s/%s", cwd, c.packagename)
 		if err = os.MkdirAll(dir, 0777); err != nil {
 			panic(err)
 		}
