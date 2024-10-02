@@ -5,7 +5,7 @@ This package contains a generatated api client based on the 24SevenOffices SOAP 
 ## Services currently covered in the package:
 
 - AuthService
-- IvoiceService
+- InvoiceService
 - ProductService
 - ProjectService
 - CompanyService
