@@ -4,10 +4,11 @@ This package contains a generatated api client based on the 24SevenOffices SOAP 
 
 ## Services currently covered in the package:
 
-- IvoiceService
-- ProjectService
-- ProductService
 - AuthService
+- IvoiceService
+- ProductService
+- ProjectService
+- CompanyService
 - AccountService
 
 ## How to use
@@ -21,3 +22,5 @@ The names are:
 - TWENTYFOURSEVEN_API_PASSWORD
 
 The program will panic in any are missing.
+
+Usage is described in [24SevenOffices api documentation](https://developer.24sevenoffice.com/docs/)
