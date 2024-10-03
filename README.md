@@ -31,5 +31,5 @@ Usage is described in [24SevenOffice's API documentation](https://developer.24se
 1. Add or replace the `.wsdl`-file in `./wsdl/so24`-directory, follow the same
    naming-convention as 24SevenOffice.
 1. Add the new service in `clientsToGenerate` in `generate24.go`.
-1. Run `just generate`.
-1. Open a new PR (`gh pr create`).
+1. Run `make generate`.
+1. Open a new PR.
