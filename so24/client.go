@@ -9,6 +9,7 @@ import (
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/valuetechdev/api-client-24so/so24/account24"
 	"github.com/valuetechdev/api-client-24so/so24/auth24"
+	"github.com/valuetechdev/api-client-24so/so24/client24"
 	"github.com/valuetechdev/api-client-24so/so24/company24"
 	"github.com/valuetechdev/api-client-24so/so24/invoice24"
 	"github.com/valuetechdev/api-client-24so/so24/product24"
@@ -25,11 +26,12 @@ const (
 // holds the different soap clients for the different services
 type Client struct {
 	SessionId string
+	Account   account24.AccountServiceSoap
 	Auth      auth24.AuthenticateSoap
+	Client    client24.ClientServiceSoap
+	Company   company24.CompanyServiceSoap
 	Invoice   invoice24.InvoiceServiceSoap
 	Product   product24.ProductServiceSoap
-	Account   account24.AccountServiceSoap
-	Company   company24.CompanyServiceSoap
 }
 
 // panic if missing credentials
