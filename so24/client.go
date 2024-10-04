@@ -12,6 +12,7 @@ import (
 	"github.com/valuetechdev/api-client-24so/so24/client24"
 	"github.com/valuetechdev/api-client-24so/so24/company24"
 	"github.com/valuetechdev/api-client-24so/so24/invoice24"
+	"github.com/valuetechdev/api-client-24so/so24/person24"
 	"github.com/valuetechdev/api-client-24so/so24/product24"
 )
 
@@ -32,6 +33,7 @@ type Client struct {
 	Company   company24.CompanyServiceSoap
 	Invoice   invoice24.InvoiceServiceSoap
 	Product   product24.ProductServiceSoap
+	Person    person24.PersonServiceSoap
 }
 
 // panic if missing credentials

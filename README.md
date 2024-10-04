@@ -9,6 +9,7 @@ This package contains a generated API client based on the 24SevenOffice's SOAP A
 - `ClientService`
 - `CompanyService`
 - `InvoiceService`
+- `PersonService`
 - `ProductService`
 - `ProjectService`
 
