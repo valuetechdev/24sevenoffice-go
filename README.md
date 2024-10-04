@@ -13,9 +13,37 @@ This package contains a generated API client based on the 24SevenOffice's SOAP A
 - `ProductService`
 - `ProjectService`
 
-## How to use
+## Usage
 
-To use the API, you need to log in with `username`, `password` and `applicationId`. These are read from as environment variables.
+```bash
+go get github.com/valuetechdev/api-client-24so
+```
+
+Go example
+
+```go
+import (
+	"github.com/valuetechdev/api-client-24so/so24"
+	"github.com/valuetechdev/api-client-24so/so24/account24"
+)
+
+func func() {
+   so24Client, err := so24.NewAuthenticatedClient()
+   if err != nil {
+      return nil, err
+   }
+
+   so24RatesResult, err := so24Client.Account.GetTaxCodeList(&account24.GetTaxCodeList{})
+   if err != nil {
+      return nil, err
+   }
+
+   // Use the data
+}
+```
+
+To use the API, you need to log in with `username`, `password` and
+`applicationId`. These are read from as environment variables.
 
 The names are:
 
