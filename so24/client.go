@@ -22,6 +22,8 @@ const (
 	account_url = "https://api.24sevenoffice.com/Economy/Account/V004/Accountservice.asmx"
 	product_url = "https://api.24sevenoffice.com/Logistics/Product/V001/ProductService.asmx"
 	company_url = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
+	client_url  = "https://api.24sevenoffice.com/Client/V001/ClientService.asmx"
+	person_url  = "https://webservices.24sevenoffice.com/CRM/Contact/PersonService.asmx"
 )
 
 // holds the different soap clients for the different services
@@ -80,6 +82,12 @@ func NewAuthenticatedClient() (*Client, error) {
 	companyService := company24.NewCompanyServiceSoap(
 		soap.NewClient(company_url, withHeaders),
 	)
+	clientService := client24.NewClientServiceSoap(
+		soap.NewClient(client_url, withHeaders),
+	)
+	personService := person24.NewPersonServiceSoap(
+		soap.NewClient(person_url, withHeaders),
+	)
 
 	client := Client{
 		SessionId: sessionId,
@@ -88,6 +96,8 @@ func NewAuthenticatedClient() (*Client, error) {
 		Product:   productService,
 		Account:   accountService,
 		Company:   companyService,
+		Client:    clientService,
+		Person:    personService,
 	}
 
 	return &client, nil
