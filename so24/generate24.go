@@ -25,6 +25,7 @@ var clientsToGenerate = []Client{
 	{packagename: "company24", wsdlPath: WSDL_BASE_PATH + "companyService.wsdl"},
 	{packagename: "account24", wsdlPath: WSDL_BASE_PATH + "accountService.wsdl"},
 	{packagename: "client24", wsdlPath: WSDL_BASE_PATH + "clientService.wsdl"},
+	{packagename: "person24", wsdlPath: WSDL_BASE_PATH + "personService.wsdl"},
 }
 
 const PKG_PATH = "."
