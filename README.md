@@ -55,6 +55,19 @@ The program will panic in any are missing.
 
 Usage is described in [24SevenOffice's API documentation](https://developer.24sevenoffice.com/docs/)
 
+### Changing identity
+
+By default the client uses your accounts default identity (the one you log in
+to automatically in the UI).
+
+```go
+id := auth24.Guid("new-identity")
+_, err = so24Client.Auth.SetIdentityById(&auth24.SetIdentityById{IdentityId: &id})
+if err != nil {
+   return nil, err
+}
+```
+
 ## Adding or updating services
 
 1. Add or replace the `.wsdl`-file in `./wsdl/so24`-directory, follow the same
