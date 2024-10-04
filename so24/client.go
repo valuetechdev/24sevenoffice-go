@@ -94,18 +94,9 @@ func NewAuthenticatedClient() (*Client, error) {
 }
 
 func getCredentials() (*auth24.Credential, error) {
-	so24username, ok := os.LookupEnv("TWENTYFOURSEVEN_API_USERNAME")
-	if !ok {
-		return nil, fmt.Errorf("missing TWENTYFOURSEVEN_API_USERNAME")
-	}
-	so24password, ok := os.LookupEnv("TWENTYFOURSEVEN_API_PASSWORD")
-	if !ok {
-		return nil, fmt.Errorf("missing TWENTYFOURSEVEN_API_PASSWORD")
-	}
-	so24appId, ok := os.LookupEnv("TWENTYFOURSEVEN_API_APPLICATIONID")
-	if !ok {
-		return nil, fmt.Errorf("missing TWENTYFOURSEVEN_API_APPLICATIONID")
-	}
+	so24username := requireEnv("TWENTYFOURSEVEN_API_USERNAME")
+	so24password := requireEnv("TWENTYFOURSEVEN_API_PASSWORD")
+	so24appId := requireEnv("TWENTYFOURSEVEN_API_APPLICATIONID")
 
 	so24appGuid := auth24.Guid(so24appId)
 
@@ -114,4 +105,13 @@ func getCredentials() (*auth24.Credential, error) {
 		Password:      so24password,
 		Username:      so24username,
 	}, nil
+}
+
+func requireEnv(env string) string {
+	v, ok := os.LookupEnv(env)
+	if !ok {
+		panic(fmt.Sprintf("%s is not set", env))
+	}
+
+	return v
 }
