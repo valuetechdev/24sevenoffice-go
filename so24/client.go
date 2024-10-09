@@ -14,16 +14,18 @@ import (
 	"github.com/valuetechdev/api-client-24so/so24/invoice24"
 	"github.com/valuetechdev/api-client-24so/so24/person24"
 	"github.com/valuetechdev/api-client-24so/so24/product24"
+	"github.com/valuetechdev/api-client-24so/so24/project24"
 )
 
 const (
-	auth_url    = "https://api.24sevenoffice.com/authenticate/v001/authenticate.asmx"
-	invoice_url = "https://api.24sevenoffice.com/Economy/InvoiceOrder/V001/InvoiceService.asmx"
 	account_url = "https://api.24sevenoffice.com/Economy/Account/V004/Accountservice.asmx"
-	product_url = "https://api.24sevenoffice.com/Logistics/Product/V001/ProductService.asmx"
-	company_url = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
+	auth_url    = "https://api.24sevenoffice.com/authenticate/v001/authenticate.asmx"
 	client_url  = "https://api.24sevenoffice.com/Client/V001/ClientService.asmx"
+	company_url = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
+	invoice_url = "https://api.24sevenoffice.com/Economy/InvoiceOrder/V001/InvoiceService.asmx"
 	person_url  = "https://webservices.24sevenoffice.com/CRM/Contact/PersonService.asmx"
+	product_url = "https://api.24sevenoffice.com/Logistics/Product/V001/ProductService.asmx"
+	project_url = "https://webservices.24sevenoffice.com/Project/V001/ProjectService.asmx"
 )
 
 // holds the different soap clients for the different services
@@ -34,8 +36,9 @@ type Client struct {
 	Client    client24.ClientServiceSoap
 	Company   company24.CompanyServiceSoap
 	Invoice   invoice24.InvoiceServiceSoap
-	Product   product24.ProductServiceSoap
 	Person    person24.PersonServiceSoap
+	Product   product24.ProductServiceSoap
+	Project   project24.ProjectServiceSoap
 }
 
 // panic if missing credentials
@@ -88,16 +91,20 @@ func NewAuthenticatedClient() (*Client, error) {
 	personService := person24.NewPersonServiceSoap(
 		soap.NewClient(person_url, withHeaders),
 	)
+	projectService := project24.NewProjectServiceSoap(
+		soap.NewClient(project_url, withHeaders),
+	)
 
 	client := Client{
 		SessionId: sessionId,
-		Auth:      authService,
-		Invoice:   invoiceService,
-		Product:   productService,
 		Account:   accountService,
-		Company:   companyService,
+		Auth:      authService,
 		Client:    clientService,
+		Company:   companyService,
+		Invoice:   invoiceService,
 		Person:    personService,
+		Product:   productService,
+		Project:   projectService,
 	}
 
 	return &client, nil
