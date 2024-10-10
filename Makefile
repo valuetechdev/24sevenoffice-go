@@ -21,3 +21,8 @@ generate:
 vet:
 	go vet ./...
 
+## test: run tests
+.PHONY: test
+test:
+	op run --env-file='./.env' -- go test ./...
+
