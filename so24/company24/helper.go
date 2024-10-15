@@ -1,6 +1,7 @@
 package company24
 
-func (c *companyServiceSoap) GetCompaniesByIds(
+func GetCompaniesByIds(
+	c CompanyServiceSoap,
 	ids []int32,
 	searchParams *CompanySearchParameters,
 	returnProps *ArrayOfString,
