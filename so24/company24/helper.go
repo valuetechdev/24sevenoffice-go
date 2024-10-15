@@ -6,6 +6,6 @@ func GetCompaniesByIds(
 	searchParams *CompanySearchParameters,
 	returnProps *ArrayOfString,
 ) (*GetCompaniesResponse, error) {
-	searchParams.CompanyIds.int = ids
+	searchParams.CompanyIds = &ArrayOfInt{int: ids}
 	return c.GetCompanies(&GetCompanies{SearchParams: searchParams, ReturnProperties: returnProps})
 }
