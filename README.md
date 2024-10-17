@@ -85,3 +85,4 @@ if err != nil {
 - Only the payroll-API is using OpenAPI/Swagger.
   - It's originally based on Swagger 2.0, but it was converted to OpenAPI 3
     using `npx swagger2openapi -o <openapi>.json <swagger2>.json`
+  - It has been altered to with defined schemas/models that was missing.

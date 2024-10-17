@@ -58,8 +58,6 @@ func New() (*BearerToken, error) {
 		return nil, err
 	}
 
-	fmt.Printf("req: %v\n", req)
-
 	expiresOnSplitted := strings.Split(token.ExpiresOn, "+")
 	expiresAt, err := time.Parse("2006-01-02T15:04:05", expiresOnSplitted[0])
 	if err != nil {
