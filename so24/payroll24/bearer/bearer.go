@@ -25,7 +25,8 @@ type BearerToken struct {
 func New() (*BearerToken, error) {
 	apiToken, ok := os.LookupEnv("TWENTYFOURSEVEN_API_PAYROLL")
 	if !ok {
-		return nil, fmt.Errorf("Missing TWENTYFOURSEVEN_API_PAYROLL")
+		// Safe-return
+		return nil, nil
 	}
 
 	url := fmt.Sprintf("https://payroll.24sevenoffice.com/api/auth?token=%s", apiToken)

@@ -52,6 +52,7 @@ The names are:
 - `TWENTYFOURSEVEN_API_APPLICATIONID`
 - `TWENTYFOURSEVEN_API_USERNAME`
 - `TWENTYFOURSEVEN_API_PASSWORD`
+- (optional) `TWENTYFOURSEVEN_API_PAYROLL` for payroll API
 
 The program will panic in any are missing.
 

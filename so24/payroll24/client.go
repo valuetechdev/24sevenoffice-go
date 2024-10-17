@@ -13,6 +13,9 @@ func New() (*PayrollService, error) {
 	if err != nil {
 		return nil, err
 	}
+	if bt == nil {
+		return nil, nil
+	}
 	baseUrl := "https://payroll.24sevenoffice.com/api"
 	c, err := NewClientWithResponses(
 		baseUrl,
