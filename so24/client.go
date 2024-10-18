@@ -12,6 +12,7 @@ import (
 	"github.com/valuetechdev/api-client-24so/so24/client24"
 	"github.com/valuetechdev/api-client-24so/so24/company24"
 	"github.com/valuetechdev/api-client-24so/so24/invoice24"
+	"github.com/valuetechdev/api-client-24so/so24/payroll24"
 	"github.com/valuetechdev/api-client-24so/so24/person24"
 	"github.com/valuetechdev/api-client-24so/so24/product24"
 	"github.com/valuetechdev/api-client-24so/so24/project24"
@@ -39,6 +40,7 @@ type Client struct {
 	Person    person24.PersonServiceSoap
 	Product   product24.ProductServiceSoap
 	Project   project24.ProjectServiceSoap
+	Payroll   payroll24.PayrollService
 }
 
 // panic if missing credentials
@@ -94,6 +96,10 @@ func NewAuthenticatedClient() (*Client, error) {
 	projectService := project24.NewProjectServiceSoap(
 		soap.NewClient(project_url, withHeaders),
 	)
+	payrollService, err := payroll24.New()
+	if err != nil {
+		return nil, err
+	}
 
 	client := Client{
 		SessionId: sessionId,
@@ -102,6 +108,7 @@ func NewAuthenticatedClient() (*Client, error) {
 		Client:    clientService,
 		Company:   companyService,
 		Invoice:   invoiceService,
+		Payroll:   *payrollService,
 		Person:    personService,
 		Product:   productService,
 		Project:   projectService,
