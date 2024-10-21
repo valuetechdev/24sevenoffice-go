@@ -5,9 +5,8 @@ package company24
 import (
 	"context"
 	"encoding/xml"
-	"time"
-
 	"github.com/hooklift/gowsdl/soap"
+	"time"
 )
 
 // against "unused imports"
@@ -888,7 +887,7 @@ type CompanySearchParameters struct {
 }
 
 type ArrayOfInt struct {
-	Int []int32 `xml:"int,omitempty" json:"int,omitempty"`
+	int []int32 `xml:"int,omitempty" json:"int,omitempty"`
 }
 
 type ArrayOfString struct {

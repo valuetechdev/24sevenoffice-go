@@ -16,31 +16,34 @@ import (
 	"github.com/valuetechdev/api-client-24so/so24/person24"
 	"github.com/valuetechdev/api-client-24so/so24/product24"
 	"github.com/valuetechdev/api-client-24so/so24/project24"
+	"github.com/valuetechdev/api-client-24so/so24/transaction24"
 )
 
 const (
-	account_url = "https://api.24sevenoffice.com/Economy/Account/V004/Accountservice.asmx"
-	auth_url    = "https://api.24sevenoffice.com/authenticate/v001/authenticate.asmx"
-	client_url  = "https://api.24sevenoffice.com/Client/V001/ClientService.asmx"
-	company_url = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
-	invoice_url = "https://api.24sevenoffice.com/Economy/InvoiceOrder/V001/InvoiceService.asmx"
-	person_url  = "https://webservices.24sevenoffice.com/CRM/Contact/PersonService.asmx"
-	product_url = "https://api.24sevenoffice.com/Logistics/Product/V001/ProductService.asmx"
-	project_url = "https://webservices.24sevenoffice.com/Project/V001/ProjectService.asmx"
+	account_url     = "https://api.24sevenoffice.com/Economy/Account/V004/Accountservice.asmx"
+	auth_url        = "https://api.24sevenoffice.com/authenticate/v001/authenticate.asmx"
+	client_url      = "https://api.24sevenoffice.com/Client/V001/ClientService.asmx"
+	company_url     = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
+	invoice_url     = "https://api.24sevenoffice.com/Economy/InvoiceOrder/V001/InvoiceService.asmx"
+	person_url      = "https://webservices.24sevenoffice.com/CRM/Contact/PersonService.asmx"
+	product_url     = "https://api.24sevenoffice.com/Logistics/Product/V001/ProductService.asmx"
+	project_url     = "https://webservices.24sevenoffice.com/Project/V001/ProjectService.asmx"
+	transaction_url = "https://api.24sevenoffice.com/Economy/Accounting/V001/TransactionService.asmx"
 )
 
 // holds the different soap clients for the different services
 type Client struct {
-	SessionId string
-	Account   account24.AccountServiceSoap
-	Auth      auth24.AuthenticateSoap
-	Client    client24.ClientServiceSoap
-	Company   company24.CompanyServiceSoap
-	Invoice   invoice24.InvoiceServiceSoap
-	Person    person24.PersonServiceSoap
-	Product   product24.ProductServiceSoap
-	Project   project24.ProjectServiceSoap
-	Payroll   payroll24.PayrollService
+	SessionId   string
+	Account     account24.AccountServiceSoap
+	Auth        auth24.AuthenticateSoap
+	Client      client24.ClientServiceSoap
+	Company     company24.CompanyServiceSoap
+	Invoice     invoice24.InvoiceServiceSoap
+	Person      person24.PersonServiceSoap
+	Product     product24.ProductServiceSoap
+	Project     project24.ProjectServiceSoap
+	Payroll     payroll24.PayrollService
+	Transaction transaction24.TransactionServiceSoap
 }
 
 // panic if missing credentials
@@ -96,22 +99,26 @@ func NewAuthenticatedClient() (*Client, error) {
 	projectService := project24.NewProjectServiceSoap(
 		soap.NewClient(project_url, withHeaders),
 	)
+	transactionService := transaction24.NewTransactionServiceSoap(
+		soap.NewClient(transaction_url, withHeaders),
+	)
 	payrollService, err := payroll24.New()
 	if err != nil {
 		return nil, err
 	}
 
 	client := Client{
-		SessionId: sessionId,
-		Account:   accountService,
-		Auth:      authService,
-		Client:    clientService,
-		Company:   companyService,
-		Invoice:   invoiceService,
-		Payroll:   *payrollService,
-		Person:    personService,
-		Product:   productService,
-		Project:   projectService,
+		SessionId:   sessionId,
+		Account:     accountService,
+		Auth:        authService,
+		Client:      clientService,
+		Company:     companyService,
+		Invoice:     invoiceService,
+		Payroll:     *payrollService,
+		Person:      personService,
+		Product:     productService,
+		Project:     projectService,
+		Transaction: transactionService,
 	}
 
 	return &client, nil

@@ -10,10 +10,11 @@ API and payroll Swagger API.
 - [`ClientService`](https://developer.24sevenoffice.com/docs/clientservice.html)
 - [`CompanyService`](https://developer.24sevenoffice.com/docs/companyservice.html)
 - [`InvoiceService`](https://developer.24sevenoffice.com/docs/invoiceservice.html)
+- [`Payroll`](https://swagger.api.24sevenoffice.com/?url=https://me.24sevenoffice.com/swagger.json)
 - [`PersonService`](https://developer.24sevenoffice.com/docs/personservice.html)
 - [`ProductService`](https://developer.24sevenoffice.com/docs/productservice.html)
 - [`ProjectService`](https://developer.24sevenoffice.com/docs/projectservice.html)
-- [`Payroll`](https://swagger.api.24sevenoffice.com/?url=https://me.24sevenoffice.com/swagger.json)
+- [`TransactionService`](https://developer.24sevenoffice.com/docs/transactionservice.html)
 
 ## Usage
 
