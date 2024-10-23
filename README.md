@@ -6,6 +6,7 @@ API and payroll Swagger API.
 ## Services currently covered in the package:
 
 - [`AccountService`](https://developer.24sevenoffice.com/docs/accountservice.html)
+- [`AttachmentService`](https://developer.24sevenoffice.com/docs/attachmentservice.html)
 - [`AuthService`](https://developer.24sevenoffice.com/docs/authservice.html)
 - [`ClientService`](https://developer.24sevenoffice.com/docs/clientservice.html)
 - [`CompanyService`](https://developer.24sevenoffice.com/docs/companyservice.html)

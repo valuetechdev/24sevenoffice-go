@@ -8,6 +8,7 @@ import (
 
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/valuetechdev/api-client-24so/so24/account24"
+	"github.com/valuetechdev/api-client-24so/so24/attachment24"
 	"github.com/valuetechdev/api-client-24so/so24/auth24"
 	"github.com/valuetechdev/api-client-24so/so24/client24"
 	"github.com/valuetechdev/api-client-24so/so24/company24"
@@ -21,6 +22,7 @@ import (
 
 const (
 	account_url     = "https://api.24sevenoffice.com/Economy/Account/V004/Accountservice.asmx"
+	attachment_url  = "https://webservices.24sevenoffice.com/Economy/Accounting/Accounting_V001/AttachmentService.asmx"
 	auth_url        = "https://api.24sevenoffice.com/authenticate/v001/authenticate.asmx"
 	client_url      = "https://api.24sevenoffice.com/Client/V001/ClientService.asmx"
 	company_url     = "https://api.24sevenoffice.com/CRM/Company/V001/CompanyService.asmx"
@@ -35,6 +37,7 @@ const (
 type Client struct {
 	SessionId   string
 	Account     account24.AccountServiceSoap
+	Attachment  attachment24.AttachmentServiceSoap
 	Auth        auth24.AuthenticateSoap
 	Client      client24.ClientServiceSoap
 	Company     company24.CompanyServiceSoap
@@ -102,6 +105,9 @@ func NewAuthenticatedClient() (*Client, error) {
 	transactionService := transaction24.NewTransactionServiceSoap(
 		soap.NewClient(transaction_url, withHeaders),
 	)
+	attachmentService := attachment24.NewAttachmentServiceSoap(
+		soap.NewClient(attachment_url, withHeaders),
+	)
 	payrollService, err := payroll24.New()
 	if err != nil {
 		return nil, err
@@ -110,6 +116,7 @@ func NewAuthenticatedClient() (*Client, error) {
 	client := Client{
 		SessionId:   sessionId,
 		Account:     accountService,
+		Attachment:  attachmentService,
 		Auth:        authService,
 		Client:      clientService,
 		Company:     companyService,

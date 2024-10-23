@@ -18,14 +18,15 @@ type Client struct {
 const WSDL_BASE_PATH = "../api/wsdl/"
 
 var clientsToGenerate = []Client{
+	{packagename: "account24", wsdlPath: WSDL_BASE_PATH + "accountService.wsdl"},
+	{packagename: "attachment24", wsdlPath: WSDL_BASE_PATH + "attachmentService.wsdl"},
 	{packagename: "auth24", wsdlPath: WSDL_BASE_PATH + "authService.wsdl"},
+	{packagename: "client24", wsdlPath: WSDL_BASE_PATH + "clientService.wsdl"},
+	{packagename: "company24", wsdlPath: WSDL_BASE_PATH + "companyService.wsdl"},
 	{packagename: "invoice24", wsdlPath: WSDL_BASE_PATH + "invoiceService.wsdl"},
+	{packagename: "person24", wsdlPath: WSDL_BASE_PATH + "personService.wsdl"},
 	{packagename: "product24", wsdlPath: WSDL_BASE_PATH + "productService.wsdl"},
 	{packagename: "project24", wsdlPath: WSDL_BASE_PATH + "projectService.wsdl"},
-	{packagename: "company24", wsdlPath: WSDL_BASE_PATH + "companyService.wsdl"},
-	{packagename: "account24", wsdlPath: WSDL_BASE_PATH + "accountService.wsdl"},
-	{packagename: "client24", wsdlPath: WSDL_BASE_PATH + "clientService.wsdl"},
-	{packagename: "person24", wsdlPath: WSDL_BASE_PATH + "personService.wsdl"},
 	{packagename: "transaction24", wsdlPath: WSDL_BASE_PATH + "transactionService.wsdl"},
 }
 
