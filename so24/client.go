@@ -50,7 +50,7 @@ type Client struct {
 }
 
 // panic if missing credentials
-func NewAuthenticatedClient() (*Client, error) {
+func NewAuthenticatedClient(payrollAPI string) (*Client, error) {
 
 	// map for http headers. all clients share the headers map
 	// for simplicity sake
@@ -108,7 +108,7 @@ func NewAuthenticatedClient() (*Client, error) {
 	attachmentService := attachment24.NewAttachmentServiceSoap(
 		soap.NewClient(attachment_url, withHeaders),
 	)
-	payrollService, err := payroll24.New()
+	payrollService, err := payroll24.New(payrollAPI)
 	if err != nil {
 		return nil, err
 	}
@@ -121,11 +121,14 @@ func NewAuthenticatedClient() (*Client, error) {
 		Client:      clientService,
 		Company:     companyService,
 		Invoice:     invoiceService,
-		Payroll:     *payrollService,
 		Person:      personService,
 		Product:     productService,
 		Project:     projectService,
 		Transaction: transactionService,
+	}
+
+	if payrollService != nil {
+		client.Payroll = *payrollService
 	}
 
 	return &client, nil

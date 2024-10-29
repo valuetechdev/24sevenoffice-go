@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"strings"
 	"time"
 )
@@ -22,9 +21,8 @@ type BearerToken struct {
 	ExpiresAt *time.Time
 }
 
-func New() (*BearerToken, error) {
-	apiToken, ok := os.LookupEnv("TWENTYFOURSEVEN_API_PAYROLL")
-	if !ok {
+func New(apiToken string) (*BearerToken, error) {
+	if apiToken == "" {
 		// Safe-return
 		return nil, nil
 	}

@@ -8,8 +8,8 @@ type PayrollService struct {
 	Client *ClientWithResponses
 }
 
-func New() (*PayrollService, error) {
-	bt, err := bearer.New()
+func New(apiToken string) (*PayrollService, error) {
+	bt, err := bearer.New(apiToken)
 	if err != nil {
 		return nil, err
 	}

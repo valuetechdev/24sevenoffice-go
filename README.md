@@ -3,7 +3,7 @@
 This package contains a generated API client based on the 24SevenOffice's SOAP
 API and payroll Swagger API.
 
-## Services currently covered in the package:
+## Services currently covered in the package
 
 - [`AccountService`](https://developer.24sevenoffice.com/docs/accountservice.html)
 - [`AttachmentService`](https://developer.24sevenoffice.com/docs/attachmentservice.html)
@@ -54,7 +54,6 @@ The names are:
 - `TWENTYFOURSEVEN_API_APPLICATIONID`
 - `TWENTYFOURSEVEN_API_USERNAME`
 - `TWENTYFOURSEVEN_API_PASSWORD`
-- (optional) `TWENTYFOURSEVEN_API_PAYROLL` for payroll API
 
 The program will panic in any are missing.
 

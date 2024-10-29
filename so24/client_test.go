@@ -2,6 +2,7 @@ package so24
 
 import (
 	"context"
+	"os"
 	"testing"
 	"time"
 
@@ -20,7 +21,17 @@ import (
 func TestClientInitialization(t *testing.T) {
 	assert := assert.New(t)
 
-	c, err := NewAuthenticatedClient()
+	payrollAPI, _ := os.LookupEnv("TWENTYFOURSEVEN_API_PAYROLL")
+	c, err := NewAuthenticatedClient(payrollAPI)
+	assert.NoError(err)
+
+	assert.NotEmpty(c.SessionId)
+}
+
+func TestClientInitializationWithoutPayroll(t *testing.T) {
+	assert := assert.New(t)
+
+	c, err := NewAuthenticatedClient("")
 	assert.NoError(err)
 
 	assert.NotEmpty(c.SessionId)
@@ -29,7 +40,8 @@ func TestClientInitialization(t *testing.T) {
 func TestServices(t *testing.T) {
 	assert := assert.New(t)
 
-	c, err := NewAuthenticatedClient()
+	payrollAPI, _ := os.LookupEnv("TWENTYFOURSEVEN_API_PAYROLL")
+	c, err := NewAuthenticatedClient(payrollAPI)
 	assert.NoError(err)
 
 	changedAfter := soap.XSDDateTime(soap.CreateXsdDateTime(time.Now(), true))
