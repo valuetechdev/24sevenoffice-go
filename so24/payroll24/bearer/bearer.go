@@ -38,7 +38,7 @@ func New(apiToken string) (*BearerToken, error) {
 		return nil, err
 	}
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("Bad status %d", resp.StatusCode)
+		return nil, fmt.Errorf("bad status %d", resp.StatusCode)
 	}
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)
