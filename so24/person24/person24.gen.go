@@ -5,8 +5,9 @@ package person24
 import (
 	"context"
 	"encoding/xml"
-	"github.com/hooklift/gowsdl/soap"
 	"time"
+
+	"github.com/hooklift/gowsdl/soap"
 )
 
 // against "unused imports"
@@ -510,7 +511,7 @@ type Category struct {
 }
 
 type ArrayOfInt struct {
-	int []int32 `xml:"int,omitempty" json:"int,omitempty"`
+	Int []int32 `xml:"int,omitempty" json:"int,omitempty"`
 }
 
 type ArrayOfPersonCategories struct {
