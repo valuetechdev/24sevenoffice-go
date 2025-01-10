@@ -154,13 +154,17 @@ func (c *Client) CheckAuth(callback func(sessionId string) error) error {
 
 	sessionId := res.LoginResult
 
-	c.headers["cookie"] = fmt.Sprintf("ASP.NET_SessionId=%s", sessionId)
-	c.SessionId = sessionId
+	c.SetSessionId(sessionId)
 
 	if callback == nil {
 		return nil
 	}
 	return callback(sessionId)
+}
+
+func (c *Client) SetSessionId(sessionId string) {
+	c.headers["cookie"] = fmt.Sprintf("ASP.NET_SessionId=%s", sessionId)
+	c.SessionId = sessionId
 }
 
 func getCredentials() (*auth24.Credential, error) {
