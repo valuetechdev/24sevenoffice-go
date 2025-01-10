@@ -47,6 +47,7 @@ type Client struct {
 	Project     project24.ProjectServiceSoap
 	Payroll     payroll24.PayrollService
 	Transaction transaction24.TransactionServiceSoap
+	headers     map[string]string
 }
 
 // panic if missing credentials
@@ -131,6 +132,7 @@ func NewAuthenticatedClientWithSessionId(sessionId string, payrollAPI string) (*
 		Product:     productService,
 		Project:     projectService,
 		Transaction: transactionService,
+		headers:     headers,
 	}
 
 	if payrollService != nil {
@@ -138,6 +140,35 @@ func NewAuthenticatedClientWithSessionId(sessionId string, payrollAPI string) (*
 	}
 
 	return &client, nil
+}
+
+func (c *Client) CheckAuth(callback func(sessionId string) error) error {
+	r, err := c.Auth.HasSession(&auth24.HasSession{})
+	if err != nil {
+		return err
+	}
+
+	if r.HasSessionResult {
+		return nil
+	}
+
+	credentials, err := getCredentials()
+	if err != nil {
+		return err
+	}
+
+	res, err := c.Auth.Login(&auth24.Login{
+		Credential: credentials,
+	})
+	if err != nil {
+		return err
+	}
+
+	sessionId := res.LoginResult
+
+	c.headers["cookie"] = fmt.Sprintf("ASP.NET_SessionId=%s", sessionId)
+
+	return callback(sessionId)
 }
 
 func getCredentials() (*auth24.Credential, error) {
