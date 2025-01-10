@@ -52,28 +52,20 @@ type Client struct {
 
 // panic if missing credentials
 func NewAuthenticatedClient(payrollAPI string) (*Client, error) {
-	authService := auth24.NewAuthenticateSoap(
-		soap.NewClient(auth_url),
-	)
-
-	credentials, err := getCredentials()
+	c, err := NewClient(payrollAPI)
 	if err != nil {
 		return nil, err
 	}
 
-	res, err := authService.Login(&auth24.Login{
-		Credential: credentials,
-	})
+	err = c.CheckAuth(func(sessionId string) error { return nil })
 	if err != nil {
 		return nil, err
 	}
 
-	sessionId := res.LoginResult
-
-	return NewAuthenticatedClientWithSessionId(sessionId, payrollAPI)
+	return c, nil
 }
 
-func NewAuthenticatedClientWithSessionId(sessionId string, payrollAPI string) (*Client, error) {
+func NewClient(payrollAPI string) (*Client, error) {
 	// map for http headers. all clients share the headers map
 	// for simplicity sake
 	headers := make(map[string]string)
@@ -81,9 +73,6 @@ func NewAuthenticatedClientWithSessionId(sessionId string, payrollAPI string) (*
 	// add headers to auth client for
 	// later we add session id to make all calls authenticated
 	withHeaders := soap.WithHTTPHeaders(headers)
-
-	// add sessionId to http headers to allow for authenticated requests
-	headers["cookie"] = fmt.Sprintf("ASP.NET_SessionId=%s", sessionId)
 
 	authService := auth24.NewAuthenticateSoap(
 		soap.NewClient(auth_url, withHeaders),
@@ -121,7 +110,6 @@ func NewAuthenticatedClientWithSessionId(sessionId string, payrollAPI string) (*
 	}
 
 	client := Client{
-		SessionId:   sessionId,
 		Account:     accountService,
 		Attachment:  attachmentService,
 		Auth:        authService,
@@ -167,6 +155,7 @@ func (c *Client) CheckAuth(callback func(sessionId string) error) error {
 	sessionId := res.LoginResult
 
 	c.headers["cookie"] = fmt.Sprintf("ASP.NET_SessionId=%s", sessionId)
+	c.SessionId = sessionId
 
 	return callback(sessionId)
 }
