@@ -57,7 +57,7 @@ func NewAuthenticatedClient(payrollAPI string) (*Client, error) {
 		return nil, err
 	}
 
-	err = c.CheckAuth(func(sessionId string) error { return nil })
+	err = c.CheckAuth(nil)
 	if err != nil {
 		return nil, err
 	}
@@ -157,6 +157,9 @@ func (c *Client) CheckAuth(callback func(sessionId string) error) error {
 	c.headers["cookie"] = fmt.Sprintf("ASP.NET_SessionId=%s", sessionId)
 	c.SessionId = sessionId
 
+	if callback == nil {
+		return nil
+	}
 	return callback(sessionId)
 }
 
