@@ -33,9 +33,7 @@ func New(apiToken string) (*PayrollService, error) {
 					Timeout:   30 * time.Second,
 					KeepAlive: 30 * time.Second,
 				}).DialContext,
-				TLSHandshakeTimeout:   10 * time.Second,
-				ResponseHeaderTimeout: 10 * time.Second,
-				ExpectContinueTimeout: 1 * time.Second,
+				TLSHandshakeTimeout: 10 * time.Second,
 			}}))
 
 	if err != nil {
