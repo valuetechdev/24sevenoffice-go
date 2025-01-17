@@ -5,6 +5,7 @@ package so24
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/valuetechdev/api-client-24so/so24/account24"
@@ -70,39 +71,35 @@ func NewClient(payrollAPI string) (*Client, error) {
 	// for simplicity sake
 	headers := make(map[string]string)
 
-	// add headers to auth client for
-	// later we add session id to make all calls authenticated
-	withHeaders := soap.WithHTTPHeaders(headers)
-
 	authService := auth24.NewAuthenticateSoap(
-		soap.NewClient(auth_url, withHeaders),
+		newSoapClient(auth_url, headers),
 	)
 	invoiceService := invoice24.NewInvoiceServiceSoap(
-		soap.NewClient(invoice_url, withHeaders),
+		newSoapClient(invoice_url, headers),
 	)
 	productService := product24.NewProductServiceSoap(
-		soap.NewClient(product_url, withHeaders),
+		newSoapClient(product_url, headers),
 	)
 	accountService := account24.NewAccountServiceSoap(
-		soap.NewClient(account_url, withHeaders),
+		newSoapClient(account_url, headers),
 	)
 	companyService := company24.NewCompanyServiceSoap(
-		soap.NewClient(company_url, withHeaders),
+		newSoapClient(company_url, headers),
 	)
 	clientService := client24.NewClientServiceSoap(
-		soap.NewClient(client_url, withHeaders),
+		newSoapClient(client_url, headers),
 	)
 	personService := person24.NewPersonServiceSoap(
-		soap.NewClient(person_url, withHeaders),
+		newSoapClient(person_url, headers),
 	)
 	projectService := project24.NewProjectServiceSoap(
-		soap.NewClient(project_url, withHeaders),
+		newSoapClient(project_url, headers),
 	)
 	transactionService := transaction24.NewTransactionServiceSoap(
-		soap.NewClient(transaction_url, withHeaders),
+		newSoapClient(transaction_url, headers),
 	)
 	attachmentService := attachment24.NewAttachmentServiceSoap(
-		soap.NewClient(attachment_url, withHeaders),
+		newSoapClient(attachment_url, headers),
 	)
 	payrollService, err := payroll24.New(payrollAPI)
 	if err != nil {
@@ -128,6 +125,18 @@ func NewClient(payrollAPI string) (*Client, error) {
 	}
 
 	return &client, nil
+}
+
+func newSoapClient(url string, headers map[string]string) *soap.Client {
+	// add headers to auth client for
+	// later we add session id to make all calls authenticated
+	withHeaders := soap.WithHTTPHeaders(headers)
+
+	// handle timeouts
+	withTLSHandshakeTimeout := soap.WithTLSHandshakeTimeout(10 * time.Second)
+	withRequestTimeout := soap.WithRequestTimeout(60 * time.Second)
+
+	return soap.NewClient(url, withHeaders, withTLSHandshakeTimeout, withRequestTimeout)
 }
 
 func (c *Client) CheckAuth(callback func(sessionId string) error) error {
