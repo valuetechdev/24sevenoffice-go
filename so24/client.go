@@ -5,7 +5,6 @@ package so24
 import (
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/valuetechdev/api-client-24so/so24/account24"
@@ -133,8 +132,8 @@ func newSoapClient(url string, headers map[string]string) *soap.Client {
 	withHeaders := soap.WithHTTPHeaders(headers)
 
 	// handle timeouts
-	withTLSHandshakeTimeout := soap.WithTLSHandshakeTimeout(10 * time.Second)
-	withRequestTimeout := soap.WithRequestTimeout(60 * time.Second)
+	withTLSHandshakeTimeout := soap.WithTLSHandshakeTimeout(0)
+	withRequestTimeout := soap.WithRequestTimeout(0)
 
 	return soap.NewClient(url, withHeaders, withTLSHandshakeTimeout, withRequestTimeout)
 }

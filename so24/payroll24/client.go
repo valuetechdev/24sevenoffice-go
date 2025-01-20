@@ -30,10 +30,10 @@ func New(apiToken string) (*PayrollService, error) {
 			Timeout: 60 * time.Second,
 			Transport: &http.Transport{
 				DialContext: (&net.Dialer{
-					Timeout:   30 * time.Second,
+					Timeout:   60 * time.Second,
 					KeepAlive: 30 * time.Second,
 				}).DialContext,
-				TLSHandshakeTimeout: 10 * time.Second,
+				TLSHandshakeTimeout: 0,
 			}}))
 
 	if err != nil {
