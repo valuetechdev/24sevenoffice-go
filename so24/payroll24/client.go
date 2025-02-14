@@ -1,4 +1,4 @@
-//go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config payroll.yml ../../api/openapi/payroll.json
+//go:generate go tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config payroll.yml ../../api/openapi/payroll.json
 
 package payroll24
 

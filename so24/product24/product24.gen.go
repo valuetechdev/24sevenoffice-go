@@ -5,9 +5,8 @@ package product24
 import (
 	"context"
 	"encoding/xml"
-	"time"
-
 	"github.com/hooklift/gowsdl/soap"
+	"time"
 )
 
 // against "unused imports"

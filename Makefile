@@ -1,29 +1,21 @@
-## help: print this help message
-.PHONY: help
-help:
-	@echo 'Usage:'
-	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
-
-## tidy: run go mod tidy && go fmt ./...
 .PHONY: tidy
 tidy:
 	go mod tidy
 	go fmt ./...
 
-## generate: run go generate && go fmt
 .PHONY: generate
 generate:
 	go generate ./...
 	go fmt ./...
 	sed -i '' 's/int \[\]/Int \[\]/g' ./so24/**/*.gen.go
 	
-## vet: vet files
-.PHONY: vet
-vet:
-	go vet ./...
-
-## test: run tests
 .PHONY: test
 test:
 	op run --env-file='./.env' -- go test ./...
+
+.PHONY: check
+check:
+	go vet ./...
+	go tool github.com/golangci/golangci-lint/cmd/golangci-lint run ./...
+	go tool honnef.co/go/tools/cmd/staticcheck ./...
 
