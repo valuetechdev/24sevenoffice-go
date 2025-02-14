@@ -15,6 +15,7 @@ tidy:
 generate:
 	go generate ./...
 	go fmt ./...
+	sed -i '' 's/int \[\]/Int \[\]/g' ./so24/**/*.gen.go
 	
 ## vet: vet files
 .PHONY: vet
