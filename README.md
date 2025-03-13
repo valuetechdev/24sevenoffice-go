@@ -20,15 +20,15 @@ API and payroll Swagger API.
 ## Usage
 
 ```bash
-go get github.com/valuetechdev/api-client-24so
+go get github.com/valuetechdev/24sevenoffice-go
 ```
 
 Go example
 
 ```go
 import (
-	"github.com/valuetechdev/api-client-24so/so24"
-	"github.com/valuetechdev/api-client-24so/so24/account24"
+	"github.com/valuetechdev/24sevenoffice-go/so24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/account24"
 )
 
 func func() {

@@ -1,4 +1,4 @@
-module github.com/valuetechdev/api-client-24so
+module github.com/valuetechdev/24sevenoffice-go
 
 go 1.24.0
 

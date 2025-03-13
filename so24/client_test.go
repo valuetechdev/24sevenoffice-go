@@ -8,14 +8,14 @@ import (
 
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/stretchr/testify/assert"
-	"github.com/valuetechdev/api-client-24so/so24/account24"
-	"github.com/valuetechdev/api-client-24so/so24/auth24"
-	"github.com/valuetechdev/api-client-24so/so24/client24"
-	"github.com/valuetechdev/api-client-24so/so24/company24"
-	"github.com/valuetechdev/api-client-24so/so24/invoice24"
-	"github.com/valuetechdev/api-client-24so/so24/person24"
-	"github.com/valuetechdev/api-client-24so/so24/product24"
-	"github.com/valuetechdev/api-client-24so/so24/project24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/account24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/auth24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/client24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/company24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/invoice24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/person24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/product24"
+	"github.com/valuetechdev/24sevenoffice-go/so24/project24"
 )
 
 func TestClientInitialization(t *testing.T) {

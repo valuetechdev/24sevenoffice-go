@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/valuetechdev/api-client-24so/so24/payroll24/bearer"
+	"github.com/valuetechdev/24sevenoffice-go/so24/payroll24/bearer"
 )
 
 type PayrollService struct {
