@@ -1,3 +1,5 @@
+[![go reference badge](https://pkg.go.dev/badge/github.com/valuetechdev/24sevenoffice-go.svg)](https://pkg.go.dev/github.com/valuetechdev/24sevenoffice-go)
+
 # 24SevenOffice API client for Go
 
 This package contains a generated API client based on the 24SevenOffice's SOAP
