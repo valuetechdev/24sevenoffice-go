@@ -21,8 +21,12 @@ import (
 func TestClientInitialization(t *testing.T) {
 	assert := assert.New(t)
 
-	payrollAPI, _ := os.LookupEnv("TWENTYFOURSEVEN_API_PAYROLL")
-	c, err := NewAuthenticatedClient(payrollAPI)
+	c, err := NewAuthenticatedClient(&Credentials{
+		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
+		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
+		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
+		PayrollAPI:    os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"),
+	})
 	assert.NoError(err)
 
 	assert.NotEmpty(c.SessionId)
@@ -31,7 +35,12 @@ func TestClientInitialization(t *testing.T) {
 func TestClientInitializationWithoutPayroll(t *testing.T) {
 	assert := assert.New(t)
 
-	c, err := NewAuthenticatedClient("")
+	c, err := NewAuthenticatedClient(&Credentials{
+		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
+		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
+		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
+		PayrollAPI:    os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"),
+	})
 	assert.NoError(err)
 
 	assert.NotEmpty(c.SessionId)
@@ -40,8 +49,12 @@ func TestClientInitializationWithoutPayroll(t *testing.T) {
 func TestServices(t *testing.T) {
 	assert := assert.New(t)
 
-	payrollAPI, _ := os.LookupEnv("TWENTYFOURSEVEN_API_PAYROLL")
-	c, err := NewAuthenticatedClient(payrollAPI)
+	c, err := NewAuthenticatedClient(&Credentials{
+		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
+		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
+		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
+		PayrollAPI:    os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"),
+	})
 	assert.NoError(err)
 
 	changedAfter := soap.XSDDateTime(soap.CreateXsdDateTime(time.Now(), true))

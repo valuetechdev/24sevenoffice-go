@@ -4,7 +4,6 @@ package so24
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/valuetechdev/24sevenoffice-go/so24/account24"
@@ -48,11 +47,22 @@ type Client struct {
 	Payroll     payroll24.PayrollService
 	Transaction transaction24.TransactionServiceSoap
 	headers     map[string]string
+	credentials *Credentials
+}
+
+type Credentials struct {
+	ApplicationId string
+	Username      string
+	Password      string
+	PayrollAPI    string
 }
 
 // panic if missing credentials
-func NewAuthenticatedClient(payrollAPI string) (*Client, error) {
-	c, err := NewClient(payrollAPI)
+func NewAuthenticatedClient(creds *Credentials) (*Client, error) {
+	if creds == nil {
+		return nil, fmt.Errorf("creds cannot be nil")
+	}
+	c, err := NewClient(creds)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +75,10 @@ func NewAuthenticatedClient(payrollAPI string) (*Client, error) {
 	return c, nil
 }
 
-func NewClient(payrollAPI string) (*Client, error) {
+func NewClient(creds *Credentials) (*Client, error) {
+	if creds == nil {
+		return nil, fmt.Errorf("creds cannot be nil")
+	}
 	// map for http headers. all clients share the headers map
 	// for simplicity sake
 	headers := make(map[string]string)
@@ -100,7 +113,7 @@ func NewClient(payrollAPI string) (*Client, error) {
 	attachmentService := attachment24.NewAttachmentServiceSoap(
 		newSoapClient(attachment_url, headers),
 	)
-	payrollService, err := payroll24.New(payrollAPI)
+	payrollService, err := payroll24.New(creds.PayrollAPI)
 	if err != nil {
 		return nil, err
 	}
@@ -117,6 +130,7 @@ func NewClient(payrollAPI string) (*Client, error) {
 		Project:     projectService,
 		Transaction: transactionService,
 		headers:     headers,
+		credentials: creds,
 	}
 
 	if payrollService != nil {
@@ -148,7 +162,7 @@ func (c *Client) CheckAuth(callback func(sessionId string) error) error {
 		return nil
 	}
 
-	credentials, err := getCredentials()
+	credentials, err := getCredentials(c.credentials)
 	if err != nil {
 		return err
 	}
@@ -175,25 +189,12 @@ func (c *Client) SetSessionId(sessionId string) {
 	c.SessionId = sessionId
 }
 
-func getCredentials() (*auth24.Credential, error) {
-	so24username := requireEnv("TWENTYFOURSEVEN_API_USERNAME")
-	so24password := requireEnv("TWENTYFOURSEVEN_API_PASSWORD")
-	so24appId := requireEnv("TWENTYFOURSEVEN_API_APPLICATIONID")
-
-	so24appGuid := auth24.Guid(so24appId)
+func getCredentials(creds *Credentials) (*auth24.Credential, error) {
+	so24appGuid := auth24.Guid(creds.ApplicationId)
 
 	return &auth24.Credential{
 		ApplicationId: &so24appGuid,
-		Password:      so24password,
-		Username:      so24username,
+		Password:      creds.Password,
+		Username:      creds.Username,
 	}, nil
-}
-
-func requireEnv(env string) string {
-	v, ok := os.LookupEnv(env)
-	if !ok {
-		panic(fmt.Sprintf("%s is not set", env))
-	}
-
-	return v
 }
