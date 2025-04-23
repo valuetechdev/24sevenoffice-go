@@ -3,10 +3,7 @@
 package payroll24
 
 import (
-	"net"
-	"net/http"
-	"time"
-
+	"github.com/valuetechdev/24sevenoffice-go/internal/httpclient"
 	"github.com/valuetechdev/24sevenoffice-go/so24/payroll24/bearer"
 )
 
@@ -26,15 +23,7 @@ func New(apiToken string) (*PayrollService, error) {
 	c, err := NewClientWithResponses(
 		baseUrl,
 		WithRequestEditorFn(bt.Intercept),
-		WithHTTPClient(&http.Client{
-			Timeout: 60 * time.Second,
-			Transport: &http.Transport{
-				DialContext: (&net.Dialer{
-					Timeout:   60 * time.Second,
-					KeepAlive: 30 * time.Second,
-				}).DialContext,
-				TLSHandshakeTimeout: 0,
-			}}))
+		WithHTTPClient(httpclient.WithRetry()))
 
 	if err != nil {
 		return nil, err
