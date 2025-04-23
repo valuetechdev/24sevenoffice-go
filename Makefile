@@ -9,10 +9,6 @@ generate:
 	go fmt ./...
 	sed -i '' 's/int \[\]/Int \[\]/g' ./so24/**/*.gen.go
 	
-.PHONY: test
-test:
-	op run --env-file='./.env' -- go test ./...
-
 .PHONY: check
 check:
 	go vet ./...

@@ -34,7 +34,12 @@ import (
 )
 
 func func() {
-   so24Client, err := so24.NewAuthenticatedClient()
+   so24Client, err := so24.NewAuthenticatedClient(&so24.Credentials{
+      ApplicationId: "your-ApplicationId",
+      Username:      "your-Username",
+      Password:      "your-Password",
+      PayrollAPI:    "your-PayrollAPI",
+   })
    if err != nil {
       return nil, err
    }
@@ -47,17 +52,6 @@ func func() {
    // Use the data
 }
 ```
-
-To use the API, you need to log in with `username`, `password` and
-`applicationId`. These are read from as environment variables.
-
-The names are:
-
-- `TWENTYFOURSEVEN_API_APPLICATIONID`
-- `TWENTYFOURSEVEN_API_USERNAME`
-- `TWENTYFOURSEVEN_API_PASSWORD`
-
-The program will panic in any are missing.
 
 Usage is described in [24SevenOffice's API documentation](https://developer.24sevenoffice.com/docs/)
 
