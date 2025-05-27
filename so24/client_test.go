@@ -8,6 +8,7 @@ import (
 
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"github.com/valuetechdev/24sevenoffice-go/so24/account24"
 	"github.com/valuetechdev/24sevenoffice-go/so24/auth24"
 	"github.com/valuetechdev/24sevenoffice-go/so24/client24"
@@ -47,7 +48,7 @@ func TestClientInitializationWithoutPayroll(t *testing.T) {
 }
 
 func TestServices(t *testing.T) {
-	assert := assert.New(t)
+	require := require.New(t)
 
 	c, err := NewAuthenticatedClient(&Credentials{
 		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
@@ -55,44 +56,48 @@ func TestServices(t *testing.T) {
 		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
 		PayrollAPI:    os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"),
 	})
-	assert.NoError(err)
+	require.NoError(err)
 
 	changedAfter := soap.XSDDateTime(soap.CreateXsdDateTime(time.Now(), true))
 
 	_, err = c.Account.GetAccountList(&account24.GetAccountList{})
-	assert.NoError(err, "GetAccountList")
+	require.NoError(err, "GetAccountList")
 	_, err = c.Auth.GetIdentities(&auth24.GetIdentities{})
-	assert.NoError(err, "GetIdentities")
+	require.NoError(err, "GetIdentities")
 	_, err = c.Client.GetClientInformation(&client24.GetClientInformation{})
-	assert.NoError(err, "GetClientInformation")
+	require.NoError(err, "GetClientInformation")
 	_, err = c.Company.GetCompanies(&company24.GetCompanies{SearchParams: &company24.CompanySearchParameters{
 		ChangedAfter: changedAfter,
 	}})
-	assert.NoError(err, "GetCompanies")
+	require.NoError(err, "GetCompanies")
 	_, err = c.Invoice.GetInvoices(&invoice24.GetInvoices{SearchParams: &invoice24.InvoiceSearchParameters{
 		ChangedAfter: changedAfter,
 	}})
-	assert.NoError(err, "GetInvoices")
+	require.NoError(err, "GetInvoices")
 	_, err = c.Person.GetPersons(&person24.GetPersons{
 		PersonSearch: &person24.PersonSearchParameters{
 			ChangedAfter: changedAfter,
 		},
 	})
-	assert.NoError(err, "GetPersons")
+	require.NoError(err, "GetPersons")
+
+	var tmp person24.TriState = person24.TriStateNone
 	_, err = c.Person.GetPersons(&person24.GetPersons{
 		PersonSearch: &person24.PersonSearchParameters{
 			ChangedAfter: changedAfter,
+			Email:        "lol",
+			IsEmployee:   &tmp,
 		},
 	})
-	assert.NoError(err, "GetPersons")
+	require.NoError(err, "GetPersons")
 	_, err = c.Product.GetProducts(&product24.GetProducts{
 		SearchParams: &product24.ProductSearchParameters{DateChanged: changedAfter},
 	})
-	assert.NoError(err, "GetProducts")
+	require.NoError(err, "GetProducts")
 	_, err = c.Project.GetProjectList(&project24.GetProjectList{Ps: &project24.ProjectSearch{ChangedAfter: changedAfter}})
-	assert.NoError(err, "GetProjectList")
+	require.NoError(err, "GetProjectList")
 
 	a, err := c.Payroll.Client.GetAbsenceV2WithResponse(context.TODO())
-	assert.NoError(err, "GetAbsenceV2EmpIdWithResponse")
-	assert.Empty(a.JSON200)
+	require.NoError(err, "GetAbsenceV2EmpIdWithResponse")
+	require.Empty(a.JSON200)
 }
