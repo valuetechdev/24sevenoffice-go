@@ -1,10 +1,10 @@
-//go:generate go tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config payroll.yml ../../api/openapi/payroll.json
+//go:generate go tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config payroll.yml ../api/openapi/payroll.json
 
 package payroll24
 
 import (
 	"github.com/valuetechdev/24sevenoffice-go/internal/httpclient"
-	"github.com/valuetechdev/24sevenoffice-go/soap24/payroll24/bearer"
+	"github.com/valuetechdev/24sevenoffice-go/payroll24/bearer"
 )
 
 type PayrollService struct {
