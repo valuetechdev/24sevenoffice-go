@@ -10,12 +10,6 @@ import (
 	"time"
 )
 
-type AuthResponse struct {
-	AccessToken  string `json:"accessToken"`
-	ValidFromUtc string `json:"validFromUtc"`
-	ValidToUtc   string `json:"validToUtc"`
-}
-
 type BearerToken struct {
 	Token     string
 	ExpiresAt *time.Time
