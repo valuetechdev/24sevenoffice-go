@@ -1,7 +1,6 @@
 package soap24
 
 import (
-	"context"
 	"os"
 	"testing"
 	"time"
@@ -26,21 +25,6 @@ func TestClientInitialization(t *testing.T) {
 		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
 		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
 		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
-		PayrollAPI:    os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"),
-	})
-	assert.NoError(err)
-
-	assert.NotEmpty(c.SessionId)
-}
-
-func TestClientInitializationWithoutPayroll(t *testing.T) {
-	assert := assert.New(t)
-
-	c, err := NewAuthenticatedClient(&Credentials{
-		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
-		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
-		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
-		PayrollAPI:    os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"),
 	})
 	assert.NoError(err)
 
@@ -54,7 +38,6 @@ func TestServices(t *testing.T) {
 		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
 		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
 		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
-		PayrollAPI:    os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"),
 	})
 	require.NoError(err)
 
@@ -96,8 +79,4 @@ func TestServices(t *testing.T) {
 	require.NoError(err, "GetProducts")
 	_, err = c.Project.GetProjectList(&project24.GetProjectList{Ps: &project24.ProjectSearch{ChangedAfter: changedAfter}})
 	require.NoError(err, "GetProjectList")
-
-	a, err := c.Payroll.Client.GetAbsenceV2WithResponse(context.TODO())
-	require.NoError(err, "GetAbsenceV2EmpIdWithResponse")
-	require.Empty(a.JSON200)
 }

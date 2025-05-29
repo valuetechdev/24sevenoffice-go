@@ -7,11 +7,7 @@ import (
 	"github.com/valuetechdev/24sevenoffice-go/payroll24/bearer"
 )
 
-type PayrollService struct {
-	Client *ClientWithResponses
-}
-
-func New(apiToken string) (*PayrollService, error) {
+func New(apiToken string) (*ClientWithResponses, error) {
 	bt, err := bearer.New(apiToken)
 	if err != nil {
 		return nil, err
@@ -29,5 +25,5 @@ func New(apiToken string) (*PayrollService, error) {
 		return nil, err
 	}
 
-	return &PayrollService{c}, nil
+	return c, nil
 }
