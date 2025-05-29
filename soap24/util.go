@@ -1,4 +1,4 @@
-package so24
+package soap24
 
 import (
 	"time"

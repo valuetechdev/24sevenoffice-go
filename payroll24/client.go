@@ -1,18 +1,13 @@
-//go:generate go tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config payroll.yml ../../api/openapi/payroll.json
+//go:generate go tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config cfg.yaml ../api/openapi/payroll.json
 
 package payroll24
 
 import (
 	"github.com/valuetechdev/24sevenoffice-go/internal/httpclient"
-	"github.com/valuetechdev/24sevenoffice-go/so24/payroll24/bearer"
 )
 
-type PayrollService struct {
-	Client *ClientWithResponses
-}
-
-func New(apiToken string) (*PayrollService, error) {
-	bt, err := bearer.New(apiToken)
+func New(apiToken string) (*ClientWithResponses, error) {
+	bt, err := newToken(apiToken)
 	if err != nil {
 		return nil, err
 	}
@@ -29,5 +24,5 @@ func New(apiToken string) (*PayrollService, error) {
 		return nil, err
 	}
 
-	return &PayrollService{c}, nil
+	return c, nil
 }

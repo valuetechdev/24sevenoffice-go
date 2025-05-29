@@ -1,4 +1,4 @@
-package bearer
+package payroll24
 
 import (
 	"context"
@@ -10,18 +10,12 @@ import (
 	"time"
 )
 
-type AuthResponse struct {
-	AccessToken  string `json:"accessToken"`
-	ValidFromUtc string `json:"validFromUtc"`
-	ValidToUtc   string `json:"validToUtc"`
-}
-
 type BearerToken struct {
 	Token     string
 	ExpiresAt *time.Time
 }
 
-func New(apiToken string) (*BearerToken, error) {
+func newToken(apiToken string) (*BearerToken, error) {
 	if apiToken == "" {
 		// Safe-return
 		return nil, nil

@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: Schema Type Corrections Overlay
+  version: 1.0.0
+actions:
+- target: "$.paths['/customers'].get.parameters[0].schema"
+  description: Fix customers limit parameter - change maxLength to maximum and type to integer
+  update:
+    default: 25
+    maximum: 100
+    type: integer
+    format: int32
+
+- target: "$.paths['/salesorders'].get.parameters[0].schema"
+  description: Fix salesorders limit parameter - change to integer type
+  update:
+    type: integer
+    format: int32
+

@@ -7,7 +7,7 @@ tidy:
 generate:
 	go generate ./...
 	go fmt ./...
-	sed -i '' 's/int \[\]/Int \[\]/g' ./so24/**/*.gen.go
+	sed -i '' 's/int \[\]/Int \[\]/g' ./soap24/**/*.gen.go
 	
 .PHONY: check
 check:

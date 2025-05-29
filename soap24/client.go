@@ -1,22 +1,21 @@
 //go:generate go run generate24.go
 
-package so24
+package soap24
 
 import (
 	"fmt"
 
 	"github.com/hooklift/gowsdl/soap"
-	"github.com/valuetechdev/24sevenoffice-go/so24/account24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/attachment24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/auth24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/client24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/company24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/invoice24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/payroll24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/person24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/product24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/project24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/transaction24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/account24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/attachment24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/auth24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/client24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/company24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/invoice24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/person24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/product24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/project24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/transaction24"
 )
 
 const (
@@ -44,7 +43,6 @@ type Client struct {
 	Person      person24.PersonServiceSoap
 	Product     product24.ProductServiceSoap
 	Project     project24.ProjectServiceSoap
-	Payroll     payroll24.PayrollService
 	Transaction transaction24.TransactionServiceSoap
 	headers     map[string]string
 	credentials *Credentials
@@ -54,7 +52,6 @@ type Credentials struct {
 	ApplicationId string
 	Username      string
 	Password      string
-	PayrollAPI    string
 }
 
 // panic if missing credentials
@@ -113,11 +110,6 @@ func NewClient(creds *Credentials) (*Client, error) {
 	attachmentService := attachment24.NewAttachmentServiceSoap(
 		newSoapClient(attachment_url, headers),
 	)
-	payrollService, err := payroll24.New(creds.PayrollAPI)
-	if err != nil {
-		return nil, err
-	}
-
 	client := Client{
 		Account:     accountService,
 		Attachment:  attachmentService,
@@ -131,10 +123,6 @@ func NewClient(creds *Credentials) (*Client, error) {
 		Transaction: transactionService,
 		headers:     headers,
 		credentials: creds,
-	}
-
-	if payrollService != nil {
-		client.Payroll = *payrollService
 	}
 
 	return &client, nil
