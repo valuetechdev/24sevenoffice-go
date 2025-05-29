@@ -1,4 +1,4 @@
-package bearer
+package payroll24
 
 import (
 	"context"
@@ -15,7 +15,7 @@ type BearerToken struct {
 	ExpiresAt *time.Time
 }
 
-func New(apiToken string) (*BearerToken, error) {
+func newToken(apiToken string) (*BearerToken, error) {
 	if apiToken == "" {
 		// Safe-return
 		return nil, nil

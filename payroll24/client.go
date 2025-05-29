@@ -4,11 +4,10 @@ package payroll24
 
 import (
 	"github.com/valuetechdev/24sevenoffice-go/internal/httpclient"
-	"github.com/valuetechdev/24sevenoffice-go/payroll24/bearer"
 )
 
 func New(apiToken string) (*ClientWithResponses, error) {
-	bt, err := bearer.New(apiToken)
+	bt, err := newToken(apiToken)
 	if err != nil {
 		return nil, err
 	}
