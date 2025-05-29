@@ -1,4 +1,4 @@
-package so24
+package soap24
 
 import (
 	"context"
@@ -9,14 +9,14 @@ import (
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/valuetechdev/24sevenoffice-go/so24/account24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/auth24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/client24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/company24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/invoice24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/person24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/product24"
-	"github.com/valuetechdev/24sevenoffice-go/so24/project24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/account24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/auth24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/client24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/company24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/invoice24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/person24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/product24"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/project24"
 )
 
 func TestClientInitialization(t *testing.T) {

@@ -4,7 +4,7 @@ package payroll24
 
 import (
 	"github.com/valuetechdev/24sevenoffice-go/internal/httpclient"
-	"github.com/valuetechdev/24sevenoffice-go/so24/payroll24/bearer"
+	"github.com/valuetechdev/24sevenoffice-go/soap24/payroll24/bearer"
 )
 
 type PayrollService struct {
