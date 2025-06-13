@@ -11,13 +11,13 @@ import (
 func TestClientInitialization(t *testing.T) {
 	require := require.New(t)
 
-	_, err := New(os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"))
+	_, err := New(os.Getenv("TFSO_PAYROLL_SECRET"))
 	require.NoError(err)
 }
 
 func TestServices(t *testing.T) {
 	require := require.New(t)
-	c, err := New(os.Getenv("TWENTYFOURSEVEN_API_PAYROLL"))
+	c, err := New(os.Getenv("TFSO_PAYROLL_SECRET"))
 	require.NoError(err)
 
 	a, err := c.GetAbsenceV2WithResponse(context.TODO())

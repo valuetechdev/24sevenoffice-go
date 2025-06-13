@@ -22,9 +22,9 @@ func TestClientInitialization(t *testing.T) {
 	assert := assert.New(t)
 
 	c, err := NewAuthenticatedClient(&Credentials{
-		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
-		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
-		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
+		ApplicationId: os.Getenv("TFSO_SOAP_APPLICATIONID"),
+		Username:      os.Getenv("TFSO_SOAP_USERNAME"),
+		Password:      os.Getenv("TFSO_SOAP_PASSWORD"),
 	})
 	assert.NoError(err)
 
@@ -35,9 +35,9 @@ func TestServices(t *testing.T) {
 	require := require.New(t)
 
 	c, err := NewAuthenticatedClient(&Credentials{
-		ApplicationId: os.Getenv("TWENTYFOURSEVEN_API_APPLICATIONID"),
-		Username:      os.Getenv("TWENTYFOURSEVEN_API_USERNAME"),
-		Password:      os.Getenv("TWENTYFOURSEVEN_API_PASSWORD"),
+		ApplicationId: os.Getenv("TFSO_SOAP_APPLICATIONID"),
+		Username:      os.Getenv("TFSO_SOAP_USERNAME"),
+		Password:      os.Getenv("TFSO_SOAP_PASSWORD"),
 	})
 	require.NoError(err)
 

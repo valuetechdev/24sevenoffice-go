@@ -13,8 +13,8 @@ func TestClientInitialization(t *testing.T) {
 	require := require.New(t)
 
 	c, err := New(&TokenOpts{
-		ClientId:       os.Getenv("TFSO_APP_ID"),
-		ClientSecret:   os.Getenv("TFSO_SECRET"),
+		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
+		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
 		OrganizationId: "363976382792241",
 	})
 	require.NoError(err)
