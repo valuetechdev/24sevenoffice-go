@@ -210,6 +210,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/oapi-codegen/runtime v1.1.1
 	github.com/pmezard/go-difflib v1.0.0 // indirect
+	golang.org/x/oauth2 v0.30.0
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 

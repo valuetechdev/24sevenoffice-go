@@ -9,13 +9,14 @@
 ```go
 import "github.com/valuetechdev/24sevenoffice-go/rest24"
 
-func func() {
-	c, err := New(&TokenOpts{
+func yourFunc() (any, error) {
+	client := New(&Opts{
 		ClientId:       "your-client-id",
 		ClientSecret:   "your-client-secret",
 		OrganizationId: "your-org-id",
 	})
-	if err != nil {
+
+	if err := client.Authenticate(); err != nil {
 	  return nil, err
 	}
 
