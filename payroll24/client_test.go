@@ -8,17 +8,15 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestClientInitialization(t *testing.T) {
+func TestClient(t *testing.T) {
 	require := require.New(t)
 
-	_, err := New(os.Getenv("TFSO_PAYROLL_SECRET"))
-	require.NoError(err)
-}
+	c := New(Opts{os.Getenv("TFSO_PAYROLL_SECRET")})
+	require.NotNil(c)
 
-func TestServices(t *testing.T) {
-	require := require.New(t)
-	c, err := New(os.Getenv("TFSO_PAYROLL_SECRET"))
-	require.NoError(err)
+	require.False(c.IsTokenValid(), "token should be invalid before init")
+	require.NoError(c.Authenticate(), "client should authenticate")
+	require.True(c.IsTokenValid(), "token should be valid after authentication")
 
 	a, err := c.GetAbsenceV2WithResponse(context.TODO())
 	require.NoError(err, "GetAbsenceV2EmpIdWithResponse")

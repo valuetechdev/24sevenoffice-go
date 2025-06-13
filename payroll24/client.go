@@ -3,26 +3,35 @@
 package payroll24
 
 import (
+	"fmt"
+	"net/http"
+
 	"github.com/valuetechdev/24sevenoffice-go/internal/httpclient"
 )
 
-func New(apiToken string) (*ClientWithResponses, error) {
-	bt, err := newToken(apiToken)
-	if err != nil {
-		return nil, err
-	}
-	if bt == nil {
-		return nil, nil
-	}
+type Payroll24Client struct {
+	token      *Token
+	httpClient *http.Client
+	secret     string
+	*ClientWithResponses
+}
+
+type Opts struct {
+	Secret string
+}
+
+func New(opts Opts) *Payroll24Client {
+	payrollClient := &Payroll24Client{httpClient: httpclient.WithRetry(), secret: opts.Secret}
 	baseUrl := "https://payroll.24sevenoffice.com/api"
 	c, err := NewClientWithResponses(
 		baseUrl,
-		WithRequestEditorFn(bt.Intercept),
-		WithHTTPClient(httpclient.WithRetry()))
+		WithRequestEditorFn(payrollClient.Intercept),
+		WithHTTPClient(payrollClient.httpClient))
 
 	if err != nil {
-		return nil, err
-	}
+		panic(fmt.Errorf("failed to init client: %w", err))
 
-	return c, nil
+	}
+	payrollClient.ClientWithResponses = c
+	return payrollClient
 }

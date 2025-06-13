@@ -9,9 +9,9 @@
 ```go
 import "github.com/valuetechdev/24sevenoffice-go/payroll24"
 
-func func() {
-   c, err := payroll24.NewAuthenticatedClient("your-api-token")
-   if err != nil {
+func yourFunc() (any, error) {
+   c := payroll24.New(payroll24.Opts{"your-secret"})
+   if err := c.Authenticate(); err != nil {
       return nil, err
    }
 
