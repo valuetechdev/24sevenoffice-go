@@ -12,7 +12,7 @@ import (
 func TestClientInitialization(t *testing.T) {
 	require := require.New(t)
 
-	c := New(&Opts{
+	c := New(&Credentials{
 		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
 		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
 		OrganizationId: "363976382792241",

@@ -10,7 +10,7 @@
 import "github.com/valuetechdev/24sevenoffice-go/rest24"
 
 func yourFunc() (any, error) {
-	client := New(&Opts{
+	client := New(&rest24.Credentials{
 		ClientId:       "your-client-id",
 		ClientSecret:   "your-client-secret",
 		OrganizationId: "your-org-id",

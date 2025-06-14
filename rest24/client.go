@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/valuetechdev/24sevenoffice-go/internal/httpclient"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
@@ -19,33 +18,52 @@ type Rest24Client struct {
 	*ClientWithResponses
 }
 
-type Opts struct {
+type Credentials struct {
 	ClientId       string
 	ClientSecret   string
 	OrganizationId string
 }
 
-func New(opts *Opts) *Rest24Client {
+type Option func(*Rest24Client)
+
+// WithHttpClient sets a custom http.Client. Defaults to [http.DefaultClient].
+func WithHttpClient(client *http.Client) Option {
+	return func(c *Rest24Client) {
+		c.httpClient = client
+	}
+}
+
+// Returns new [Rest24Client].
+//
+// You can reuse an already generated token and have it revalidated if it has
+// expired, by using [Rest24Client.SetToken].
+//
+// You can provide options to customize the client behavior.
+func New(credentials *Credentials, options ...Option) *Rest24Client {
 	conf := &clientcredentials.Config{
-		ClientID:     opts.ClientId,
-		ClientSecret: opts.ClientSecret,
+		ClientID:     credentials.ClientId,
+		ClientSecret: credentials.ClientSecret,
 		TokenURL:     "https://login.24sevenoffice.com/oauth/token",
 		EndpointParams: map[string][]string{
-			"login_organization": {opts.OrganizationId},
+			"login_organization": {credentials.OrganizationId},
 			"audience":           {"https://api.24sevenoffice.com"},
 		},
 	}
 
 	baseUrl := "https://rest.api.24sevenoffice.com/v1"
-	restClient := &Rest24Client{conf: conf, httpClient: httpclient.WithRetry()}
+	client := &Rest24Client{conf: conf, httpClient: http.DefaultClient}
+
+	for _, option := range options {
+		option(client)
+	}
 
 	c, err := NewClientWithResponses(
 		baseUrl,
-		WithRequestEditorFn(restClient.InterceptToken),
-		WithHTTPClient(restClient.httpClient))
+		WithRequestEditorFn(client.InterceptToken),
+		WithHTTPClient(client.httpClient))
 	if err != nil {
 		panic(fmt.Errorf("failed to init client: %w", err))
 	}
-	restClient.ClientWithResponses = c
-	return restClient
+	client.ClientWithResponses = c
+	return client
 }
