@@ -13,9 +13,3 @@ This package contains a generated API clients for 24SevenOffice's APIs.
 ```bash
 go get github.com/valuetechdev/24sevenoffice-go
 ```
-
-## Things to know
-
-- The payroll-API is using OpenAPI/Swagger 2.0.
-  - It has been converted to OpenAPI 3 using `npx swagger2openapi -o <openapi>.json <swagger2>.json`
-  - It has been altered to with defined schemas/models that was missing.

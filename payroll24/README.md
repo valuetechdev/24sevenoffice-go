@@ -23,3 +23,9 @@ func yourFunc() (any, error) {
    // Use the data
 }
 ```
+
+## Things to know
+
+- The API is using OpenAPI/Swagger 2.0.
+  - It has been converted to OpenAPI 3 using `npx swagger2openapi -o <openapi>.json <swagger2>.json`
+  - It has been altered to with defined schemas/models that was missing.
