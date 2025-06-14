@@ -39,6 +39,8 @@ func WithHttpClient(client *http.Client) Option {
 // expired, by using [Rest24Client.SetToken].
 //
 // You can provide options to customize the client behavior.
+//
+// WARNING: The client hasn't been tested.
 func New(credentials *Credentials, options ...Option) *Rest24Client {
 	conf := &clientcredentials.Config{
 		ClientID:     credentials.ClientId,
