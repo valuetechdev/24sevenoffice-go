@@ -58,12 +58,12 @@ func (c *Payroll24Client) Authenticate() error {
 	return nil
 }
 
-// Returns the oauth2 token
+// Returns token
 func (c *Payroll24Client) GetToken() *Token {
 	return c.token
 }
 
-// Set the oauth2 token
+// Sets token
 func (c *Payroll24Client) SetToken(token *Token) {
 	c.token = token
 }

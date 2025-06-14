@@ -10,7 +10,7 @@
 import "github.com/valuetechdev/24sevenoffice-go/payroll24"
 
 func yourFunc() (any, error) {
-   c := payroll24.New(payroll24.Opts{"your-secret"})
+   c := payroll24.New("your-secret")
    if err := c.Authenticate(); err != nil {
       return nil, err
    }

@@ -11,7 +11,7 @@ import (
 func TestClient(t *testing.T) {
 	require := require.New(t)
 
-	c := New(Opts{os.Getenv("TFSO_PAYROLL_SECRET")})
+	c := New(os.Getenv("TFSO_PAYROLL_SECRET"))
 	require.NotNil(c)
 
 	require.False(c.IsTokenValid(), "token should be invalid before init")
