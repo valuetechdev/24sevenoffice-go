@@ -26,12 +26,14 @@ import (
 )
 
 func func() {
-   c, err := soap24.NewAuthenticatedClient(&soap24.Credentials{
-      ApplicationId: "your-ApplicationId",
+   applicationId := auth24.Guid(os.Getenv("TFSO_SOAP_APPLICATIONID"))
+   credentials := auth24.Credential{
+      ApplicationId: &applicationId,
       Username:      "your-Username",
       Password:      "your-Password",
-   })
-   if err != nil {
+   }
+   c := soap24.New(credentials)
+   if err := c.CheckAuth(); err != nil {
       return nil, err
    }
 

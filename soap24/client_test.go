@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/hooklift/gowsdl/soap"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/valuetechdev/24sevenoffice-go/soap24/account24"
 	"github.com/valuetechdev/24sevenoffice-go/soap24/auth24"
@@ -18,32 +17,31 @@ import (
 	"github.com/valuetechdev/24sevenoffice-go/soap24/project24"
 )
 
+var applicationId = auth24.Guid(os.Getenv("TFSO_SOAP_APPLICATIONID"))
+var credentials = auth24.Credential{
+	ApplicationId: &applicationId,
+	Username:      os.Getenv("TFSO_SOAP_USERNAME"),
+	Password:      os.Getenv("TFSO_SOAP_PASSWORD"),
+}
+
 func TestClientInitialization(t *testing.T) {
-	assert := assert.New(t)
+	require := require.New(t)
 
-	c, err := NewAuthenticatedClient(&Credentials{
-		ApplicationId: os.Getenv("TFSO_SOAP_APPLICATIONID"),
-		Username:      os.Getenv("TFSO_SOAP_USERNAME"),
-		Password:      os.Getenv("TFSO_SOAP_PASSWORD"),
-	})
-	assert.NoError(err)
-
-	assert.NotEmpty(c.SessionId)
+	c := New(credentials)
+	require.False(c.IsSessionIdValid(), "client should not have valid sessionId after init")
+	require.NoError(c.CheckAuth(), "client should be able to check auth after init")
+	require.True(c.IsSessionIdValid(), "client should have a valid sessionId checkAuth")
 }
 
 func TestServices(t *testing.T) {
 	require := require.New(t)
 
-	c, err := NewAuthenticatedClient(&Credentials{
-		ApplicationId: os.Getenv("TFSO_SOAP_APPLICATIONID"),
-		Username:      os.Getenv("TFSO_SOAP_USERNAME"),
-		Password:      os.Getenv("TFSO_SOAP_PASSWORD"),
-	})
-	require.NoError(err)
+	c := New(credentials)
+	require.NoError(c.CheckAuth(), "client should be able to check auth after init")
 
 	changedAfter := soap.XSDDateTime(soap.CreateXsdDateTime(time.Now(), true))
 
-	_, err = c.Account.GetAccountList(&account24.GetAccountList{})
+	_, err := c.Account.GetAccountList(&account24.GetAccountList{})
 	require.NoError(err, "GetAccountList")
 	_, err = c.Auth.GetIdentities(&auth24.GetIdentities{})
 	require.NoError(err, "GetIdentities")
