@@ -33,9 +33,6 @@ func func() {
       Password:      "your-Password",
    }
    c := soap24.New(credentials)
-   if err := c.CheckAuth(); err != nil {
-      return nil, err
-   }
 
    ratesResult, err := c.Account.GetTaxCodeList(&account24.GetTaxCodeList{})
    if err != nil {

@@ -4,6 +4,8 @@ package soap24
 
 import (
 	"fmt"
+	"net/http"
+	"strings"
 
 	"github.com/hooklift/gowsdl/soap"
 	"github.com/valuetechdev/24sevenoffice-go/soap24/account24"
@@ -35,6 +37,7 @@ type Client struct {
 	sessionId   string
 	headers     map[string]string
 	credentials *auth24.Credential
+	httpClient  *http.Client
 
 	Account     account24.AccountServiceSoap
 	Attachment  attachment24.AttachmentServiceSoap
@@ -48,62 +51,91 @@ type Client struct {
 	Transaction transaction24.TransactionServiceSoap
 }
 
+type Option func(*Client)
+
+// WithHttpClient sets a custom http.Client. Defaults to [http.DefaultClient].
+func WithHttpClient(client *http.Client) Option {
+	return func(c *Client) {
+		c.httpClient = client
+	}
+}
+
+// authInterceptor wraps an http.RoundTripper to automatically check auth before requests
+type authInterceptor struct {
+	client    *Client
+	transport http.RoundTripper
+}
+
+func (a *authInterceptor) RoundTrip(req *http.Request) (*http.Response, error) {
+	// Skip auth check for auth service URLs to avoid recursion
+	if !strings.Contains(req.URL.String(), "authenticate") {
+		if err := a.client.CheckAuth(); err != nil {
+			return nil, err
+		}
+	}
+
+	// Add current headers to the request
+	for key, value := range a.client.headers {
+		req.Header.Set(key, value)
+	}
+
+	return a.transport.RoundTrip(req)
+}
+
 // Returns new [Client].
 //
 // You can reuse an already generated sessionId by using [Client.SetSessionId]
-func New(credentials auth24.Credential, options ...soap.Option) *Client {
+func New(credentials auth24.Credential, options ...Option) *Client {
 	headers := map[string]string{}
-	authService := auth24.NewAuthenticateSoap(
-		newSoapClient(authURL, headers, options...),
-	)
-	invoiceService := invoice24.NewInvoiceServiceSoap(
-		newSoapClient(invoiceURL, headers, options...),
-	)
-	productService := product24.NewProductServiceSoap(
-		newSoapClient(productURL, headers, options...),
-	)
-	accountService := account24.NewAccountServiceSoap(
-		newSoapClient(accountURL, headers, options...),
-	)
-	companyService := company24.NewCompanyServiceSoap(
-		newSoapClient(companyURL, headers, options...),
-	)
-	clientService := client24.NewClientServiceSoap(
-		newSoapClient(clientURL, headers, options...),
-	)
-	personService := person24.NewPersonServiceSoap(
-		newSoapClient(personURL, headers, options...),
-	)
-	projectService := project24.NewProjectServiceSoap(
-		newSoapClient(projectURl, headers, options...),
-	)
-	transactionService := transaction24.NewTransactionServiceSoap(
-		newSoapClient(transactionURL, headers, options...),
-	)
-	attachmentService := attachment24.NewAttachmentServiceSoap(
-		newSoapClient(attachmentURL, headers, options...),
-	)
 	client := &Client{
 		credentials: &credentials,
 		headers:     headers,
-		Account:     accountService,
-		Attachment:  attachmentService,
-		Auth:        authService,
-		Client:      clientService,
-		Company:     companyService,
-		Invoice:     invoiceService,
-		Person:      personService,
-		Product:     productService,
-		Project:     projectService,
-		Transaction: transactionService,
+		httpClient:  http.DefaultClient,
 	}
+	for _, option := range options {
+		option(client)
+	}
+
+	// Wrap the httpClient transport with auth interceptor
+	interceptedClient := &http.Client{
+		Transport: &authInterceptor{
+			client:    client,
+			transport: client.httpClient.Transport,
+		},
+		Timeout: client.httpClient.Timeout,
+	}
+	if interceptedClient.Transport.(*authInterceptor).transport == nil {
+		interceptedClient.Transport.(*authInterceptor).transport = http.DefaultTransport
+	}
+	client.httpClient = interceptedClient
+
+	authService := auth24.NewAuthenticateSoap(newSoapClient(authURL, client))
+	invoiceService := invoice24.NewInvoiceServiceSoap(newSoapClient(invoiceURL, client))
+	productService := product24.NewProductServiceSoap(newSoapClient(productURL, client))
+	accountService := account24.NewAccountServiceSoap(newSoapClient(accountURL, client))
+	companyService := company24.NewCompanyServiceSoap(newSoapClient(companyURL, client))
+	clientService := client24.NewClientServiceSoap(newSoapClient(clientURL, client))
+	personService := person24.NewPersonServiceSoap(newSoapClient(personURL, client))
+	projectService := project24.NewProjectServiceSoap(newSoapClient(projectURl, client))
+	transactionService := transaction24.NewTransactionServiceSoap(newSoapClient(transactionURL, client))
+	attachmentService := attachment24.NewAttachmentServiceSoap(newSoapClient(attachmentURL, client))
+
+	client.Account = accountService
+	client.Attachment = attachmentService
+	client.Auth = authService
+	client.Client = clientService
+	client.Company = companyService
+	client.Invoice = invoiceService
+	client.Person = personService
+	client.Product = productService
+	client.Project = projectService
+	client.Transaction = transactionService
 
 	return client
 }
 
-func newSoapClient(url string, headers map[string]string, options ...soap.Option) *soap.Client {
-	options = append(options, soap.WithHTTPHeaders(headers))
-	return soap.NewClient(url, options...)
+func newSoapClient(url string, client *Client) *soap.Client {
+	return soap.NewClient(url, soap.WithHTTPClient(client.httpClient))
 }
 
 // Returns sessionId
