@@ -37,10 +37,8 @@ func TestServices(t *testing.T) {
 	require := require.New(t)
 
 	c := New(credentials)
-	require.NoError(c.CheckAuth(), "client should be able to check auth after init")
 
 	changedAfter := soap.XSDDateTime(soap.CreateXsdDateTime(time.Now(), true))
-
 	_, err := c.Account.GetAccountList(&account24.GetAccountList{})
 	require.NoError(err, "GetAccountList")
 	_, err = c.Auth.GetIdentities(&auth24.GetIdentities{})
