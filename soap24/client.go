@@ -68,7 +68,7 @@ type authInterceptor struct {
 
 func (a *authInterceptor) RoundTrip(req *http.Request) (*http.Response, error) {
 	// Skip auth check for auth service URLs to avoid recursion
-	if !strings.Contains(req.URL.String(), "authenticate") {
+	if !strings.EqualFold(req.URL.String(), authURL) {
 		if err := a.client.CheckAuth(); err != nil {
 			return nil, err
 		}
