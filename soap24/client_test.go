@@ -28,9 +28,17 @@ func TestClientInitialization(t *testing.T) {
 	require := require.New(t)
 
 	c := New(credentials)
-	require.False(c.IsSessionIdValid(), "client should not have valid sessionId after init")
-	require.NoError(c.CheckAuth(), "client should be able to check auth after init")
 	require.True(c.IsSessionIdValid(), "client should have a valid sessionId checkAuth")
+}
+
+func TestClientInitializationWithAuthCalledFirst(t *testing.T) {
+	require := require.New(t)
+
+	c := New(credentials)
+	_, err := c.Auth.GetIdentities(&auth24.GetIdentities{})
+	require.NoError(err)
+	require.True(c.IsSessionIdValid(), "client should have a valid sessionId after first call")
+	require.NoError(c.CheckAuth(), "client should be able to check auth after first call")
 }
 
 func TestServices(t *testing.T) {

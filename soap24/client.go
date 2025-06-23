@@ -38,6 +38,7 @@ type Client struct {
 	headers     map[string]string
 	credentials *auth24.Credential
 	httpClient  *http.Client
+	didAuth     bool
 
 	Account     account24.AccountServiceSoap
 	Attachment  attachment24.AttachmentServiceSoap
@@ -69,6 +70,12 @@ type authInterceptor struct {
 func (a *authInterceptor) RoundTrip(req *http.Request) (*http.Response, error) {
 	// Skip auth check for auth service URLs to avoid recursion
 	if !strings.EqualFold(req.URL.String(), authURL) {
+		a.client.didAuth = true
+		if err := a.client.CheckAuth(); err != nil {
+			return nil, err
+		}
+	} else if !a.client.didAuth {
+		a.client.didAuth = true
 		if err := a.client.CheckAuth(); err != nil {
 			return nil, err
 		}
