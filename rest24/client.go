@@ -13,7 +13,6 @@ import (
 type Rest24Client struct {
 	token      *oauth2.Token
 	conf       *clientcredentials.Config
-	confURL    string
 	httpClient *http.Client
 	*ClientWithResponses
 }
