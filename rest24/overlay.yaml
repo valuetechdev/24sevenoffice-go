@@ -17,3 +17,7 @@ actions:
     type: integer
     format: int32
 
+- target: "$.paths.*.*.parameters[?(@.name == 'Authorization')]"
+  description: Remove Authorization header parameter from all endpoints
+  remove: true
+

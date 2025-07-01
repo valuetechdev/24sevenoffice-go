@@ -45,6 +45,6 @@ func (c *Rest24Client) InterceptToken(ctx context.Context, req *http.Request) er
 	if !c.IsTokenValid() {
 		return fmt.Errorf("token is not valid")
 	}
-	req.Header.Set("Authorization", "bearer "+c.token.AccessToken)
+	req.Header.Set("Authorization", "Bearer "+c.token.AccessToken)
 	return nil
 }

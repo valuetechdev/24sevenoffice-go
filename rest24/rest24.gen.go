@@ -2020,9 +2020,6 @@ type GetAccountbalancesParams struct {
 
 	// KeepIncoming Indicates whether to include incoming amounts in the response. Default is false.
 	KeepIncoming *KeepIncoming `form:"keepIncoming,omitempty" json:"keepIncoming,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetAccountbalancesIdParams defines parameters for GetAccountbalancesId.
@@ -2041,54 +2038,24 @@ type GetAccountbalancesIdParams struct {
 
 	// KeepIncoming Indicates whether to include incoming amounts in the response. Default is false.
 	KeepIncoming *KeepIncoming `form:"keepIncoming,omitempty" json:"keepIncoming,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetAccountsParams defines parameters for GetAccounts.
 type GetAccountsParams struct {
 	// Query Filters accounts containing the specified keyword(-s) within their name or number properties. For example, a GET request `/accounts/?query=salary` would return accounts with "salary" in their name or number.
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetAccountsIdParams defines parameters for GetAccountsId.
-type GetAccountsIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetBankaccountsParams defines parameters for GetBankaccounts.
 type GetBankaccountsParams struct {
 	// Before The date to get the balance from. The balance returned will be the last balance before this date. If omitted, the current date is used. The date format here is YYYY-MM-DD.
 	Before *openapi_types.Date `form:"before,omitempty" json:"before,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// PostBankaccountsParams defines parameters for PostBankaccounts.
-type PostBankaccountsParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetBankaccountsIdParams defines parameters for GetBankaccountsId.
 type GetBankaccountsIdParams struct {
 	// Before The date to get the balance from. The balance returned will be the last balance before this date. If omitted, the current date is used. The date format here is YYYY-MM-DD.
 	Before *openapi_types.Date `form:"before,omitempty" json:"before,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// PostBankaccountsIdBalancesParams defines parameters for PostBankaccountsIdBalances.
-type PostBankaccountsIdBalancesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetBanktransactionsParams defines parameters for GetBanktransactions.
@@ -2107,27 +2074,6 @@ type GetBanktransactionsParams struct {
 
 	// Page Specify the page number to fetch, defaults to 1.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// PostBanktransactionsParams defines parameters for PostBanktransactions.
-type PostBanktransactionsParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetBanktransactionsBankTransactionReferenceParams defines parameters for GetBanktransactionsBankTransactionReference.
-type GetBanktransactionsBankTransactionReferenceParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetCurrenciesParams defines parameters for GetCurrencies.
-type GetCurrenciesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetCustomersParams defines parameters for GetCustomers.
@@ -2151,33 +2097,6 @@ type GetCustomersParams struct {
 
 	// SortBy Sort customers by field and direction. Takes in a pair of field and direction separated by a colon symbol ':'
 	SortBy *SortInput `form:"sortBy,omitempty" json:"sortBy,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// CreateCustomerParams defines parameters for CreateCustomer.
-type CreateCustomerParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// DeleteCustomersIdParams defines parameters for DeleteCustomersId.
-type DeleteCustomersIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetCustomersIdParams defines parameters for GetCustomersId.
-type GetCustomersIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// UpdateCustomerParams defines parameters for UpdateCustomer.
-type UpdateCustomerParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetMeParams defines parameters for GetMe.
@@ -2190,9 +2109,6 @@ type GetMeParams struct {
 
 	// MaxAge Maximum age of the cached profile data in seconds.
 	MaxAge *int32 `form:"maxAge,omitempty" json:"maxAge,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetMeIdentifiersParams defines parameters for GetMeIdentifiers.
@@ -2202,15 +2118,6 @@ type GetMeIdentifiersParams struct {
 
 	// Status Status of the identifier as per communication status type.
 	Status *CommunicationStatusType `form:"status,omitempty" json:"status,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetMeIdentifiersIdParams defines parameters for GetMeIdentifiersId.
-type GetMeIdentifiersIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetLicensesParams defines parameters for GetLicenses.
@@ -2220,69 +2127,18 @@ type GetLicensesParams struct {
 
 	// PersonId Identifier for the connected person.
 	PersonId *int32 `form:"personId,omitempty" json:"personId,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetMeLicensesIdOrganizationParams defines parameters for GetMeLicensesIdOrganization.
-type GetMeLicensesIdOrganizationParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetClientParams defines parameters for GetClient.
-type GetClientParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetOrganizationPeopleParams defines parameters for GetOrganizationPeople.
 type GetOrganizationPeopleParams struct {
 	// PersonType Type of person to filter by.
 	PersonType *TfsoApiOrganizationModelsUserType `form:"personType,omitempty" json:"personType,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetOrganizationPeopleIdParams defines parameters for GetOrganizationPeopleId.
 type GetOrganizationPeopleIdParams struct {
 	// PersonType Type of person to filter by.
 	PersonType *TfsoApiOrganizationModelsUserType `form:"personType,omitempty" json:"personType,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetCategoriesParams defines parameters for GetCategories.
-type GetCategoriesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// CreateCategoryParams defines parameters for CreateCategory.
-type CreateCategoryParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// DeleteCategoryParams defines parameters for DeleteCategory.
-type DeleteCategoryParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetProductcategoriesIdParams defines parameters for GetProductcategoriesId.
-type GetProductcategoriesIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// UpdateCategoryParams defines parameters for UpdateCategory.
-type UpdateCategoryParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetProductsParams defines parameters for GetProducts.
@@ -2298,39 +2154,6 @@ type GetProductsParams struct {
 
 	// ProductNumber Searches for product number.
 	ProductNumber *string `form:"productNumber,omitempty" json:"productNumber,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// CreateProductParams defines parameters for CreateProduct.
-type CreateProductParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// DeleteProductParams defines parameters for DeleteProduct.
-type DeleteProductParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetProductsIdParams defines parameters for GetProductsId.
-type GetProductsIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// UpdateProductParams defines parameters for UpdateProduct.
-type UpdateProductParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetUnitsParams defines parameters for GetUnits.
-type GetUnitsParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetSalesordersParams defines parameters for GetSalesorders.
@@ -2370,9 +2193,6 @@ type GetSalesordersParams struct {
 
 	// ModifiedTo An end date-time to filter sales orders by modification time.
 	ModifiedTo *time.Time `form:"modifiedTo,omitempty" json:"modifiedTo,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // GetSalesordersParamsStatus defines parameters for GetSalesorders.
@@ -2445,74 +2265,8 @@ type PostSalesordersJSONBody struct {
 	Status *PostSalesordersJSONBodyStatus `json:"status,omitempty"`
 }
 
-// PostSalesordersParams defines parameters for PostSalesorders.
-type PostSalesordersParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
 // PostSalesordersJSONBodyStatus defines parameters for PostSalesorders.
 type PostSalesordersJSONBodyStatus string
-
-// GetSalesordersIdParams defines parameters for GetSalesordersId.
-type GetSalesordersIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// PatchSalesordersIdParams defines parameters for PatchSalesordersId.
-type PatchSalesordersIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetSalesordersIdLinesParams defines parameters for GetSalesordersIdLines.
-type GetSalesordersIdLinesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// PostSalesordersIdLinesParams defines parameters for PostSalesordersIdLines.
-type PostSalesordersIdLinesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetSalesordersIdLinesLineIdParams defines parameters for GetSalesordersIdLinesLineId.
-type GetSalesordersIdLinesLineIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// PatchSalesordersIdLinesLineIdParams defines parameters for PatchSalesordersIdLinesLineId.
-type PatchSalesordersIdLinesLineIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetSalestypesParams defines parameters for GetSalestypes.
-type GetSalestypesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetSalestypesIdParams defines parameters for GetSalestypesId.
-type GetSalestypesIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetTaxesParams defines parameters for GetTaxes.
-type GetTaxesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetTaxesIdParams defines parameters for GetTaxesId.
-type GetTaxesIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
 
 // GetTransactionlinesParams defines parameters for GetTransactionlines.
 type GetTransactionlinesParams struct {
@@ -2548,21 +2302,6 @@ type GetTransactionlinesParams struct {
 
 	// Page The page number of the results to retrieve.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
-
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetTransactionlinesIdParams defines parameters for GetTransactionlinesId.
-type GetTransactionlinesIdParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
-}
-
-// GetTransactiontypesParams defines parameters for GetTransactiontypes.
-type GetTransactiontypesParams struct {
-	// Authorization Authorization header
-	Authorization string `json:"Authorization"`
 }
 
 // PostBankaccountsJSONRequestBody defines body for PostBankaccounts for application/json ContentType.
@@ -2881,56 +2620,56 @@ type ClientInterface interface {
 	GetAccounts(ctx context.Context, params *GetAccountsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAccountsId request
-	GetAccountsId(ctx context.Context, id int, params *GetAccountsIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetAccountsId(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetBankaccounts request
 	GetBankaccounts(ctx context.Context, params *GetBankaccountsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostBankaccountsWithBody request with any body
-	PostBankaccountsWithBody(ctx context.Context, params *PostBankaccountsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostBankaccountsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostBankaccounts(ctx context.Context, params *PostBankaccountsParams, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostBankaccounts(ctx context.Context, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetBankaccountsId request
 	GetBankaccountsId(ctx context.Context, id string, params *GetBankaccountsIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostBankaccountsIdBalancesWithBody request with any body
-	PostBankaccountsIdBalancesWithBody(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostBankaccountsIdBalancesWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostBankaccountsIdBalances(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostBankaccountsIdBalances(ctx context.Context, id string, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetBanktransactions request
 	GetBanktransactions(ctx context.Context, params *GetBanktransactionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostBanktransactionsWithBody request with any body
-	PostBanktransactionsWithBody(ctx context.Context, params *PostBanktransactionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostBanktransactionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostBanktransactions(ctx context.Context, params *PostBanktransactionsParams, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostBanktransactions(ctx context.Context, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetBanktransactionsBankTransactionReference request
-	GetBanktransactionsBankTransactionReference(ctx context.Context, bankTransactionReference string, params *GetBanktransactionsBankTransactionReferenceParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetBanktransactionsBankTransactionReference(ctx context.Context, bankTransactionReference string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetCurrencies request
-	GetCurrencies(ctx context.Context, params *GetCurrenciesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetCurrencies(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetCustomers request
 	GetCustomers(ctx context.Context, params *GetCustomersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateCustomerWithBody request with any body
-	CreateCustomerWithBody(ctx context.Context, params *CreateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateCustomerWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateCustomer(ctx context.Context, params *CreateCustomerParams, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateCustomer(ctx context.Context, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteCustomersId request
-	DeleteCustomersId(ctx context.Context, id Id, params *DeleteCustomersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteCustomersId(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetCustomersId request
-	GetCustomersId(ctx context.Context, id Id, params *GetCustomersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetCustomersId(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateCustomerWithBody request with any body
-	UpdateCustomerWithBody(ctx context.Context, id Id, params *UpdateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCustomerWithBody(ctx context.Context, id Id, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateCustomer(ctx context.Context, id Id, params *UpdateCustomerParams, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCustomer(ctx context.Context, id Id, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetMe request
 	GetMe(ctx context.Context, params *GetMeParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2939,16 +2678,16 @@ type ClientInterface interface {
 	GetMeIdentifiers(ctx context.Context, params *GetMeIdentifiersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetMeIdentifiersId request
-	GetMeIdentifiersId(ctx context.Context, id openapi_types.UUID, params *GetMeIdentifiersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetMeIdentifiersId(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetLicenses request
 	GetLicenses(ctx context.Context, params *GetLicensesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetMeLicensesIdOrganization request
-	GetMeLicensesIdOrganization(ctx context.Context, id openapi_types.UUID, params *GetMeLicensesIdOrganizationParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetMeLicensesIdOrganization(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetClient request
-	GetClient(ctx context.Context, params *GetClientParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetClient(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetOrganizationPeople request
 	GetOrganizationPeople(ctx context.Context, params *GetOrganizationPeopleParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2957,98 +2696,98 @@ type ClientInterface interface {
 	GetOrganizationPeopleId(ctx context.Context, id int32, params *GetOrganizationPeopleIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetCategories request
-	GetCategories(ctx context.Context, params *GetCategoriesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetCategories(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateCategoryWithBody request with any body
-	CreateCategoryWithBody(ctx context.Context, params *CreateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateCategoryWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateCategory(ctx context.Context, params *CreateCategoryParams, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateCategory(ctx context.Context, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteCategory request
-	DeleteCategory(ctx context.Context, id int32, params *DeleteCategoryParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteCategory(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetProductcategoriesId request
-	GetProductcategoriesId(ctx context.Context, id int32, params *GetProductcategoriesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetProductcategoriesId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateCategoryWithBody request with any body
-	UpdateCategoryWithBody(ctx context.Context, id int32, params *UpdateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCategoryWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateCategory(ctx context.Context, id int32, params *UpdateCategoryParams, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateCategory(ctx context.Context, id int32, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetProducts request
 	GetProducts(ctx context.Context, params *GetProductsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreateProductWithBody request with any body
-	CreateProductWithBody(ctx context.Context, params *CreateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateProductWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	CreateProduct(ctx context.Context, params *CreateProductParams, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CreateProduct(ctx context.Context, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DeleteProduct request
-	DeleteProduct(ctx context.Context, id int32, params *DeleteProductParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	DeleteProduct(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetProductsId request
-	GetProductsId(ctx context.Context, id int32, params *GetProductsIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetProductsId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UpdateProductWithBody request with any body
-	UpdateProductWithBody(ctx context.Context, id int32, params *UpdateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateProductWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UpdateProduct(ctx context.Context, id int32, params *UpdateProductParams, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UpdateProduct(ctx context.Context, id int32, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetUnits request
-	GetUnits(ctx context.Context, params *GetUnitsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetUnits(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSalesorders request
 	GetSalesorders(ctx context.Context, params *GetSalesordersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostSalesordersWithBody request with any body
-	PostSalesordersWithBody(ctx context.Context, params *PostSalesordersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostSalesordersWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostSalesorders(ctx context.Context, params *PostSalesordersParams, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostSalesorders(ctx context.Context, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSalesordersId request
-	GetSalesordersId(ctx context.Context, id int32, params *GetSalesordersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetSalesordersId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PatchSalesordersIdWithBody request with any body
-	PatchSalesordersIdWithBody(ctx context.Context, id int32, params *PatchSalesordersIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PatchSalesordersIdWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PatchSalesordersId(ctx context.Context, id int32, params *PatchSalesordersIdParams, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PatchSalesordersId(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSalesordersIdLines request
-	GetSalesordersIdLines(ctx context.Context, id int32, params *GetSalesordersIdLinesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetSalesordersIdLines(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostSalesordersIdLinesWithBody request with any body
-	PostSalesordersIdLinesWithBody(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostSalesordersIdLinesWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostSalesordersIdLines(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostSalesordersIdLines(ctx context.Context, id int32, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSalesordersIdLinesLineId request
-	GetSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, params *GetSalesordersIdLinesLineIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PatchSalesordersIdLinesLineIdWithBody request with any body
-	PatchSalesordersIdLinesLineIdWithBody(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PatchSalesordersIdLinesLineIdWithBody(ctx context.Context, id int32, lineId int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PatchSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PatchSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSalestypes request
-	GetSalestypes(ctx context.Context, params *GetSalestypesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetSalestypes(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSalestypesId request
-	GetSalestypesId(ctx context.Context, id int32, params *GetSalestypesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetSalestypesId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTaxes request
-	GetTaxes(ctx context.Context, params *GetTaxesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetTaxes(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTaxesId request
-	GetTaxesId(ctx context.Context, id int32, params *GetTaxesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetTaxesId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTransactionlines request
 	GetTransactionlines(ctx context.Context, params *GetTransactionlinesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTransactionlinesId request
-	GetTransactionlinesId(ctx context.Context, id string, params *GetTransactionlinesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetTransactionlinesId(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTransactiontypes request
-	GetTransactiontypes(ctx context.Context, params *GetTransactiontypesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetTransactiontypes(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *WriteClient) GetAccountbalances(ctx context.Context, params *GetAccountbalancesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -3087,8 +2826,8 @@ func (c *WriteClient) GetAccounts(ctx context.Context, params *GetAccountsParams
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetAccountsId(ctx context.Context, id int, params *GetAccountsIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAccountsIdRequest(c.Server, id, params)
+func (c *WriteClient) GetAccountsId(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAccountsIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3111,8 +2850,8 @@ func (c *WriteClient) GetBankaccounts(ctx context.Context, params *GetBankaccoun
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostBankaccountsWithBody(ctx context.Context, params *PostBankaccountsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostBankaccountsRequestWithBody(c.Server, params, contentType, body)
+func (c *WriteClient) PostBankaccountsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostBankaccountsRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3123,8 +2862,8 @@ func (c *WriteClient) PostBankaccountsWithBody(ctx context.Context, params *Post
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostBankaccounts(ctx context.Context, params *PostBankaccountsParams, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostBankaccountsRequest(c.Server, params, body)
+func (c *WriteClient) PostBankaccounts(ctx context.Context, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostBankaccountsRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3147,8 +2886,8 @@ func (c *WriteClient) GetBankaccountsId(ctx context.Context, id string, params *
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostBankaccountsIdBalancesWithBody(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostBankaccountsIdBalancesRequestWithBody(c.Server, id, params, contentType, body)
+func (c *WriteClient) PostBankaccountsIdBalancesWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostBankaccountsIdBalancesRequestWithBody(c.Server, id, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3159,8 +2898,8 @@ func (c *WriteClient) PostBankaccountsIdBalancesWithBody(ctx context.Context, id
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostBankaccountsIdBalances(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostBankaccountsIdBalancesRequest(c.Server, id, params, body)
+func (c *WriteClient) PostBankaccountsIdBalances(ctx context.Context, id string, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostBankaccountsIdBalancesRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3183,8 +2922,8 @@ func (c *WriteClient) GetBanktransactions(ctx context.Context, params *GetBanktr
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostBanktransactionsWithBody(ctx context.Context, params *PostBanktransactionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostBanktransactionsRequestWithBody(c.Server, params, contentType, body)
+func (c *WriteClient) PostBanktransactionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostBanktransactionsRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3195,8 +2934,8 @@ func (c *WriteClient) PostBanktransactionsWithBody(ctx context.Context, params *
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostBanktransactions(ctx context.Context, params *PostBanktransactionsParams, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostBanktransactionsRequest(c.Server, params, body)
+func (c *WriteClient) PostBanktransactions(ctx context.Context, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostBanktransactionsRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3207,8 +2946,8 @@ func (c *WriteClient) PostBanktransactions(ctx context.Context, params *PostBank
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetBanktransactionsBankTransactionReference(ctx context.Context, bankTransactionReference string, params *GetBanktransactionsBankTransactionReferenceParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetBanktransactionsBankTransactionReferenceRequest(c.Server, bankTransactionReference, params)
+func (c *WriteClient) GetBanktransactionsBankTransactionReference(ctx context.Context, bankTransactionReference string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetBanktransactionsBankTransactionReferenceRequest(c.Server, bankTransactionReference)
 	if err != nil {
 		return nil, err
 	}
@@ -3219,8 +2958,8 @@ func (c *WriteClient) GetBanktransactionsBankTransactionReference(ctx context.Co
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetCurrencies(ctx context.Context, params *GetCurrenciesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCurrenciesRequest(c.Server, params)
+func (c *WriteClient) GetCurrencies(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCurrenciesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3243,8 +2982,8 @@ func (c *WriteClient) GetCustomers(ctx context.Context, params *GetCustomersPara
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) CreateCustomerWithBody(ctx context.Context, params *CreateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateCustomerRequestWithBody(c.Server, params, contentType, body)
+func (c *WriteClient) CreateCustomerWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateCustomerRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3255,8 +2994,8 @@ func (c *WriteClient) CreateCustomerWithBody(ctx context.Context, params *Create
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) CreateCustomer(ctx context.Context, params *CreateCustomerParams, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateCustomerRequest(c.Server, params, body)
+func (c *WriteClient) CreateCustomer(ctx context.Context, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateCustomerRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3267,8 +3006,8 @@ func (c *WriteClient) CreateCustomer(ctx context.Context, params *CreateCustomer
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) DeleteCustomersId(ctx context.Context, id Id, params *DeleteCustomersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteCustomersIdRequest(c.Server, id, params)
+func (c *WriteClient) DeleteCustomersId(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteCustomersIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3279,8 +3018,8 @@ func (c *WriteClient) DeleteCustomersId(ctx context.Context, id Id, params *Dele
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetCustomersId(ctx context.Context, id Id, params *GetCustomersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCustomersIdRequest(c.Server, id, params)
+func (c *WriteClient) GetCustomersId(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCustomersIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3291,8 +3030,8 @@ func (c *WriteClient) GetCustomersId(ctx context.Context, id Id, params *GetCust
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) UpdateCustomerWithBody(ctx context.Context, id Id, params *UpdateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCustomerRequestWithBody(c.Server, id, params, contentType, body)
+func (c *WriteClient) UpdateCustomerWithBody(ctx context.Context, id Id, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCustomerRequestWithBody(c.Server, id, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3303,8 +3042,8 @@ func (c *WriteClient) UpdateCustomerWithBody(ctx context.Context, id Id, params 
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) UpdateCustomer(ctx context.Context, id Id, params *UpdateCustomerParams, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCustomerRequest(c.Server, id, params, body)
+func (c *WriteClient) UpdateCustomer(ctx context.Context, id Id, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCustomerRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3339,8 +3078,8 @@ func (c *WriteClient) GetMeIdentifiers(ctx context.Context, params *GetMeIdentif
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetMeIdentifiersId(ctx context.Context, id openapi_types.UUID, params *GetMeIdentifiersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMeIdentifiersIdRequest(c.Server, id, params)
+func (c *WriteClient) GetMeIdentifiersId(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetMeIdentifiersIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3363,8 +3102,8 @@ func (c *WriteClient) GetLicenses(ctx context.Context, params *GetLicensesParams
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetMeLicensesIdOrganization(ctx context.Context, id openapi_types.UUID, params *GetMeLicensesIdOrganizationParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMeLicensesIdOrganizationRequest(c.Server, id, params)
+func (c *WriteClient) GetMeLicensesIdOrganization(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetMeLicensesIdOrganizationRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3375,8 +3114,8 @@ func (c *WriteClient) GetMeLicensesIdOrganization(ctx context.Context, id openap
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetClient(ctx context.Context, params *GetClientParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetClientRequest(c.Server, params)
+func (c *WriteClient) GetClient(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetClientRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3411,8 +3150,8 @@ func (c *WriteClient) GetOrganizationPeopleId(ctx context.Context, id int32, par
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetCategories(ctx context.Context, params *GetCategoriesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCategoriesRequest(c.Server, params)
+func (c *WriteClient) GetCategories(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCategoriesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3423,8 +3162,8 @@ func (c *WriteClient) GetCategories(ctx context.Context, params *GetCategoriesPa
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) CreateCategoryWithBody(ctx context.Context, params *CreateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateCategoryRequestWithBody(c.Server, params, contentType, body)
+func (c *WriteClient) CreateCategoryWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateCategoryRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3435,8 +3174,8 @@ func (c *WriteClient) CreateCategoryWithBody(ctx context.Context, params *Create
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) CreateCategory(ctx context.Context, params *CreateCategoryParams, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateCategoryRequest(c.Server, params, body)
+func (c *WriteClient) CreateCategory(ctx context.Context, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateCategoryRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3447,8 +3186,8 @@ func (c *WriteClient) CreateCategory(ctx context.Context, params *CreateCategory
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) DeleteCategory(ctx context.Context, id int32, params *DeleteCategoryParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteCategoryRequest(c.Server, id, params)
+func (c *WriteClient) DeleteCategory(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteCategoryRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3459,8 +3198,8 @@ func (c *WriteClient) DeleteCategory(ctx context.Context, id int32, params *Dele
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetProductcategoriesId(ctx context.Context, id int32, params *GetProductcategoriesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetProductcategoriesIdRequest(c.Server, id, params)
+func (c *WriteClient) GetProductcategoriesId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetProductcategoriesIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3471,8 +3210,8 @@ func (c *WriteClient) GetProductcategoriesId(ctx context.Context, id int32, para
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) UpdateCategoryWithBody(ctx context.Context, id int32, params *UpdateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCategoryRequestWithBody(c.Server, id, params, contentType, body)
+func (c *WriteClient) UpdateCategoryWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCategoryRequestWithBody(c.Server, id, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3483,8 +3222,8 @@ func (c *WriteClient) UpdateCategoryWithBody(ctx context.Context, id int32, para
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) UpdateCategory(ctx context.Context, id int32, params *UpdateCategoryParams, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateCategoryRequest(c.Server, id, params, body)
+func (c *WriteClient) UpdateCategory(ctx context.Context, id int32, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateCategoryRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3507,8 +3246,8 @@ func (c *WriteClient) GetProducts(ctx context.Context, params *GetProductsParams
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) CreateProductWithBody(ctx context.Context, params *CreateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateProductRequestWithBody(c.Server, params, contentType, body)
+func (c *WriteClient) CreateProductWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateProductRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3519,8 +3258,8 @@ func (c *WriteClient) CreateProductWithBody(ctx context.Context, params *CreateP
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) CreateProduct(ctx context.Context, params *CreateProductParams, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreateProductRequest(c.Server, params, body)
+func (c *WriteClient) CreateProduct(ctx context.Context, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCreateProductRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3531,8 +3270,8 @@ func (c *WriteClient) CreateProduct(ctx context.Context, params *CreateProductPa
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) DeleteProduct(ctx context.Context, id int32, params *DeleteProductParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDeleteProductRequest(c.Server, id, params)
+func (c *WriteClient) DeleteProduct(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteProductRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3543,8 +3282,8 @@ func (c *WriteClient) DeleteProduct(ctx context.Context, id int32, params *Delet
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetProductsId(ctx context.Context, id int32, params *GetProductsIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetProductsIdRequest(c.Server, id, params)
+func (c *WriteClient) GetProductsId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetProductsIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3555,8 +3294,8 @@ func (c *WriteClient) GetProductsId(ctx context.Context, id int32, params *GetPr
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) UpdateProductWithBody(ctx context.Context, id int32, params *UpdateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateProductRequestWithBody(c.Server, id, params, contentType, body)
+func (c *WriteClient) UpdateProductWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateProductRequestWithBody(c.Server, id, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3567,8 +3306,8 @@ func (c *WriteClient) UpdateProductWithBody(ctx context.Context, id int32, param
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) UpdateProduct(ctx context.Context, id int32, params *UpdateProductParams, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUpdateProductRequest(c.Server, id, params, body)
+func (c *WriteClient) UpdateProduct(ctx context.Context, id int32, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUpdateProductRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3579,8 +3318,8 @@ func (c *WriteClient) UpdateProduct(ctx context.Context, id int32, params *Updat
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetUnits(ctx context.Context, params *GetUnitsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUnitsRequest(c.Server, params)
+func (c *WriteClient) GetUnits(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetUnitsRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3603,8 +3342,8 @@ func (c *WriteClient) GetSalesorders(ctx context.Context, params *GetSalesorders
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostSalesordersWithBody(ctx context.Context, params *PostSalesordersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostSalesordersRequestWithBody(c.Server, params, contentType, body)
+func (c *WriteClient) PostSalesordersWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostSalesordersRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3615,8 +3354,8 @@ func (c *WriteClient) PostSalesordersWithBody(ctx context.Context, params *PostS
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostSalesorders(ctx context.Context, params *PostSalesordersParams, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostSalesordersRequest(c.Server, params, body)
+func (c *WriteClient) PostSalesorders(ctx context.Context, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostSalesordersRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3627,8 +3366,8 @@ func (c *WriteClient) PostSalesorders(ctx context.Context, params *PostSalesorde
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetSalesordersId(ctx context.Context, id int32, params *GetSalesordersIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSalesordersIdRequest(c.Server, id, params)
+func (c *WriteClient) GetSalesordersId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSalesordersIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3639,8 +3378,8 @@ func (c *WriteClient) GetSalesordersId(ctx context.Context, id int32, params *Ge
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PatchSalesordersIdWithBody(ctx context.Context, id int32, params *PatchSalesordersIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPatchSalesordersIdRequestWithBody(c.Server, id, params, contentType, body)
+func (c *WriteClient) PatchSalesordersIdWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchSalesordersIdRequestWithBody(c.Server, id, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3651,8 +3390,8 @@ func (c *WriteClient) PatchSalesordersIdWithBody(ctx context.Context, id int32, 
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PatchSalesordersId(ctx context.Context, id int32, params *PatchSalesordersIdParams, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPatchSalesordersIdRequest(c.Server, id, params, body)
+func (c *WriteClient) PatchSalesordersId(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchSalesordersIdRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3663,8 +3402,8 @@ func (c *WriteClient) PatchSalesordersId(ctx context.Context, id int32, params *
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetSalesordersIdLines(ctx context.Context, id int32, params *GetSalesordersIdLinesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSalesordersIdLinesRequest(c.Server, id, params)
+func (c *WriteClient) GetSalesordersIdLines(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSalesordersIdLinesRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3675,8 +3414,8 @@ func (c *WriteClient) GetSalesordersIdLines(ctx context.Context, id int32, param
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostSalesordersIdLinesWithBody(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostSalesordersIdLinesRequestWithBody(c.Server, id, params, contentType, body)
+func (c *WriteClient) PostSalesordersIdLinesWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostSalesordersIdLinesRequestWithBody(c.Server, id, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3687,8 +3426,8 @@ func (c *WriteClient) PostSalesordersIdLinesWithBody(ctx context.Context, id int
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PostSalesordersIdLines(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostSalesordersIdLinesRequest(c.Server, id, params, body)
+func (c *WriteClient) PostSalesordersIdLines(ctx context.Context, id int32, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostSalesordersIdLinesRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3699,8 +3438,8 @@ func (c *WriteClient) PostSalesordersIdLines(ctx context.Context, id int32, para
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, params *GetSalesordersIdLinesLineIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSalesordersIdLinesLineIdRequest(c.Server, id, lineId, params)
+func (c *WriteClient) GetSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSalesordersIdLinesLineIdRequest(c.Server, id, lineId)
 	if err != nil {
 		return nil, err
 	}
@@ -3711,8 +3450,8 @@ func (c *WriteClient) GetSalesordersIdLinesLineId(ctx context.Context, id int32,
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PatchSalesordersIdLinesLineIdWithBody(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPatchSalesordersIdLinesLineIdRequestWithBody(c.Server, id, lineId, params, contentType, body)
+func (c *WriteClient) PatchSalesordersIdLinesLineIdWithBody(ctx context.Context, id int32, lineId int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchSalesordersIdLinesLineIdRequestWithBody(c.Server, id, lineId, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3723,8 +3462,8 @@ func (c *WriteClient) PatchSalesordersIdLinesLineIdWithBody(ctx context.Context,
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) PatchSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPatchSalesordersIdLinesLineIdRequest(c.Server, id, lineId, params, body)
+func (c *WriteClient) PatchSalesordersIdLinesLineId(ctx context.Context, id int32, lineId int32, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchSalesordersIdLinesLineIdRequest(c.Server, id, lineId, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3735,8 +3474,8 @@ func (c *WriteClient) PatchSalesordersIdLinesLineId(ctx context.Context, id int3
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetSalestypes(ctx context.Context, params *GetSalestypesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSalestypesRequest(c.Server, params)
+func (c *WriteClient) GetSalestypes(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSalestypesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3747,8 +3486,8 @@ func (c *WriteClient) GetSalestypes(ctx context.Context, params *GetSalestypesPa
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetSalestypesId(ctx context.Context, id int32, params *GetSalestypesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSalestypesIdRequest(c.Server, id, params)
+func (c *WriteClient) GetSalestypesId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSalestypesIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3759,8 +3498,8 @@ func (c *WriteClient) GetSalestypesId(ctx context.Context, id int32, params *Get
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetTaxes(ctx context.Context, params *GetTaxesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTaxesRequest(c.Server, params)
+func (c *WriteClient) GetTaxes(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTaxesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3771,8 +3510,8 @@ func (c *WriteClient) GetTaxes(ctx context.Context, params *GetTaxesParams, reqE
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetTaxesId(ctx context.Context, id int32, params *GetTaxesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTaxesIdRequest(c.Server, id, params)
+func (c *WriteClient) GetTaxesId(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTaxesIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3795,8 +3534,8 @@ func (c *WriteClient) GetTransactionlines(ctx context.Context, params *GetTransa
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetTransactionlinesId(ctx context.Context, id string, params *GetTransactionlinesIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTransactionlinesIdRequest(c.Server, id, params)
+func (c *WriteClient) GetTransactionlinesId(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTransactionlinesIdRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -3807,8 +3546,8 @@ func (c *WriteClient) GetTransactionlinesId(ctx context.Context, id string, para
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetTransactiontypes(ctx context.Context, params *GetTransactiontypesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTransactiontypesRequest(c.Server, params)
+func (c *WriteClient) GetTransactiontypes(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTransactiontypesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3919,19 +3658,6 @@ func NewGetAccountbalancesRequest(server string, params *GetAccountbalancesParam
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -4046,19 +3772,6 @@ func NewGetAccountbalancesIdRequest(server string, id int, params *GetAccountbal
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
@@ -4108,24 +3821,11 @@ func NewGetAccountsRequest(server string, params *GetAccountsParams) (*http.Requ
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetAccountsIdRequest generates requests for GetAccountsId
-func NewGetAccountsIdRequest(server string, id int, params *GetAccountsIdParams) (*http.Request, error) {
+func NewGetAccountsIdRequest(server string, id int) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4153,19 +3853,6 @@ func NewGetAccountsIdRequest(server string, id int, params *GetAccountsIdParams)
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -4217,35 +3904,22 @@ func NewGetBankaccountsRequest(server string, params *GetBankaccountsParams) (*h
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewPostBankaccountsRequest calls the generic PostBankaccounts builder with application/json body
-func NewPostBankaccountsRequest(server string, params *PostBankaccountsParams, body PostBankaccountsJSONRequestBody) (*http.Request, error) {
+func NewPostBankaccountsRequest(server string, body PostBankaccountsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPostBankaccountsRequestWithBody(server, params, "application/json", bodyReader)
+	return NewPostBankaccountsRequestWithBody(server, "application/json", bodyReader)
 }
 
 // NewPostBankaccountsRequestWithBody generates requests for PostBankaccounts with any type of body
-func NewPostBankaccountsRequestWithBody(server string, params *PostBankaccountsParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostBankaccountsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4269,19 +3943,6 @@ func NewPostBankaccountsRequestWithBody(server string, params *PostBankaccountsP
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
 
 	return req, nil
 }
@@ -4339,35 +4000,22 @@ func NewGetBankaccountsIdRequest(server string, id string, params *GetBankaccoun
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewPostBankaccountsIdBalancesRequest calls the generic PostBankaccountsIdBalances builder with application/json body
-func NewPostBankaccountsIdBalancesRequest(server string, id string, params *PostBankaccountsIdBalancesParams, body PostBankaccountsIdBalancesJSONRequestBody) (*http.Request, error) {
+func NewPostBankaccountsIdBalancesRequest(server string, id string, body PostBankaccountsIdBalancesJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPostBankaccountsIdBalancesRequestWithBody(server, id, params, "application/json", bodyReader)
+	return NewPostBankaccountsIdBalancesRequestWithBody(server, id, "application/json", bodyReader)
 }
 
 // NewPostBankaccountsIdBalancesRequestWithBody generates requests for PostBankaccountsIdBalances with any type of body
-func NewPostBankaccountsIdBalancesRequestWithBody(server string, id string, params *PostBankaccountsIdBalancesParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostBankaccountsIdBalancesRequestWithBody(server string, id string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4398,19 +4046,6 @@ func NewPostBankaccountsIdBalancesRequestWithBody(server string, id string, para
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
 
 	return req, nil
 }
@@ -4517,35 +4152,22 @@ func NewGetBanktransactionsRequest(server string, params *GetBanktransactionsPar
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewPostBanktransactionsRequest calls the generic PostBanktransactions builder with application/json body
-func NewPostBanktransactionsRequest(server string, params *PostBanktransactionsParams, body PostBanktransactionsJSONRequestBody) (*http.Request, error) {
+func NewPostBanktransactionsRequest(server string, body PostBanktransactionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPostBanktransactionsRequestWithBody(server, params, "application/json", bodyReader)
+	return NewPostBanktransactionsRequestWithBody(server, "application/json", bodyReader)
 }
 
 // NewPostBanktransactionsRequestWithBody generates requests for PostBanktransactions with any type of body
-func NewPostBanktransactionsRequestWithBody(server string, params *PostBanktransactionsParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostBanktransactionsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4570,24 +4192,11 @@ func NewPostBanktransactionsRequestWithBody(server string, params *PostBanktrans
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetBanktransactionsBankTransactionReferenceRequest generates requests for GetBanktransactionsBankTransactionReference
-func NewGetBanktransactionsBankTransactionReferenceRequest(server string, bankTransactionReference string, params *GetBanktransactionsBankTransactionReferenceParams) (*http.Request, error) {
+func NewGetBanktransactionsBankTransactionReferenceRequest(server string, bankTransactionReference string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4617,24 +4226,11 @@ func NewGetBanktransactionsBankTransactionReferenceRequest(server string, bankTr
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetCurrenciesRequest generates requests for GetCurrencies
-func NewGetCurrenciesRequest(server string, params *GetCurrenciesParams) (*http.Request, error) {
+func NewGetCurrenciesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4655,19 +4251,6 @@ func NewGetCurrenciesRequest(server string, params *GetCurrenciesParams) (*http.
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -4815,35 +4398,22 @@ func NewGetCustomersRequest(server string, params *GetCustomersParams) (*http.Re
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewCreateCustomerRequest calls the generic CreateCustomer builder with application/json body
-func NewCreateCustomerRequest(server string, params *CreateCustomerParams, body CreateCustomerJSONRequestBody) (*http.Request, error) {
+func NewCreateCustomerRequest(server string, body CreateCustomerJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreateCustomerRequestWithBody(server, params, "application/json", bodyReader)
+	return NewCreateCustomerRequestWithBody(server, "application/json", bodyReader)
 }
 
 // NewCreateCustomerRequestWithBody generates requests for CreateCustomer with any type of body
-func NewCreateCustomerRequestWithBody(server string, params *CreateCustomerParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateCustomerRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4868,24 +4438,11 @@ func NewCreateCustomerRequestWithBody(server string, params *CreateCustomerParam
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewDeleteCustomersIdRequest generates requests for DeleteCustomersId
-func NewDeleteCustomersIdRequest(server string, id Id, params *DeleteCustomersIdParams) (*http.Request, error) {
+func NewDeleteCustomersIdRequest(server string, id Id) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4915,24 +4472,11 @@ func NewDeleteCustomersIdRequest(server string, id Id, params *DeleteCustomersId
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetCustomersIdRequest generates requests for GetCustomersId
-func NewGetCustomersIdRequest(server string, id Id, params *GetCustomersIdParams) (*http.Request, error) {
+func NewGetCustomersIdRequest(server string, id Id) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4962,35 +4506,22 @@ func NewGetCustomersIdRequest(server string, id Id, params *GetCustomersIdParams
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewUpdateCustomerRequest calls the generic UpdateCustomer builder with application/json body
-func NewUpdateCustomerRequest(server string, id Id, params *UpdateCustomerParams, body UpdateCustomerJSONRequestBody) (*http.Request, error) {
+func NewUpdateCustomerRequest(server string, id Id, body UpdateCustomerJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateCustomerRequestWithBody(server, id, params, "application/json", bodyReader)
+	return NewUpdateCustomerRequestWithBody(server, id, "application/json", bodyReader)
 }
 
 // NewUpdateCustomerRequestWithBody generates requests for UpdateCustomer with any type of body
-func NewUpdateCustomerRequestWithBody(server string, id Id, params *UpdateCustomerParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateCustomerRequestWithBody(server string, id Id, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5021,19 +4552,6 @@ func NewUpdateCustomerRequestWithBody(server string, id Id, params *UpdateCustom
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
 
 	return req, nil
 }
@@ -5116,19 +4634,6 @@ func NewGetMeRequest(server string, params *GetMeParams) (*http.Request, error) 
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
@@ -5194,24 +4699,11 @@ func NewGetMeIdentifiersRequest(server string, params *GetMeIdentifiersParams) (
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetMeIdentifiersIdRequest generates requests for GetMeIdentifiersId
-func NewGetMeIdentifiersIdRequest(server string, id openapi_types.UUID, params *GetMeIdentifiersIdParams) (*http.Request, error) {
+func NewGetMeIdentifiersIdRequest(server string, id openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5239,19 +4731,6 @@ func NewGetMeIdentifiersIdRequest(server string, id openapi_types.UUID, params *
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -5319,24 +4798,11 @@ func NewGetLicensesRequest(server string, params *GetLicensesParams) (*http.Requ
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetMeLicensesIdOrganizationRequest generates requests for GetMeLicensesIdOrganization
-func NewGetMeLicensesIdOrganizationRequest(server string, id openapi_types.UUID, params *GetMeLicensesIdOrganizationParams) (*http.Request, error) {
+func NewGetMeLicensesIdOrganizationRequest(server string, id openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5366,24 +4832,11 @@ func NewGetMeLicensesIdOrganizationRequest(server string, id openapi_types.UUID,
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetClientRequest generates requests for GetClient
-func NewGetClientRequest(server string, params *GetClientParams) (*http.Request, error) {
+func NewGetClientRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5404,19 +4857,6 @@ func NewGetClientRequest(server string, params *GetClientParams) (*http.Request,
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -5466,19 +4906,6 @@ func NewGetOrganizationPeopleRequest(server string, params *GetOrganizationPeopl
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -5537,24 +4964,11 @@ func NewGetOrganizationPeopleIdRequest(server string, id int32, params *GetOrgan
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetCategoriesRequest generates requests for GetCategories
-func NewGetCategoriesRequest(server string, params *GetCategoriesParams) (*http.Request, error) {
+func NewGetCategoriesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5577,35 +4991,22 @@ func NewGetCategoriesRequest(server string, params *GetCategoriesParams) (*http.
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewCreateCategoryRequest calls the generic CreateCategory builder with application/json body
-func NewCreateCategoryRequest(server string, params *CreateCategoryParams, body CreateCategoryJSONRequestBody) (*http.Request, error) {
+func NewCreateCategoryRequest(server string, body CreateCategoryJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreateCategoryRequestWithBody(server, params, "application/json", bodyReader)
+	return NewCreateCategoryRequestWithBody(server, "application/json", bodyReader)
 }
 
 // NewCreateCategoryRequestWithBody generates requests for CreateCategory with any type of body
-func NewCreateCategoryRequestWithBody(server string, params *CreateCategoryParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateCategoryRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5630,24 +5031,11 @@ func NewCreateCategoryRequestWithBody(server string, params *CreateCategoryParam
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewDeleteCategoryRequest generates requests for DeleteCategory
-func NewDeleteCategoryRequest(server string, id int32, params *DeleteCategoryParams) (*http.Request, error) {
+func NewDeleteCategoryRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5677,24 +5065,11 @@ func NewDeleteCategoryRequest(server string, id int32, params *DeleteCategoryPar
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetProductcategoriesIdRequest generates requests for GetProductcategoriesId
-func NewGetProductcategoriesIdRequest(server string, id int32, params *GetProductcategoriesIdParams) (*http.Request, error) {
+func NewGetProductcategoriesIdRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5724,35 +5099,22 @@ func NewGetProductcategoriesIdRequest(server string, id int32, params *GetProduc
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewUpdateCategoryRequest calls the generic UpdateCategory builder with application/json body
-func NewUpdateCategoryRequest(server string, id int32, params *UpdateCategoryParams, body UpdateCategoryJSONRequestBody) (*http.Request, error) {
+func NewUpdateCategoryRequest(server string, id int32, body UpdateCategoryJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateCategoryRequestWithBody(server, id, params, "application/json", bodyReader)
+	return NewUpdateCategoryRequestWithBody(server, id, "application/json", bodyReader)
 }
 
 // NewUpdateCategoryRequestWithBody generates requests for UpdateCategory with any type of body
-func NewUpdateCategoryRequestWithBody(server string, id int32, params *UpdateCategoryParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateCategoryRequestWithBody(server string, id int32, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5783,19 +5145,6 @@ func NewUpdateCategoryRequestWithBody(server string, id int32, params *UpdateCat
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
 
 	return req, nil
 }
@@ -5894,35 +5243,22 @@ func NewGetProductsRequest(server string, params *GetProductsParams) (*http.Requ
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewCreateProductRequest calls the generic CreateProduct builder with application/json body
-func NewCreateProductRequest(server string, params *CreateProductParams, body CreateProductJSONRequestBody) (*http.Request, error) {
+func NewCreateProductRequest(server string, body CreateProductJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewCreateProductRequestWithBody(server, params, "application/json", bodyReader)
+	return NewCreateProductRequestWithBody(server, "application/json", bodyReader)
 }
 
 // NewCreateProductRequestWithBody generates requests for CreateProduct with any type of body
-func NewCreateProductRequestWithBody(server string, params *CreateProductParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewCreateProductRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5947,24 +5283,11 @@ func NewCreateProductRequestWithBody(server string, params *CreateProductParams,
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewDeleteProductRequest generates requests for DeleteProduct
-func NewDeleteProductRequest(server string, id int32, params *DeleteProductParams) (*http.Request, error) {
+func NewDeleteProductRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5994,24 +5317,11 @@ func NewDeleteProductRequest(server string, id int32, params *DeleteProductParam
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetProductsIdRequest generates requests for GetProductsId
-func NewGetProductsIdRequest(server string, id int32, params *GetProductsIdParams) (*http.Request, error) {
+func NewGetProductsIdRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6041,35 +5351,22 @@ func NewGetProductsIdRequest(server string, id int32, params *GetProductsIdParam
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewUpdateProductRequest calls the generic UpdateProduct builder with application/json body
-func NewUpdateProductRequest(server string, id int32, params *UpdateProductParams, body UpdateProductJSONRequestBody) (*http.Request, error) {
+func NewUpdateProductRequest(server string, id int32, body UpdateProductJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUpdateProductRequestWithBody(server, id, params, "application/json", bodyReader)
+	return NewUpdateProductRequestWithBody(server, id, "application/json", bodyReader)
 }
 
 // NewUpdateProductRequestWithBody generates requests for UpdateProduct with any type of body
-func NewUpdateProductRequestWithBody(server string, id int32, params *UpdateProductParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewUpdateProductRequestWithBody(server string, id int32, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6101,24 +5398,11 @@ func NewUpdateProductRequestWithBody(server string, id int32, params *UpdateProd
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetUnitsRequest generates requests for GetUnits
-func NewGetUnitsRequest(server string, params *GetUnitsParams) (*http.Request, error) {
+func NewGetUnitsRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6139,19 +5423,6 @@ func NewGetUnitsRequest(server string, params *GetUnitsParams) (*http.Request, e
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -6379,35 +5650,22 @@ func NewGetSalesordersRequest(server string, params *GetSalesordersParams) (*htt
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewPostSalesordersRequest calls the generic PostSalesorders builder with application/json body
-func NewPostSalesordersRequest(server string, params *PostSalesordersParams, body PostSalesordersJSONRequestBody) (*http.Request, error) {
+func NewPostSalesordersRequest(server string, body PostSalesordersJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPostSalesordersRequestWithBody(server, params, "application/json", bodyReader)
+	return NewPostSalesordersRequestWithBody(server, "application/json", bodyReader)
 }
 
 // NewPostSalesordersRequestWithBody generates requests for PostSalesorders with any type of body
-func NewPostSalesordersRequestWithBody(server string, params *PostSalesordersParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostSalesordersRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6432,24 +5690,11 @@ func NewPostSalesordersRequestWithBody(server string, params *PostSalesordersPar
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetSalesordersIdRequest generates requests for GetSalesordersId
-func NewGetSalesordersIdRequest(server string, id int32, params *GetSalesordersIdParams) (*http.Request, error) {
+func NewGetSalesordersIdRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6479,35 +5724,22 @@ func NewGetSalesordersIdRequest(server string, id int32, params *GetSalesordersI
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewPatchSalesordersIdRequest calls the generic PatchSalesordersId builder with application/json body
-func NewPatchSalesordersIdRequest(server string, id int32, params *PatchSalesordersIdParams, body PatchSalesordersIdJSONRequestBody) (*http.Request, error) {
+func NewPatchSalesordersIdRequest(server string, id int32, body PatchSalesordersIdJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPatchSalesordersIdRequestWithBody(server, id, params, "application/json", bodyReader)
+	return NewPatchSalesordersIdRequestWithBody(server, id, "application/json", bodyReader)
 }
 
 // NewPatchSalesordersIdRequestWithBody generates requests for PatchSalesordersId with any type of body
-func NewPatchSalesordersIdRequestWithBody(server string, id int32, params *PatchSalesordersIdParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewPatchSalesordersIdRequestWithBody(server string, id int32, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6539,24 +5771,11 @@ func NewPatchSalesordersIdRequestWithBody(server string, id int32, params *Patch
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetSalesordersIdLinesRequest generates requests for GetSalesordersIdLines
-func NewGetSalesordersIdLinesRequest(server string, id int32, params *GetSalesordersIdLinesParams) (*http.Request, error) {
+func NewGetSalesordersIdLinesRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6586,35 +5805,22 @@ func NewGetSalesordersIdLinesRequest(server string, id int32, params *GetSalesor
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewPostSalesordersIdLinesRequest calls the generic PostSalesordersIdLines builder with application/json body
-func NewPostSalesordersIdLinesRequest(server string, id int32, params *PostSalesordersIdLinesParams, body PostSalesordersIdLinesJSONRequestBody) (*http.Request, error) {
+func NewPostSalesordersIdLinesRequest(server string, id int32, body PostSalesordersIdLinesJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPostSalesordersIdLinesRequestWithBody(server, id, params, "application/json", bodyReader)
+	return NewPostSalesordersIdLinesRequestWithBody(server, id, "application/json", bodyReader)
 }
 
 // NewPostSalesordersIdLinesRequestWithBody generates requests for PostSalesordersIdLines with any type of body
-func NewPostSalesordersIdLinesRequestWithBody(server string, id int32, params *PostSalesordersIdLinesParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostSalesordersIdLinesRequestWithBody(server string, id int32, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6646,24 +5852,11 @@ func NewPostSalesordersIdLinesRequestWithBody(server string, id int32, params *P
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetSalesordersIdLinesLineIdRequest generates requests for GetSalesordersIdLinesLineId
-func NewGetSalesordersIdLinesLineIdRequest(server string, id int32, lineId int32, params *GetSalesordersIdLinesLineIdParams) (*http.Request, error) {
+func NewGetSalesordersIdLinesLineIdRequest(server string, id int32, lineId int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6700,35 +5893,22 @@ func NewGetSalesordersIdLinesLineIdRequest(server string, id int32, lineId int32
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewPatchSalesordersIdLinesLineIdRequest calls the generic PatchSalesordersIdLinesLineId builder with application/json body
-func NewPatchSalesordersIdLinesLineIdRequest(server string, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, body PatchSalesordersIdLinesLineIdJSONRequestBody) (*http.Request, error) {
+func NewPatchSalesordersIdLinesLineIdRequest(server string, id int32, lineId int32, body PatchSalesordersIdLinesLineIdJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPatchSalesordersIdLinesLineIdRequestWithBody(server, id, lineId, params, "application/json", bodyReader)
+	return NewPatchSalesordersIdLinesLineIdRequestWithBody(server, id, lineId, "application/json", bodyReader)
 }
 
 // NewPatchSalesordersIdLinesLineIdRequestWithBody generates requests for PatchSalesordersIdLinesLineId with any type of body
-func NewPatchSalesordersIdLinesLineIdRequestWithBody(server string, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, contentType string, body io.Reader) (*http.Request, error) {
+func NewPatchSalesordersIdLinesLineIdRequestWithBody(server string, id int32, lineId int32, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6767,24 +5947,11 @@ func NewPatchSalesordersIdLinesLineIdRequestWithBody(server string, id int32, li
 
 	req.Header.Add("Content-Type", contentType)
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetSalestypesRequest generates requests for GetSalestypes
-func NewGetSalestypesRequest(server string, params *GetSalestypesParams) (*http.Request, error) {
+func NewGetSalestypesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6807,24 +5974,11 @@ func NewGetSalestypesRequest(server string, params *GetSalestypesParams) (*http.
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetSalestypesIdRequest generates requests for GetSalestypesId
-func NewGetSalestypesIdRequest(server string, id int32, params *GetSalestypesIdParams) (*http.Request, error) {
+func NewGetSalestypesIdRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6854,24 +6008,11 @@ func NewGetSalestypesIdRequest(server string, id int32, params *GetSalestypesIdP
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetTaxesRequest generates requests for GetTaxes
-func NewGetTaxesRequest(server string, params *GetTaxesParams) (*http.Request, error) {
+func NewGetTaxesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6894,24 +6035,11 @@ func NewGetTaxesRequest(server string, params *GetTaxesParams) (*http.Request, e
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetTaxesIdRequest generates requests for GetTaxesId
-func NewGetTaxesIdRequest(server string, id int32, params *GetTaxesIdParams) (*http.Request, error) {
+func NewGetTaxesIdRequest(server string, id int32) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -6939,19 +6067,6 @@ func NewGetTaxesIdRequest(server string, id int32, params *GetTaxesIdParams) (*h
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -7155,24 +6270,11 @@ func NewGetTransactionlinesRequest(server string, params *GetTransactionlinesPar
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetTransactionlinesIdRequest generates requests for GetTransactionlinesId
-func NewGetTransactionlinesIdRequest(server string, id string, params *GetTransactionlinesIdParams) (*http.Request, error) {
+func NewGetTransactionlinesIdRequest(server string, id string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -7202,24 +6304,11 @@ func NewGetTransactionlinesIdRequest(server string, id string, params *GetTransa
 		return nil, err
 	}
 
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
-	}
-
 	return req, nil
 }
 
 // NewGetTransactiontypesRequest generates requests for GetTransactiontypes
-func NewGetTransactiontypesRequest(server string, params *GetTransactiontypesParams) (*http.Request, error) {
+func NewGetTransactiontypesRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -7240,19 +6329,6 @@ func NewGetTransactiontypesRequest(server string, params *GetTransactiontypesPar
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-
-		var headerParam0 string
-
-		headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Authorization", runtime.ParamLocationHeader, params.Authorization)
-		if err != nil {
-			return nil, err
-		}
-
-		req.Header.Set("Authorization", headerParam0)
-
 	}
 
 	return req, nil
@@ -7311,56 +6387,56 @@ type ClientWithResponsesInterface interface {
 	GetAccountsWithResponse(ctx context.Context, params *GetAccountsParams, reqEditors ...RequestEditorFn) (*GetAccountsResponse, error)
 
 	// GetAccountsIdWithResponse request
-	GetAccountsIdWithResponse(ctx context.Context, id int, params *GetAccountsIdParams, reqEditors ...RequestEditorFn) (*GetAccountsIdResponse, error)
+	GetAccountsIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetAccountsIdResponse, error)
 
 	// GetBankaccountsWithResponse request
 	GetBankaccountsWithResponse(ctx context.Context, params *GetBankaccountsParams, reqEditors ...RequestEditorFn) (*GetBankaccountsResponse, error)
 
 	// PostBankaccountsWithBodyWithResponse request with any body
-	PostBankaccountsWithBodyWithResponse(ctx context.Context, params *PostBankaccountsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error)
+	PostBankaccountsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error)
 
-	PostBankaccountsWithResponse(ctx context.Context, params *PostBankaccountsParams, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error)
+	PostBankaccountsWithResponse(ctx context.Context, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error)
 
 	// GetBankaccountsIdWithResponse request
 	GetBankaccountsIdWithResponse(ctx context.Context, id string, params *GetBankaccountsIdParams, reqEditors ...RequestEditorFn) (*GetBankaccountsIdResponse, error)
 
 	// PostBankaccountsIdBalancesWithBodyWithResponse request with any body
-	PostBankaccountsIdBalancesWithBodyWithResponse(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error)
+	PostBankaccountsIdBalancesWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error)
 
-	PostBankaccountsIdBalancesWithResponse(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error)
+	PostBankaccountsIdBalancesWithResponse(ctx context.Context, id string, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error)
 
 	// GetBanktransactionsWithResponse request
 	GetBanktransactionsWithResponse(ctx context.Context, params *GetBanktransactionsParams, reqEditors ...RequestEditorFn) (*GetBanktransactionsResponse, error)
 
 	// PostBanktransactionsWithBodyWithResponse request with any body
-	PostBanktransactionsWithBodyWithResponse(ctx context.Context, params *PostBanktransactionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error)
+	PostBanktransactionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error)
 
-	PostBanktransactionsWithResponse(ctx context.Context, params *PostBanktransactionsParams, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error)
+	PostBanktransactionsWithResponse(ctx context.Context, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error)
 
 	// GetBanktransactionsBankTransactionReferenceWithResponse request
-	GetBanktransactionsBankTransactionReferenceWithResponse(ctx context.Context, bankTransactionReference string, params *GetBanktransactionsBankTransactionReferenceParams, reqEditors ...RequestEditorFn) (*GetBanktransactionsBankTransactionReferenceResponse, error)
+	GetBanktransactionsBankTransactionReferenceWithResponse(ctx context.Context, bankTransactionReference string, reqEditors ...RequestEditorFn) (*GetBanktransactionsBankTransactionReferenceResponse, error)
 
 	// GetCurrenciesWithResponse request
-	GetCurrenciesWithResponse(ctx context.Context, params *GetCurrenciesParams, reqEditors ...RequestEditorFn) (*GetCurrenciesResponse, error)
+	GetCurrenciesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrenciesResponse, error)
 
 	// GetCustomersWithResponse request
 	GetCustomersWithResponse(ctx context.Context, params *GetCustomersParams, reqEditors ...RequestEditorFn) (*GetCustomersResponse, error)
 
 	// CreateCustomerWithBodyWithResponse request with any body
-	CreateCustomerWithBodyWithResponse(ctx context.Context, params *CreateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error)
+	CreateCustomerWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error)
 
-	CreateCustomerWithResponse(ctx context.Context, params *CreateCustomerParams, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error)
+	CreateCustomerWithResponse(ctx context.Context, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error)
 
 	// DeleteCustomersIdWithResponse request
-	DeleteCustomersIdWithResponse(ctx context.Context, id Id, params *DeleteCustomersIdParams, reqEditors ...RequestEditorFn) (*DeleteCustomersIdResponse, error)
+	DeleteCustomersIdWithResponse(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*DeleteCustomersIdResponse, error)
 
 	// GetCustomersIdWithResponse request
-	GetCustomersIdWithResponse(ctx context.Context, id Id, params *GetCustomersIdParams, reqEditors ...RequestEditorFn) (*GetCustomersIdResponse, error)
+	GetCustomersIdWithResponse(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*GetCustomersIdResponse, error)
 
 	// UpdateCustomerWithBodyWithResponse request with any body
-	UpdateCustomerWithBodyWithResponse(ctx context.Context, id Id, params *UpdateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
+	UpdateCustomerWithBodyWithResponse(ctx context.Context, id Id, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
 
-	UpdateCustomerWithResponse(ctx context.Context, id Id, params *UpdateCustomerParams, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
+	UpdateCustomerWithResponse(ctx context.Context, id Id, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
 
 	// GetMeWithResponse request
 	GetMeWithResponse(ctx context.Context, params *GetMeParams, reqEditors ...RequestEditorFn) (*GetMeResponse, error)
@@ -7369,16 +6445,16 @@ type ClientWithResponsesInterface interface {
 	GetMeIdentifiersWithResponse(ctx context.Context, params *GetMeIdentifiersParams, reqEditors ...RequestEditorFn) (*GetMeIdentifiersResponse, error)
 
 	// GetMeIdentifiersIdWithResponse request
-	GetMeIdentifiersIdWithResponse(ctx context.Context, id openapi_types.UUID, params *GetMeIdentifiersIdParams, reqEditors ...RequestEditorFn) (*GetMeIdentifiersIdResponse, error)
+	GetMeIdentifiersIdWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetMeIdentifiersIdResponse, error)
 
 	// GetLicensesWithResponse request
 	GetLicensesWithResponse(ctx context.Context, params *GetLicensesParams, reqEditors ...RequestEditorFn) (*GetLicensesResponse, error)
 
 	// GetMeLicensesIdOrganizationWithResponse request
-	GetMeLicensesIdOrganizationWithResponse(ctx context.Context, id openapi_types.UUID, params *GetMeLicensesIdOrganizationParams, reqEditors ...RequestEditorFn) (*GetMeLicensesIdOrganizationResponse, error)
+	GetMeLicensesIdOrganizationWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetMeLicensesIdOrganizationResponse, error)
 
 	// GetClientWithResponse request
-	GetClientWithResponse(ctx context.Context, params *GetClientParams, reqEditors ...RequestEditorFn) (*GetClientResponse, error)
+	GetClientWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetClientResponse, error)
 
 	// GetOrganizationPeopleWithResponse request
 	GetOrganizationPeopleWithResponse(ctx context.Context, params *GetOrganizationPeopleParams, reqEditors ...RequestEditorFn) (*GetOrganizationPeopleResponse, error)
@@ -7387,98 +6463,98 @@ type ClientWithResponsesInterface interface {
 	GetOrganizationPeopleIdWithResponse(ctx context.Context, id int32, params *GetOrganizationPeopleIdParams, reqEditors ...RequestEditorFn) (*GetOrganizationPeopleIdResponse, error)
 
 	// GetCategoriesWithResponse request
-	GetCategoriesWithResponse(ctx context.Context, params *GetCategoriesParams, reqEditors ...RequestEditorFn) (*GetCategoriesResponse, error)
+	GetCategoriesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCategoriesResponse, error)
 
 	// CreateCategoryWithBodyWithResponse request with any body
-	CreateCategoryWithBodyWithResponse(ctx context.Context, params *CreateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error)
+	CreateCategoryWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error)
 
-	CreateCategoryWithResponse(ctx context.Context, params *CreateCategoryParams, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error)
+	CreateCategoryWithResponse(ctx context.Context, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error)
 
 	// DeleteCategoryWithResponse request
-	DeleteCategoryWithResponse(ctx context.Context, id int32, params *DeleteCategoryParams, reqEditors ...RequestEditorFn) (*DeleteCategoryResponse, error)
+	DeleteCategoryWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*DeleteCategoryResponse, error)
 
 	// GetProductcategoriesIdWithResponse request
-	GetProductcategoriesIdWithResponse(ctx context.Context, id int32, params *GetProductcategoriesIdParams, reqEditors ...RequestEditorFn) (*GetProductcategoriesIdResponse, error)
+	GetProductcategoriesIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetProductcategoriesIdResponse, error)
 
 	// UpdateCategoryWithBodyWithResponse request with any body
-	UpdateCategoryWithBodyWithResponse(ctx context.Context, id int32, params *UpdateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error)
+	UpdateCategoryWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error)
 
-	UpdateCategoryWithResponse(ctx context.Context, id int32, params *UpdateCategoryParams, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error)
+	UpdateCategoryWithResponse(ctx context.Context, id int32, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error)
 
 	// GetProductsWithResponse request
 	GetProductsWithResponse(ctx context.Context, params *GetProductsParams, reqEditors ...RequestEditorFn) (*GetProductsResponse, error)
 
 	// CreateProductWithBodyWithResponse request with any body
-	CreateProductWithBodyWithResponse(ctx context.Context, params *CreateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateProductResponse, error)
+	CreateProductWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateProductResponse, error)
 
-	CreateProductWithResponse(ctx context.Context, params *CreateProductParams, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateProductResponse, error)
+	CreateProductWithResponse(ctx context.Context, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateProductResponse, error)
 
 	// DeleteProductWithResponse request
-	DeleteProductWithResponse(ctx context.Context, id int32, params *DeleteProductParams, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error)
+	DeleteProductWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error)
 
 	// GetProductsIdWithResponse request
-	GetProductsIdWithResponse(ctx context.Context, id int32, params *GetProductsIdParams, reqEditors ...RequestEditorFn) (*GetProductsIdResponse, error)
+	GetProductsIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetProductsIdResponse, error)
 
 	// UpdateProductWithBodyWithResponse request with any body
-	UpdateProductWithBodyWithResponse(ctx context.Context, id int32, params *UpdateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
+	UpdateProductWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
 
-	UpdateProductWithResponse(ctx context.Context, id int32, params *UpdateProductParams, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
+	UpdateProductWithResponse(ctx context.Context, id int32, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error)
 
 	// GetUnitsWithResponse request
-	GetUnitsWithResponse(ctx context.Context, params *GetUnitsParams, reqEditors ...RequestEditorFn) (*GetUnitsResponse, error)
+	GetUnitsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUnitsResponse, error)
 
 	// GetSalesordersWithResponse request
 	GetSalesordersWithResponse(ctx context.Context, params *GetSalesordersParams, reqEditors ...RequestEditorFn) (*GetSalesordersResponse, error)
 
 	// PostSalesordersWithBodyWithResponse request with any body
-	PostSalesordersWithBodyWithResponse(ctx context.Context, params *PostSalesordersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error)
+	PostSalesordersWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error)
 
-	PostSalesordersWithResponse(ctx context.Context, params *PostSalesordersParams, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error)
+	PostSalesordersWithResponse(ctx context.Context, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error)
 
 	// GetSalesordersIdWithResponse request
-	GetSalesordersIdWithResponse(ctx context.Context, id int32, params *GetSalesordersIdParams, reqEditors ...RequestEditorFn) (*GetSalesordersIdResponse, error)
+	GetSalesordersIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdResponse, error)
 
 	// PatchSalesordersIdWithBodyWithResponse request with any body
-	PatchSalesordersIdWithBodyWithResponse(ctx context.Context, id int32, params *PatchSalesordersIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error)
+	PatchSalesordersIdWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error)
 
-	PatchSalesordersIdWithResponse(ctx context.Context, id int32, params *PatchSalesordersIdParams, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error)
+	PatchSalesordersIdWithResponse(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error)
 
 	// GetSalesordersIdLinesWithResponse request
-	GetSalesordersIdLinesWithResponse(ctx context.Context, id int32, params *GetSalesordersIdLinesParams, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesResponse, error)
+	GetSalesordersIdLinesWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesResponse, error)
 
 	// PostSalesordersIdLinesWithBodyWithResponse request with any body
-	PostSalesordersIdLinesWithBodyWithResponse(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error)
+	PostSalesordersIdLinesWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error)
 
-	PostSalesordersIdLinesWithResponse(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error)
+	PostSalesordersIdLinesWithResponse(ctx context.Context, id int32, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error)
 
 	// GetSalesordersIdLinesLineIdWithResponse request
-	GetSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, params *GetSalesordersIdLinesLineIdParams, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesLineIdResponse, error)
+	GetSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesLineIdResponse, error)
 
 	// PatchSalesordersIdLinesLineIdWithBodyWithResponse request with any body
-	PatchSalesordersIdLinesLineIdWithBodyWithResponse(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error)
+	PatchSalesordersIdLinesLineIdWithBodyWithResponse(ctx context.Context, id int32, lineId int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error)
 
-	PatchSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error)
+	PatchSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error)
 
 	// GetSalestypesWithResponse request
-	GetSalestypesWithResponse(ctx context.Context, params *GetSalestypesParams, reqEditors ...RequestEditorFn) (*GetSalestypesResponse, error)
+	GetSalestypesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSalestypesResponse, error)
 
 	// GetSalestypesIdWithResponse request
-	GetSalestypesIdWithResponse(ctx context.Context, id int32, params *GetSalestypesIdParams, reqEditors ...RequestEditorFn) (*GetSalestypesIdResponse, error)
+	GetSalestypesIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalestypesIdResponse, error)
 
 	// GetTaxesWithResponse request
-	GetTaxesWithResponse(ctx context.Context, params *GetTaxesParams, reqEditors ...RequestEditorFn) (*GetTaxesResponse, error)
+	GetTaxesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTaxesResponse, error)
 
 	// GetTaxesIdWithResponse request
-	GetTaxesIdWithResponse(ctx context.Context, id int32, params *GetTaxesIdParams, reqEditors ...RequestEditorFn) (*GetTaxesIdResponse, error)
+	GetTaxesIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetTaxesIdResponse, error)
 
 	// GetTransactionlinesWithResponse request
 	GetTransactionlinesWithResponse(ctx context.Context, params *GetTransactionlinesParams, reqEditors ...RequestEditorFn) (*GetTransactionlinesResponse, error)
 
 	// GetTransactionlinesIdWithResponse request
-	GetTransactionlinesIdWithResponse(ctx context.Context, id string, params *GetTransactionlinesIdParams, reqEditors ...RequestEditorFn) (*GetTransactionlinesIdResponse, error)
+	GetTransactionlinesIdWithResponse(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*GetTransactionlinesIdResponse, error)
 
 	// GetTransactiontypesWithResponse request
-	GetTransactiontypesWithResponse(ctx context.Context, params *GetTransactiontypesParams, reqEditors ...RequestEditorFn) (*GetTransactiontypesResponse, error)
+	GetTransactiontypesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTransactiontypesResponse, error)
 }
 
 type GetAccountbalancesResponse struct {
@@ -8692,8 +7768,8 @@ func (c *ClientWithResponses) GetAccountsWithResponse(ctx context.Context, param
 }
 
 // GetAccountsIdWithResponse request returning *GetAccountsIdResponse
-func (c *ClientWithResponses) GetAccountsIdWithResponse(ctx context.Context, id int, params *GetAccountsIdParams, reqEditors ...RequestEditorFn) (*GetAccountsIdResponse, error) {
-	rsp, err := c.GetAccountsId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetAccountsIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetAccountsIdResponse, error) {
+	rsp, err := c.GetAccountsId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8710,16 +7786,16 @@ func (c *ClientWithResponses) GetBankaccountsWithResponse(ctx context.Context, p
 }
 
 // PostBankaccountsWithBodyWithResponse request with arbitrary body returning *PostBankaccountsResponse
-func (c *ClientWithResponses) PostBankaccountsWithBodyWithResponse(ctx context.Context, params *PostBankaccountsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error) {
-	rsp, err := c.PostBankaccountsWithBody(ctx, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PostBankaccountsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error) {
+	rsp, err := c.PostBankaccountsWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePostBankaccountsResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostBankaccountsWithResponse(ctx context.Context, params *PostBankaccountsParams, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error) {
-	rsp, err := c.PostBankaccounts(ctx, params, body, reqEditors...)
+func (c *ClientWithResponses) PostBankaccountsWithResponse(ctx context.Context, body PostBankaccountsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsResponse, error) {
+	rsp, err := c.PostBankaccounts(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8736,16 +7812,16 @@ func (c *ClientWithResponses) GetBankaccountsIdWithResponse(ctx context.Context,
 }
 
 // PostBankaccountsIdBalancesWithBodyWithResponse request with arbitrary body returning *PostBankaccountsIdBalancesResponse
-func (c *ClientWithResponses) PostBankaccountsIdBalancesWithBodyWithResponse(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error) {
-	rsp, err := c.PostBankaccountsIdBalancesWithBody(ctx, id, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PostBankaccountsIdBalancesWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error) {
+	rsp, err := c.PostBankaccountsIdBalancesWithBody(ctx, id, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePostBankaccountsIdBalancesResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostBankaccountsIdBalancesWithResponse(ctx context.Context, id string, params *PostBankaccountsIdBalancesParams, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error) {
-	rsp, err := c.PostBankaccountsIdBalances(ctx, id, params, body, reqEditors...)
+func (c *ClientWithResponses) PostBankaccountsIdBalancesWithResponse(ctx context.Context, id string, body PostBankaccountsIdBalancesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBankaccountsIdBalancesResponse, error) {
+	rsp, err := c.PostBankaccountsIdBalances(ctx, id, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8762,16 +7838,16 @@ func (c *ClientWithResponses) GetBanktransactionsWithResponse(ctx context.Contex
 }
 
 // PostBanktransactionsWithBodyWithResponse request with arbitrary body returning *PostBanktransactionsResponse
-func (c *ClientWithResponses) PostBanktransactionsWithBodyWithResponse(ctx context.Context, params *PostBanktransactionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error) {
-	rsp, err := c.PostBanktransactionsWithBody(ctx, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PostBanktransactionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error) {
+	rsp, err := c.PostBanktransactionsWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePostBanktransactionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostBanktransactionsWithResponse(ctx context.Context, params *PostBanktransactionsParams, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error) {
-	rsp, err := c.PostBanktransactions(ctx, params, body, reqEditors...)
+func (c *ClientWithResponses) PostBanktransactionsWithResponse(ctx context.Context, body PostBanktransactionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostBanktransactionsResponse, error) {
+	rsp, err := c.PostBanktransactions(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8779,8 +7855,8 @@ func (c *ClientWithResponses) PostBanktransactionsWithResponse(ctx context.Conte
 }
 
 // GetBanktransactionsBankTransactionReferenceWithResponse request returning *GetBanktransactionsBankTransactionReferenceResponse
-func (c *ClientWithResponses) GetBanktransactionsBankTransactionReferenceWithResponse(ctx context.Context, bankTransactionReference string, params *GetBanktransactionsBankTransactionReferenceParams, reqEditors ...RequestEditorFn) (*GetBanktransactionsBankTransactionReferenceResponse, error) {
-	rsp, err := c.GetBanktransactionsBankTransactionReference(ctx, bankTransactionReference, params, reqEditors...)
+func (c *ClientWithResponses) GetBanktransactionsBankTransactionReferenceWithResponse(ctx context.Context, bankTransactionReference string, reqEditors ...RequestEditorFn) (*GetBanktransactionsBankTransactionReferenceResponse, error) {
+	rsp, err := c.GetBanktransactionsBankTransactionReference(ctx, bankTransactionReference, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8788,8 +7864,8 @@ func (c *ClientWithResponses) GetBanktransactionsBankTransactionReferenceWithRes
 }
 
 // GetCurrenciesWithResponse request returning *GetCurrenciesResponse
-func (c *ClientWithResponses) GetCurrenciesWithResponse(ctx context.Context, params *GetCurrenciesParams, reqEditors ...RequestEditorFn) (*GetCurrenciesResponse, error) {
-	rsp, err := c.GetCurrencies(ctx, params, reqEditors...)
+func (c *ClientWithResponses) GetCurrenciesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCurrenciesResponse, error) {
+	rsp, err := c.GetCurrencies(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8806,16 +7882,16 @@ func (c *ClientWithResponses) GetCustomersWithResponse(ctx context.Context, para
 }
 
 // CreateCustomerWithBodyWithResponse request with arbitrary body returning *CreateCustomerResponse
-func (c *ClientWithResponses) CreateCustomerWithBodyWithResponse(ctx context.Context, params *CreateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error) {
-	rsp, err := c.CreateCustomerWithBody(ctx, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CreateCustomerWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error) {
+	rsp, err := c.CreateCustomerWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCreateCustomerResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateCustomerWithResponse(ctx context.Context, params *CreateCustomerParams, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error) {
-	rsp, err := c.CreateCustomer(ctx, params, body, reqEditors...)
+func (c *ClientWithResponses) CreateCustomerWithResponse(ctx context.Context, body CreateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCustomerResponse, error) {
+	rsp, err := c.CreateCustomer(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8823,8 +7899,8 @@ func (c *ClientWithResponses) CreateCustomerWithResponse(ctx context.Context, pa
 }
 
 // DeleteCustomersIdWithResponse request returning *DeleteCustomersIdResponse
-func (c *ClientWithResponses) DeleteCustomersIdWithResponse(ctx context.Context, id Id, params *DeleteCustomersIdParams, reqEditors ...RequestEditorFn) (*DeleteCustomersIdResponse, error) {
-	rsp, err := c.DeleteCustomersId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) DeleteCustomersIdWithResponse(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*DeleteCustomersIdResponse, error) {
+	rsp, err := c.DeleteCustomersId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8832,8 +7908,8 @@ func (c *ClientWithResponses) DeleteCustomersIdWithResponse(ctx context.Context,
 }
 
 // GetCustomersIdWithResponse request returning *GetCustomersIdResponse
-func (c *ClientWithResponses) GetCustomersIdWithResponse(ctx context.Context, id Id, params *GetCustomersIdParams, reqEditors ...RequestEditorFn) (*GetCustomersIdResponse, error) {
-	rsp, err := c.GetCustomersId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetCustomersIdWithResponse(ctx context.Context, id Id, reqEditors ...RequestEditorFn) (*GetCustomersIdResponse, error) {
+	rsp, err := c.GetCustomersId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8841,16 +7917,16 @@ func (c *ClientWithResponses) GetCustomersIdWithResponse(ctx context.Context, id
 }
 
 // UpdateCustomerWithBodyWithResponse request with arbitrary body returning *UpdateCustomerResponse
-func (c *ClientWithResponses) UpdateCustomerWithBodyWithResponse(ctx context.Context, id Id, params *UpdateCustomerParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
-	rsp, err := c.UpdateCustomerWithBody(ctx, id, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCustomerWithBodyWithResponse(ctx context.Context, id Id, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
+	rsp, err := c.UpdateCustomerWithBody(ctx, id, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateCustomerResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateCustomerWithResponse(ctx context.Context, id Id, params *UpdateCustomerParams, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
-	rsp, err := c.UpdateCustomer(ctx, id, params, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCustomerWithResponse(ctx context.Context, id Id, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error) {
+	rsp, err := c.UpdateCustomer(ctx, id, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8876,8 +7952,8 @@ func (c *ClientWithResponses) GetMeIdentifiersWithResponse(ctx context.Context, 
 }
 
 // GetMeIdentifiersIdWithResponse request returning *GetMeIdentifiersIdResponse
-func (c *ClientWithResponses) GetMeIdentifiersIdWithResponse(ctx context.Context, id openapi_types.UUID, params *GetMeIdentifiersIdParams, reqEditors ...RequestEditorFn) (*GetMeIdentifiersIdResponse, error) {
-	rsp, err := c.GetMeIdentifiersId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetMeIdentifiersIdWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetMeIdentifiersIdResponse, error) {
+	rsp, err := c.GetMeIdentifiersId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8894,8 +7970,8 @@ func (c *ClientWithResponses) GetLicensesWithResponse(ctx context.Context, param
 }
 
 // GetMeLicensesIdOrganizationWithResponse request returning *GetMeLicensesIdOrganizationResponse
-func (c *ClientWithResponses) GetMeLicensesIdOrganizationWithResponse(ctx context.Context, id openapi_types.UUID, params *GetMeLicensesIdOrganizationParams, reqEditors ...RequestEditorFn) (*GetMeLicensesIdOrganizationResponse, error) {
-	rsp, err := c.GetMeLicensesIdOrganization(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetMeLicensesIdOrganizationWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetMeLicensesIdOrganizationResponse, error) {
+	rsp, err := c.GetMeLicensesIdOrganization(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8903,8 +7979,8 @@ func (c *ClientWithResponses) GetMeLicensesIdOrganizationWithResponse(ctx contex
 }
 
 // GetClientWithResponse request returning *GetClientResponse
-func (c *ClientWithResponses) GetClientWithResponse(ctx context.Context, params *GetClientParams, reqEditors ...RequestEditorFn) (*GetClientResponse, error) {
-	rsp, err := c.GetClient(ctx, params, reqEditors...)
+func (c *ClientWithResponses) GetClientWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetClientResponse, error) {
+	rsp, err := c.GetClient(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8930,8 +8006,8 @@ func (c *ClientWithResponses) GetOrganizationPeopleIdWithResponse(ctx context.Co
 }
 
 // GetCategoriesWithResponse request returning *GetCategoriesResponse
-func (c *ClientWithResponses) GetCategoriesWithResponse(ctx context.Context, params *GetCategoriesParams, reqEditors ...RequestEditorFn) (*GetCategoriesResponse, error) {
-	rsp, err := c.GetCategories(ctx, params, reqEditors...)
+func (c *ClientWithResponses) GetCategoriesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCategoriesResponse, error) {
+	rsp, err := c.GetCategories(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8939,16 +8015,16 @@ func (c *ClientWithResponses) GetCategoriesWithResponse(ctx context.Context, par
 }
 
 // CreateCategoryWithBodyWithResponse request with arbitrary body returning *CreateCategoryResponse
-func (c *ClientWithResponses) CreateCategoryWithBodyWithResponse(ctx context.Context, params *CreateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error) {
-	rsp, err := c.CreateCategoryWithBody(ctx, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CreateCategoryWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error) {
+	rsp, err := c.CreateCategoryWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCreateCategoryResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateCategoryWithResponse(ctx context.Context, params *CreateCategoryParams, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error) {
-	rsp, err := c.CreateCategory(ctx, params, body, reqEditors...)
+func (c *ClientWithResponses) CreateCategoryWithResponse(ctx context.Context, body CreateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateCategoryResponse, error) {
+	rsp, err := c.CreateCategory(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8956,8 +8032,8 @@ func (c *ClientWithResponses) CreateCategoryWithResponse(ctx context.Context, pa
 }
 
 // DeleteCategoryWithResponse request returning *DeleteCategoryResponse
-func (c *ClientWithResponses) DeleteCategoryWithResponse(ctx context.Context, id int32, params *DeleteCategoryParams, reqEditors ...RequestEditorFn) (*DeleteCategoryResponse, error) {
-	rsp, err := c.DeleteCategory(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) DeleteCategoryWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*DeleteCategoryResponse, error) {
+	rsp, err := c.DeleteCategory(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8965,8 +8041,8 @@ func (c *ClientWithResponses) DeleteCategoryWithResponse(ctx context.Context, id
 }
 
 // GetProductcategoriesIdWithResponse request returning *GetProductcategoriesIdResponse
-func (c *ClientWithResponses) GetProductcategoriesIdWithResponse(ctx context.Context, id int32, params *GetProductcategoriesIdParams, reqEditors ...RequestEditorFn) (*GetProductcategoriesIdResponse, error) {
-	rsp, err := c.GetProductcategoriesId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetProductcategoriesIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetProductcategoriesIdResponse, error) {
+	rsp, err := c.GetProductcategoriesId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -8974,16 +8050,16 @@ func (c *ClientWithResponses) GetProductcategoriesIdWithResponse(ctx context.Con
 }
 
 // UpdateCategoryWithBodyWithResponse request with arbitrary body returning *UpdateCategoryResponse
-func (c *ClientWithResponses) UpdateCategoryWithBodyWithResponse(ctx context.Context, id int32, params *UpdateCategoryParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error) {
-	rsp, err := c.UpdateCategoryWithBody(ctx, id, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCategoryWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error) {
+	rsp, err := c.UpdateCategoryWithBody(ctx, id, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateCategoryResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateCategoryWithResponse(ctx context.Context, id int32, params *UpdateCategoryParams, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error) {
-	rsp, err := c.UpdateCategory(ctx, id, params, body, reqEditors...)
+func (c *ClientWithResponses) UpdateCategoryWithResponse(ctx context.Context, id int32, body UpdateCategoryJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCategoryResponse, error) {
+	rsp, err := c.UpdateCategory(ctx, id, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9000,16 +8076,16 @@ func (c *ClientWithResponses) GetProductsWithResponse(ctx context.Context, param
 }
 
 // CreateProductWithBodyWithResponse request with arbitrary body returning *CreateProductResponse
-func (c *ClientWithResponses) CreateProductWithBodyWithResponse(ctx context.Context, params *CreateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateProductResponse, error) {
-	rsp, err := c.CreateProductWithBody(ctx, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) CreateProductWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreateProductResponse, error) {
+	rsp, err := c.CreateProductWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseCreateProductResponse(rsp)
 }
 
-func (c *ClientWithResponses) CreateProductWithResponse(ctx context.Context, params *CreateProductParams, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateProductResponse, error) {
-	rsp, err := c.CreateProduct(ctx, params, body, reqEditors...)
+func (c *ClientWithResponses) CreateProductWithResponse(ctx context.Context, body CreateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*CreateProductResponse, error) {
+	rsp, err := c.CreateProduct(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9017,8 +8093,8 @@ func (c *ClientWithResponses) CreateProductWithResponse(ctx context.Context, par
 }
 
 // DeleteProductWithResponse request returning *DeleteProductResponse
-func (c *ClientWithResponses) DeleteProductWithResponse(ctx context.Context, id int32, params *DeleteProductParams, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error) {
-	rsp, err := c.DeleteProduct(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) DeleteProductWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*DeleteProductResponse, error) {
+	rsp, err := c.DeleteProduct(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9026,8 +8102,8 @@ func (c *ClientWithResponses) DeleteProductWithResponse(ctx context.Context, id 
 }
 
 // GetProductsIdWithResponse request returning *GetProductsIdResponse
-func (c *ClientWithResponses) GetProductsIdWithResponse(ctx context.Context, id int32, params *GetProductsIdParams, reqEditors ...RequestEditorFn) (*GetProductsIdResponse, error) {
-	rsp, err := c.GetProductsId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetProductsIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetProductsIdResponse, error) {
+	rsp, err := c.GetProductsId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9035,16 +8111,16 @@ func (c *ClientWithResponses) GetProductsIdWithResponse(ctx context.Context, id 
 }
 
 // UpdateProductWithBodyWithResponse request with arbitrary body returning *UpdateProductResponse
-func (c *ClientWithResponses) UpdateProductWithBodyWithResponse(ctx context.Context, id int32, params *UpdateProductParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
-	rsp, err := c.UpdateProductWithBody(ctx, id, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UpdateProductWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
+	rsp, err := c.UpdateProductWithBody(ctx, id, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUpdateProductResponse(rsp)
 }
 
-func (c *ClientWithResponses) UpdateProductWithResponse(ctx context.Context, id int32, params *UpdateProductParams, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
-	rsp, err := c.UpdateProduct(ctx, id, params, body, reqEditors...)
+func (c *ClientWithResponses) UpdateProductWithResponse(ctx context.Context, id int32, body UpdateProductJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateProductResponse, error) {
+	rsp, err := c.UpdateProduct(ctx, id, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9052,8 +8128,8 @@ func (c *ClientWithResponses) UpdateProductWithResponse(ctx context.Context, id 
 }
 
 // GetUnitsWithResponse request returning *GetUnitsResponse
-func (c *ClientWithResponses) GetUnitsWithResponse(ctx context.Context, params *GetUnitsParams, reqEditors ...RequestEditorFn) (*GetUnitsResponse, error) {
-	rsp, err := c.GetUnits(ctx, params, reqEditors...)
+func (c *ClientWithResponses) GetUnitsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUnitsResponse, error) {
+	rsp, err := c.GetUnits(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9070,16 +8146,16 @@ func (c *ClientWithResponses) GetSalesordersWithResponse(ctx context.Context, pa
 }
 
 // PostSalesordersWithBodyWithResponse request with arbitrary body returning *PostSalesordersResponse
-func (c *ClientWithResponses) PostSalesordersWithBodyWithResponse(ctx context.Context, params *PostSalesordersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error) {
-	rsp, err := c.PostSalesordersWithBody(ctx, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PostSalesordersWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error) {
+	rsp, err := c.PostSalesordersWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePostSalesordersResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostSalesordersWithResponse(ctx context.Context, params *PostSalesordersParams, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error) {
-	rsp, err := c.PostSalesorders(ctx, params, body, reqEditors...)
+func (c *ClientWithResponses) PostSalesordersWithResponse(ctx context.Context, body PostSalesordersJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersResponse, error) {
+	rsp, err := c.PostSalesorders(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9087,8 +8163,8 @@ func (c *ClientWithResponses) PostSalesordersWithResponse(ctx context.Context, p
 }
 
 // GetSalesordersIdWithResponse request returning *GetSalesordersIdResponse
-func (c *ClientWithResponses) GetSalesordersIdWithResponse(ctx context.Context, id int32, params *GetSalesordersIdParams, reqEditors ...RequestEditorFn) (*GetSalesordersIdResponse, error) {
-	rsp, err := c.GetSalesordersId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetSalesordersIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdResponse, error) {
+	rsp, err := c.GetSalesordersId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9096,16 +8172,16 @@ func (c *ClientWithResponses) GetSalesordersIdWithResponse(ctx context.Context, 
 }
 
 // PatchSalesordersIdWithBodyWithResponse request with arbitrary body returning *PatchSalesordersIdResponse
-func (c *ClientWithResponses) PatchSalesordersIdWithBodyWithResponse(ctx context.Context, id int32, params *PatchSalesordersIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error) {
-	rsp, err := c.PatchSalesordersIdWithBody(ctx, id, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PatchSalesordersIdWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error) {
+	rsp, err := c.PatchSalesordersIdWithBody(ctx, id, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePatchSalesordersIdResponse(rsp)
 }
 
-func (c *ClientWithResponses) PatchSalesordersIdWithResponse(ctx context.Context, id int32, params *PatchSalesordersIdParams, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error) {
-	rsp, err := c.PatchSalesordersId(ctx, id, params, body, reqEditors...)
+func (c *ClientWithResponses) PatchSalesordersIdWithResponse(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error) {
+	rsp, err := c.PatchSalesordersId(ctx, id, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9113,8 +8189,8 @@ func (c *ClientWithResponses) PatchSalesordersIdWithResponse(ctx context.Context
 }
 
 // GetSalesordersIdLinesWithResponse request returning *GetSalesordersIdLinesResponse
-func (c *ClientWithResponses) GetSalesordersIdLinesWithResponse(ctx context.Context, id int32, params *GetSalesordersIdLinesParams, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesResponse, error) {
-	rsp, err := c.GetSalesordersIdLines(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetSalesordersIdLinesWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesResponse, error) {
+	rsp, err := c.GetSalesordersIdLines(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9122,16 +8198,16 @@ func (c *ClientWithResponses) GetSalesordersIdLinesWithResponse(ctx context.Cont
 }
 
 // PostSalesordersIdLinesWithBodyWithResponse request with arbitrary body returning *PostSalesordersIdLinesResponse
-func (c *ClientWithResponses) PostSalesordersIdLinesWithBodyWithResponse(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error) {
-	rsp, err := c.PostSalesordersIdLinesWithBody(ctx, id, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PostSalesordersIdLinesWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error) {
+	rsp, err := c.PostSalesordersIdLinesWithBody(ctx, id, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePostSalesordersIdLinesResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostSalesordersIdLinesWithResponse(ctx context.Context, id int32, params *PostSalesordersIdLinesParams, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error) {
-	rsp, err := c.PostSalesordersIdLines(ctx, id, params, body, reqEditors...)
+func (c *ClientWithResponses) PostSalesordersIdLinesWithResponse(ctx context.Context, id int32, body PostSalesordersIdLinesJSONRequestBody, reqEditors ...RequestEditorFn) (*PostSalesordersIdLinesResponse, error) {
+	rsp, err := c.PostSalesordersIdLines(ctx, id, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9139,8 +8215,8 @@ func (c *ClientWithResponses) PostSalesordersIdLinesWithResponse(ctx context.Con
 }
 
 // GetSalesordersIdLinesLineIdWithResponse request returning *GetSalesordersIdLinesLineIdResponse
-func (c *ClientWithResponses) GetSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, params *GetSalesordersIdLinesLineIdParams, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesLineIdResponse, error) {
-	rsp, err := c.GetSalesordersIdLinesLineId(ctx, id, lineId, params, reqEditors...)
+func (c *ClientWithResponses) GetSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesLineIdResponse, error) {
+	rsp, err := c.GetSalesordersIdLinesLineId(ctx, id, lineId, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9148,16 +8224,16 @@ func (c *ClientWithResponses) GetSalesordersIdLinesLineIdWithResponse(ctx contex
 }
 
 // PatchSalesordersIdLinesLineIdWithBodyWithResponse request with arbitrary body returning *PatchSalesordersIdLinesLineIdResponse
-func (c *ClientWithResponses) PatchSalesordersIdLinesLineIdWithBodyWithResponse(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error) {
-	rsp, err := c.PatchSalesordersIdLinesLineIdWithBody(ctx, id, lineId, params, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PatchSalesordersIdLinesLineIdWithBodyWithResponse(ctx context.Context, id int32, lineId int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error) {
+	rsp, err := c.PatchSalesordersIdLinesLineIdWithBody(ctx, id, lineId, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePatchSalesordersIdLinesLineIdResponse(rsp)
 }
 
-func (c *ClientWithResponses) PatchSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, params *PatchSalesordersIdLinesLineIdParams, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error) {
-	rsp, err := c.PatchSalesordersIdLinesLineId(ctx, id, lineId, params, body, reqEditors...)
+func (c *ClientWithResponses) PatchSalesordersIdLinesLineIdWithResponse(ctx context.Context, id int32, lineId int32, body PatchSalesordersIdLinesLineIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdLinesLineIdResponse, error) {
+	rsp, err := c.PatchSalesordersIdLinesLineId(ctx, id, lineId, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9165,8 +8241,8 @@ func (c *ClientWithResponses) PatchSalesordersIdLinesLineIdWithResponse(ctx cont
 }
 
 // GetSalestypesWithResponse request returning *GetSalestypesResponse
-func (c *ClientWithResponses) GetSalestypesWithResponse(ctx context.Context, params *GetSalestypesParams, reqEditors ...RequestEditorFn) (*GetSalestypesResponse, error) {
-	rsp, err := c.GetSalestypes(ctx, params, reqEditors...)
+func (c *ClientWithResponses) GetSalestypesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSalestypesResponse, error) {
+	rsp, err := c.GetSalestypes(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9174,8 +8250,8 @@ func (c *ClientWithResponses) GetSalestypesWithResponse(ctx context.Context, par
 }
 
 // GetSalestypesIdWithResponse request returning *GetSalestypesIdResponse
-func (c *ClientWithResponses) GetSalestypesIdWithResponse(ctx context.Context, id int32, params *GetSalestypesIdParams, reqEditors ...RequestEditorFn) (*GetSalestypesIdResponse, error) {
-	rsp, err := c.GetSalestypesId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetSalestypesIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalestypesIdResponse, error) {
+	rsp, err := c.GetSalestypesId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9183,8 +8259,8 @@ func (c *ClientWithResponses) GetSalestypesIdWithResponse(ctx context.Context, i
 }
 
 // GetTaxesWithResponse request returning *GetTaxesResponse
-func (c *ClientWithResponses) GetTaxesWithResponse(ctx context.Context, params *GetTaxesParams, reqEditors ...RequestEditorFn) (*GetTaxesResponse, error) {
-	rsp, err := c.GetTaxes(ctx, params, reqEditors...)
+func (c *ClientWithResponses) GetTaxesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTaxesResponse, error) {
+	rsp, err := c.GetTaxes(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9192,8 +8268,8 @@ func (c *ClientWithResponses) GetTaxesWithResponse(ctx context.Context, params *
 }
 
 // GetTaxesIdWithResponse request returning *GetTaxesIdResponse
-func (c *ClientWithResponses) GetTaxesIdWithResponse(ctx context.Context, id int32, params *GetTaxesIdParams, reqEditors ...RequestEditorFn) (*GetTaxesIdResponse, error) {
-	rsp, err := c.GetTaxesId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetTaxesIdWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetTaxesIdResponse, error) {
+	rsp, err := c.GetTaxesId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9210,8 +8286,8 @@ func (c *ClientWithResponses) GetTransactionlinesWithResponse(ctx context.Contex
 }
 
 // GetTransactionlinesIdWithResponse request returning *GetTransactionlinesIdResponse
-func (c *ClientWithResponses) GetTransactionlinesIdWithResponse(ctx context.Context, id string, params *GetTransactionlinesIdParams, reqEditors ...RequestEditorFn) (*GetTransactionlinesIdResponse, error) {
-	rsp, err := c.GetTransactionlinesId(ctx, id, params, reqEditors...)
+func (c *ClientWithResponses) GetTransactionlinesIdWithResponse(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*GetTransactionlinesIdResponse, error) {
+	rsp, err := c.GetTransactionlinesId(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -9219,8 +8295,8 @@ func (c *ClientWithResponses) GetTransactionlinesIdWithResponse(ctx context.Cont
 }
 
 // GetTransactiontypesWithResponse request returning *GetTransactiontypesResponse
-func (c *ClientWithResponses) GetTransactiontypesWithResponse(ctx context.Context, params *GetTransactiontypesParams, reqEditors ...RequestEditorFn) (*GetTransactiontypesResponse, error) {
-	rsp, err := c.GetTransactiontypes(ctx, params, reqEditors...)
+func (c *ClientWithResponses) GetTransactiontypesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetTransactiontypesResponse, error) {
+	rsp, err := c.GetTransactiontypes(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
