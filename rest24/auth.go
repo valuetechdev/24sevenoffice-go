@@ -2,6 +2,7 @@ package rest24
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"golang.org/x/oauth2"
@@ -36,11 +37,14 @@ func (c *Rest24Client) SetToken(token *oauth2.Token) {
 
 // Returns wether the token is valid or not
 func (c *Rest24Client) IsTokenValid() bool {
-	return c.token.Valid()
+	return c.token != nil && c.token.Valid()
 }
 
 // Intercept the req with an "Authorization: bearer <accessToken>" header.
 func (c *Rest24Client) InterceptToken(ctx context.Context, req *http.Request) error {
+	if !c.IsTokenValid() {
+		return fmt.Errorf("token is not valid")
+	}
 	req.Header.Set("Authorization", "bearer "+c.token.AccessToken)
 	return nil
 }
