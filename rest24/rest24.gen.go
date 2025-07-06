@@ -1865,7 +1865,7 @@ type Transaction struct {
 	Date openapi_types.Date `json:"date"`
 
 	// Id A unique identifier for the transaction line within 24SevenOffice accounting module.
-	Id *float32 `json:"id,omitempty"`
+	Id *openapi_types.UUID `json:"id,omitempty"`
 
 	// Invoice Details of an invoice used within 24SevenOffice.
 	Invoice *Invoice `json:"invoice,omitempty"`
@@ -1995,7 +1995,7 @@ type VisitAddress struct {
 // Note: Many other Norway-based accounting systems refer to transactions as "vouchers".
 type Voucher struct {
 	// Id A unique identifier for the transaction within 24SevenOffice accounting module.
-	Id *float32 `json:"id,omitempty"`
+	Id *openapi_types.UUID `json:"id,omitempty"`
 
 	// Number The unique number representing the transaction.
 	Number *float32 `json:"number,omitempty"`
