@@ -33,6 +33,11 @@ actions:
       type: string
       format: uuid
 
+  - target: "$.paths['/organization/information'].get.operationId"
+    description: Removes operationId
+    remove: true
+
+  # FIXME: Temporary fix until 24SO fixes its API
   - target: "$.components.schemas.Customer1.properties.street"
     description: FIXME(@timharek) temporary fix, removes street Customer
     remove: true
