@@ -41,3 +41,8 @@ actions:
   - target: "$.components.schemas.Customer1.properties.street"
     description: FIXME(@timharek) temporary fix, removes street Customer
     remove: true
+
+  # FIXME: Temporary fix until 24SO fixes its API
+  - target: "$.components.schemas.DeliveryCustomer.properties.street"
+    description: FIXME(@timharek) temporary fix, removes street Customer
+    remove: true

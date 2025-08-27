@@ -1106,9 +1106,6 @@ type DeliveryCustomer struct {
 
 	// PostalCode The postal code for the address.
 	PostalCode *string `json:"postalCode,omitempty"`
-
-	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-	Street *string `json:"street,omitempty"`
 }
 
 // Fiscal defines model for Fiscal.
