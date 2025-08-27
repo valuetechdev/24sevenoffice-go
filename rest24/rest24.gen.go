@@ -861,9 +861,6 @@ type Customer1 struct {
 
 	// PostalCode The postal code for the address.
 	PostalCode *string `json:"postalCode,omitempty"`
-
-	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-	Street *string `json:"street,omitempty"`
 }
 
 // CustomerPatchRequest defines model for CustomerPatchRequest.
@@ -2232,9 +2229,6 @@ type PostSalesordersJSONBody struct {
 
 		// PostalCode The postal code for the address.
 		PostalCode *string `json:"postalCode,omitempty"`
-
-		// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-		Street *string `json:"street,omitempty"`
 	} `json:"customer,omitempty"`
 
 	// Date The date when the sales order was issued.
