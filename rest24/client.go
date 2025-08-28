@@ -11,8 +11,11 @@ import (
 )
 
 type Rest24Client struct {
-	token      *oauth2.Token
-	conf       *clientcredentials.Config
+	token *oauth2.Token
+	conf  *clientcredentials.Config
+
+	interceptors []RequestEditorFn
+
 	httpClient *http.Client
 	*ClientWithResponses
 }
@@ -29,6 +32,12 @@ type Option func(*Rest24Client)
 func WithHttpClient(client *http.Client) Option {
 	return func(c *Rest24Client) {
 		c.httpClient = client
+	}
+}
+
+func WithRequestInterceptor(fn RequestEditorFn) Option {
+	return func(c *Rest24Client) {
+		c.interceptors = append(c.interceptors, fn)
 	}
 }
 
@@ -58,10 +67,19 @@ func New(credentials *Credentials, options ...Option) *Rest24Client {
 		option(client)
 	}
 
+	clientOptions := []ClientOption{
+		WithRequestEditorFn(client.InterceptToken),
+		WithHTTPClient(client.httpClient),
+	}
+
+	for _, interceptor := range client.interceptors {
+		clientOptions = append(clientOptions, WithRequestEditorFn(interceptor))
+	}
+
 	c, err := NewClientWithResponses(
 		baseUrl,
-		WithRequestEditorFn(client.InterceptToken),
-		WithHTTPClient(client.httpClient))
+		clientOptions...,
+	)
 	if err != nil {
 		panic(fmt.Errorf("failed to init client: %w", err))
 	}
