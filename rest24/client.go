@@ -6,15 +6,16 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/valuetechdev/24sevenoffice-go/throttle"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
 
 type Rest24Client struct {
-	token      *oauth2.Token
-	conf       *clientcredentials.Config
-	throttle   *throttle.Throttler
+	token *oauth2.Token
+	conf  *clientcredentials.Config
+
+	interceptors []RequestEditorFn
+
 	httpClient *http.Client
 	*ClientWithResponses
 }
@@ -34,11 +35,9 @@ func WithHttpClient(client *http.Client) Option {
 	}
 }
 
-// Add a throttle to requests to limit the speed at which you can make request. Useful to
-// avoid rate-limiting
-func WithRequestThrottle(requestsPerSecond int) Option {
+func WithRequestInterceptor(fn RequestEditorFn) Option {
 	return func(c *Rest24Client) {
-		c.throttle = throttle.New(requestsPerSecond)
+		c.interceptors = append(c.interceptors, fn)
 	}
 }
 
@@ -72,8 +71,9 @@ func New(credentials *Credentials, options ...Option) *Rest24Client {
 		WithRequestEditorFn(client.InterceptToken),
 		WithHTTPClient(client.httpClient),
 	}
-	if client.throttle != nil {
-		clientOptions = append(clientOptions, WithRequestEditorFn(client.throttle.Interceptor))
+
+	for _, interceptor := range client.interceptors {
+		clientOptions = append(clientOptions, WithRequestEditorFn(interceptor))
 	}
 
 	c, err := NewClientWithResponses(
