@@ -2677,8 +2677,8 @@ type ClientInterface interface {
 	// GetMeLicensesIdOrganization request
 	GetMeLicensesIdOrganization(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetOrganizationInformation request
-	GetOrganizationInformation(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetOrganization request
+	GetOrganization(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetOrganizationPeople request
 	GetOrganizationPeople(ctx context.Context, params *GetOrganizationPeopleParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3105,8 +3105,8 @@ func (c *WriteClient) GetMeLicensesIdOrganization(ctx context.Context, id openap
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetOrganizationInformation(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetOrganizationInformationRequest(c.Server)
+func (c *WriteClient) GetOrganization(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetOrganizationRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -4826,8 +4826,8 @@ func NewGetMeLicensesIdOrganizationRequest(server string, id openapi_types.UUID)
 	return req, nil
 }
 
-// NewGetOrganizationInformationRequest generates requests for GetOrganizationInformation
-func NewGetOrganizationInformationRequest(server string) (*http.Request, error) {
+// NewGetOrganizationRequest generates requests for GetOrganization
+func NewGetOrganizationRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -6444,8 +6444,8 @@ type ClientWithResponsesInterface interface {
 	// GetMeLicensesIdOrganizationWithResponse request
 	GetMeLicensesIdOrganizationWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetMeLicensesIdOrganizationResponse, error)
 
-	// GetOrganizationInformationWithResponse request
-	GetOrganizationInformationWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetOrganizationInformationResponse, error)
+	// GetOrganizationWithResponse request
+	GetOrganizationWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetOrganizationResponse, error)
 
 	// GetOrganizationPeopleWithResponse request
 	GetOrganizationPeopleWithResponse(ctx context.Context, params *GetOrganizationPeopleParams, reqEditors ...RequestEditorFn) (*GetOrganizationPeopleResponse, error)
@@ -7032,14 +7032,14 @@ func (r GetMeLicensesIdOrganizationResponse) StatusCode() int {
 	return 0
 }
 
-type GetOrganizationInformationResponse struct {
+type GetOrganizationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *OrganizationModel1
 }
 
 // Status returns HTTPResponse.Status
-func (r GetOrganizationInformationResponse) Status() string {
+func (r GetOrganizationResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -7047,7 +7047,7 @@ func (r GetOrganizationInformationResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetOrganizationInformationResponse) StatusCode() int {
+func (r GetOrganizationResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7969,13 +7969,13 @@ func (c *ClientWithResponses) GetMeLicensesIdOrganizationWithResponse(ctx contex
 	return ParseGetMeLicensesIdOrganizationResponse(rsp)
 }
 
-// GetOrganizationInformationWithResponse request returning *GetOrganizationInformationResponse
-func (c *ClientWithResponses) GetOrganizationInformationWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetOrganizationInformationResponse, error) {
-	rsp, err := c.GetOrganizationInformation(ctx, reqEditors...)
+// GetOrganizationWithResponse request returning *GetOrganizationResponse
+func (c *ClientWithResponses) GetOrganizationWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetOrganizationResponse, error) {
+	rsp, err := c.GetOrganization(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetOrganizationInformationResponse(rsp)
+	return ParseGetOrganizationResponse(rsp)
 }
 
 // GetOrganizationPeopleWithResponse request returning *GetOrganizationPeopleResponse
@@ -8869,15 +8869,15 @@ func ParseGetMeLicensesIdOrganizationResponse(rsp *http.Response) (*GetMeLicense
 	return response, nil
 }
 
-// ParseGetOrganizationInformationResponse parses an HTTP response from a GetOrganizationInformationWithResponse call
-func ParseGetOrganizationInformationResponse(rsp *http.Response) (*GetOrganizationInformationResponse, error) {
+// ParseGetOrganizationResponse parses an HTTP response from a GetOrganizationWithResponse call
+func ParseGetOrganizationResponse(rsp *http.Response) (*GetOrganizationResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetOrganizationInformationResponse{
+	response := &GetOrganizationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
