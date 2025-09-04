@@ -2667,6 +2667,9 @@
           "employment_rate_valid_from": {
             "type": "string"
           },
+          "hidden": {
+            "type": "string"
+          },
           "hours_per_week": {
             "type": "string"
           },

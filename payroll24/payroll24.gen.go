@@ -88,6 +88,7 @@ type EmployeeDto struct {
 	EmploymentRate          *string `json:"employment_rate,omitempty"`
 	EmploymentRateValidFrom *string `json:"employment_rate_valid_from,omitempty"`
 	Firstname               *string `json:"firstname,omitempty"`
+	Hidden                  *string `json:"hidden,omitempty"`
 	HoursPerWeek            *string `json:"hours_per_week,omitempty"`
 	HoursPerWeekValidFrom   *string `json:"hours_per_week_valid_from,omitempty"`
 	InternationalID         *struct {
