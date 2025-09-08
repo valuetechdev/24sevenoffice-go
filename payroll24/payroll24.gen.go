@@ -22,217 +22,217 @@ const (
 
 // AbsenceDto defines model for AbsenceDto.
 type AbsenceDto struct {
-	AbsenceType       *string `json:"absenceType,omitempty"`
-	Approved          *string `json:"approved,omitempty"`
-	ChildId           *string `json:"childId,omitempty"`
-	Comment           *string `json:"comment,omitempty"`
-	Description       *string `json:"description,omitempty"`
-	EmpId             *string `json:"empId,omitempty"`
-	EndDate           *string `json:"endDate,omitempty"`
-	ExternalId        *string `json:"externalId,omitempty"`
-	LastChanged       *string `json:"lastChanged,omitempty"`
-	NumberOfDays      *string `json:"numberOfDays,omitempty"`
-	Percent           *string `json:"percent,omitempty"`
-	PermisjonId       *string `json:"permisjonId,omitempty"`
-	RequestDate       *string `json:"requestDate,omitempty"`
-	RequestMotivation *string `json:"requestMotivation,omitempty"`
-	SerialNo          *string `json:"serialNo,omitempty"`
-	StartDate         *string `json:"startDate,omitempty"`
-	StartdateParental *string `json:"startdateParental,omitempty"`
+	AbsenceType       string `json:"absenceType,omitempty,omitzero"`
+	Approved          string `json:"approved,omitempty,omitzero"`
+	ChildId           string `json:"childId,omitempty,omitzero"`
+	Comment           string `json:"comment,omitempty,omitzero"`
+	Description       string `json:"description,omitempty,omitzero"`
+	EmpId             string `json:"empId,omitempty,omitzero"`
+	EndDate           string `json:"endDate,omitempty,omitzero"`
+	ExternalId        string `json:"externalId,omitempty,omitzero"`
+	LastChanged       string `json:"lastChanged,omitempty,omitzero"`
+	NumberOfDays      string `json:"numberOfDays,omitempty,omitzero"`
+	Percent           string `json:"percent,omitempty,omitzero"`
+	PermisjonId       string `json:"permisjonId,omitempty,omitzero"`
+	RequestDate       string `json:"requestDate,omitempty,omitzero"`
+	RequestMotivation string `json:"requestMotivation,omitempty,omitzero"`
+	SerialNo          string `json:"serialNo,omitempty,omitzero"`
+	StartDate         string `json:"startDate,omitempty,omitzero"`
+	StartdateParental string `json:"startdateParental,omitempty,omitzero"`
 }
 
 // AbsenceTypeDto defines model for AbsenceTypeDto.
 type AbsenceTypeDto struct {
-	Category            *string `json:"category,omitempty"`
-	Code                *string `json:"code,omitempty"`
-	CommentMandatory    *string `json:"comment_mandatory,omitempty"`
-	Description         *string `json:"description,omitempty"`
-	InntektsmeldingType *string `json:"inntektsmelding_type,omitempty"`
-	LeaveOfAbsenceType  *string `json:"leave_of_absence_type,omitempty"`
-	Percentage          *string `json:"percentage,omitempty"`
-	PermisjonId         *string `json:"permisjonId,omitempty"`
+	Category            string `json:"category,omitempty,omitzero"`
+	Code                string `json:"code,omitempty,omitzero"`
+	CommentMandatory    string `json:"comment_mandatory,omitempty,omitzero"`
+	Description         string `json:"description,omitempty,omitzero"`
+	InntektsmeldingType string `json:"inntektsmelding_type,omitempty,omitzero"`
+	LeaveOfAbsenceType  string `json:"leave_of_absence_type,omitempty,omitzero"`
+	Percentage          string `json:"percentage,omitempty,omitzero"`
+	PermisjonId         string `json:"permisjonId,omitempty,omitzero"`
 }
 
 // ChildDto defines model for ChildDto.
 type ChildDto struct {
-	Birthdate *string `json:"birthdate,omitempty"`
-	ChildId   *string `json:"childId,omitempty"`
-	Firstnamn *string `json:"firstnamn,omitempty"`
-	Surname   *string `json:"surname,omitempty"`
+	Birthdate string `json:"birthdate,omitempty,omitzero"`
+	ChildId   string `json:"childId,omitempty,omitzero"`
+	Firstnamn string `json:"firstnamn,omitempty,omitzero"`
+	Surname   string `json:"surname,omitempty,omitzero"`
 }
 
 // DimensionDto defines model for DimensionDto.
 type DimensionDto struct {
-	Dimid *string `json:"dimid,omitempty"`
-	Name  *string `json:"name,omitempty"`
+	Dimid string `json:"dimid,omitempty,omitzero"`
+	Name  string `json:"name,omitempty,omitzero"`
 }
 
 // DimensionValueDto defines model for DimensionValueDto.
 type DimensionValueDto struct {
-	Active *string `json:"active,omitempty"`
-	Name   *string `json:"name,omitempty"`
-	Value  *string `json:"value,omitempty"`
+	Active string `json:"active,omitempty,omitzero"`
+	Name   string `json:"name,omitempty,omitzero"`
+	Value  string `json:"value,omitempty,omitzero"`
 }
 
 // EmployeeDto defines model for EmployeeDto.
 type EmployeeDto struct {
-	Account                 *string `json:"account,omitempty"`
-	Bic                     *string `json:"bic,omitempty"`
-	City                    *string `json:"city,omitempty"`
-	Clearingno              *string `json:"clearingno,omitempty"`
-	CountryCode             *string `json:"countryCode,omitempty"`
-	Email                   *string `json:"email,omitempty"`
-	EmailCopy               *string `json:"email_copy,omitempty"`
-	EmpId                   *string `json:"empId,omitempty"`
-	EmployeeDate            *string `json:"employee_date,omitempty"`
-	EmploymentRate          *string `json:"employment_rate,omitempty"`
-	EmploymentRateValidFrom *string `json:"employment_rate_valid_from,omitempty"`
-	Firstname               *string `json:"firstname,omitempty"`
-	Hidden                  *string `json:"hidden,omitempty"`
-	HoursPerWeek            *string `json:"hours_per_week,omitempty"`
-	HoursPerWeekValidFrom   *string `json:"hours_per_week_valid_from,omitempty"`
-	InternationalID         *struct {
-		ID          *string `json:"ID,omitempty"`
-		CountryCode *string `json:"countryCode,omitempty"`
-		Type        *string `json:"type,omitempty"`
-	} `json:"internationalID,omitempty"`
-	Lastname                  *string `json:"lastname,omitempty"`
-	PercentageTaxBiEmployer   *string `json:"percentage_tax_bi_employer,omitempty"`
-	PercentageTaxMainEmployer *string `json:"percentage_tax_main_employer,omitempty"`
-	Period                    *string `json:"period,omitempty"`
-	Personnr                  *string `json:"personnr,omitempty"`
-	Postaddress               *string `json:"postaddress,omitempty"`
-	Salary                    *string `json:"salary,omitempty"`
-	SalaryValidFrom           *string `json:"salary_valid_from,omitempty"`
-	Taxexemption              *struct {
-		Amount     *string `json:"amount,omitempty"`
-		Percentage *string `json:"percentage,omitempty"`
-	} `json:"taxexemption,omitempty"`
-	Taxtable                 *string `json:"taxtable,omitempty"`
-	Telefon                  *string `json:"telefon,omitempty"`
-	VacationDays             *string `json:"vacation_days,omitempty"`
-	VacationPercent          *string `json:"vacation_percent,omitempty"`
-	VacationPercentValidFrom *string `json:"vacation_percent_valid_from,omitempty"`
-	Zipcode                  *string `json:"zipcode,omitempty"`
+	Account                 string `json:"account,omitempty,omitzero"`
+	Bic                     string `json:"bic,omitempty,omitzero"`
+	City                    string `json:"city,omitempty,omitzero"`
+	Clearingno              string `json:"clearingno,omitempty,omitzero"`
+	CountryCode             string `json:"countryCode,omitempty,omitzero"`
+	Email                   string `json:"email,omitempty,omitzero"`
+	EmailCopy               string `json:"email_copy,omitempty,omitzero"`
+	EmpId                   string `json:"empId,omitempty,omitzero"`
+	EmployeeDate            string `json:"employee_date,omitempty,omitzero"`
+	EmploymentRate          string `json:"employment_rate,omitempty,omitzero"`
+	EmploymentRateValidFrom string `json:"employment_rate_valid_from,omitempty,omitzero"`
+	Firstname               string `json:"firstname,omitempty,omitzero"`
+	Hidden                  string `json:"hidden,omitempty,omitzero"`
+	HoursPerWeek            string `json:"hours_per_week,omitempty,omitzero"`
+	HoursPerWeekValidFrom   string `json:"hours_per_week_valid_from,omitempty,omitzero"`
+	InternationalID         struct {
+		ID          string `json:"ID,omitempty,omitzero"`
+		CountryCode string `json:"countryCode,omitempty,omitzero"`
+		Type        string `json:"type,omitempty,omitzero"`
+	} `json:"internationalID,omitempty,omitzero"`
+	Lastname                  string `json:"lastname,omitempty,omitzero"`
+	PercentageTaxBiEmployer   string `json:"percentage_tax_bi_employer,omitempty,omitzero"`
+	PercentageTaxMainEmployer string `json:"percentage_tax_main_employer,omitempty,omitzero"`
+	Period                    string `json:"period,omitempty,omitzero"`
+	Personnr                  string `json:"personnr,omitempty,omitzero"`
+	Postaddress               string `json:"postaddress,omitempty,omitzero"`
+	Salary                    string `json:"salary,omitempty,omitzero"`
+	SalaryValidFrom           string `json:"salary_valid_from,omitempty,omitzero"`
+	Taxexemption              struct {
+		Amount     string `json:"amount,omitempty,omitzero"`
+		Percentage string `json:"percentage,omitempty,omitzero"`
+	} `json:"taxexemption,omitempty,omitzero"`
+	Taxtable                 string `json:"taxtable,omitempty,omitzero"`
+	Telefon                  string `json:"telefon,omitempty,omitzero"`
+	VacationDays             string `json:"vacation_days,omitempty,omitzero"`
+	VacationPercent          string `json:"vacation_percent,omitempty,omitzero"`
+	VacationPercentValidFrom string `json:"vacation_percent_valid_from,omitempty,omitzero"`
+	Zipcode                  string `json:"zipcode,omitempty,omitzero"`
 }
 
 // EmploymentDto defines model for EmploymentDto.
 type EmploymentDto struct {
-	EmploymentForm    *string `json:"employment_form,omitempty"`
-	EmploymentId      *string `json:"employment_id,omitempty"`
-	EmploymentRate    *string `json:"employment_rate,omitempty"`
-	EmploymentType    *string `json:"employment_type,omitempty"`
-	Enddate           *string `json:"enddate,omitempty"`
-	EnddateReason     *string `json:"enddate_reason,omitempty"`
-	EnterpriseNumber  *string `json:"enterprise_number,omitempty"`
-	PrimaryEmployment *string `json:"primary_employment,omitempty"`
-	ProfessionCode    *string `json:"profession_code,omitempty"`
-	Startdate         *string `json:"startdate,omitempty"`
-	WorkingTimes      *string `json:"working_times,omitempty"`
+	EmploymentForm    string `json:"employment_form,omitempty,omitzero"`
+	EmploymentId      string `json:"employment_id,omitempty,omitzero"`
+	EmploymentRate    string `json:"employment_rate,omitempty,omitzero"`
+	EmploymentType    string `json:"employment_type,omitempty,omitzero"`
+	Enddate           string `json:"enddate,omitempty,omitzero"`
+	EnddateReason     string `json:"enddate_reason,omitempty,omitzero"`
+	EnterpriseNumber  string `json:"enterprise_number,omitempty,omitzero"`
+	PrimaryEmployment string `json:"primary_employment,omitempty,omitzero"`
+	ProfessionCode    string `json:"profession_code,omitempty,omitzero"`
+	Startdate         string `json:"startdate,omitempty,omitzero"`
+	WorkingTimes      string `json:"working_times,omitempty,omitzero"`
 }
 
 // OrganizationDto defines model for OrganizationDto.
 type OrganizationDto struct {
-	Address          *string    `json:"address,omitempty"`
-	BankAccount      *string    `json:"bank_account,omitempty"`
-	EnterpriseNumber *string    `json:"enterprise_number,omitempty"`
-	Industry         *string    `json:"industry,omitempty"`
-	Name             *string    `json:"name,omitempty"`
-	Orgno            *string    `json:"orgno,omitempty"`
-	RetirementAge    *string    `json:"retirement_age,omitempty"`
-	Sites            *[]SiteDto `json:"sites,omitempty"`
-	TaxAccount       *string    `json:"tax_account,omitempty"`
-	TaxRule          *string    `json:"tax_rule,omitempty"`
-	TaxZone          *string    `json:"tax_zone,omitempty"`
-	Zipcode          *string    `json:"zipcode,omitempty"`
+	Address          string    `json:"address,omitempty,omitzero"`
+	BankAccount      string    `json:"bank_account,omitempty,omitzero"`
+	EnterpriseNumber string    `json:"enterprise_number,omitempty,omitzero"`
+	Industry         string    `json:"industry,omitempty,omitzero"`
+	Name             string    `json:"name,omitempty,omitzero"`
+	Orgno            string    `json:"orgno,omitempty,omitzero"`
+	RetirementAge    string    `json:"retirement_age,omitempty,omitzero"`
+	Sites            []SiteDto `json:"sites,omitempty,omitzero"`
+	TaxAccount       string    `json:"tax_account,omitempty,omitzero"`
+	TaxRule          string    `json:"tax_rule,omitempty,omitzero"`
+	TaxZone          string    `json:"tax_zone,omitempty,omitzero"`
+	Zipcode          string    `json:"zipcode,omitempty,omitzero"`
 }
 
 // PayrollrunDto defines model for PayrollrunDto.
 type PayrollrunDto struct {
-	Created      *string `json:"created,omitempty"`
-	EndDate      *string `json:"endDate,omitempty"`
-	LimitDate    *string `json:"limitDate,omitempty"`
-	Locked       *string `json:"locked,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	PaymentDate  *string `json:"paymentDate,omitempty"`
-	PayrollGroup *string `json:"payrollGroup,omitempty"`
-	PayrollrunId *string `json:"payrollrunId,omitempty"`
-	Payslips     *string `json:"payslips,omitempty"`
-	StartDate    *string `json:"startDate,omitempty"`
-	Type         *string `json:"type,omitempty"`
+	Created      string `json:"created,omitempty,omitzero"`
+	EndDate      string `json:"endDate,omitempty,omitzero"`
+	LimitDate    string `json:"limitDate,omitempty,omitzero"`
+	Locked       string `json:"locked,omitempty,omitzero"`
+	Name         string `json:"name,omitempty,omitzero"`
+	PaymentDate  string `json:"paymentDate,omitempty,omitzero"`
+	PayrollGroup string `json:"payrollGroup,omitempty,omitzero"`
+	PayrollrunId string `json:"payrollrunId,omitempty,omitzero"`
+	Payslips     string `json:"payslips,omitempty,omitzero"`
+	StartDate    string `json:"startDate,omitempty,omitzero"`
+	Type         string `json:"type,omitempty,omitzero"`
 }
 
 // PayslipDto defines model for PayslipDto.
 type PayslipDto struct {
-	NetPay   *string `json:"netPay,omitempty"`
-	Paylines *struct {
-		Amount    *string `json:"amount,omitempty"`
-		Code      *string `json:"code,omitempty"`
-		Extent    *string `json:"extent,omitempty"`
-		Quantity  *string `json:"quantity,omitempty"`
-		Sumrow    *bool   `json:"sumrow,omitempty"`
-		Tax       *string `json:"tax,omitempty"`
-		Text      *string `json:"text,omitempty"`
-		UnitPrice *string `json:"unitPrice,omitempty"`
-	} `json:"paylines,omitempty"`
-	PaymentDate  *string `json:"paymentDate,omitempty"`
-	PayrollrunId *string `json:"payrollrunId,omitempty"`
+	NetPay   string `json:"netPay,omitempty,omitzero"`
+	Paylines struct {
+		Amount    string `json:"amount,omitempty,omitzero"`
+		Code      string `json:"code,omitempty,omitzero"`
+		Extent    string `json:"extent,omitempty,omitzero"`
+		Quantity  string `json:"quantity,omitempty,omitzero"`
+		Sumrow    bool   `json:"sumrow,omitempty,omitzero"`
+		Tax       string `json:"tax,omitempty,omitzero"`
+		Text      string `json:"text,omitempty,omitzero"`
+		UnitPrice string `json:"unitPrice,omitempty,omitzero"`
+	} `json:"paylines,omitempty,omitzero"`
+	PaymentDate  string `json:"paymentDate,omitempty,omitzero"`
+	PayrollrunId string `json:"payrollrunId,omitempty,omitzero"`
 }
 
 // SiteDto defines model for SiteDto.
 type SiteDto struct {
-	EnterpriseNumber *string `json:"enterprise_number,omitempty"`
-	Id               *string `json:"id,omitempty"`
-	Name             *string `json:"name,omitempty"`
-	TaxZone          *string `json:"tax_zone,omitempty"`
+	EnterpriseNumber string `json:"enterprise_number,omitempty,omitzero"`
+	Id               string `json:"id,omitempty,omitzero"`
+	Name             string `json:"name,omitempty,omitzero"`
+	TaxZone          string `json:"tax_zone,omitempty,omitzero"`
 }
 
 // TransactionDto defines model for TransactionDto.
 type TransactionDto struct {
-	Benefit         *string `json:"benefit,omitempty"`
-	Counts          *string `json:"counts,omitempty"`
-	Datefrom        *string `json:"datefrom,omitempty"`
-	Dateto          *string `json:"dateto,omitempty"`
-	Department      *string `json:"department,omitempty"`
-	Description     *string `json:"description,omitempty"`
-	EmpId           *string `json:"empId,omitempty"`
-	Extent          *string `json:"extent,omitempty"`
-	IsPaid          *string `json:"is_paid,omitempty"`
-	Note            *string `json:"note,omitempty"`
-	Payrollcode     *string `json:"payrollcode,omitempty"`
-	PayrollrunIds   *[]int  `json:"payrollrunIds,omitempty"`
-	Project         *string `json:"project,omitempty"`
-	Repeating       *string `json:"repeating,omitempty"`
-	SerialNo        *string `json:"serialNo,omitempty"`
-	SocialSecurity  *string `json:"social_security,omitempty"`
-	Tax             *string `json:"tax,omitempty"`
-	Unitprice       *string `json:"unitprice,omitempty"`
-	Vacation        *string `json:"vacation,omitempty"`
-	WageDescription *string `json:"wage_description,omitempty"`
+	Benefit         string `json:"benefit,omitempty,omitzero"`
+	Counts          string `json:"counts,omitempty,omitzero"`
+	Datefrom        string `json:"datefrom,omitempty,omitzero"`
+	Dateto          string `json:"dateto,omitempty,omitzero"`
+	Department      string `json:"department,omitempty,omitzero"`
+	Description     string `json:"description,omitempty,omitzero"`
+	EmpId           string `json:"empId,omitempty,omitzero"`
+	Extent          string `json:"extent,omitempty,omitzero"`
+	IsPaid          string `json:"is_paid,omitempty,omitzero"`
+	Note            string `json:"note,omitempty,omitzero"`
+	Payrollcode     string `json:"payrollcode,omitempty,omitzero"`
+	PayrollrunIds   []int  `json:"payrollrunIds,omitempty,omitzero"`
+	Project         string `json:"project,omitempty,omitzero"`
+	Repeating       string `json:"repeating,omitempty,omitzero"`
+	SerialNo        string `json:"serialNo,omitempty,omitzero"`
+	SocialSecurity  string `json:"social_security,omitempty,omitzero"`
+	Tax             string `json:"tax,omitempty,omitzero"`
+	Unitprice       string `json:"unitprice,omitempty,omitzero"`
+	Vacation        string `json:"vacation,omitempty,omitzero"`
+	WageDescription string `json:"wage_description,omitempty,omitzero"`
 }
 
 // WageTypeDto defines model for WageTypeDto.
 type WageTypeDto struct {
-	Account         *string `json:"account,omitempty"`
-	Antalstyp       *string `json:"antalstyp,omitempty"`
-	Benefit         *string `json:"benefit,omitempty"`
-	Beskrivning     *string `json:"beskrivning,omitempty"`
-	Counteraccount  *string `json:"counteraccount,omitempty"`
-	Description     *string `json:"description,omitempty"`
-	EmployersFee    *string `json:"employers_fee,omitempty"`
-	Gruppid         *string `json:"gruppid,omitempty"`
-	Hidden          *string `json:"hidden,omitempty"`
-	IsPaid          *string `json:"is_paid,omitempty"`
-	Kalender        *string `json:"kalender,omitempty"`
-	Loneart         *string `json:"loneart,omitempty"`
-	Manadsavlonade  *string `json:"manadsavlonade,omitempty"`
-	Payrollcode     *string `json:"payrollcode,omitempty"`
-	Selfservice     *string `json:"selfservice,omitempty"`
-	Tax             *string `json:"tax,omitempty"`
-	Timavlonade     *string `json:"timavlonade,omitempty"`
-	Unitprice       *string `json:"unitprice,omitempty"`
-	Vacation        *string `json:"vacation,omitempty"`
-	WageDescription *string `json:"wage_description,omitempty"`
+	Account         string `json:"account,omitempty,omitzero"`
+	Antalstyp       string `json:"antalstyp,omitempty,omitzero"`
+	Benefit         string `json:"benefit,omitempty,omitzero"`
+	Beskrivning     string `json:"beskrivning,omitempty,omitzero"`
+	Counteraccount  string `json:"counteraccount,omitempty,omitzero"`
+	Description     string `json:"description,omitempty,omitzero"`
+	EmployersFee    string `json:"employers_fee,omitempty,omitzero"`
+	Gruppid         string `json:"gruppid,omitempty,omitzero"`
+	Hidden          string `json:"hidden,omitempty,omitzero"`
+	IsPaid          string `json:"is_paid,omitempty,omitzero"`
+	Kalender        string `json:"kalender,omitempty,omitzero"`
+	Loneart         string `json:"loneart,omitempty,omitzero"`
+	Manadsavlonade  string `json:"manadsavlonade,omitempty,omitzero"`
+	Payrollcode     string `json:"payrollcode,omitempty,omitzero"`
+	Selfservice     string `json:"selfservice,omitempty,omitzero"`
+	Tax             string `json:"tax,omitempty,omitzero"`
+	Timavlonade     string `json:"timavlonade,omitempty,omitzero"`
+	Unitprice       string `json:"unitprice,omitempty,omitzero"`
+	Vacation        string `json:"vacation,omitempty,omitzero"`
+	WageDescription string `json:"wage_description,omitempty,omitzero"`
 }
 
 // GetAuthParams defines parameters for GetAuth.
@@ -247,37 +247,37 @@ type PostEmploymentV2EmpIdJSONBody = []EmploymentDto
 // GetTransactionV2Params defines parameters for GetTransactionV2.
 type GetTransactionV2Params struct {
 	// PayrollrunId (lønnskjøringsnummer) ID of a payroll run
-	PayrollrunId *int `form:"payrollrunId,omitempty" json:"payrollrunId,omitempty"`
+	PayrollrunId int `form:"payrollrunId,omitempty" json:"payrollrunId,omitempty,omitzero"`
 
 	// EmpId (ansattnr) employee number
-	EmpId *int `form:"empId,omitempty" json:"empId,omitempty"`
+	EmpId int `form:"empId,omitempty" json:"empId,omitempty,omitzero"`
 
 	// SerialNo internal ID of a transaction. Serial numbers are unique per employee
-	SerialNo *int `form:"serialNo,omitempty" json:"serialNo,omitempty"`
+	SerialNo int `form:"serialNo,omitempty" json:"serialNo,omitempty,omitzero"`
 
 	// Datefrom start date of the search interval. Format YYYY-MM-DD
-	Datefrom *string `form:"datefrom,omitempty" json:"datefrom,omitempty"`
+	Datefrom string `form:"datefrom,omitempty" json:"datefrom,omitempty,omitzero"`
 
 	// Dateto end date of the search interval. Format YYYY-MM-DD
-	Dateto *string `form:"dateto,omitempty" json:"dateto,omitempty"`
+	Dateto string `form:"dateto,omitempty" json:"dateto,omitempty,omitzero"`
 
 	// Payrollcode (lønnsartkode) code to filter on a specific wage type
-	Payrollcode *string `form:"payrollcode,omitempty" json:"payrollcode,omitempty"`
+	Payrollcode string `form:"payrollcode,omitempty" json:"payrollcode,omitempty,omitzero"`
 
 	// Tag filter result based on employee tag
-	Tag *string `form:"tag,omitempty" json:"tag,omitempty"`
+	Tag string `form:"tag,omitempty" json:"tag,omitempty,omitzero"`
 
 	// Department (avdeling) filter result based on employee department
-	Department *string `form:"department,omitempty" json:"department,omitempty"`
+	Department string `form:"department,omitempty" json:"department,omitempty,omitzero"`
 
 	// SiteId (virksomhet) filter result based on employee site. Use /organization-endpoint to get siteId
-	SiteId *int `form:"siteId,omitempty" json:"siteId,omitempty"`
+	SiteId int `form:"siteId,omitempty" json:"siteId,omitempty,omitzero"`
 
 	// Repeating (fast lønnspost) filter result based on repeating transactions
-	Repeating *bool `form:"repeating,omitempty" json:"repeating,omitempty"`
+	Repeating bool `form:"repeating,omitempty" json:"repeating,omitempty,omitzero"`
 
 	// Limit max number of result rows
-	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Limit int `form:"limit,omitempty" json:"limit,omitempty,omitzero"`
 }
 
 // PostChildV2JSONRequestBody defines body for PostChildV2 for application/json ContentType.
@@ -1892,180 +1892,136 @@ func NewGetTransactionV2Request(server string, params *GetTransactionV2Params) (
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.PayrollrunId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "payrollrunId", runtime.ParamLocationQuery, *params.PayrollrunId); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "payrollrunId", runtime.ParamLocationQuery, params.PayrollrunId); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.EmpId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "empId", runtime.ParamLocationQuery, *params.EmpId); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "empId", runtime.ParamLocationQuery, params.EmpId); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.SerialNo != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "serialNo", runtime.ParamLocationQuery, *params.SerialNo); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "serialNo", runtime.ParamLocationQuery, params.SerialNo); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.Datefrom != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "datefrom", runtime.ParamLocationQuery, *params.Datefrom); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "datefrom", runtime.ParamLocationQuery, params.Datefrom); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.Dateto != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "dateto", runtime.ParamLocationQuery, *params.Dateto); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "dateto", runtime.ParamLocationQuery, params.Dateto); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.Payrollcode != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "payrollcode", runtime.ParamLocationQuery, *params.Payrollcode); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "payrollcode", runtime.ParamLocationQuery, params.Payrollcode); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.Tag != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, params.Tag); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.Department != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "department", runtime.ParamLocationQuery, *params.Department); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "department", runtime.ParamLocationQuery, params.Department); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.SiteId != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "siteId", runtime.ParamLocationQuery, *params.SiteId); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "siteId", runtime.ParamLocationQuery, params.SiteId); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.Repeating != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "repeating", runtime.ParamLocationQuery, *params.Repeating); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "repeating", runtime.ParamLocationQuery, params.Repeating); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
-		if params.Limit != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, params.Limit); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
 				}
 			}
-
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
