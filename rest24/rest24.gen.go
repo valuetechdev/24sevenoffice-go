@@ -34,54 +34,10 @@ const (
 	ProjectMissing    BadRequestErrorErrorPayloadErrorsType = "ProjectMissing"
 )
 
-// Defines values for BankAccountBaseType.
+// Defines values for BankAccountTypeEnum.
 const (
-	BankAccountBaseTypeBban BankAccountBaseType = "bban"
-	BankAccountBaseTypeIban BankAccountBaseType = "iban"
-)
-
-// Defines values for BankAccountResponseType.
-const (
-	BankAccountResponseTypeBban BankAccountResponseType = "bban"
-	BankAccountResponseTypeIban BankAccountResponseType = "iban"
-)
-
-// Defines values for BankTransactionBaseFromBankAccountType.
-const (
-	BankTransactionBaseFromBankAccountTypeBban BankTransactionBaseFromBankAccountType = "bban"
-	BankTransactionBaseFromBankAccountTypeIban BankTransactionBaseFromBankAccountType = "iban"
-)
-
-// Defines values for BankTransactionBasePaymentReferenceType.
-const (
-	BankTransactionBasePaymentReferenceTypeInvoiceRef BankTransactionBasePaymentReferenceType = "invoiceRef"
-	BankTransactionBasePaymentReferenceTypeOcr        BankTransactionBasePaymentReferenceType = "ocr"
-	BankTransactionBasePaymentReferenceTypeText       BankTransactionBasePaymentReferenceType = "text"
-)
-
-// Defines values for BankTransactionBaseToBankAccountType.
-const (
-	BankTransactionBaseToBankAccountTypeBban BankTransactionBaseToBankAccountType = "bban"
-	BankTransactionBaseToBankAccountTypeIban BankTransactionBaseToBankAccountType = "iban"
-)
-
-// Defines values for BankTransactionBaseType.
-const (
-	BankTransactionBaseTypeInbound  BankTransactionBaseType = "inbound"
-	BankTransactionBaseTypeOutbound BankTransactionBaseType = "outbound"
-)
-
-// Defines values for BankTransactionResponseFromBankAccountType.
-const (
-	BankTransactionResponseFromBankAccountTypeBban BankTransactionResponseFromBankAccountType = "bban"
-	BankTransactionResponseFromBankAccountTypeIban BankTransactionResponseFromBankAccountType = "iban"
-)
-
-// Defines values for BankTransactionResponsePaymentReferenceType.
-const (
-	BankTransactionResponsePaymentReferenceTypeInvoiceRef BankTransactionResponsePaymentReferenceType = "invoiceRef"
-	BankTransactionResponsePaymentReferenceTypeOcr        BankTransactionResponsePaymentReferenceType = "ocr"
-	BankTransactionResponsePaymentReferenceTypeText       BankTransactionResponsePaymentReferenceType = "text"
+	Bban BankAccountTypeEnum = "bban"
+	Iban BankAccountTypeEnum = "iban"
 )
 
 // Defines values for BankTransactionResponseStatus.
@@ -90,16 +46,10 @@ const (
 	Created BankTransactionResponseStatus = "created"
 )
 
-// Defines values for BankTransactionResponseToBankAccountType.
+// Defines values for BankTransactionTypeEnum.
 const (
-	BankTransactionResponseToBankAccountTypeBban BankTransactionResponseToBankAccountType = "bban"
-	BankTransactionResponseToBankAccountTypeIban BankTransactionResponseToBankAccountType = "iban"
-)
-
-// Defines values for BankTransactionResponseType.
-const (
-	BankTransactionResponseTypeInbound  BankTransactionResponseType = "inbound"
-	BankTransactionResponseTypeOutbound BankTransactionResponseType = "outbound"
+	Inbound  BankTransactionTypeEnum = "inbound"
+	Outbound BankTransactionTypeEnum = "outbound"
 )
 
 // Defines values for ClientStateType.
@@ -125,82 +75,38 @@ const (
 	False CustomerPostRequest1IsCompany = false
 )
 
-// Defines values for LineType.
+// Defines values for LineTypeEnum.
 const (
-	LineTypeProduct LineType = "product"
-	LineTypeText    LineType = "text"
+	LineTypeEnumProduct LineTypeEnum = "product"
+	LineTypeEnumText    LineTypeEnum = "text"
 )
 
-// Defines values for LineWithoutIdType.
+// Defines values for PaymenReferenceTypeEnum.
 const (
-	LineWithoutIdTypeProduct LineWithoutIdType = "product"
-	LineWithoutIdTypeText    LineWithoutIdType = "text"
+	PaymenReferenceTypeEnumInvoiceRef PaymenReferenceTypeEnum = "invoiceRef"
+	PaymenReferenceTypeEnumOcr        PaymenReferenceTypeEnum = "ocr"
+	PaymenReferenceTypeEnumText       PaymenReferenceTypeEnum = "text"
 )
 
-// Defines values for ProductBaseStatus.
+// Defines values for ProductStatusEnum.
 const (
-	ProductBaseStatusActive   ProductBaseStatus = "active"
-	ProductBaseStatusInactive ProductBaseStatus = "inactive"
+	ProductStatusEnumActive   ProductStatusEnum = "active"
+	ProductStatusEnumInactive ProductStatusEnum = "inactive"
 )
 
-// Defines values for ProductBaseType.
+// Defines values for ProductTypeEnum.
 const (
-	ProductBaseTypeDefault   ProductBaseType = "default"
-	ProductBaseTypeStructure ProductBaseType = "structure"
+	Default   ProductTypeEnum = "default"
+	Structure ProductTypeEnum = "structure"
 )
 
-// Defines values for ProductRequestPatchStatus.
+// Defines values for SalesOrderStatusEnum.
 const (
-	ProductRequestPatchStatusActive   ProductRequestPatchStatus = "active"
-	ProductRequestPatchStatusInactive ProductRequestPatchStatus = "inactive"
-)
-
-// Defines values for ProductRequestPatchType.
-const (
-	ProductRequestPatchTypeDefault   ProductRequestPatchType = "default"
-	ProductRequestPatchTypeStructure ProductRequestPatchType = "structure"
-)
-
-// Defines values for ProductRequestPostStatus.
-const (
-	ProductRequestPostStatusActive   ProductRequestPostStatus = "active"
-	ProductRequestPostStatusInactive ProductRequestPostStatus = "inactive"
-)
-
-// Defines values for ProductRequestPostType.
-const (
-	ProductRequestPostTypeDefault   ProductRequestPostType = "default"
-	ProductRequestPostTypeStructure ProductRequestPostType = "structure"
-)
-
-// Defines values for ProductResponseStatus.
-const (
-	Active   ProductResponseStatus = "active"
-	Inactive ProductResponseStatus = "inactive"
-)
-
-// Defines values for ProductResponseType.
-const (
-	ProductResponseTypeDefault   ProductResponseType = "default"
-	ProductResponseTypeStructure ProductResponseType = "structure"
-)
-
-// Defines values for SalesOrderStatus.
-const (
-	SalesOrderStatusAdvanceInvoice SalesOrderStatus = "AdvanceInvoice"
-	SalesOrderStatusConfirmed      SalesOrderStatus = "Confirmed"
-	SalesOrderStatusDraft          SalesOrderStatus = "Draft"
-	SalesOrderStatusInvoice        SalesOrderStatus = "Invoice"
-	SalesOrderStatusProposal       SalesOrderStatus = "Proposal"
-)
-
-// Defines values for SalesOrderWithoutCustomerStatus.
-const (
-	SalesOrderWithoutCustomerStatusAdvanceInvoice SalesOrderWithoutCustomerStatus = "AdvanceInvoice"
-	SalesOrderWithoutCustomerStatusConfirmed      SalesOrderWithoutCustomerStatus = "Confirmed"
-	SalesOrderWithoutCustomerStatusDraft          SalesOrderWithoutCustomerStatus = "Draft"
-	SalesOrderWithoutCustomerStatusInvoice        SalesOrderWithoutCustomerStatus = "Invoice"
-	SalesOrderWithoutCustomerStatusProposal       SalesOrderWithoutCustomerStatus = "Proposal"
+	SalesOrderStatusEnumAdvanceInvoice SalesOrderStatusEnum = "AdvanceInvoice"
+	SalesOrderStatusEnumConfirmed      SalesOrderStatusEnum = "Confirmed"
+	SalesOrderStatusEnumDraft          SalesOrderStatusEnum = "Draft"
+	SalesOrderStatusEnumInvoice        SalesOrderStatusEnum = "Invoice"
+	SalesOrderStatusEnumProposal       SalesOrderStatusEnum = "Proposal"
 )
 
 // Defines values for TfsoApiOrganizationModelsUserType.
@@ -222,24 +128,6 @@ const (
 	ValidationErrorErrorNameValidationError ValidationErrorErrorName = "ValidationError"
 )
 
-// Defines values for GetSalesordersParamsStatus.
-const (
-	GetSalesordersParamsStatusAdvanceInvoice GetSalesordersParamsStatus = "AdvanceInvoice"
-	GetSalesordersParamsStatusConfirmed      GetSalesordersParamsStatus = "Confirmed"
-	GetSalesordersParamsStatusDraft          GetSalesordersParamsStatus = "Draft"
-	GetSalesordersParamsStatusInvoice        GetSalesordersParamsStatus = "Invoice"
-	GetSalesordersParamsStatusProposal       GetSalesordersParamsStatus = "Proposal"
-)
-
-// Defines values for PostSalesordersJSONBodyStatus.
-const (
-	PostSalesordersJSONBodyStatusAdvanceInvoice PostSalesordersJSONBodyStatus = "AdvanceInvoice"
-	PostSalesordersJSONBodyStatusConfirmed      PostSalesordersJSONBodyStatus = "Confirmed"
-	PostSalesordersJSONBodyStatusDraft          PostSalesordersJSONBodyStatus = "Draft"
-	PostSalesordersJSONBodyStatusInvoice        PostSalesordersJSONBodyStatus = "Invoice"
-	PostSalesordersJSONBodyStatusProposal       PostSalesordersJSONBodyStatus = "Proposal"
-)
-
 // Account Information about the account for which the balances belong to.
 type Account struct {
 	// Id A unique identifier for the account within 24SevenOffice accounting module.
@@ -249,30 +137,6 @@ type Account struct {
 	Name string `json:"name,omitempty,omitzero"`
 
 	// Number The unique number that indicates which type of account it belongs to.
-	Number int `json:"number,omitempty,omitzero"`
-}
-
-// Account1 defines model for Account1.
-type Account1 struct {
-	// Id A unique identifier for the account within 24SevenOffice accounting module.
-	Id int `json:"id,omitempty,omitzero"`
-
-	// Name The human-readable name that describes the purpose or nature of the account.
-	Name string `json:"name,omitempty,omitzero"`
-
-	// Number The unique number that indicates which type of account it belongs to.
-	Number int `json:"number,omitempty,omitzero"`
-}
-
-// Account2 Details of an account within the 24SevenOffice accounting module to which the transaction line is posted.
-type Account2 struct {
-	// Id A unique identifier for the account within 24SevenOffice.
-	Id int `json:"id,omitempty,omitzero"`
-
-	// Name The human-readable name that describes the purpose or nature of the account.
-	Name string `json:"name,omitempty,omitzero"`
-
-	// Number The unique number within the organization's chart of accounts that indicates which type of account the account belongs to.
 	Number int `json:"number,omitempty,omitzero"`
 }
 
@@ -310,6 +174,21 @@ type AddressModel struct {
 
 	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
 	Street string `json:"street,omitzero"`
+}
+
+// AddressesDto Addresses for the customer.
+type AddressesDto struct {
+	// Billing The billing address of the customer.
+	Billing BillingAddress `json:"billing,omitempty,omitzero"`
+
+	// Delivery The delivery address of the customer.
+	Delivery DeliveryAddress `json:"delivery,omitempty,omitzero"`
+
+	// Postal The postal address of the customer.
+	Postal PostalAddress `json:"postal,omitempty,omitzero"`
+
+	// Visit The visiting address of the customer.
+	Visit VisitAddress `json:"visit,omitempty,omitzero"`
 }
 
 // AggregationElement defines model for AggregationElement.
@@ -431,16 +310,18 @@ type BankAccountBase struct {
 		Number int `json:"number"`
 	} `json:"transactionType,omitempty,omitzero"`
 
-	// Type The type of the bank account, which is one of the following:
-	// * `bban`: Basic Bank Account Number is a country-specific bank account number format.
-	// * `iban`: International Bank Account Number format.
-	Type BankAccountBaseType `json:"type,omitempty,omitzero"`
+	// Type Type of the originating bank account for outbound transactions.
+	Type BankAccountTypeEnum `json:"type,omitzero"`
 }
 
-// BankAccountBaseType The type of the bank account, which is one of the following:
-// * `bban`: Basic Bank Account Number is a country-specific bank account number format.
-// * `iban`: International Bank Account Number format.
-type BankAccountBaseType string
+// BankAccountExternal The originating bank account for transactions. This is automatically set for outbound transactions i.e. the property is always returned in the API responses for outbound transactions.
+type BankAccountExternal struct {
+	// Number Number of the originating bank account for outbound transactions.
+	Number string `json:"number,omitzero"`
+
+	// Type Type of the originating bank account for outbound transactions.
+	Type BankAccountTypeEnum `json:"type,omitzero"`
+}
 
 // BankAccountRequestPost Base bank account object
 type BankAccountRequestPost = BankAccountBase
@@ -498,51 +379,47 @@ type BankAccountResponse struct {
 		Number int `json:"number"`
 	} `json:"transactionType,omitempty,omitzero"`
 
-	// Type The type of the bank account, which is one of the following:
-	// * `bban`: Basic Bank Account Number is a country-specific bank account number format.
-	// * `iban`: International Bank Account Number format.
-	Type BankAccountResponseType `json:"type,omitempty,omitzero"`
+	// Type Type of the originating bank account for outbound transactions.
+	Type BankAccountTypeEnum `json:"type,omitzero"`
 }
 
-// BankAccountResponseType The type of the bank account, which is one of the following:
-// * `bban`: Basic Bank Account Number is a country-specific bank account number format.
-// * `iban`: International Bank Account Number format.
-type BankAccountResponseType string
+// BankAccountTypeEnum Type of the originating bank account for outbound transactions.
+type BankAccountTypeEnum string
+
+// BankTransactionAmountCurrencyResponse The currency of the balance.
+type BankTransactionAmountCurrencyResponse struct {
+	// Code The currency code of the balance.
+	Code string `json:"code"`
+}
+
+// BankTransactionAmountResponse Amount of the bank transaction.
+type BankTransactionAmountResponse struct {
+	// Currency The currency of the balance.
+	Currency BankTransactionAmountCurrencyResponse `json:"currency"`
+
+	// Value The amount in the currency specified. Must be a positive number.
+	Value float32 `json:"value"`
+}
+
+// BankTransactionBankAccountResponse Details of the bank account involved in the transaction.
+type BankTransactionBankAccountResponse struct {
+	// Id A unique identifier for the bank account within 24SevenOffice.
+	Id string `json:"id"`
+}
 
 // BankTransactionBase Base fields of bank transactions.
 type BankTransactionBase struct {
 	// Amount Amount of the bank transaction.
-	Amount struct {
-		// Currency The currency of the balance.
-		Currency struct {
-			// Code The currency code of the balance.
-			Code string `json:"code"`
-		} `json:"currency"`
-
-		// Value The amount in the currency specified. Must be a positive number.
-		Value float32 `json:"value"`
-	} `json:"amount,omitempty,omitzero"`
+	Amount BankTransactionAmountResponse `json:"amount,omitempty,omitzero"`
 
 	// BankAccount Details of the bank account involved in the transaction.
-	BankAccount struct {
-		// Id A unique identifier for the bank account within 24SevenOffice.
-		Id string `json:"id"`
-	} `json:"bankAccount,omitempty,omitzero"`
+	BankAccount BankTransactionBankAccountResponse `json:"bankAccount,omitempty,omitzero"`
 
-	// BankTransactionCode The bank transaction code is a structured code that identifies the type of a transaction. The code is structured in three levels: domain, family and subfamily.
+	// BankTransactionCode The bank transaction code is a structured code that identifies the type of a transaction. The code is structured in three levels: domain family and subfamily.
 	// * The domain code is the highest level and is used to group the transaction codes into different domains.
 	// * The family code is used to group the transaction codes within a domain.
 	// * The subfamily code is used to group the transaction codes within a family.
-	BankTransactionCode struct {
-		// DomainCode Domain code of the bank transaction.
-		DomainCode string `json:"domainCode,omitzero"`
-
-		// FamilyCode Family code of the bank transaction.
-		FamilyCode string `json:"familyCode,omitzero"`
-
-		// SubFamilyCode Subfamily code of the bank transaction.
-		SubFamilyCode string `json:"subFamilyCode,omitzero"`
-	} `json:"bankTransactionCode,omitempty,omitzero"`
+	BankTransactionCode BankTransactionCodesResponse `json:"bankTransactionCode,omitempty,omitzero"`
 
 	// BankTransactionReference Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case.
 	BankTransactionReference string `json:"bankTransactionReference,omitempty,omitzero"`
@@ -550,52 +427,38 @@ type BankTransactionBase struct {
 	// Date Date of the transaction.
 	Date string `json:"date,omitempty,omitzero"`
 
-	// FromBankAccount The originating bank account for transactions. This is automatically set for outbound transactions, i.e. the property is always returned in the API responses for outbound transactions.
-	FromBankAccount struct {
-		// Number Number of the originating bank account for outbound transactions.
-		Number string `json:"number,omitzero"`
+	// FromBankAccount The originating bank account for transactions. This is automatically set for outbound transactions i.e. the property is always returned in the API responses for outbound transactions.
+	FromBankAccount BankAccountExternal `json:"fromBankAccount,omitempty,omitzero"`
 
-		// Type Type of the originating bank account for outbound transactions.
-		Type BankTransactionBaseFromBankAccountType `json:"type,omitzero"`
-	} `json:"fromBankAccount,omitempty,omitzero"`
-
-	// PaymentReference The payment reference must be one of the following types: text, ocr, invoiceRef.
+	// PaymentReference The payment reference must be one of the following types: text ocr invoiceRef.
 	// * `text`: The value is a free text reference.
 	// * `ocr`: The value is an structured OCR reference. KID number in Norway.
 	// * `invoiceRef`: The value is an invoice number.
 	//
 	// The actual value of the reference is set in the `value` property.
-	PaymentReference struct {
-		Type BankTransactionBasePaymentReferenceType `json:"type"`
+	PaymentReference PaymenReferenceDto `json:"paymentReference,omitempty,omitzero"`
 
-		// Value This must be a string of max 1000 characters.
-		Value string `json:"value"`
-	} `json:"paymentReference,omitempty,omitzero"`
-
-	// ToBankAccount The receiving bank account for transactions. This is automatically set for inbound transactions, i.e. the property is always returned in the API responses for inbound transactions.
-	ToBankAccount struct {
-		// Number Number of the receiving bank account for inbound transactions.
-		Number string `json:"number,omitzero"`
-
-		// Type Type of the receiving bank account for inbound transactions.
-		Type BankTransactionBaseToBankAccountType `json:"type,omitzero"`
-	} `json:"toBankAccount,omitempty,omitzero"`
+	// ToBankAccount The originating bank account for transactions. This is automatically set for outbound transactions i.e. the property is always returned in the API responses for outbound transactions.
+	ToBankAccount BankAccountExternal `json:"toBankAccount,omitempty,omitzero"`
 
 	// Type Direction of the payment. "Inbound" stands for an incoming payment. E.g. a payment of an invoice by a customer. "Outbound" is a payment originating from this bank account. E.g a debet card transaction, when paid for goods and services.
-	Type BankTransactionBaseType `json:"type,omitempty,omitzero"`
+	Type BankTransactionTypeEnum `json:"type,omitempty,omitzero"`
 }
 
-// BankTransactionBaseFromBankAccountType Type of the originating bank account for outbound transactions.
-type BankTransactionBaseFromBankAccountType string
+// BankTransactionCodesResponse The bank transaction code is a structured code that identifies the type of a transaction. The code is structured in three levels: domain family and subfamily.
+// * The domain code is the highest level and is used to group the transaction codes into different domains.
+// * The family code is used to group the transaction codes within a domain.
+// * The subfamily code is used to group the transaction codes within a family.
+type BankTransactionCodesResponse struct {
+	// DomainCode Domain code of the bank transaction.
+	DomainCode string `json:"domainCode,omitzero"`
 
-// BankTransactionBasePaymentReferenceType defines model for BankTransactionBase.PaymentReference.Type.
-type BankTransactionBasePaymentReferenceType string
+	// FamilyCode Family code of the bank transaction.
+	FamilyCode string `json:"familyCode,omitzero"`
 
-// BankTransactionBaseToBankAccountType Type of the receiving bank account for inbound transactions.
-type BankTransactionBaseToBankAccountType string
-
-// BankTransactionBaseType Direction of the payment. "Inbound" stands for an incoming payment. E.g. a payment of an invoice by a customer. "Outbound" is a payment originating from this bank account. E.g a debet card transaction, when paid for goods and services.
-type BankTransactionBaseType string
+	// SubFamilyCode Subfamily code of the bank transaction.
+	SubFamilyCode string `json:"subFamilyCode,omitzero"`
+}
 
 // BankTransactionRequestPost Base fields of bank transactions.
 type BankTransactionRequestPost = BankTransactionBase
@@ -603,37 +466,16 @@ type BankTransactionRequestPost = BankTransactionBase
 // BankTransactionResponse defines model for BankTransactionResponse.
 type BankTransactionResponse struct {
 	// Amount Amount of the bank transaction.
-	Amount struct {
-		// Currency The currency of the balance.
-		Currency struct {
-			// Code The currency code of the balance.
-			Code string `json:"code"`
-		} `json:"currency"`
-
-		// Value The amount in the currency specified. Must be a positive number.
-		Value float32 `json:"value"`
-	} `json:"amount,omitempty,omitzero"`
+	Amount BankTransactionAmountResponse `json:"amount,omitempty,omitzero"`
 
 	// BankAccount Details of the bank account involved in the transaction.
-	BankAccount struct {
-		// Id A unique identifier for the bank account within 24SevenOffice.
-		Id string `json:"id"`
-	} `json:"bankAccount,omitempty,omitzero"`
+	BankAccount BankTransactionBankAccountResponse `json:"bankAccount,omitempty,omitzero"`
 
-	// BankTransactionCode The bank transaction code is a structured code that identifies the type of a transaction. The code is structured in three levels: domain, family and subfamily.
+	// BankTransactionCode The bank transaction code is a structured code that identifies the type of a transaction. The code is structured in three levels: domain family and subfamily.
 	// * The domain code is the highest level and is used to group the transaction codes into different domains.
 	// * The family code is used to group the transaction codes within a domain.
 	// * The subfamily code is used to group the transaction codes within a family.
-	BankTransactionCode struct {
-		// DomainCode Domain code of the bank transaction.
-		DomainCode string `json:"domainCode,omitzero"`
-
-		// FamilyCode Family code of the bank transaction.
-		FamilyCode string `json:"familyCode,omitzero"`
-
-		// SubFamilyCode Subfamily code of the bank transaction.
-		SubFamilyCode string `json:"subFamilyCode,omitzero"`
-	} `json:"bankTransactionCode,omitempty,omitzero"`
+	BankTransactionCode BankTransactionCodesResponse `json:"bankTransactionCode,omitempty,omitzero"`
 
 	// BankTransactionReference Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case.
 	BankTransactionReference string `json:"bankTransactionReference,omitempty,omitzero"`
@@ -644,65 +486,39 @@ type BankTransactionResponse struct {
 	// Date Date of the transaction.
 	Date string `json:"date,omitempty,omitzero"`
 
-	// FromBankAccount The originating bank account for transactions. This is automatically set for outbound transactions, i.e. the property is always returned in the API responses for outbound transactions.
-	FromBankAccount struct {
-		// Number Number of the originating bank account for outbound transactions.
-		Number string `json:"number,omitzero"`
-
-		// Type Type of the originating bank account for outbound transactions.
-		Type BankTransactionResponseFromBankAccountType `json:"type,omitzero"`
-	} `json:"fromBankAccount,omitempty,omitzero"`
+	// FromBankAccount The originating bank account for transactions. This is automatically set for outbound transactions i.e. the property is always returned in the API responses for outbound transactions.
+	FromBankAccount BankAccountExternal `json:"fromBankAccount,omitempty,omitzero"`
 
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 	ModifiedAt time.Time `json:"modifiedAt,omitempty,omitzero"`
 
-	// PaymentReference The payment reference must be one of the following types: text, ocr, invoiceRef.
+	// PaymentReference The payment reference must be one of the following types: text ocr invoiceRef.
 	// * `text`: The value is a free text reference.
 	// * `ocr`: The value is an structured OCR reference. KID number in Norway.
 	// * `invoiceRef`: The value is an invoice number.
 	//
 	// The actual value of the reference is set in the `value` property.
-	PaymentReference struct {
-		Type BankTransactionResponsePaymentReferenceType `json:"type"`
-
-		// Value This must be a string of max 1000 characters.
-		Value string `json:"value"`
-	} `json:"paymentReference,omitempty,omitzero"`
+	PaymentReference PaymenReferenceDto `json:"paymentReference,omitempty,omitzero"`
 
 	// Status Status of the bank transaction, controlled by the backend and always returned in the API-responses. Possible values are the following:
 	// - `created`: The transaction has been created.
 	// - `closed`: The transaction has been closed in the bank reconciliation module.
 	Status BankTransactionResponseStatus `json:"status,omitempty,omitzero"`
 
-	// ToBankAccount The receiving bank account for transactions. This is automatically set for inbound transactions, i.e. the property is always returned in the API responses for inbound transactions.
-	ToBankAccount struct {
-		// Number Number of the receiving bank account for inbound transactions.
-		Number string `json:"number,omitzero"`
-
-		// Type Type of the receiving bank account for inbound transactions.
-		Type BankTransactionResponseToBankAccountType `json:"type,omitzero"`
-	} `json:"toBankAccount,omitempty,omitzero"`
+	// ToBankAccount The originating bank account for transactions. This is automatically set for outbound transactions i.e. the property is always returned in the API responses for outbound transactions.
+	ToBankAccount BankAccountExternal `json:"toBankAccount,omitempty,omitzero"`
 
 	// Type Direction of the payment. "Inbound" stands for an incoming payment. E.g. a payment of an invoice by a customer. "Outbound" is a payment originating from this bank account. E.g a debet card transaction, when paid for goods and services.
-	Type BankTransactionResponseType `json:"type,omitempty,omitzero"`
+	Type BankTransactionTypeEnum `json:"type,omitempty,omitzero"`
 }
-
-// BankTransactionResponseFromBankAccountType Type of the originating bank account for outbound transactions.
-type BankTransactionResponseFromBankAccountType string
-
-// BankTransactionResponsePaymentReferenceType defines model for BankTransactionResponse.PaymentReference.Type.
-type BankTransactionResponsePaymentReferenceType string
 
 // BankTransactionResponseStatus Status of the bank transaction, controlled by the backend and always returned in the API-responses. Possible values are the following:
 // - `created`: The transaction has been created.
 // - `closed`: The transaction has been closed in the bank reconciliation module.
 type BankTransactionResponseStatus string
 
-// BankTransactionResponseToBankAccountType Type of the receiving bank account for inbound transactions.
-type BankTransactionResponseToBankAccountType string
-
-// BankTransactionResponseType Direction of the payment. "Inbound" stands for an incoming payment. E.g. a payment of an invoice by a customer. "Outbound" is a payment originating from this bank account. E.g a debet card transaction, when paid for goods and services.
-type BankTransactionResponseType string
+// BankTransactionTypeEnum Direction of the payment. "Inbound" stands for an incoming payment. E.g. a payment of an invoice by a customer. "Outbound" is a payment originating from this bank account. E.g a debet card transaction, when paid for goods and services.
+type BankTransactionTypeEnum string
 
 // BillingAddress defines model for BillingAddress.
 type BillingAddress struct {
@@ -866,28 +682,10 @@ type Customer1 struct {
 // CustomerPatchRequest defines model for CustomerPatchRequest.
 type CustomerPatchRequest struct {
 	// Address Addresses for the customer.
-	Address struct {
-		// Billing The billing address of the customer.
-		Billing BillingAddress `json:"billing,omitempty,omitzero"`
-
-		// Delivery The delivery address of the customer.
-		Delivery DeliveryAddress `json:"delivery,omitempty,omitzero"`
-
-		// Postal The postal address of the customer.
-		Postal PostalAddress `json:"postal,omitempty,omitzero"`
-
-		// Visit The visiting address of the customer.
-		Visit VisitAddress `json:"visit,omitempty,omitzero"`
-	} `json:"address,omitempty,omitzero"`
+	Address AddressesDto `json:"address,omitempty,omitzero"`
 
 	// Email Email addresses for the customer.
-	Email struct {
-		// Billing The billing email address for the customer.
-		Billing string `json:"billing,omitzero"`
-
-		// Contact The email address for contacting the customer.
-		Contact string `json:"contact,omitzero"`
-	} `json:"email,omitempty,omitzero"`
+	Email EmailsDto `json:"email,omitempty,omitzero"`
 
 	// IsSupplier A flag variable indicating whether the customer is also a supplier (true) or not (false).
 	IsSupplier bool `json:"isSupplier,omitempty,omitzero"`
@@ -898,14 +696,8 @@ type CustomerPatchRequest struct {
 	// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
 	OrganizationNumber string `json:"organizationNumber,omitzero"`
 
-	// Person The first and the last name of a customer if the customer is a person.
-	Person struct {
-		// FirstName The first name of a person if the customer is a person.
-		FirstName string `json:"firstName,omitzero"`
-
-		// LastName The last name of a person if the customer is a person.
-		LastName string `json:"lastName,omitzero"`
-	} `json:"person,omitempty,omitzero"`
+	// Person Email addresses for the customer.
+	Person FirstnameLastnameDto `json:"person,omitempty,omitzero"`
 
 	// Phone A phone number for contacting the customer.
 	Phone string `json:"phone,omitzero"`
@@ -914,28 +706,10 @@ type CustomerPatchRequest struct {
 // CustomerPostRequest defines model for CustomerPostRequest.
 type CustomerPostRequest struct {
 	// Address Addresses for the customer.
-	Address struct {
-		// Billing The billing address of the customer.
-		Billing BillingAddress `json:"billing,omitempty,omitzero"`
-
-		// Delivery The delivery address of the customer.
-		Delivery DeliveryAddress `json:"delivery,omitempty,omitzero"`
-
-		// Postal The postal address of the customer.
-		Postal PostalAddress `json:"postal,omitempty,omitzero"`
-
-		// Visit The visiting address of the customer.
-		Visit VisitAddress `json:"visit,omitempty,omitzero"`
-	} `json:"address,omitempty,omitzero"`
+	Address AddressesDto `json:"address,omitempty,omitzero"`
 
 	// Email Email addresses for the customer.
-	Email struct {
-		// Billing The billing email address for the customer.
-		Billing string `json:"billing,omitzero"`
-
-		// Contact The email address for contacting the customer.
-		Contact string `json:"contact,omitzero"`
-	} `json:"email,omitempty,omitzero"`
+	Email EmailsDto `json:"email,omitempty,omitzero"`
 
 	// Id A unique identifier for the customer within 24SevenOffice CRM. This ID is used for reference and linking transactions to specific customers.
 	Id float32 `json:"id,omitzero"`
@@ -949,14 +723,8 @@ type CustomerPostRequest struct {
 	// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
 	OrganizationNumber string `json:"organizationNumber,omitzero"`
 
-	// Person The first and the last name of a customer if the customer is a person.
-	Person struct {
-		// FirstName The first name of a person if the customer is a person.
-		FirstName string `json:"firstName,omitzero"`
-
-		// LastName The last name of a person if the customer is a person.
-		LastName string `json:"lastName,omitzero"`
-	} `json:"person,omitempty,omitzero"`
+	// Person Email addresses for the customer.
+	Person FirstnameLastnameDto `json:"person,omitempty,omitzero"`
 
 	// Phone A phone number for contacting the customer.
 	Phone string `json:"phone,omitzero"`
@@ -982,13 +750,9 @@ type CustomerPostRequest1 struct {
 	IsCompany          CustomerPostRequest1IsCompany `json:"isCompany"`
 	Name               string                        `json:"name,omitzero"`
 	OrganizationNumber string                        `json:"organizationNumber,omitzero"`
-	Person             struct {
-		// FirstName The first name of a person if the customer is a person.
-		FirstName string `json:"firstName,omitzero"`
 
-		// LastName The last name of a person if the customer is a person.
-		LastName string `json:"lastName,omitzero"`
-	} `json:"person"`
+	// Person Email addresses for the customer.
+	Person FirstnameLastnameDto `json:"person"`
 }
 
 // CustomerPostRequest1IsCompany A flag variable indicating whether the customer is a company (true) or a person (false).
@@ -997,31 +761,13 @@ type CustomerPostRequest1IsCompany bool
 // CustomerProperties defines model for CustomerProperties.
 type CustomerProperties struct {
 	// Address Addresses for the customer.
-	Address struct {
-		// Billing The billing address of the customer.
-		Billing BillingAddress `json:"billing,omitempty,omitzero"`
-
-		// Delivery The delivery address of the customer.
-		Delivery DeliveryAddress `json:"delivery,omitempty,omitzero"`
-
-		// Postal The postal address of the customer.
-		Postal PostalAddress `json:"postal,omitempty,omitzero"`
-
-		// Visit The visiting address of the customer.
-		Visit VisitAddress `json:"visit,omitempty,omitzero"`
-	} `json:"address,omitempty,omitzero"`
+	Address AddressesDto `json:"address,omitempty,omitzero"`
 
 	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
 	CreatedAt CreatedAt `json:"createdAt,omitempty,omitzero"`
 
 	// Email Email addresses for the customer.
-	Email struct {
-		// Billing The billing email address for the customer.
-		Billing string `json:"billing,omitzero"`
-
-		// Contact The email address for contacting the customer.
-		Contact string `json:"contact,omitzero"`
-	} `json:"email,omitempty,omitzero"`
+	Email EmailsDto `json:"email,omitempty,omitzero"`
 
 	// Id A unique identifier for the customer within 24SevenOffice CRM. This ID is used for reference and linking transactions to specific customers.
 	Id int32 `json:"id,omitempty,omitzero"`
@@ -1041,14 +787,8 @@ type CustomerProperties struct {
 	// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
 	OrganizationNumber string `json:"organizationNumber,omitzero"`
 
-	// Person The first and the last name of a customer if the customer is a person.
-	Person struct {
-		// FirstName The first name of a person if the customer is a person.
-		FirstName string `json:"firstName,omitzero"`
-
-		// LastName The last name of a person if the customer is a person.
-		LastName string `json:"lastName,omitzero"`
-	} `json:"person,omitempty,omitzero"`
+	// Person Email addresses for the customer.
+	Person FirstnameLastnameDto `json:"person,omitempty,omitzero"`
 
 	// Phone A phone number for contacting the customer.
 	Phone string `json:"phone,omitzero"`
@@ -1108,6 +848,36 @@ type DeliveryCustomer struct {
 	PostalCode string `json:"postalCode,omitempty,omitzero"`
 }
 
+// DimensionDto defines model for DimensionDto.
+type DimensionDto struct {
+	// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+	DimensionType int `json:"dimensionType"`
+
+	// Name The display name asociated with the value of the dimension.
+	Name string `json:"name"`
+
+	// Value The value (ie key) for the dimension.
+	Value string `json:"value"`
+}
+
+// EmailsDto Email addresses for the customer.
+type EmailsDto struct {
+	// Billing The billing email address for the customer.
+	Billing string `json:"billing,omitzero"`
+
+	// Contact The email address for contacting the customer.
+	Contact string `json:"contact,omitzero"`
+}
+
+// FirstnameLastnameDto Email addresses for the customer.
+type FirstnameLastnameDto struct {
+	// Billing The billing email address for the customer.
+	Billing string `json:"billing,omitzero"`
+
+	// Contact The email address for contacting the customer.
+	Contact string `json:"contact,omitzero"`
+}
+
 // Fiscal defines model for Fiscal.
 type Fiscal struct {
 	EndingAt     openapi_types.Date `json:"endingAt,omitempty,omitzero"`
@@ -1154,10 +924,13 @@ type Invoice1 struct {
 	RemittanceReference string `json:"remittanceReference,omitempty,omitzero"`
 
 	// Transaction Details of the transaction associated with the invoice.
-	Transaction struct {
-		// Id A unique identifier for the transaction within 24SevenOffice ERP.
-		Id string `json:"id,omitempty,omitzero"`
-	} `json:"transaction,omitempty,omitzero"`
+	Transaction InvoiceTransactionDto `json:"transaction,omitempty,omitzero"`
+}
+
+// InvoiceTransactionDto Details of the transaction associated with the invoice.
+type InvoiceTransactionDto struct {
+	// Id A unique identifier for the transaction within 24SevenOffice ERP.
+	Id string `json:"id,omitempty,omitzero"`
 }
 
 // KeepIncoming defines model for KeepIncoming.
@@ -1183,32 +956,14 @@ type LicenseModel struct {
 
 // Line defines model for Line.
 type Line struct {
-	// Account Details for the account to which the sale is posted.
-	Account struct {
-		// Id A unique identifier for the account within 24SevenOffice accounting module.
-		Id int `json:"id,omitempty,omitzero"`
-
-		// Name The human-readable name that describes the purpose or nature of the account.
-		Name string `json:"name,omitempty,omitzero"`
-
-		// Number The unique number that indicates which type of account it belongs to.
-		Number int32 `json:"number,omitempty,omitzero"`
-	} `json:"account,omitempty,omitzero"`
+	// Account Information about the account for which the balances belong to.
+	Account Account `json:"account,omitempty,omitzero"`
 
 	// Description A description for the line item.
 	Description string `json:"description,omitempty,omitzero"`
 
 	// Dimensions A list of dimensions associated with the line item, such as department or project.
-	Dimensions []struct {
-		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
-		DimensionType int `json:"dimensionType"`
-
-		// Name The display name asociated with the value of the dimension.
-		Name string `json:"name"`
-
-		// Value The value (ie key) for the dimension.
-		Value string `json:"value"`
-	} `json:"dimensions,omitempty,omitzero"`
+	Dimensions []DimensionDto `json:"dimensions,omitempty,omitzero"`
 
 	// DiscountRate The discount rate applied to the line item, expressed as a whole number. For example, a discount rate of 10% is represented as 10.
 	DiscountRate float32 `json:"discountRate,omitempty,omitzero"`
@@ -1226,52 +981,25 @@ type Line struct {
 	Quantity float32 `json:"quantity,omitempty,omitzero"`
 
 	// Tax Details for the tax applied to the line item.
-	Tax struct {
-		// Id A unique identifier for the tax code within 24SevenOffice ERP modules, associated with the line item.
-		Id int `json:"id,omitempty,omitzero"`
-
-		// Number The tax code reference number visible for users.
-		Number int32 `json:"number,omitempty,omitzero"`
-
-		// Rate The tax rate percentage, expressed as a whole number. For example, a tax rate of 25% is represented as 25.
-		Rate float32 `json:"rate,omitempty,omitzero"`
-	} `json:"tax,omitempty,omitzero"`
+	Tax LineWithoutIdTaxDto `json:"tax,omitempty,omitzero"`
 
 	// Type A specification for the type of the line item, whether this is a product or a text entry.
-	Type LineType `json:"type,omitempty,omitzero"`
+	Type LineTypeEnum `json:"type,omitempty,omitzero"`
 }
 
-// LineType A specification for the type of the line item, whether this is a product or a text entry.
-type LineType string
+// LineTypeEnum A specification for the type of the line item, whether this is a product or a text entry.
+type LineTypeEnum string
 
 // LineWithoutId A line item with its details in a sales order. The line item can be either a product or a text entry.
 type LineWithoutId struct {
-	// Account Details for the account to which the sale is posted.
-	Account struct {
-		// Id A unique identifier for the account within 24SevenOffice accounting module.
-		Id int `json:"id,omitempty,omitzero"`
-
-		// Name The human-readable name that describes the purpose or nature of the account.
-		Name string `json:"name,omitempty,omitzero"`
-
-		// Number The unique number that indicates which type of account it belongs to.
-		Number int32 `json:"number,omitempty,omitzero"`
-	} `json:"account,omitempty,omitzero"`
+	// Account Information about the account for which the balances belong to.
+	Account Account `json:"account,omitempty,omitzero"`
 
 	// Description A description for the line item.
 	Description string `json:"description,omitempty,omitzero"`
 
 	// Dimensions A list of dimensions associated with the line item, such as department or project.
-	Dimensions []struct {
-		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
-		DimensionType int `json:"dimensionType"`
-
-		// Name The display name asociated with the value of the dimension.
-		Name string `json:"name"`
-
-		// Value The value (ie key) for the dimension.
-		Value string `json:"value"`
-	} `json:"dimensions,omitempty,omitzero"`
+	Dimensions []DimensionDto `json:"dimensions,omitempty,omitzero"`
 
 	// DiscountRate The discount rate applied to the line item, expressed as a whole number. For example, a discount rate of 10% is represented as 10.
 	DiscountRate float32 `json:"discountRate,omitempty,omitzero"`
@@ -1286,23 +1014,23 @@ type LineWithoutId struct {
 	Quantity float32 `json:"quantity,omitempty,omitzero"`
 
 	// Tax Details for the tax applied to the line item.
-	Tax struct {
-		// Id A unique identifier for the tax code within 24SevenOffice ERP modules, associated with the line item.
-		Id int `json:"id,omitempty,omitzero"`
-
-		// Number The tax code reference number visible for users.
-		Number int32 `json:"number,omitempty,omitzero"`
-
-		// Rate The tax rate percentage, expressed as a whole number. For example, a tax rate of 25% is represented as 25.
-		Rate float32 `json:"rate,omitempty,omitzero"`
-	} `json:"tax,omitempty,omitzero"`
+	Tax LineWithoutIdTaxDto `json:"tax,omitempty,omitzero"`
 
 	// Type A specification for the type of the line item, whether this is a product or a text entry.
-	Type LineWithoutIdType `json:"type,omitempty,omitzero"`
+	Type LineTypeEnum `json:"type,omitempty,omitzero"`
 }
 
-// LineWithoutIdType A specification for the type of the line item, whether this is a product or a text entry.
-type LineWithoutIdType string
+// LineWithoutIdTaxDto Details for the tax applied to the line item.
+type LineWithoutIdTaxDto struct {
+	// Id A unique identifier for the tax code within 24SevenOffice ERP modules associated with the line item.
+	Id int `json:"id,omitempty,omitzero"`
+
+	// Number The tax code reference number visible for users.
+	Number int32 `json:"number,omitempty,omitzero"`
+
+	// Rate The tax rate percentage expressed as a whole number. For example a tax rate of 25% is represented as 25.
+	Rate float32 `json:"rate,omitempty,omitzero"`
+}
 
 // ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 type ModifiedAt = string
@@ -1352,6 +1080,22 @@ type OrganizationSettingsModel struct {
 	CurrencyCode string `json:"currencyCode,omitzero"`
 }
 
+// PaymenReferenceDto The payment reference must be one of the following types: text ocr invoiceRef.
+// * `text`: The value is a free text reference.
+// * `ocr`: The value is an structured OCR reference. KID number in Norway.
+// * `invoiceRef`: The value is an invoice number.
+//
+// The actual value of the reference is set in the `value` property.
+type PaymenReferenceDto struct {
+	Type PaymenReferenceTypeEnum `json:"type"`
+
+	// Value This must be a string of max 1000 characters.
+	Value string `json:"value"`
+}
+
+// PaymenReferenceTypeEnum defines model for PaymenReferenceTypeEnum.
+type PaymenReferenceTypeEnum string
+
 // Periods defines model for Periods.
 type Periods = string
 
@@ -1391,44 +1135,17 @@ type ProductBase struct {
 	SalesPrice float32 `json:"salesPrice,omitzero"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
-	Status ProductBaseStatus `json:"status,omitempty,omitzero"`
+	Status ProductStatusEnum `json:"status,omitempty,omitzero"`
 
 	// Stock Stock information for the product.
-	Stock struct {
-		// IsManaged A flag variable indicating whether a product should handle adjusting product quantity.
-		IsManaged bool `json:"isManaged,omitempty,omitzero"`
-
-		// Location The location identifier for the product, like a shelf or a facility number for inventory management.
-		Location string `json:"location,omitzero"`
-
-		// Quantity The quantity of products that are in stock.
-		Quantity float32 `json:"quantity,omitempty,omitzero"`
-	} `json:"stock,omitempty,omitzero"`
+	Stock StockDto `json:"stock,omitempty,omitzero"`
 
 	// SupplierProduct Collection of properties related to the supplier's product.
-	SupplierProduct struct {
-		// ItemCode The item code of the supplier product.
-		ItemCode string `json:"itemCode,omitzero"`
-
-		// Name The name of the supplier product.
-		Name string `json:"name,omitzero"`
-
-		// Number The item number of the supplier product.
-		Number string `json:"number,omitzero"`
-
-		// Price The price of the supplier product.
-		Price float32 `json:"price,omitzero"`
-	} `json:"supplierProduct,omitempty,omitzero"`
+	SupplierProduct SupplierProductDto `json:"supplierProduct,omitempty,omitzero"`
 
 	// Type Specifies whether the product is defined as a regular or structure product.
-	Type ProductBaseType `json:"type,omitempty,omitzero"`
+	Type ProductTypeEnum `json:"type,omitempty,omitzero"`
 }
-
-// ProductBaseStatus Specifies whether the product's status is active or inactive (expired).
-type ProductBaseStatus string
-
-// ProductBaseType Specifies whether the product is defined as a regular or structure product.
-type ProductBaseType string
 
 // ProductRequestPatch defines model for ProductRequestPatch.
 type ProductRequestPatch struct {
@@ -1460,58 +1177,28 @@ type ProductRequestPatch struct {
 	SalesPrice float32 `json:"salesPrice,omitzero"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
-	Status ProductRequestPatchStatus `json:"status,omitempty,omitzero"`
+	Status ProductStatusEnum `json:"status,omitempty,omitzero"`
 
 	// Stock Stock information for the product.
-	Stock struct {
-		// IsManaged A flag variable indicating whether a product should handle adjusting product quantity.
-		IsManaged bool `json:"isManaged,omitempty,omitzero"`
-
-		// Location The location identifier for the product, like a shelf or a facility number for inventory management.
-		Location string `json:"location,omitzero"`
-
-		// Quantity The quantity of products that are in stock.
-		Quantity float32 `json:"quantity,omitempty,omitzero"`
-	} `json:"stock,omitempty,omitzero"`
+	Stock StockDto `json:"stock,omitempty,omitzero"`
 
 	// Supplier Information about the supplier of the product.
 	Supplier SupplierRequest `json:"supplier,omitempty,omitzero"`
 
 	// SupplierProduct Collection of properties related to the supplier's product.
-	SupplierProduct struct {
-		// ItemCode The item code of the supplier product.
-		ItemCode string `json:"itemCode,omitzero"`
-
-		// Name The name of the supplier product.
-		Name string `json:"name,omitzero"`
-
-		// Number The item number of the supplier product.
-		Number string `json:"number,omitzero"`
-
-		// Price The price of the supplier product.
-		Price float32 `json:"price,omitzero"`
-	} `json:"supplierProduct,omitempty,omitzero"`
+	SupplierProduct SupplierProductDto `json:"supplierProduct,omitempty,omitzero"`
 
 	// Type Specifies whether the product is defined as a regular or structure product.
-	Type  ProductRequestPatchType `json:"type,omitempty,omitzero"`
-	Units struct {
-		// Id The ID of the units of measurement. Product units can be retrieved from the separate `/productunits` endpoint.
-		Id float32 `json:"id,omitzero"`
-	} `json:"units,omitempty,omitzero"`
+	Type ProductTypeEnum `json:"type,omitempty,omitzero"`
+
+	// Units Information about the units of measurement for the product.
+	Units UnitsRequest `json:"units,omitempty,omitzero"`
 }
-
-// ProductRequestPatchStatus Specifies whether the product's status is active or inactive (expired).
-type ProductRequestPatchStatus string
-
-// ProductRequestPatchType Specifies whether the product is defined as a regular or structure product.
-type ProductRequestPatchType string
 
 // ProductRequestPost defines model for ProductRequestPost.
 type ProductRequestPost struct {
-	Category struct {
-		// Id A reference by ID to the category the product belongs to. Product categories can be retrieved from the separate `/productcategories` endpoint.
-		Id int `json:"id"`
-	} `json:"category,omitempty,omitzero"`
+	// Category Information about the category to which the product belongs.
+	Category CategoryRequest `json:"category,omitempty,omitzero"`
 
 	// CostPrice The cost of buying the product from the supplier.
 	CostPrice float32 `json:"costPrice,omitzero"`
@@ -1538,51 +1225,23 @@ type ProductRequestPost struct {
 	SalesPrice float32 `json:"salesPrice,omitzero"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
-	Status ProductRequestPostStatus `json:"status,omitempty,omitzero"`
+	Status ProductStatusEnum `json:"status,omitempty,omitzero"`
 
 	// Stock Stock information for the product.
-	Stock struct {
-		// IsManaged A flag variable indicating whether a product should handle adjusting product quantity.
-		IsManaged bool `json:"isManaged,omitempty,omitzero"`
-
-		// Location The location identifier for the product, like a shelf or a facility number for inventory management.
-		Location string `json:"location,omitzero"`
-
-		// Quantity The quantity of products that are in stock.
-		Quantity float32 `json:"quantity,omitempty,omitzero"`
-	} `json:"stock,omitempty,omitzero"`
+	Stock StockDto `json:"stock,omitempty,omitzero"`
 
 	// Supplier Information about the supplier of the product.
 	Supplier SupplierRequest `json:"supplier,omitempty,omitzero"`
 
 	// SupplierProduct Collection of properties related to the supplier's product.
-	SupplierProduct struct {
-		// ItemCode The item code of the supplier product.
-		ItemCode string `json:"itemCode,omitzero"`
-
-		// Name The name of the supplier product.
-		Name string `json:"name,omitzero"`
-
-		// Number The item number of the supplier product.
-		Number string `json:"number,omitzero"`
-
-		// Price The price of the supplier product.
-		Price float32 `json:"price,omitzero"`
-	} `json:"supplierProduct,omitempty,omitzero"`
+	SupplierProduct SupplierProductDto `json:"supplierProduct,omitempty,omitzero"`
 
 	// Type Specifies whether the product is defined as a regular or structure product.
-	Type  ProductRequestPostType `json:"type,omitempty,omitzero"`
-	Units struct {
-		// Id The ID of the units of measurement. Product units can be retrieved from the separate `/productunits` endpoint.
-		Id float32 `json:"id,omitzero"`
-	} `json:"units,omitempty,omitzero"`
+	Type ProductTypeEnum `json:"type,omitempty,omitzero"`
+
+	// Units Information about the units of measurement for the product.
+	Units UnitsRequest `json:"units,omitempty,omitzero"`
 }
-
-// ProductRequestPostStatus Specifies whether the product's status is active or inactive (expired).
-type ProductRequestPostStatus string
-
-// ProductRequestPostType Specifies whether the product is defined as a regular or structure product.
-type ProductRequestPostType string
 
 // ProductResponse defines model for ProductResponse.
 type ProductResponse struct {
@@ -1623,57 +1282,29 @@ type ProductResponse struct {
 	SalesPrice float32 `json:"salesPrice,omitzero"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
-	Status ProductResponseStatus `json:"status,omitempty,omitzero"`
+	Status ProductStatusEnum `json:"status,omitempty,omitzero"`
 
 	// Stock Stock information for the product.
-	Stock struct {
-		// IsManaged A flag variable indicating whether a product should handle adjusting product quantity.
-		IsManaged bool `json:"isManaged,omitempty,omitzero"`
-
-		// Location The location identifier for the product, like a shelf or a facility number for inventory management.
-		Location string `json:"location,omitzero"`
-
-		// Quantity The quantity of products that are in stock.
-		Quantity float32 `json:"quantity,omitempty,omitzero"`
-	} `json:"stock,omitempty,omitzero"`
+	Stock StockDto `json:"stock,omitempty,omitzero"`
 
 	// Supplier Information about the supplier of the product.
 	Supplier SupplierResponse `json:"supplier,omitempty,omitzero"`
 
 	// SupplierProduct Collection of properties related to the supplier's product.
-	SupplierProduct struct {
-		// ItemCode The item code of the supplier product.
-		ItemCode string `json:"itemCode,omitzero"`
-
-		// Name The name of the supplier product.
-		Name string `json:"name,omitzero"`
-
-		// Number The item number of the supplier product.
-		Number string `json:"number,omitzero"`
-
-		// Price The price of the supplier product.
-		Price float32 `json:"price,omitzero"`
-	} `json:"supplierProduct,omitempty,omitzero"`
+	SupplierProduct SupplierProductDto `json:"supplierProduct,omitempty,omitzero"`
 
 	// Type Specifies whether the product is defined as a regular or structure product.
-	Type  ProductResponseType `json:"type,omitempty,omitzero"`
-	Units struct {
-		// Id The ID of the units of measurement. Product units can be retrieved from the separate `/productunits` endpoint.
-		Id float32 `json:"id,omitzero"`
+	Type ProductTypeEnum `json:"type,omitempty,omitzero"`
 
-		// Name The name of the units of measurement.
-		Name string `json:"name,omitzero"`
-
-		// Symbol The symbol of the units of measurement.
-		Symbol string `json:"symbol,omitzero"`
-	} `json:"units,omitempty,omitzero"`
+	// Units Information about the units of measurement for the product.
+	Units UnitsRequest `json:"units,omitempty,omitzero"`
 }
 
-// ProductResponseStatus Specifies whether the product's status is active or inactive (expired).
-type ProductResponseStatus string
+// ProductStatusEnum Specifies whether the product's status is active or inactive (expired).
+type ProductStatusEnum string
 
-// ProductResponseType Specifies whether the product is defined as a regular or structure product.
-type ProductResponseType string
+// ProductTypeEnum Specifies whether the product is defined as a regular or structure product.
+type ProductTypeEnum string
 
 // Products List of products
 type Products = []ProductResponse
@@ -1717,16 +1348,7 @@ type SalesOrder struct {
 	DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
 	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-	Dimensions []struct {
-		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
-		DimensionType int `json:"dimensionType"`
-
-		// Name The display name associated with the value of the dimension.
-		Name string `json:"name"`
-
-		// Value The value (ie key) for the dimension.
-		Value string `json:"value"`
-	} `json:"dimensions,omitempty,omitzero"`
+	Dimensions []DimensionDto `json:"dimensions,omitempty,omitzero"`
 
 	// Id A unique identifier for the sales order within 24SevenOffice ERP.
 	Id int `json:"id,omitempty,omitzero"`
@@ -1744,17 +1366,14 @@ type SalesOrder struct {
 	ModifiedAt time.Time `json:"modifiedAt,omitempty,omitzero"`
 
 	// SalesType The sales type for the sales order.
-	SalesType struct {
-		// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-		Id int `json:"id,omitempty,omitzero"`
-	} `json:"salesType,omitempty,omitzero"`
+	SalesType SalesTypeDto `json:"salesType,omitempty,omitzero"`
 
 	// Status Current status of the sales order.
-	Status SalesOrderStatus `json:"status,omitempty,omitzero"`
+	Status SalesOrderStatusEnum `json:"status,omitempty,omitzero"`
 }
 
-// SalesOrderStatus Current status of the sales order.
-type SalesOrderStatus string
+// SalesOrderStatusEnum Current status of the sales order.
+type SalesOrderStatusEnum string
 
 // SalesOrderWithoutCustomer defines model for SalesOrderWithoutCustomer.
 type SalesOrderWithoutCustomer struct {
@@ -1768,16 +1387,7 @@ type SalesOrderWithoutCustomer struct {
 	DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
 	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-	Dimensions []struct {
-		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
-		DimensionType int `json:"dimensionType"`
-
-		// Name The display name associated with the value of the dimension.
-		Name string `json:"name"`
-
-		// Value The value (ie key) for the dimension.
-		Value string `json:"value"`
-	} `json:"dimensions,omitempty,omitzero"`
+	Dimensions []DimensionDto `json:"dimensions,omitempty,omitzero"`
 
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo string `json:"internalMemo,omitempty,omitzero"`
@@ -1792,17 +1402,11 @@ type SalesOrderWithoutCustomer struct {
 	ModifiedAt time.Time `json:"modifiedAt,omitempty,omitzero"`
 
 	// SalesType The sales type for the sales order.
-	SalesType struct {
-		// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-		Id int `json:"id,omitempty,omitzero"`
-	} `json:"salesType,omitempty,omitzero"`
+	SalesType SalesTypeDto `json:"salesType,omitempty,omitzero"`
 
 	// Status Current status of the sales order.
-	Status SalesOrderWithoutCustomerStatus `json:"status,omitempty,omitzero"`
+	Status SalesOrderStatusEnum `json:"status,omitempty,omitzero"`
 }
-
-// SalesOrderWithoutCustomerStatus Current status of the sales order.
-type SalesOrderWithoutCustomerStatus string
 
 // SalesType defines model for SalesType.
 type SalesType struct {
@@ -1819,8 +1423,41 @@ type SalesType struct {
 	Name string `json:"name,omitempty,omitzero"`
 }
 
+// SalesTypeDto The sales type for the sales order.
+type SalesTypeDto struct {
+	// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
+	Id int `json:"id,omitempty,omitzero"`
+}
+
 // SortInput defines model for SortInput.
 type SortInput = string
+
+// StockDto Stock information for the product.
+type StockDto struct {
+	// IsManaged A flag variable indicating whether a product should handle adjusting product quantity.
+	IsManaged bool `json:"isManaged,omitempty,omitzero"`
+
+	// Location The location identifier for the product like a shelf or a facility number for inventory management.
+	Location string `json:"location,omitzero"`
+
+	// Quantity The quantity of products that are in stock.
+	Quantity float32 `json:"quantity,omitempty,omitzero"`
+}
+
+// SupplierProductDto Collection of properties related to the supplier's product.
+type SupplierProductDto struct {
+	// ItemCode The item code of the supplier product.
+	ItemCode string `json:"itemCode,omitzero"`
+
+	// Name The name of the supplier product.
+	Name string `json:"name,omitzero"`
+
+	// Number The item number of the supplier product.
+	Number string `json:"number,omitzero"`
+
+	// Price The price of the supplier product.
+	Price float32 `json:"price,omitzero"`
+}
 
 // SupplierRequest Information about the supplier of the product.
 type SupplierRequest struct {
@@ -1885,8 +1522,8 @@ type TfsoApiOrganizationUnitOfWorkModelsPersonModel struct {
 
 // Transaction Information about a single transaction line.
 type Transaction struct {
-	// Account Details of an account within the 24SevenOffice accounting module to which the transaction line is posted.
-	Account Account2 `json:"account"`
+	// Account Information about the account for which the balances belong to.
+	Account Account `json:"account"`
 
 	// Amount The monetary amount for the transaction line.
 	Amount float32 `json:"amount"`
@@ -1948,9 +1585,6 @@ type TransactionType1 struct {
 // TransactionTypes List of transaction types available within the 24SevenOffice accounting module.
 type TransactionTypes = []TransactionType1
 
-// Transactions A list of transaction lines.
-type Transactions = []Transaction
-
 // Type defines model for Type.
 type Type string
 
@@ -1972,18 +1606,6 @@ type UnitsResponse struct {
 	Name string `json:"name,omitzero"`
 
 	// Symbol The symbol of the unit of measurement.
-	Symbol string `json:"symbol,omitzero"`
-}
-
-// UnitsResponse1 Information about the units of measurement for the product.
-type UnitsResponse1 struct {
-	// Id The ID of the units of measurement. Product units can be retrieved from the separate `/productunits` endpoint.
-	Id float32 `json:"id,omitzero"`
-
-	// Name The name of the units of measurement.
-	Name string `json:"name,omitzero"`
-
-	// Symbol The symbol of the units of measurement.
 	Symbol string `json:"symbol,omitzero"`
 }
 
@@ -2216,7 +1838,7 @@ type GetSalesordersParams struct {
 	DateTo openapi_types.Date `form:"dateTo,omitempty" json:"dateTo,omitempty,omitzero"`
 
 	// Status Filter sales orders by their status.
-	Status GetSalesordersParamsStatus `form:"status,omitempty" json:"status,omitempty,omitzero"`
+	Status SalesOrderStatusEnum `form:"status,omitempty" json:"status,omitempty,omitzero"`
 
 	// CustomerId Filter sales orders by customer ID.
 	CustomerId string `form:"customerId,omitempty" json:"customerId,omitempty,omitzero"`
@@ -2236,9 +1858,6 @@ type GetSalesordersParams struct {
 	// ModifiedTo An end date-time to filter sales orders by modification time.
 	ModifiedTo time.Time `form:"modifiedTo,omitempty" json:"modifiedTo,omitempty,omitzero"`
 }
-
-// GetSalesordersParamsStatus defines parameters for GetSalesorders.
-type GetSalesordersParamsStatus string
 
 // PostSalesordersJSONBody defines parameters for PostSalesorders.
 type PostSalesordersJSONBody struct {
@@ -2283,16 +1902,7 @@ type PostSalesordersJSONBody struct {
 	DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
 	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-	Dimensions []struct {
-		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
-		DimensionType int `json:"dimensionType"`
-
-		// Name The display name associated with the value of the dimension.
-		Name string `json:"name"`
-
-		// Value The value (ie key) for the dimension.
-		Value string `json:"value"`
-	} `json:"dimensions,omitempty,omitzero"`
+	Dimensions []DimensionDto `json:"dimensions,omitempty,omitzero"`
 
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo string `json:"internalMemo,omitempty,omitzero"`
@@ -2307,17 +1917,11 @@ type PostSalesordersJSONBody struct {
 	ModifiedAt time.Time `json:"modifiedAt,omitempty,omitzero"`
 
 	// SalesType The sales type for the sales order.
-	SalesType struct {
-		// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-		Id int `json:"id,omitempty,omitzero"`
-	} `json:"salesType,omitempty,omitzero"`
+	SalesType SalesTypeDto `json:"salesType,omitempty,omitzero"`
 
 	// Status Current status of the sales order.
-	Status PostSalesordersJSONBodyStatus `json:"status,omitempty,omitzero"`
+	Status SalesOrderStatusEnum `json:"status,omitempty,omitzero"`
 }
-
-// PostSalesordersJSONBodyStatus defines parameters for PostSalesorders.
-type PostSalesordersJSONBodyStatus string
 
 // GetTransactionlinesParams defines parameters for GetTransactionlines.
 type GetTransactionlinesParams struct {
@@ -6428,7 +6032,7 @@ func (r GetAccountbalancesIdResponse) StatusCode() int {
 type GetAccountsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *[]Account1
+	JSON200      *[]Account
 }
 
 // Status returns HTTPResponse.Status
@@ -6450,7 +6054,7 @@ func (r GetAccountsResponse) StatusCode() int {
 type GetAccountsIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Account1
+	JSON200      *Account
 }
 
 // Status returns HTTPResponse.Status
@@ -7244,16 +6848,7 @@ type GetSalesordersIdResponse struct {
 		DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
 		// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-		Dimensions []struct {
-			// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
-			DimensionType int `json:"dimensionType"`
-
-			// Name The display name associated with the value of the dimension.
-			Name string `json:"name"`
-
-			// Value The value (ie key) for the dimension.
-			Value string `json:"value"`
-		} `json:"dimensions,omitempty,omitzero"`
+		Dimensions []DimensionDto `json:"dimensions,omitempty,omitzero"`
 
 		// Id A unique identifier for the sales order within 24SevenOffice ERP.
 		Id int `json:"id,omitempty,omitzero"`
@@ -7271,17 +6866,13 @@ type GetSalesordersIdResponse struct {
 		ModifiedAt time.Time `json:"modifiedAt,omitempty,omitzero"`
 
 		// SalesType The sales type for the sales order.
-		SalesType struct {
-			// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-			Id int `json:"id,omitempty,omitzero"`
-		} `json:"salesType,omitempty,omitzero"`
+		SalesType SalesTypeDto `json:"salesType,omitempty,omitzero"`
 
 		// Status Current status of the sales order.
-		Status GetSalesordersId200Status `json:"status,omitempty,omitzero"`
+		Status SalesOrderStatusEnum `json:"status,omitempty,omitzero"`
 	}
 	JSON200 *SalesOrder
 }
-type GetSalesordersId200Status string
 
 // Status returns HTTPResponse.Status
 func (r GetSalesordersIdResponse) Status() string {
@@ -7510,8 +7101,8 @@ func (r GetTaxesIdResponse) StatusCode() int {
 type GetTransactionlinesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *Transactions
-	JSON200      *Transactions
+	HALJSON200   *[]Transaction
+	JSON200      *[]Transaction
 }
 
 // Status returns HTTPResponse.Status
@@ -8212,7 +7803,7 @@ func ParseGetAccountsResponse(rsp *http.Response) (*GetAccountsResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []Account1
+		var dest []Account
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8238,7 +7829,7 @@ func ParseGetAccountsIdResponse(rsp *http.Response) (*GetAccountsIdResponse, err
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Account1
+		var dest Account
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9169,16 +8760,7 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 			DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
 			// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-			Dimensions []struct {
-				// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
-				DimensionType int `json:"dimensionType"`
-
-				// Name The display name associated with the value of the dimension.
-				Name string `json:"name"`
-
-				// Value The value (ie key) for the dimension.
-				Value string `json:"value"`
-			} `json:"dimensions,omitempty,omitzero"`
+			Dimensions []DimensionDto `json:"dimensions,omitempty,omitzero"`
 
 			// Id A unique identifier for the sales order within 24SevenOffice ERP.
 			Id int `json:"id,omitempty,omitzero"`
@@ -9196,13 +8778,10 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 			ModifiedAt time.Time `json:"modifiedAt,omitempty,omitzero"`
 
 			// SalesType The sales type for the sales order.
-			SalesType struct {
-				// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-				Id int `json:"id,omitempty,omitzero"`
-			} `json:"salesType,omitempty,omitzero"`
+			SalesType SalesTypeDto `json:"salesType,omitempty,omitzero"`
 
 			// Status Current status of the sales order.
-			Status GetSalesordersId200Status `json:"status,omitempty,omitzero"`
+			Status SalesOrderStatusEnum `json:"status,omitempty,omitzero"`
 		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -9504,14 +9083,14 @@ func ParseGetTransactionlinesResponse(rsp *http.Response) (*GetTransactionlinesR
 
 	switch {
 	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest Transactions
+		var dest []Transaction
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.HALJSON200 = &dest
 
 	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
-		var dest Transactions
+		var dest []Transaction
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
