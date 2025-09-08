@@ -14,6 +14,7 @@ import (
 	"strings"
 
 	"github.com/oapi-codegen/runtime"
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 const (
@@ -92,7 +93,7 @@ type AbsenceDTO struct {
 	EmpId string `json:"empId,omitempty,omitzero"`
 
 	// EndDate End date
-	EndDate string `json:"endDate,omitempty,omitzero"`
+	EndDate openapi_types.Date `json:"endDate,omitempty,omitzero"`
 
 	// ExternalId External ID
 	ExternalId string `json:"externalId,omitempty,omitzero"`
@@ -110,7 +111,7 @@ type AbsenceDTO struct {
 	PermisjonId string `json:"permisjonId,omitempty,omitzero"`
 
 	// RequestDate Request date
-	RequestDate string `json:"requestDate,omitempty,omitzero"`
+	RequestDate openapi_types.Date `json:"requestDate,omitempty,omitzero"`
 
 	// RequestMotivation Request motivation
 	RequestMotivation string `json:"requestMotivation,omitempty,omitzero"`
@@ -119,10 +120,10 @@ type AbsenceDTO struct {
 	SerialNo string `json:"serialNo,omitempty,omitzero"`
 
 	// StartDate Start date
-	StartDate string `json:"startDate,omitempty,omitzero"`
+	StartDate openapi_types.Date `json:"startDate,omitempty,omitzero"`
 
 	// StartdateParental Parental leave start date
-	StartdateParental string `json:"startdateParental,omitempty,omitzero"`
+	StartdateParental openapi_types.Date `json:"startdateParental,omitempty,omitzero"`
 }
 
 // AbsenceTypeDTO defines model for AbsenceTypeDTO.
@@ -165,7 +166,7 @@ type AccountingDTO struct {
 // ChildDTO defines model for ChildDTO.
 type ChildDTO struct {
 	// Birthdate Birth date
-	Birthdate string `json:"birthdate,omitempty,omitzero"`
+	Birthdate openapi_types.Date `json:"birthdate,omitempty,omitzero"`
 
 	// ChildId Child ID
 	ChildId string `json:"childId,omitempty,omitzero"`
@@ -437,13 +438,13 @@ type PaylineDTO struct {
 // PayrollRunDTO defines model for PayrollRunDTO.
 type PayrollRunDTO struct {
 	// Created Created date
-	Created string `json:"created,omitempty,omitzero"`
+	Created openapi_types.Date `json:"created,omitempty,omitzero"`
 
 	// EndDate End date
-	EndDate string `json:"endDate,omitempty,omitzero"`
+	EndDate openapi_types.Date `json:"endDate,omitempty,omitzero"`
 
 	// LimitDate Limit date
-	LimitDate string `json:"limitDate,omitempty,omitzero"`
+	LimitDate openapi_types.Date `json:"limitDate,omitempty,omitzero"`
 
 	// Locked Locked status
 	Locked string `json:"locked,omitempty,omitzero"`
@@ -452,7 +453,7 @@ type PayrollRunDTO struct {
 	Name string `json:"name,omitempty,omitzero"`
 
 	// PaymentDate Payment date
-	PaymentDate string `json:"paymentDate,omitempty,omitzero"`
+	PaymentDate openapi_types.Date `json:"paymentDate,omitempty,omitzero"`
 
 	// PayrollGroup Payroll group
 	PayrollGroup string `json:"payrollGroup,omitempty,omitzero"`
@@ -464,8 +465,8 @@ type PayrollRunDTO struct {
 	Payslips string `json:"payslips,omitempty,omitzero"`
 
 	// StartDate Start date
-	StartDate string            `json:"startDate,omitempty,omitzero"`
-	Type      PayrollRunDTOType `json:"type,omitempty,omitzero"`
+	StartDate openapi_types.Date `json:"startDate,omitempty,omitzero"`
+	Type      PayrollRunDTOType  `json:"type,omitempty,omitzero"`
 }
 
 // PayrollRunDTOType defines model for PayrollRunDTO.Type.
@@ -474,13 +475,13 @@ type PayrollRunDTOType string
 // PayslipDTO defines model for PayslipDTO.
 type PayslipDTO struct {
 	// EndDate End date
-	EndDate string `json:"endDate,omitempty,omitzero"`
+	EndDate openapi_types.Date `json:"endDate,omitempty,omitzero"`
 
 	// PayrollrunId Payroll run ID
 	PayrollrunId string `json:"payrollrunId,omitempty,omitzero"`
 
 	// StartDate Start date
-	StartDate string `json:"startDate,omitempty,omitzero"`
+	StartDate openapi_types.Date `json:"startDate,omitempty,omitzero"`
 
 	// Text Text representation of period
 	Text string `json:"text,omitempty,omitzero"`
@@ -493,7 +494,7 @@ type PayslipJSONDTO struct {
 	Paylines []PaylineDTO `json:"paylines,omitempty,omitzero"`
 
 	// PaymentDate Payment date
-	PaymentDate string `json:"paymentDate,omitempty,omitzero"`
+	PaymentDate openapi_types.Date `json:"paymentDate,omitempty,omitzero"`
 
 	// PayrollrunId Payroll run ID
 	PayrollrunId string `json:"payrollrunId,omitempty,omitzero"`
@@ -532,10 +533,10 @@ type TransactionDTO struct {
 	Counts string `json:"counts,omitempty,omitzero"`
 
 	// Datefrom Date from
-	Datefrom string `json:"datefrom,omitempty,omitzero"`
+	Datefrom openapi_types.Date `json:"datefrom,omitempty,omitzero"`
 
 	// Dateto Date to
-	Dateto string `json:"dateto,omitempty,omitzero"`
+	Dateto openapi_types.Date `json:"dateto,omitempty,omitzero"`
 
 	// Department Department
 	Department string `json:"department,omitempty,omitzero"`
