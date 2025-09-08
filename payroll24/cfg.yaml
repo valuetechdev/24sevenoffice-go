@@ -8,3 +8,5 @@ output-options:
   client-type-name: WriteClient
   prefer-skip-optional-pointer: true
   prefer-skip-optional-pointer-with-omitzero: true
+  overlay:
+    path: overlay.yaml
