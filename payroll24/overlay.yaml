@@ -7,6 +7,22 @@ actions:
     description: Add all missing DTOs based on payroll.json examples
     update:
       schemas:
+        # Custom types for numeric strings
+        StringInt:
+          type: "string"
+          description: "Integer value sent as string"
+          x-go-type: "StringInt"
+
+        StringFloat:
+          type: "string"
+          description: "Float value sent as string"
+          x-go-type: "StringFloat"
+
+        StringBool:
+          type: "string"
+          description: "Boolean value sent as string (0/1)"
+          x-go-type: "StringBool"
+
         # International ID nested object
         InternationalIDDTO:
           type: "object"
@@ -35,9 +51,11 @@ actions:
             percentage:
               type: "string"
               description: "Exemption percentage"
+              x-go-type: "StringFloat"
             amount:
               type: "string"
               description: "Exemption amount"
+              x-go-type: "StringFloat"
 
         # Dimension nested object for accounting
         DimensionDTO:
@@ -46,6 +64,7 @@ actions:
             dimid:
               type: "string"
               description: "Dimension ID"
+              x-go-type: "StringInt"
             value:
               type: "string"
               description: "Dimension value"
@@ -57,6 +76,7 @@ actions:
             percentage:
               type: "string"
               description: "Percentage"
+              x-go-type: "StringFloat"
             dimensions:
               type: "array"
               items:
@@ -69,6 +89,7 @@ actions:
             empId:
               type: "string"
               description: "Employee number"
+              x-go-type: "StringInt"
             email:
               type: "string"
               description: "Email address"
@@ -111,6 +132,7 @@ actions:
             employee_date:
               type: "string"
               description: "Employment start date"
+              format: "date"
             telefon:
               type: "string"
               description: "Phone number"
@@ -125,6 +147,7 @@ actions:
             salary:
               type: "string"
               description: "Salary amount"
+              x-go-type: "StringFloat"
             salary_valid_from:
               type: "string"
               description: "Salary valid from date"
@@ -134,39 +157,47 @@ actions:
             employment_rate:
               type: "string"
               description: "Employment rate percentage"
+              x-go-type: "StringFloat"
             employment_rate_valid_from:
               type: "string"
               description: "Employment rate valid from date"
             hours_per_week:
               type: "string"
               description: "Hours per week"
+              x-go-type: "StringFloat"
             hours_per_week_valid_from:
               type: "string"
               description: "Hours per week valid from date"
             vacation_percent:
               type: "string"
               description: "Vacation percentage"
+              x-go-type: "StringFloat"
             vacation_percent_valid_from:
               type: "string"
               description: "Vacation percentage valid from date"
             vacation_days:
               type: "string"
               description: "Vacation days"
+              x-go-type: "StringInt"
             hidden:
               type: "string"
               description: "Hidden status"
+              x-go-type: "StringBool"
             percentage_tax_main_employer:
               type: "string"
               description: "Percentage tax main employer"
+              x-go-type: "StringFloat"
             percentage_tax_bi_employer:
               type: "string"
               description: "Percentage tax bi employer"
+              x-go-type: "StringFloat"
             tax_resident_country:
               type: "string"
               description: "Tax resident country"
             continental_shelf:
               type: "string"
               description: "Continental shelf"
+              x-go-type: "StringBool"
             taxexemption:
               $ref: "#/components/schemas/TaxExemptionDTO"
             accounting:
@@ -181,15 +212,19 @@ actions:
             employment_id:
               type: "string"
               description: "Employment ID"
+              x-go-type: StringInt
             primary_employment:
               type: "string"
               description: "Primary employment flag"
+              x-go-type: "StringBool"
             startdate:
               type: "string"
               description: "Start date"
+              format: date
             enddate:
               type: "string"
               description: "End date"
+              format: date
             enddate_reason:
               type: "string"
               description: "End date reason"
@@ -202,6 +237,7 @@ actions:
             employment_rate:
               type: "string"
               description: "Employment rate"
+              x-go-type: "StringFloat"
             employment_type:
               type: "string"
               description: "Employment type"
@@ -219,6 +255,7 @@ actions:
             payrollrunId:
               type: "string"
               description: "Payroll run ID"
+              x-go-type: "StringInt"
             startDate:
               type: "string"
               description: "Start date"
@@ -254,6 +291,7 @@ actions:
             payslips:
               type: "string"
               description: "Number of payslips"
+              x-go-type: StringInt
 
         # Payslip DTO (basic)
         PayslipDTO:
@@ -265,6 +303,7 @@ actions:
             payrollrunId:
               type: "string"
               description: "Payroll run ID"
+              x-go-type: StringInt
             startDate:
               type: "string"
               description: "Start date"
@@ -290,18 +329,22 @@ actions:
             quantity:
               type: "string"
               description: "Quantity"
+              x-go-type: StringFloat
             unitPrice:
               type: "string"
               description: "Unit price"
+              x-go-type: StringFloat
             extent:
               type: "string"
               description: "Extent"
+              x-go-type: StringFloat
             tax:
               type: "string"
               description: "Tax type"
             amount:
               type: "string"
               description: "Amount"
+              x-go-type: StringFloat
 
         # Payslip JSON DTO (detailed)
         PayslipJSONDTO:
@@ -310,9 +353,11 @@ actions:
             payrollrunId:
               type: "string"
               description: "Payroll run ID"
+              x-go-type: StringInt
             netPay:
               type: "string"
               description: "Net pay amount"
+              x-go-type: StringFloat
             paymentDate:
               type: "string"
               description: "Payment date"
@@ -329,6 +374,7 @@ actions:
             dimid:
               type: "string"
               description: "Dimension ID"
+              x-go-type: StringInt
             name:
               type: "string"
               description: "Dimension name"
@@ -346,6 +392,7 @@ actions:
             active:
               type: "string"
               description: "Active status"
+              x-go-type: StringBool
 
         # Absence DTO
         AbsenceDTO:
@@ -354,6 +401,7 @@ actions:
             empId:
               type: "string"
               description: "Employee ID"
+              x-go-type: "StringInt"
             serialNo:
               type: "string"
               description: "Serial number"
@@ -381,6 +429,7 @@ actions:
             percent:
               type: "string"
               description: "Absence percentage"
+              x-go-type: StringFloat
             absenceType:
               type: "string"
               description: "Absence type code"
@@ -390,12 +439,15 @@ actions:
             childId:
               type: "string"
               description: "Child ID"
+              x-go-type: StringInt
             numberOfDays:
               type: "string"
               description: "Number of days"
+              x-go-type: StringInt
             permisjonId:
               type: "string"
               description: "Permission ID"
+              x-go-type: StringInt
             startdateParental:
               type: "string"
               description: "Parental leave start date"
@@ -403,9 +455,11 @@ actions:
             lastChanged:
               type: "string"
               description: "Last changed date"
+              format: "date"
             externalId:
               type: "string"
               description: "External ID"
+              x-go-type: StringInt
 
         # Absence Type DTO
         AbsenceTypeDTO:
@@ -429,6 +483,7 @@ actions:
             percentage:
               type: "string"
               description: "Percentage supported"
+              x-go-type: StringFloat
             comment_mandatory:
               type: "string"
               description: "Comment mandatory"
@@ -456,6 +511,7 @@ actions:
             childId:
               type: "string"
               description: "Child ID"
+              x-go-type: StringInt
             birthdate:
               type: "string"
               description: "Birth date"
@@ -468,12 +524,15 @@ actions:
             empId:
               type: "string"
               description: "Employee ID"
+              x-go-type: "StringInt"
             serialNo:
               type: "string"
               description: "Serial number"
+              x-go-type: StringInt
             payrollcode:
               type: "string"
               description: "Payroll code"
+              x-go-type: StringInt
             description:
               type: "string"
               description: "Description"
@@ -493,9 +552,11 @@ actions:
             counts:
               type: "string"
               description: "Counts"
+              x-go-type: StringFloat
             unitprice:
               type: "string"
               description: "Unit price"
+              x-go-type: StringFloat
             text:
               type: "string"
               description: "Text"
@@ -505,12 +566,17 @@ actions:
             extent:
               type: "string"
               description: "Extent"
+              x-go-type: StringFloat
             department:
               type: "string"
               description: "Department"
+              x-go-type: StringInt
+              x-go-name: DepartmentId
             project:
               type: "string"
               description: "Project"
+              x-go-type: StringInt
+              x-go-name: ProjectId
             tax:
               type: "string"
               description: "Tax"
@@ -523,6 +589,7 @@ actions:
             is_paid:
               type: "string"
               description: "Is paid"
+              x-go-type: StringBool
             vacation:
               type: "string"
               description: "Vacation"
@@ -541,6 +608,7 @@ actions:
             first_60_days:
               type: "string"
               description: "First 60 days"
+              x-go-type: StringBool
 
         # Wage Type DTO
         WageTypeDTO:
@@ -549,12 +617,14 @@ actions:
             payrollcode:
               type: "string"
               description: "Payroll code"
+              x-go-type: StringInt
             description:
               type: "string"
               description: "Description"
             unitprice:
               type: "string"
               description: "Unit price"
+              x-go-type: StringFloat
             account:
               type: "string"
               description: "Account"
@@ -564,6 +634,7 @@ actions:
             hidden:
               type: "string"
               description: "Hidden"
+              x-go-type: StringBool
             selfservice:
               type: "string"
               description: "Self service"
@@ -576,6 +647,7 @@ actions:
             is_paid:
               type: "string"
               description: "Is paid"
+              x-go-type: StringBool
             vacation:
               type: "string"
               description: "Vacation"
@@ -600,6 +672,7 @@ actions:
             gruppid:
               type: "string"
               description: "Group ID"
+              x-go-type: StringInt
             manadsavlonade:
               type: "string"
               description: "Monthly salaried"
@@ -614,6 +687,7 @@ actions:
             id:
               type: "string"
               description: "Site ID"
+              x-go-type: StringInt
             name:
               type: "string"
               description: "Site name"
@@ -664,146 +738,206 @@ actions:
             country_code:
               type: "string"
               enum: ["NO", "SE"]
-            sites:
-              type: "array"
-              items:
-                $ref: "#/components/schemas/SiteDTO"
+          sites:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/SiteDTO"
 
   # Update response schemas to use proper DTOs
-  - target: "$.paths['/employee/v2'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/employee/v2'].get.responses['200']"
     description: Update employee list response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/EmployeeDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/EmployeeDTO"
 
-  - target: "$.paths['/employee/v2/{empId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/employee/v2/{empId}'].get.responses['200']"
     description: Update single employee response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/EmployeeDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/EmployeeDTO"
 
-  - target: "$.paths['/employment/v2/{empId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/employment/v2/{empId}'].get.responses['200']"
     description: Update employment response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/EmploymentDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/EmploymentDTO"
 
-  - target: "$.paths['/payrollrun/v2/'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/payrollrun/v2/'].get.responses['200']"
     description: Update payroll run list response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/PayrollRunDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/PayrollRunDTO"
 
-  - target: "$.paths['/payrollrun/v2/{payrollrunId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/payrollrun/v2/{payrollrunId}'].get.responses['200']"
     description: Update single payroll run response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/PayrollRunDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/PayrollRunDTO"
 
-  - target: "$.paths['/payslips/v2/{empId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/payslips/v2/{empId}'].get.responses['200']"
     description: Update payslips response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/PayslipDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/PayslipDTO"
 
-  - target: "$.paths['/payslipJSON/v2/{empId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/payslipJSON/v2/{empId}'].get.responses['200']"
     description: Update payslip JSON response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/PayslipJSONDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/PayslipJSONDTO"
 
-  - target: "$.paths['/payslipJSON/v2/{empId}/{payrollrunId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/payslipJSON/v2/{empId}/{payrollrunId}'].get.responses['200']"
     description: Update single payslip JSON response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/PayslipJSONDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/PayslipJSONDTO"
 
-  - target: "$.paths['/dimension/v2'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/dimension/v2'].get.responses['200']"
     description: Update dimension list response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/DimensionInfoDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/DimensionInfoDTO"
 
-  - target: "$.paths['/dimension/v2/{dimid}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/dimension/v2/{dimid}'].get.responses['200']"
     description: Update dimension values response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/DimensionValueDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/DimensionValueDTO"
 
-  - target: "$.paths['/dimension/v2/{dimid}/{value}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/dimension/v2/{dimid}/{value}'].get.responses['200']"
     description: Update single dimension value response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/DimensionValueDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/DimensionValueDTO"
 
-  - target: "$.paths['/absence/v2'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/absence/v2'].get.responses['200']"
     description: Update absence list response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/AbsenceDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/AbsenceDTO"
 
-  - target: "$.paths['/absence/v2/{empId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/absence/v2/{empId}'].get.responses['200']"
     description: Update employee absence response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/AbsenceDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/AbsenceDTO"
 
-  - target: "$.paths['/absencetypes/v2'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/absencetypes/v2'].get.responses['200']"
     description: Update absence types response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/AbsenceTypeDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/AbsenceTypeDTO"
 
-  - target: "$.paths['/absencetypes/v2/{code}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/absencetypes/v2/{code}'].get.responses['200']"
     description: Update single absence type response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/AbsenceTypeDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/AbsenceTypeDTO"
 
-  - target: "$.paths['/child/v2/{empId}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/child/v2/{empId}'].get.responses['200']"
     description: Update children response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/ChildDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/ChildDTO"
 
-  - target: "$.paths['/transaction/v2'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/transaction/v2'].get.responses['200']"
     description: Update transaction list response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/TransactionDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/TransactionDTO"
 
-  - target: "$.paths['/wagetypes/v2'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/wagetypes/v2'].get.responses['200']"
     description: Update wage types response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/WageTypeDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/WageTypeDTO"
 
-  - target: "$.paths['/wagetypes/v2/{payrollcode}'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/wagetypes/v2/{payrollcode}'].get.responses['200']"
     description: Update single wage type response schema
     update:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/WageTypeDTO"
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/WageTypeDTO"
 
-  - target: "$.paths['/organization/v2'].get.responses['200'].content[*].schema"
+  - target: "$.paths['/organization/v2'].get.responses['200']"
     description: Update organization response schema
     update:
-      $ref: "#/components/schemas/OrganizationDTO"
+      content:
+        "application/json":
+          schema:
+            $ref: "#/components/schemas/OrganizationDTO"

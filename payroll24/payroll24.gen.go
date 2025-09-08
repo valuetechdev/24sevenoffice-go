@@ -81,7 +81,7 @@ type AbsenceDTO struct {
 	Approved string `json:"approved,omitempty,omitzero"`
 
 	// ChildId Child ID
-	ChildId string `json:"childId,omitempty,omitzero"`
+	ChildId StringInt `json:"childId,omitempty,omitzero"`
 
 	// Comment Comment
 	Comment string `json:"comment,omitempty,omitzero"`
@@ -90,25 +90,25 @@ type AbsenceDTO struct {
 	Description string `json:"description,omitempty,omitzero"`
 
 	// EmpId Employee ID
-	EmpId string `json:"empId,omitempty,omitzero"`
+	EmpId StringInt `json:"empId,omitempty,omitzero"`
 
 	// EndDate End date
 	EndDate openapi_types.Date `json:"endDate,omitempty,omitzero"`
 
 	// ExternalId External ID
-	ExternalId string `json:"externalId,omitempty,omitzero"`
+	ExternalId StringInt `json:"externalId,omitempty,omitzero"`
 
 	// LastChanged Last changed date
-	LastChanged string `json:"lastChanged,omitempty,omitzero"`
+	LastChanged openapi_types.Date `json:"lastChanged,omitempty,omitzero"`
 
 	// NumberOfDays Number of days
-	NumberOfDays string `json:"numberOfDays,omitempty,omitzero"`
+	NumberOfDays StringInt `json:"numberOfDays,omitempty,omitzero"`
 
 	// Percent Absence percentage
-	Percent string `json:"percent,omitempty,omitzero"`
+	Percent StringFloat `json:"percent,omitempty,omitzero"`
 
 	// PermisjonId Permission ID
-	PermisjonId string `json:"permisjonId,omitempty,omitzero"`
+	PermisjonId StringInt `json:"permisjonId,omitempty,omitzero"`
 
 	// RequestDate Request date
 	RequestDate openapi_types.Date `json:"requestDate,omitempty,omitzero"`
@@ -146,7 +146,7 @@ type AbsenceTypeDTO struct {
 	LeaveOfAbsenceType string `json:"leave_of_absence_type,omitempty,omitzero"`
 
 	// Percentage Percentage supported
-	Percentage string `json:"percentage,omitempty,omitzero"`
+	Percentage StringFloat `json:"percentage,omitempty,omitzero"`
 
 	// PermisjonId Permission ID required
 	PermisjonId string `json:"permisjonId,omitempty,omitzero"`
@@ -160,7 +160,7 @@ type AccountingDTO struct {
 	Dimensions []DimensionDTO `json:"dimensions,omitempty,omitzero"`
 
 	// Percentage Percentage
-	Percentage string `json:"percentage,omitempty,omitzero"`
+	Percentage StringFloat `json:"percentage,omitempty,omitzero"`
 }
 
 // ChildDTO defines model for ChildDTO.
@@ -169,7 +169,7 @@ type ChildDTO struct {
 	Birthdate openapi_types.Date `json:"birthdate,omitempty,omitzero"`
 
 	// ChildId Child ID
-	ChildId string `json:"childId,omitempty,omitzero"`
+	ChildId StringInt `json:"childId,omitempty,omitzero"`
 
 	// Firstnamn First name
 	Firstnamn string `json:"firstnamn,omitempty,omitzero"`
@@ -181,7 +181,7 @@ type ChildDTO struct {
 // DimensionDTO defines model for DimensionDTO.
 type DimensionDTO struct {
 	// Dimid Dimension ID
-	Dimid string `json:"dimid,omitempty,omitzero"`
+	Dimid StringInt `json:"dimid,omitempty,omitzero"`
 
 	// Value Dimension value
 	Value string `json:"value,omitempty,omitzero"`
@@ -190,7 +190,7 @@ type DimensionDTO struct {
 // DimensionInfoDTO defines model for DimensionInfoDTO.
 type DimensionInfoDTO struct {
 	// Dimid Dimension ID
-	Dimid string `json:"dimid,omitempty,omitzero"`
+	Dimid StringInt `json:"dimid,omitempty,omitzero"`
 
 	// Name Dimension name
 	Name string `json:"name,omitempty,omitzero"`
@@ -199,7 +199,7 @@ type DimensionInfoDTO struct {
 // DimensionValueDTO defines model for DimensionValueDTO.
 type DimensionValueDTO struct {
 	// Active Active status
-	Active string `json:"active,omitempty,omitzero"`
+	Active StringBool `json:"active,omitempty,omitzero"`
 
 	// Name Dimension value name
 	Name string `json:"name,omitempty,omitzero"`
@@ -227,7 +227,7 @@ type EmployeeDTO struct {
 	Clearingno string `json:"clearingno,omitempty,omitzero"`
 
 	// ContinentalShelf Continental shelf
-	ContinentalShelf string `json:"continental_shelf,omitempty,omitzero"`
+	ContinentalShelf StringBool `json:"continental_shelf,omitempty,omitzero"`
 
 	// CountryCode Country code
 	CountryCode string `json:"countryCode,omitempty,omitzero"`
@@ -239,13 +239,13 @@ type EmployeeDTO struct {
 	EmailCopy string `json:"email_copy,omitempty,omitzero"`
 
 	// EmpId Employee number
-	EmpId string `json:"empId,omitempty,omitzero"`
+	EmpId StringInt `json:"empId,omitempty,omitzero"`
 
 	// EmployeeDate Employment start date
-	EmployeeDate string `json:"employee_date,omitempty,omitzero"`
+	EmployeeDate openapi_types.Date `json:"employee_date,omitempty,omitzero"`
 
 	// EmploymentRate Employment rate percentage
-	EmploymentRate string `json:"employment_rate,omitempty,omitzero"`
+	EmploymentRate StringFloat `json:"employment_rate,omitempty,omitzero"`
 
 	// EmploymentRateValidFrom Employment rate valid from date
 	EmploymentRateValidFrom string `json:"employment_rate_valid_from,omitempty,omitzero"`
@@ -254,10 +254,10 @@ type EmployeeDTO struct {
 	Firstname string `json:"firstname,omitempty,omitzero"`
 
 	// Hidden Hidden status
-	Hidden string `json:"hidden,omitempty,omitzero"`
+	Hidden StringBool `json:"hidden,omitempty,omitzero"`
 
 	// HoursPerWeek Hours per week
-	HoursPerWeek string `json:"hours_per_week,omitempty,omitzero"`
+	HoursPerWeek StringFloat `json:"hours_per_week,omitempty,omitzero"`
 
 	// HoursPerWeekValidFrom Hours per week valid from date
 	HoursPerWeekValidFrom string             `json:"hours_per_week_valid_from,omitempty,omitzero"`
@@ -267,10 +267,10 @@ type EmployeeDTO struct {
 	Lastname string `json:"lastname,omitempty,omitzero"`
 
 	// PercentageTaxBiEmployer Percentage tax bi employer
-	PercentageTaxBiEmployer string `json:"percentage_tax_bi_employer,omitempty,omitzero"`
+	PercentageTaxBiEmployer StringFloat `json:"percentage_tax_bi_employer,omitempty,omitzero"`
 
 	// PercentageTaxMainEmployer Percentage tax main employer
-	PercentageTaxMainEmployer string `json:"percentage_tax_main_employer,omitempty,omitzero"`
+	PercentageTaxMainEmployer StringFloat `json:"percentage_tax_main_employer,omitempty,omitzero"`
 
 	// Personnr Personal number
 	Personnr string `json:"personnr,omitempty,omitzero"`
@@ -282,7 +282,7 @@ type EmployeeDTO struct {
 	Postalcode string `json:"postalcode,omitempty,omitzero"`
 
 	// Salary Salary amount
-	Salary     string                `json:"salary,omitempty,omitzero"`
+	Salary     StringFloat           `json:"salary,omitempty,omitzero"`
 	SalaryType EmployeeDTOSalaryType `json:"salary_type,omitempty,omitzero"`
 
 	// SalaryValidFrom Salary valid from date
@@ -299,10 +299,10 @@ type EmployeeDTO struct {
 	Telefon string `json:"telefon,omitempty,omitzero"`
 
 	// VacationDays Vacation days
-	VacationDays string `json:"vacation_days,omitempty,omitzero"`
+	VacationDays StringInt `json:"vacation_days,omitempty,omitzero"`
 
 	// VacationPercent Vacation percentage
-	VacationPercent string `json:"vacation_percent,omitempty,omitzero"`
+	VacationPercent StringFloat `json:"vacation_percent,omitempty,omitzero"`
 
 	// VacationPercentValidFrom Vacation percentage valid from date
 	VacationPercentValidFrom string `json:"vacation_percent_valid_from,omitempty,omitzero"`
@@ -320,16 +320,16 @@ type EmploymentDTO struct {
 	EmploymentForm string `json:"employment_form,omitempty,omitzero"`
 
 	// EmploymentId Employment ID
-	EmploymentId string `json:"employment_id,omitempty,omitzero"`
+	EmploymentId StringInt `json:"employment_id,omitempty,omitzero"`
 
 	// EmploymentRate Employment rate
-	EmploymentRate string `json:"employment_rate,omitempty,omitzero"`
+	EmploymentRate StringFloat `json:"employment_rate,omitempty,omitzero"`
 
 	// EmploymentType Employment type
 	EmploymentType string `json:"employment_type,omitempty,omitzero"`
 
 	// Enddate End date
-	Enddate string `json:"enddate,omitempty,omitzero"`
+	Enddate openapi_types.Date `json:"enddate,omitempty,omitzero"`
 
 	// EnddateReason End date reason
 	EnddateReason string `json:"enddate_reason,omitempty,omitzero"`
@@ -338,13 +338,13 @@ type EmploymentDTO struct {
 	EnterpriseNumber string `json:"enterprise_number,omitempty,omitzero"`
 
 	// PrimaryEmployment Primary employment flag
-	PrimaryEmployment string `json:"primary_employment,omitempty,omitzero"`
+	PrimaryEmployment StringBool `json:"primary_employment,omitempty,omitzero"`
 
 	// ProfessionCode Profession code
 	ProfessionCode string `json:"profession_code,omitempty,omitzero"`
 
 	// Startdate Start date
-	Startdate string `json:"startdate,omitempty,omitzero"`
+	Startdate openapi_types.Date `json:"startdate,omitempty,omitzero"`
 
 	// WorkingTimes Working times
 	WorkingTimes string `json:"working_times,omitempty,omitzero"`
@@ -385,8 +385,7 @@ type OrganizationDTO struct {
 	Orgno string `json:"orgno,omitempty,omitzero"`
 
 	// RetirementAge Retirement age
-	RetirementAge string    `json:"retirement_age,omitempty,omitzero"`
-	Sites         []SiteDTO `json:"sites,omitempty,omitzero"`
+	RetirementAge string `json:"retirement_age,omitempty,omitzero"`
 
 	// TaxAccount Tax account
 	TaxAccount string                 `json:"tax_account,omitempty,omitzero"`
@@ -411,16 +410,16 @@ type OrganizationDTOTaxRule string
 // PaylineDTO defines model for PaylineDTO.
 type PaylineDTO struct {
 	// Amount Amount
-	Amount string `json:"amount,omitempty,omitzero"`
+	Amount StringFloat `json:"amount,omitempty,omitzero"`
 
 	// Code Payroll code
 	Code string `json:"code,omitempty,omitzero"`
 
 	// Extent Extent
-	Extent string `json:"extent,omitempty,omitzero"`
+	Extent StringFloat `json:"extent,omitempty,omitzero"`
 
 	// Quantity Quantity
-	Quantity string `json:"quantity,omitempty,omitzero"`
+	Quantity StringFloat `json:"quantity,omitempty,omitzero"`
 
 	// Sumrow Whether this is a sum row
 	Sumrow bool `json:"sumrow,omitempty,omitzero"`
@@ -432,7 +431,7 @@ type PaylineDTO struct {
 	Text string `json:"text,omitempty,omitzero"`
 
 	// UnitPrice Unit price
-	UnitPrice string `json:"unitPrice,omitempty,omitzero"`
+	UnitPrice StringFloat `json:"unitPrice,omitempty,omitzero"`
 }
 
 // PayrollRunDTO defines model for PayrollRunDTO.
@@ -459,10 +458,10 @@ type PayrollRunDTO struct {
 	PayrollGroup string `json:"payrollGroup,omitempty,omitzero"`
 
 	// PayrollrunId Payroll run ID
-	PayrollrunId string `json:"payrollrunId,omitempty,omitzero"`
+	PayrollrunId StringInt `json:"payrollrunId,omitempty,omitzero"`
 
 	// Payslips Number of payslips
-	Payslips string `json:"payslips,omitempty,omitzero"`
+	Payslips StringInt `json:"payslips,omitempty,omitzero"`
 
 	// StartDate Start date
 	StartDate openapi_types.Date `json:"startDate,omitempty,omitzero"`
@@ -478,7 +477,7 @@ type PayslipDTO struct {
 	EndDate openapi_types.Date `json:"endDate,omitempty,omitzero"`
 
 	// PayrollrunId Payroll run ID
-	PayrollrunId string `json:"payrollrunId,omitempty,omitzero"`
+	PayrollrunId StringInt `json:"payrollrunId,omitempty,omitzero"`
 
 	// StartDate Start date
 	StartDate openapi_types.Date `json:"startDate,omitempty,omitzero"`
@@ -490,38 +489,23 @@ type PayslipDTO struct {
 // PayslipJSONDTO defines model for PayslipJSONDTO.
 type PayslipJSONDTO struct {
 	// NetPay Net pay amount
-	NetPay   string       `json:"netPay,omitempty,omitzero"`
+	NetPay   StringFloat  `json:"netPay,omitempty,omitzero"`
 	Paylines []PaylineDTO `json:"paylines,omitempty,omitzero"`
 
 	// PaymentDate Payment date
 	PaymentDate openapi_types.Date `json:"paymentDate,omitempty,omitzero"`
 
 	// PayrollrunId Payroll run ID
-	PayrollrunId string `json:"payrollrunId,omitempty,omitzero"`
-}
-
-// SiteDTO defines model for SiteDTO.
-type SiteDTO struct {
-	// EnterpriseNumber Enterprise number
-	EnterpriseNumber string `json:"enterprise_number,omitempty,omitzero"`
-
-	// Id Site ID
-	Id string `json:"id,omitempty,omitzero"`
-
-	// Name Site name
-	Name string `json:"name,omitempty,omitzero"`
-
-	// TaxZone Tax zone
-	TaxZone string `json:"tax_zone,omitempty,omitzero"`
+	PayrollrunId StringInt `json:"payrollrunId,omitempty,omitzero"`
 }
 
 // TaxExemptionDTO defines model for TaxExemptionDTO.
 type TaxExemptionDTO struct {
 	// Amount Exemption amount
-	Amount string `json:"amount,omitempty,omitzero"`
+	Amount StringFloat `json:"amount,omitempty,omitzero"`
 
 	// Percentage Exemption percentage
-	Percentage string `json:"percentage,omitempty,omitzero"`
+	Percentage StringFloat `json:"percentage,omitempty,omitzero"`
 }
 
 // TransactionDTO defines model for TransactionDTO.
@@ -530,7 +514,7 @@ type TransactionDTO struct {
 	Benefit string `json:"benefit,omitempty,omitzero"`
 
 	// Counts Counts
-	Counts string `json:"counts,omitempty,omitzero"`
+	Counts StringFloat `json:"counts,omitempty,omitzero"`
 
 	// Datefrom Date from
 	Datefrom openapi_types.Date `json:"datefrom,omitempty,omitzero"`
@@ -538,8 +522,8 @@ type TransactionDTO struct {
 	// Dateto Date to
 	Dateto openapi_types.Date `json:"dateto,omitempty,omitzero"`
 
-	// Department Department
-	Department string `json:"department,omitempty,omitzero"`
+	// DepartmentId Department
+	DepartmentId StringInt `json:"department,omitempty,omitzero"`
 
 	// Description Description
 	Description string `json:"description,omitempty,omitzero"`
@@ -548,34 +532,34 @@ type TransactionDTO struct {
 	EarningCountry string `json:"earning_country,omitempty,omitzero"`
 
 	// EmpId Employee ID
-	EmpId string `json:"empId,omitempty,omitzero"`
+	EmpId StringInt `json:"empId,omitempty,omitzero"`
 
 	// Extent Extent
-	Extent string `json:"extent,omitempty,omitzero"`
+	Extent StringFloat `json:"extent,omitempty,omitzero"`
 
 	// First60Days First 60 days
-	First60Days string `json:"first_60_days,omitempty,omitzero"`
+	First60Days StringBool `json:"first_60_days,omitempty,omitzero"`
 
 	// IsPaid Is paid
-	IsPaid string `json:"is_paid,omitempty,omitzero"`
+	IsPaid StringBool `json:"is_paid,omitempty,omitzero"`
 
 	// Note Note
 	Note string `json:"note,omitempty,omitzero"`
 
 	// Payrollcode Payroll code
-	Payrollcode string `json:"payrollcode,omitempty,omitzero"`
+	Payrollcode StringInt `json:"payrollcode,omitempty,omitzero"`
 
 	// PayrollrunIds Payroll run IDs
 	PayrollrunIds []int `json:"payrollrunIds,omitempty,omitzero"`
 
-	// Project Project
-	Project string `json:"project,omitempty,omitzero"`
+	// ProjectId Project
+	ProjectId StringInt `json:"project,omitempty,omitzero"`
 
 	// Repeating Repeating
 	Repeating string `json:"repeating,omitempty,omitzero"`
 
 	// SerialNo Serial number
-	SerialNo string `json:"serialNo,omitempty,omitzero"`
+	SerialNo StringInt `json:"serialNo,omitempty,omitzero"`
 
 	// SocialSecurity Social security
 	SocialSecurity string `json:"social_security,omitempty,omitzero"`
@@ -590,7 +574,7 @@ type TransactionDTO struct {
 	Text string `json:"text,omitempty,omitzero"`
 
 	// Unitprice Unit price
-	Unitprice string `json:"unitprice,omitempty,omitzero"`
+	Unitprice StringFloat `json:"unitprice,omitempty,omitzero"`
 
 	// Vacation Vacation
 	Vacation string `json:"vacation,omitempty,omitzero"`
@@ -623,13 +607,13 @@ type WageTypeDTO struct {
 	EmployersFee string `json:"employers_fee,omitempty,omitzero"`
 
 	// Gruppid Group ID
-	Gruppid string `json:"gruppid,omitempty,omitzero"`
+	Gruppid StringInt `json:"gruppid,omitempty,omitzero"`
 
 	// Hidden Hidden
-	Hidden string `json:"hidden,omitempty,omitzero"`
+	Hidden StringBool `json:"hidden,omitempty,omitzero"`
 
 	// IsPaid Is paid
-	IsPaid string `json:"is_paid,omitempty,omitzero"`
+	IsPaid StringBool `json:"is_paid,omitempty,omitzero"`
 
 	// Kalender Calendar
 	Kalender string `json:"kalender,omitempty,omitzero"`
@@ -641,7 +625,7 @@ type WageTypeDTO struct {
 	Manadsavlonade string `json:"manadsavlonade,omitempty,omitzero"`
 
 	// Payrollcode Payroll code
-	Payrollcode string `json:"payrollcode,omitempty,omitzero"`
+	Payrollcode StringInt `json:"payrollcode,omitempty,omitzero"`
 
 	// Selfservice Self service
 	Selfservice string `json:"selfservice,omitempty,omitzero"`
@@ -653,7 +637,7 @@ type WageTypeDTO struct {
 	Timavlonade string `json:"timavlonade,omitempty,omitzero"`
 
 	// Unitprice Unit price
-	Unitprice string `json:"unitprice,omitempty,omitzero"`
+	Unitprice StringFloat `json:"unitprice,omitempty,omitzero"`
 
 	// Vacation Vacation
 	Vacation string `json:"vacation,omitempty,omitzero"`
@@ -2848,6 +2832,7 @@ func (r PostChildV2Response) StatusCode() int {
 type GetChildV2EmpIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]ChildDTO
 }
 
 // Status returns HTTPResponse.Status
@@ -2956,6 +2941,7 @@ func (r GetDimensionV2DimidValueResponse) StatusCode() int {
 type GetEmployeeV2Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]EmployeeDTO
 }
 
 // Status returns HTTPResponse.Status
@@ -2998,6 +2984,7 @@ func (r PostEmployeeV2Response) StatusCode() int {
 type GetEmployeeV2EmpIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]EmployeeDTO
 }
 
 // Status returns HTTPResponse.Status
@@ -3278,6 +3265,7 @@ func (r GetPayslipsV2EmpIdResponse) StatusCode() int {
 type GetTransactionV2Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]TransactionDTO
 }
 
 // Status returns HTTPResponse.Status
@@ -3320,6 +3308,7 @@ func (r PostTransactionV2Response) StatusCode() int {
 type GetWagetypesV2Response struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]WageTypeDTO
 }
 
 // Status returns HTTPResponse.Status
@@ -3341,6 +3330,7 @@ func (r GetWagetypesV2Response) StatusCode() int {
 type GetWagetypesV2PayrollcodeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]WageTypeDTO
 }
 
 // Status returns HTTPResponse.Status
@@ -3843,6 +3833,19 @@ func ParseGetChildV2EmpIdResponse(rsp *http.Response) (*GetChildV2EmpIdResponse,
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ChildDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+		// Content-type (*/*) unsupported
+
+	}
+
 	return response, nil
 }
 
@@ -3953,6 +3956,19 @@ func ParseGetEmployeeV2Response(rsp *http.Response) (*GetEmployeeV2Response, err
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EmployeeDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+		// Content-type (*/*) unsupported
+
+	}
+
 	return response, nil
 }
 
@@ -3983,6 +3999,19 @@ func ParseGetEmployeeV2EmpIdResponse(rsp *http.Response) (*GetEmployeeV2EmpIdRes
 	response := &GetEmployeeV2EmpIdResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EmployeeDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+		// Content-type (*/*) unsupported
+
 	}
 
 	return response, nil
@@ -4263,6 +4292,19 @@ func ParseGetTransactionV2Response(rsp *http.Response) (*GetTransactionV2Respons
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []TransactionDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+		// Content-type (*/*) unsupported
+
+	}
+
 	return response, nil
 }
 
@@ -4295,6 +4337,19 @@ func ParseGetWagetypesV2Response(rsp *http.Response) (*GetWagetypesV2Response, e
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []WageTypeDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+		// Content-type (*/*) unsupported
+
+	}
+
 	return response, nil
 }
 
@@ -4309,6 +4364,19 @@ func ParseGetWagetypesV2PayrollcodeResponse(rsp *http.Response) (*GetWagetypesV2
 	response := &GetWagetypesV2PayrollcodeResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []WageTypeDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 200:
+		// Content-type (*/*) unsupported
+
 	}
 
 	return response, nil
