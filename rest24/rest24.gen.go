@@ -243,37 +243,37 @@ const (
 // Account Information about the account for which the balances belong to.
 type Account struct {
 	// Id A unique identifier for the account within 24SevenOffice accounting module.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name The human-readable name that describes the purpose or nature of the account.
 	Name string `json:"name,omitempty,omitzero"`
 
 	// Number The unique number that indicates which type of account it belongs to.
-	Number float32 `json:"number,omitempty,omitzero"`
+	Number int `json:"number,omitempty,omitzero"`
 }
 
 // Account1 defines model for Account1.
 type Account1 struct {
 	// Id A unique identifier for the account within 24SevenOffice accounting module.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name The human-readable name that describes the purpose or nature of the account.
 	Name string `json:"name,omitempty,omitzero"`
 
 	// Number The unique number that indicates which type of account it belongs to.
-	Number float32 `json:"number,omitempty,omitzero"`
+	Number int `json:"number,omitempty,omitzero"`
 }
 
 // Account2 Details of an account within the 24SevenOffice accounting module to which the transaction line is posted.
 type Account2 struct {
 	// Id A unique identifier for the account within 24SevenOffice.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name The human-readable name that describes the purpose or nature of the account.
 	Name string `json:"name,omitempty,omitzero"`
 
 	// Number The unique number within the organization's chart of accounts that indicates which type of account the account belongs to.
-	Number float32 `json:"number,omitempty,omitzero"`
+	Number int `json:"number,omitempty,omitzero"`
 }
 
 // AddressBasic defines model for AddressBasic.
@@ -398,7 +398,7 @@ type BankAccountBase struct {
 	// LedgerAccount The ledger account within the 24SevenOffice accounting module that corresponds to this bank account. Accounts can be retrieved from the separate /accounts endpoint.
 	LedgerAccount struct {
 		// Number The unique number that indicates which type of account it belongs to.
-		Number float32 `json:"number"`
+		Number int `json:"number"`
 	} `json:"ledgerAccount,omitempty,omitzero"`
 
 	// Name A user-defined name of the bank account, as it is shown in 24SevenOffice.
@@ -428,7 +428,7 @@ type BankAccountBase struct {
 	// TransactionType The transaction type within the 24SevenOffice accounting module, used when posting bank transactions in the 24SevenOffice bank module. Transaction types can be retrieved from the separate /transactiontypes endpoint.
 	TransactionType struct {
 		// Number A unique number representing the transaction type.
-		Number float32 `json:"number"`
+		Number int `json:"number"`
 	} `json:"transactionType,omitempty,omitzero"`
 
 	// Type The type of the bank account, which is one of the following:
@@ -462,7 +462,7 @@ type BankAccountResponse struct {
 	// LedgerAccount The ledger account within the 24SevenOffice accounting module that corresponds to this bank account. Accounts can be retrieved from the separate /accounts endpoint.
 	LedgerAccount struct {
 		// Number The unique number that indicates which type of account it belongs to.
-		Number float32 `json:"number"`
+		Number int `json:"number"`
 	} `json:"ledgerAccount,omitempty,omitzero"`
 
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format. The Bank Account Balance changes are not included here, as these are defined by a separate "timestamp" property for the `balance` object.
@@ -495,7 +495,7 @@ type BankAccountResponse struct {
 	// TransactionType The transaction type within the 24SevenOffice accounting module, used when posting bank transactions in the 24SevenOffice bank module. Transaction types can be retrieved from the separate /transactiontypes endpoint.
 	TransactionType struct {
 		// Number A unique number representing the transaction type.
-		Number float32 `json:"number"`
+		Number int `json:"number"`
 	} `json:"transactionType,omitempty,omitzero"`
 
 	// Type The type of the bank account, which is one of the following:
@@ -749,7 +749,7 @@ type CategoryPostRequest = CategoryBase
 // CategoryRequest Information about the category to which the product belongs.
 type CategoryRequest struct {
 	// Id A reference by ID to the category the product belongs to. Product categories can be retrieved from the separate `/productcategories` endpoint.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 }
 
 // CategoryResponse defines model for CategoryResponse.
@@ -758,7 +758,7 @@ type CategoryResponse struct {
 	AlternativeReference string `json:"alternativeReference,omitempty,omitzero"`
 
 	// Id A unique identifier for the product category within 24SevenOffice ERP modules.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 	ModifiedAt ModifiedAt `json:"modifiedAt,omitempty,omitzero"`
@@ -773,7 +773,7 @@ type CategoryResponse struct {
 // CategoryResponse1 Information about the category to which the product belongs.
 type CategoryResponse1 struct {
 	// Id A reference by ID to the category the product belongs to. Product categories can be retrieved from the separate `/productcategories` endpoint.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name The category that the product belongs to.
 	Name string `json:"name,omitempty,omitzero"`
@@ -827,7 +827,7 @@ type Currency1 struct {
 // Customer Details of a customer used within 24SevenOffice CRM.
 type Customer struct {
 	// Id A unique identifier for the customer within 24SevenOffice CRM.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 }
 
 // Customer1 Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
@@ -845,7 +845,7 @@ type Customer1 struct {
 	Gln string `json:"gln,omitempty,omitzero"`
 
 	// Id A unique identifier for the customer within 24SevenOffice CRM.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// InvoiceEmailAddresses A list of email addresses to which the invoice should be sent.
 	InvoiceEmailAddresses []openapi_types.Email `json:"invoiceEmailAddresses,omitempty,omitzero"`
@@ -1096,7 +1096,7 @@ type DeliveryCustomer struct {
 	CountrySubdivision string `json:"countrySubdivision,omitempty,omitzero"`
 
 	// Id A unique identifier for the customer within 24SevenOffice CRM.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name A human-readable name or label for a customer, making it easily identifiable to users.
 	Name string `json:"name,omitempty,omitzero"`
@@ -1186,7 +1186,7 @@ type Line struct {
 	// Account Details for the account to which the sale is posted.
 	Account struct {
 		// Id A unique identifier for the account within 24SevenOffice accounting module.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 
 		// Name The human-readable name that describes the purpose or nature of the account.
 		Name string `json:"name,omitempty,omitzero"`
@@ -1198,11 +1198,23 @@ type Line struct {
 	// Description A description for the line item.
 	Description string `json:"description,omitempty,omitzero"`
 
+	// Dimensions A list of dimensions associated with the line item, such as department or project.
+	Dimensions []struct {
+		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+		DimensionType int `json:"dimensionType"`
+
+		// Name The display name asociated with the value of the dimension.
+		Name string `json:"name"`
+
+		// Value The value (ie key) for the dimension.
+		Value string `json:"value"`
+	} `json:"dimensions,omitempty,omitzero"`
+
 	// DiscountRate The discount rate applied to the line item, expressed as a whole number. For example, a discount rate of 10% is represented as 10.
 	DiscountRate float32 `json:"discountRate,omitempty,omitzero"`
 
 	// Id The unique identifier for the sales order line item within 24SevenOffice ERP.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Price The price of a single unit of the product in the line item.
 	Price float32 `json:"price,omitempty,omitzero"`
@@ -1216,7 +1228,7 @@ type Line struct {
 	// Tax Details for the tax applied to the line item.
 	Tax struct {
 		// Id A unique identifier for the tax code within 24SevenOffice ERP modules, associated with the line item.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 
 		// Number The tax code reference number visible for users.
 		Number int32 `json:"number,omitempty,omitzero"`
@@ -1237,7 +1249,7 @@ type LineWithoutId struct {
 	// Account Details for the account to which the sale is posted.
 	Account struct {
 		// Id A unique identifier for the account within 24SevenOffice accounting module.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 
 		// Name The human-readable name that describes the purpose or nature of the account.
 		Name string `json:"name,omitempty,omitzero"`
@@ -1248,6 +1260,18 @@ type LineWithoutId struct {
 
 	// Description A description for the line item.
 	Description string `json:"description,omitempty,omitzero"`
+
+	// Dimensions A list of dimensions associated with the line item, such as department or project.
+	Dimensions []struct {
+		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+		DimensionType int `json:"dimensionType"`
+
+		// Name The display name asociated with the value of the dimension.
+		Name string `json:"name"`
+
+		// Value The value (ie key) for the dimension.
+		Value string `json:"value"`
+	} `json:"dimensions,omitempty,omitzero"`
 
 	// DiscountRate The discount rate applied to the line item, expressed as a whole number. For example, a discount rate of 10% is represented as 10.
 	DiscountRate float32 `json:"discountRate,omitempty,omitzero"`
@@ -1264,7 +1288,7 @@ type LineWithoutId struct {
 	// Tax Details for the tax applied to the line item.
 	Tax struct {
 		// Id A unique identifier for the tax code within 24SevenOffice ERP modules, associated with the line item.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 
 		// Number The tax code reference number visible for users.
 		Number int32 `json:"number,omitempty,omitzero"`
@@ -1337,7 +1361,7 @@ type PostalAddress = AddressBasic
 // Product Product details, if the line item type is 'product'. Note that the `product` object for the `/salesorders/{id}/lines` endpoint is not the same as the product that can be retrieved from the `/products` endpoint, even though both share the same ID reference and their schemas are similar. The `product` object in the context of `/salesorders/{id}/lines` contains the product details as they were at the time the sales order line item was created. In contrast, the `/products` endpoint always provides the latest state values for the product properties.
 type Product struct {
 	// Id A unique identifier for the product within 24SevenOffice ERP-modules.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 }
 
 // ProductBase Base fields of products.
@@ -1486,7 +1510,7 @@ type ProductRequestPatchType string
 type ProductRequestPost struct {
 	Category struct {
 		// Id A reference by ID to the category the product belongs to. Product categories can be retrieved from the separate `/productcategories` endpoint.
-		Id float32 `json:"id"`
+		Id int `json:"id"`
 	} `json:"category,omitempty,omitzero"`
 
 	// CostPrice The cost of buying the product from the supplier.
@@ -1581,7 +1605,7 @@ type ProductResponse struct {
 	EanAlternative string `json:"eanAlternative,omitzero"`
 
 	// Id A unique identifier for the product within 24SevenOffice ERP-modules.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// IndirectCost The sum of indirect costs related to the product.
 	IndirectCost float32 `json:"indirectCost,omitzero"`
@@ -1692,8 +1716,20 @@ type SalesOrder struct {
 	// DeliveryCustomer Delivery details for the sales order.
 	DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
+	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
+	Dimensions []struct {
+		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+		DimensionType int `json:"dimensionType"`
+
+		// Name The display name associated with the value of the dimension.
+		Name string `json:"name"`
+
+		// Value The value (ie key) for the dimension.
+		Value string `json:"value"`
+	} `json:"dimensions,omitempty,omitzero"`
+
 	// Id A unique identifier for the sales order within 24SevenOffice ERP.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo string `json:"internalMemo,omitempty,omitzero"`
@@ -1710,7 +1746,7 @@ type SalesOrder struct {
 	// SalesType The sales type for the sales order.
 	SalesType struct {
 		// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 	} `json:"salesType,omitempty,omitzero"`
 
 	// Status Current status of the sales order.
@@ -1731,6 +1767,18 @@ type SalesOrderWithoutCustomer struct {
 	// DeliveryCustomer Delivery details for the sales order.
 	DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
+	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
+	Dimensions []struct {
+		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+		DimensionType int `json:"dimensionType"`
+
+		// Name The display name associated with the value of the dimension.
+		Name string `json:"name"`
+
+		// Value The value (ie key) for the dimension.
+		Value string `json:"value"`
+	} `json:"dimensions,omitempty,omitzero"`
+
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo string `json:"internalMemo,omitempty,omitzero"`
 
@@ -1746,7 +1794,7 @@ type SalesOrderWithoutCustomer struct {
 	// SalesType The sales type for the sales order.
 	SalesType struct {
 		// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 	} `json:"salesType,omitempty,omitzero"`
 
 	// Status Current status of the sales order.
@@ -1761,11 +1809,11 @@ type SalesType struct {
 	// Account The associated account within the 24SevenOffice accounting module for this sales type.
 	Account struct {
 		// Id A unique identifier for the account within 24SevenOffice accounting module.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 	} `json:"account,omitempty,omitzero"`
 
 	// Id The unique identifier of the sales type.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name The name of the sales type.
 	Name string `json:"name,omitempty,omitzero"`
@@ -1792,7 +1840,7 @@ type SupplierResponse struct {
 // Tax Details of a tax used within 24SevenOffice.
 type Tax struct {
 	// Id A unique identifier for the tax within 24SevenOffice.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Rate The tax rate applied to the transaction line.
 	Rate float32 `json:"rate,omitempty,omitzero"`
@@ -1801,13 +1849,13 @@ type Tax struct {
 // TaxResponse A single tax code
 type TaxResponse struct {
 	// Id A unique identifier for the tax code within 24SevenOffice ERP modules.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name The name of the tax code.
 	Name string `json:"name,omitempty,omitzero"`
 
 	// Number The tax code reference number visible for users.
-	Number float32 `json:"number,omitempty,omitzero"`
+	Number int `json:"number,omitempty,omitzero"`
 
 	// Rate The tax rate percentage, expressed as a whole number. For example, a tax rate of 25% is represented as 25.
 	Rate float32 `json:"rate,omitempty,omitzero"`
@@ -1882,19 +1930,19 @@ type Transaction struct {
 // TransactionType Details of a transaction type used within the 24SevenOffice accounting module.
 type TransactionType struct {
 	// Id A unique identifier for the transaction type within 24SevenOffice accounting module.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 }
 
 // TransactionType1 Information about a single transaction type within the 24SevenOffice accounting module.
 type TransactionType1 struct {
 	// Id A unique identifier for the transaction type within 24SevenOffice accounting module.
-	Id float32 `json:"id,omitempty,omitzero"`
+	Id int `json:"id,omitempty,omitzero"`
 
 	// Name A human-readable name of the transaction type.
 	Name string `json:"name,omitempty,omitzero"`
 
 	// Number A unique number representing the transaction type.
-	Number float32 `json:"number,omitempty,omitzero"`
+	Number int `json:"number,omitempty,omitzero"`
 }
 
 // TransactionTypes List of transaction types available within the 24SevenOffice accounting module.
@@ -1992,7 +2040,7 @@ type Voucher struct {
 	Id openapi_types.UUID `json:"id,omitempty,omitzero"`
 
 	// Number The unique number representing the transaction.
-	Number float32 `json:"number,omitempty,omitzero"`
+	Number int `json:"number,omitempty,omitzero"`
 }
 
 // Id defines model for id.
@@ -2210,7 +2258,7 @@ type PostSalesordersJSONBody struct {
 		Gln string `json:"gln,omitempty,omitzero"`
 
 		// Id A unique identifier for the customer within 24SevenOffice CRM.
-		Id float32 `json:"id"`
+		Id int `json:"id"`
 
 		// InvoiceEmailAddresses A list of email addresses to which the invoice should be sent.
 		InvoiceEmailAddresses []openapi_types.Email `json:"invoiceEmailAddresses,omitempty,omitzero"`
@@ -2234,6 +2282,18 @@ type PostSalesordersJSONBody struct {
 	// DeliveryCustomer Delivery details for the sales order.
 	DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
+	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
+	Dimensions []struct {
+		// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+		DimensionType int `json:"dimensionType"`
+
+		// Name The display name associated with the value of the dimension.
+		Name string `json:"name"`
+
+		// Value The value (ie key) for the dimension.
+		Value string `json:"value"`
+	} `json:"dimensions,omitempty,omitzero"`
+
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo string `json:"internalMemo,omitempty,omitzero"`
 
@@ -2249,7 +2309,7 @@ type PostSalesordersJSONBody struct {
 	// SalesType The sales type for the sales order.
 	SalesType struct {
 		// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 	} `json:"salesType,omitempty,omitzero"`
 
 	// Status Current status of the sales order.
@@ -2271,16 +2331,16 @@ type GetTransactionlinesParams struct {
 	TransactionNumber float32 `form:"transactionNumber,omitempty" json:"transactionNumber,omitempty,omitzero"`
 
 	// TransactionTypeId ID representing the type of transaction.
-	TransactionTypeId float32 `form:"transactionTypeId,omitempty" json:"transactionTypeId,omitempty,omitzero"`
+	TransactionTypeId int `form:"transactionTypeId,omitempty" json:"transactionTypeId,omitempty,omitzero"`
 
 	// CustomerId ID of the customer involved in the transaction.
-	CustomerId float32 `form:"customerId,omitempty" json:"customerId,omitempty,omitzero"`
+	CustomerId int `form:"customerId,omitempty" json:"customerId,omitempty,omitzero"`
 
 	// AccountId ID of the account involved in the transaction.
-	AccountId float32 `form:"accountId,omitempty" json:"accountId,omitempty,omitzero"`
+	AccountId int `form:"accountId,omitempty" json:"accountId,omitempty,omitzero"`
 
 	// AccountNumber The number of the account involved in the transaction.
-	AccountNumber float32 `form:"accountNumber,omitempty" json:"accountNumber,omitempty,omitzero"`
+	AccountNumber int `form:"accountNumber,omitempty" json:"accountNumber,omitempty,omitzero"`
 
 	// InvoiceNumber The invoice number associated with the transaction.
 	InvoiceNumber string `form:"invoiceNumber,omitempty" json:"invoiceNumber,omitempty,omitzero"`
@@ -7183,8 +7243,20 @@ type GetSalesordersIdResponse struct {
 		// DeliveryCustomer Delivery details for the sales order.
 		DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
+		// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
+		Dimensions []struct {
+			// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+			DimensionType int `json:"dimensionType"`
+
+			// Name The display name associated with the value of the dimension.
+			Name string `json:"name"`
+
+			// Value The value (ie key) for the dimension.
+			Value string `json:"value"`
+		} `json:"dimensions,omitempty,omitzero"`
+
 		// Id A unique identifier for the sales order within 24SevenOffice ERP.
-		Id float32 `json:"id,omitempty,omitzero"`
+		Id int `json:"id,omitempty,omitzero"`
 
 		// InternalMemo An internal memo for the sales order.
 		InternalMemo string `json:"internalMemo,omitempty,omitzero"`
@@ -7201,7 +7273,7 @@ type GetSalesordersIdResponse struct {
 		// SalesType The sales type for the sales order.
 		SalesType struct {
 			// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-			Id float32 `json:"id,omitempty,omitzero"`
+			Id int `json:"id,omitempty,omitzero"`
 		} `json:"salesType,omitempty,omitzero"`
 
 		// Status Current status of the sales order.
@@ -9096,8 +9168,20 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 			// DeliveryCustomer Delivery details for the sales order.
 			DeliveryCustomer DeliveryCustomer `json:"deliveryCustomer,omitempty,omitzero"`
 
+			// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
+			Dimensions []struct {
+				// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
+				DimensionType int `json:"dimensionType"`
+
+				// Name The display name associated with the value of the dimension.
+				Name string `json:"name"`
+
+				// Value The value (ie key) for the dimension.
+				Value string `json:"value"`
+			} `json:"dimensions,omitempty,omitzero"`
+
 			// Id A unique identifier for the sales order within 24SevenOffice ERP.
-			Id float32 `json:"id,omitempty,omitzero"`
+			Id int `json:"id,omitempty,omitzero"`
 
 			// InternalMemo An internal memo for the sales order.
 			InternalMemo string `json:"internalMemo,omitempty,omitzero"`
@@ -9114,7 +9198,7 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 			// SalesType The sales type for the sales order.
 			SalesType struct {
 				// Id The unique identifier for the sales type. A negative value stands for a system-defined ID.
-				Id float32 `json:"id,omitempty,omitzero"`
+				Id int `json:"id,omitempty,omitzero"`
 			} `json:"salesType,omitempty,omitzero"`
 
 			// Status Current status of the sales order.
