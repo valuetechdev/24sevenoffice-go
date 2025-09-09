@@ -27,6 +27,12 @@ actions:
       type: string
       format: uuid
 
+  - target: "$.components.schemas.Transaction.properties"
+    description: Use default Currency
+    update:
+      currency:
+        $ref: "#/components/schemas/Currency"
+
   - target: "$.components.schemas.Voucher.properties.id"
     description: Fix Voucher id field - change from number to string since it's a GUID
     update:

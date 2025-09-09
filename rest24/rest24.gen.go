@@ -631,15 +631,6 @@ type Currency struct {
 	Rate float32 `json:"rate,omitempty,omitzero"`
 }
 
-// Currency1 Details of the currency used within 24SevenOffice.
-type Currency1 struct {
-	// Code The currency code used in the transaction line.
-	Code string `json:"code,omitempty,omitzero"`
-
-	// Rate The exchange rate for the currency.
-	Rate float32 `json:"rate"`
-}
-
 // Customer Details of a customer used within 24SevenOffice CRM.
 type Customer struct {
 	// Id A unique identifier for the customer within 24SevenOffice CRM.
@@ -1533,9 +1524,7 @@ type Transaction struct {
 
 	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
 	CreatedAt time.Time `json:"createdAt,omitempty,omitzero"`
-
-	// Currency Details of the currency used within 24SevenOffice.
-	Currency Currency1 `json:"currency,omitempty,omitzero"`
+	Currency  Currency  `json:"currency,omitempty,omitzero"`
 
 	// Customer Details of a customer used within 24SevenOffice CRM.
 	Customer Customer `json:"customer,omitempty,omitzero"`
