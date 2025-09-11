@@ -46,7 +46,7 @@ func TestServices(t *testing.T) {
 
 	c := New(credentials)
 
-	changedAfter := soap.XSDDateTime(soap.CreateXsdDateTime(time.Now(), true))
+	changedAfter := soap.CreateXsdDateTime(time.Now(), true)
 	_, err := c.Account.GetAccountList(&account24.GetAccountList{})
 	require.NoError(err, "GetAccountList")
 	_, err = c.Auth.GetIdentities(&auth24.GetIdentities{})
@@ -68,12 +68,12 @@ func TestServices(t *testing.T) {
 	})
 	require.NoError(err, "GetPersons")
 
-	var tmp person24.TriState = person24.TriStateNone
+	state := person24.TriStateNone
 	_, err = c.Person.GetPersons(&person24.GetPersons{
 		PersonSearch: &person24.PersonSearchParameters{
 			ChangedAfter: changedAfter,
 			Email:        "lol",
-			IsEmployee:   &tmp,
+			IsEmployee:   &state,
 		},
 	})
 	require.NoError(err, "GetPersons")
