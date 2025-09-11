@@ -1,4 +1,4 @@
-package soap24
+package tfso
 
 import (
 	"encoding/json"
@@ -18,25 +18,24 @@ type Status struct {
 func GetStatus() (*Status, error) {
 	req, err := http.NewRequest("GET", "https://status.24sevenoffice.com/", http.NoBody)
 	if err != nil {
-		return nil, fmt.Errorf("so24Check() NewRequest failed: %w", err)
+		return nil, fmt.Errorf("tfso: failed to create new request: %w", err)
 	}
 	req.Header.Set("accept", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("so24Check() request failed: %w", err)
+		return nil, fmt.Errorf("tfso: failed to do request: %w", err)
 	}
 
 	defer res.Body.Close()
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return nil, fmt.Errorf("so24Check() failed to read body: %w", err)
+		return nil, fmt.Errorf("tfso: failed to read body: %w", err)
 	}
 
 	var status Status
-	err = json.Unmarshal(body, &status)
-	if err != nil {
-		return nil, fmt.Errorf("so24Check() failed to unmarshal body: %w", err)
+	if err = json.Unmarshal(body, &status); err != nil {
+		return nil, fmt.Errorf("tfso: failed to unmarshal body: %w", err)
 	}
 
 	return &status, nil
