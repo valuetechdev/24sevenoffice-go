@@ -5,17 +5,21 @@ import (
 	"time"
 )
 
+// removeQuotes removes surrounding quotes from JSON data
+func removeQuotes(data []byte) string {
+	str := string(data)
+	if len(str) >= 2 && str[0] == '"' && str[len(str)-1] == '"' {
+		str = str[1 : len(str)-1]
+	}
+	return str
+}
+
 // StringInt represents an integer value that comes as a string from the API
 type StringInt string
 
 // UnmarshalJSON implements json.Unmarshaler interface
 func (s *StringInt) UnmarshalJSON(data []byte) error {
-	// Remove quotes if present
-	str := string(data)
-	if len(str) >= 2 && str[0] == '"' && str[len(str)-1] == '"' {
-		str = str[1 : len(str)-1]
-	}
-	*s = StringInt(str)
+	*s = StringInt(removeQuotes(data))
 	return nil
 }
 
@@ -49,12 +53,7 @@ type StringFloat string
 
 // UnmarshalJSON implements json.Unmarshaler interface
 func (s *StringFloat) UnmarshalJSON(data []byte) error {
-	// Remove quotes if present
-	str := string(data)
-	if len(str) >= 2 && str[0] == '"' && str[len(str)-1] == '"' {
-		str = str[1 : len(str)-1]
-	}
-	*s = StringFloat(str)
+	*s = StringFloat(removeQuotes(data))
 	return nil
 }
 
@@ -88,12 +87,7 @@ type StringBool string
 
 // UnmarshalJSON implements json.Unmarshaler interface
 func (s *StringBool) UnmarshalJSON(data []byte) error {
-	// Remove quotes if present
-	str := string(data)
-	if len(str) >= 2 && str[0] == '"' && str[len(str)-1] == '"' {
-		str = str[1 : len(str)-1]
-	}
-	*s = StringBool(str)
+	*s = StringBool(removeQuotes(data))
 	return nil
 }
 
@@ -126,12 +120,7 @@ type StringDate string
 
 // UnmarshalJSON implements json.Unmarshaler interface
 func (s *StringDate) UnmarshalJSON(data []byte) error {
-	// Remove quotes if present
-	str := string(data)
-	if len(str) >= 2 && str[0] == '"' && str[len(str)-1] == '"' {
-		str = str[1 : len(str)-1]
-	}
-	*s = StringDate(str)
+	*s = StringDate(removeQuotes(data))
 	return nil
 }
 
