@@ -6,5 +6,7 @@ generate:
   client: true
 output-options:
   client-type-name: WriteClient
-  nullable-type: true
-
+  prefer-skip-optional-pointer: true
+  prefer-skip-optional-pointer-with-omitzero: true
+  overlay:
+    path: overlay.yaml
