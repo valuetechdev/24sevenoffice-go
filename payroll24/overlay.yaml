@@ -133,6 +133,7 @@ actions:
               type: "string"
               description: "Employment start date"
               format: "date"
+              x-go-type: StringDate
             telefon:
               type: "string"
               description: "Phone number"
@@ -260,14 +261,17 @@ actions:
               type: "string"
               description: "Start date"
               format: "date"
+              x-go-type: StringDate
             endDate:
               type: "string"
               description: "End date"
               format: "date"
+              x-go-type: StringDate
             paymentDate:
               type: "string"
               description: "Payment date"
               format: "date"
+              x-go-type: StringDate
             name:
               type: "string"
               description: "Name"
@@ -275,6 +279,7 @@ actions:
               type: "string"
               description: "Created date"
               format: "date"
+              x-go-type: StringDate
             locked:
               type: "string"
               description: "Locked status"
@@ -285,6 +290,7 @@ actions:
               type: "string"
               description: "Limit date"
               format: "date"
+              x-go-type: StringDate
             payrollGroup:
               type: "string"
               description: "Payroll group"
@@ -308,10 +314,12 @@ actions:
               type: "string"
               description: "Start date"
               format: "date"
+              x-go-type: StringDate
             endDate:
               type: "string"
               description: "End date"
               format: "date"
+              x-go-type: StringDate
 
         # Payline DTO for detailed payslips
         PaylineDTO:
@@ -362,6 +370,7 @@ actions:
               type: "string"
               description: "Payment date"
               format: "date"
+              x-go-type: StringDate
             paylines:
               type: "array"
               items:
@@ -409,10 +418,12 @@ actions:
               type: "string"
               description: "Start date"
               format: "date"
+              x-go-type: StringDate
             endDate:
               type: "string"
               description: "End date"
               format: "date"
+              x-go-type: StringDate
             comment:
               type: "string"
               description: "Comment"
@@ -420,6 +431,7 @@ actions:
               type: "string"
               description: "Request date"
               format: "date"
+              x-go-type: StringDate
             requestMotivation:
               type: "string"
               description: "Request motivation"
@@ -452,10 +464,12 @@ actions:
               type: "string"
               description: "Parental leave start date"
               format: "date"
+              x-go-type: StringDate
             lastChanged:
               type: "string"
               description: "Last changed date"
               format: "date"
+              x-go-type: StringDate
             externalId:
               type: "string"
               description: "External ID"
@@ -516,6 +530,7 @@ actions:
               type: "string"
               description: "Birth date"
               format: "date"
+              x-go-type: StringDate
 
         # Transaction DTO
         TransactionDTO:
@@ -545,10 +560,12 @@ actions:
               type: "string"
               description: "Date from"
               format: "date"
+              x-go-type: StringDate
             dateto:
               type: "string"
               description: "Date to"
               format: "date"
+              x-go-type: StringDate
             counts:
               type: "string"
               description: "Counts"

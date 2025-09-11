@@ -2,6 +2,7 @@ package payroll24
 
 import (
 	"strconv"
+	"time"
 )
 
 // StringInt represents an integer value that comes as a string from the API
@@ -117,5 +118,44 @@ func (s StringBool) BoolPtr() *bool {
 
 // String implements the Stringer interface
 func (s StringBool) String() string {
+	return string(s)
+}
+
+// StringDate represents a date value that comes as a string from the API
+type StringDate string
+
+// UnmarshalJSON implements json.Unmarshaler interface
+func (s *StringDate) UnmarshalJSON(data []byte) error {
+	// Remove quotes if present
+	str := string(data)
+	if len(str) >= 2 && str[0] == '"' && str[len(str)-1] == '"' {
+		str = str[1 : len(str)-1]
+	}
+	*s = StringDate(str)
+	return nil
+}
+
+// MarshalJSON implements json.Marshaler interface
+func (s StringDate) MarshalJSON() ([]byte, error) {
+	return []byte(`"` + string(s) + `"`), nil
+}
+
+// Time returns the time.Time value, assumes YYYY-MM-DD format
+func (s StringDate) Time() time.Time {
+	t, _ := time.Parse("2006-01-02", string(s))
+	return t
+}
+
+// TimePtr returns a pointer to the time.Time value, nil if empty
+func (s StringDate) TimePtr() *time.Time {
+	if s == "" {
+		return nil
+	}
+	t := s.Time()
+	return &t
+}
+
+// String implements the Stringer interface
+func (s StringDate) String() string {
 	return string(s)
 }
