@@ -28,3 +28,7 @@ check:
 	go vet ./...
 	go tool -modfile=go.tool.mod golangci-lint run ./...
 
+# Bumps patch version
+.PHONY: bump
+bump:
+	go tool -modfile=go.tool.mod git-bump 
