@@ -7,6 +7,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/oapi-codegen/runtime/types"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/oauth2"
 )
@@ -56,4 +57,26 @@ func TestClientTokenManagement(t *testing.T) {
 	}
 	c.SetToken(testToken)
 	require.Equal(testToken.AccessToken, c.GetToken().AccessToken, "access token should match")
+}
+
+func TestTransactionLines(t *testing.T) {
+	require := require.New(t)
+
+	c := New(&Credentials{
+		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
+		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
+		OrganizationId: orgId,
+	})
+	require.NoError(c.Authenticate(), "client should authenticate")
+
+	params := &GetTransactionlinesParams{
+		DateFrom: types.Date{Time: time.Date(2025, time.January, 1, 0, 0, 0, 0, time.UTC)},
+		DateTo:   types.Date{Time: time.Date(2025, time.September, 1, 0, 0, 0, 0, time.UTC)},
+	}
+	res, err := c.GetTransactionlinesWithResponse(context.Background(), params)
+	require.NoError(err, "GetTransactionlines should not error")
+	require.NotNil(res, "GetTransactionlines should not be nil")
+	require.Equal(http.StatusOK, res.StatusCode(), "GetTransactionlines status should be OK")
+	require.NotNil(res.JSON200, "GetTransactionlines JSON200 should not be nil")
+	require.NotEmpty(*res.JSON200, "GetTransactionlines JSON200 should not be empty")
 }
