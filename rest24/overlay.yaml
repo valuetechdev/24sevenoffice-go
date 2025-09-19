@@ -335,6 +335,43 @@ actions:
     update:
       $ref: "#/components/schemas/InvoiceTransactionDto"
 
+  - target: "$.components.schemas.Invoice1"
+    description: Use better name
+    update:
+      x-go-name: "InvoiceWithTransaction"
+
+  - target: "$.components.schemas.Customer"
+    description: Use better name
+    update:
+      x-go-name: "CustomerIdOnly"
+  - target: "$.components.schemas.Customer1"
+    description: Use better name
+    update:
+      x-go-name: "Customer"
+
+  - target: "$.components.schemas.TransactionType"
+    description: Use better name
+    update:
+      x-go-name: "TransactionTypeIdOnly"
+  - target: "$.components.schemas.TransactionType1"
+    description: Use better name
+    update:
+      x-go-name: "TransactionType"
+
+  - target: "$.components.schemas.CategoryResponse1"
+    description: Use better name
+    update:
+      x-go-name: "CategoryResponseIdAndName"
+
+  - target: "$.components.schemas.OrganizationModel"
+    description: Use better name
+    update:
+      x-go-name: "OrganizationModelShortend"
+  - target: "$.components.schemas.OrganizationModel1"
+    description: Use better name
+    update:
+      x-go-name: "OrganizationModel"
+
   - target: "$.components.schemas"
     description: Add BankTransactionAmountCurrencyResponse
     update:
