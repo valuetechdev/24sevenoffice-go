@@ -586,8 +586,8 @@ type CategoryResponse struct {
 	ParentId *float32 `json:"parentId,omitempty"`
 }
 
-// CategoryResponse1 Information about the category to which the product belongs.
-type CategoryResponse1 struct {
+// CategoryResponseIdAndName Information about the category to which the product belongs.
+type CategoryResponseIdAndName struct {
 	// Id A reference by ID to the category the product belongs to. Product categories can be retrieved from the separate `/productcategories` endpoint.
 	Id *int `json:"id,omitempty"`
 
@@ -631,14 +631,14 @@ type Currency struct {
 	Rate *float32 `json:"rate,omitempty"`
 }
 
-// Customer Details of a customer used within 24SevenOffice CRM.
-type Customer struct {
+// CustomerIdOnly Details of a customer used within 24SevenOffice CRM.
+type CustomerIdOnly struct {
 	// Id A unique identifier for the customer within 24SevenOffice CRM.
 	Id *int `json:"id,omitempty"`
 }
 
-// Customer1 Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
-type Customer1 struct {
+// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
+type Customer struct {
 	// City The city for the address.
 	City *string `json:"city,omitempty"`
 
@@ -900,8 +900,8 @@ type Invoice struct {
 	RemittanceReference *string `json:"remittanceReference,omitempty"`
 }
 
-// Invoice1 Details of an invoice associated with a sales order.
-type Invoice1 struct {
+// InvoiceWithTransaction Details of an invoice associated with a sales order.
+type InvoiceWithTransaction struct {
 	// Date The date when the invoice was issued.
 	Date *openapi_types.Date `json:"date,omitempty"`
 
@@ -1026,8 +1026,8 @@ type LineWithoutIdTaxDto struct {
 // ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 type ModifiedAt = string
 
-// OrganizationModel defines model for OrganizationModel.
-type OrganizationModel struct {
+// OrganizationModelShortend defines model for OrganizationModel.
+type OrganizationModelShortend struct {
 	// Email The email address of the organization.
 	Email *string `json:"email,omitempty"`
 
@@ -1038,8 +1038,8 @@ type OrganizationModel struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// OrganizationModel1 defines model for OrganizationModel1.
-type OrganizationModel1 struct {
+// OrganizationModel defines model for OrganizationModel1.
+type OrganizationModel struct {
 	// Address The address of the organization.
 	Address *AddressModel `json:"address,omitempty"`
 
@@ -1236,8 +1236,8 @@ type ProductRequestPost struct {
 
 // ProductResponse defines model for ProductResponse.
 type ProductResponse struct {
-	// Category Information about the category to which the product belongs.
-	Category *CategoryResponse1 `json:"category,omitempty"`
+	// CategoryResponseIdAndName Information about the category to which the product belongs.
+	CategoryResponseIdAndName *CategoryResponseIdAndName `json:"category,omitempty"`
 
 	// CostPrice The cost of buying the product from the supplier.
 	CostPrice *float32 `json:"costPrice"`
@@ -1330,7 +1330,7 @@ type SalesOrder struct {
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 
 	// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
-	Customer *Customer1 `json:"customer,omitempty"`
+	Customer *Customer `json:"customer,omitempty"`
 
 	// Date The date when the sales order was issued.
 	Date *openapi_types.Date `json:"date,omitempty"`
@@ -1347,8 +1347,8 @@ type SalesOrder struct {
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo *string `json:"internalMemo,omitempty"`
 
-	// Invoice Details of an invoice associated with a sales order.
-	Invoice *Invoice1 `json:"invoice,omitempty"`
+	// InvoiceWithTransaction Details of an invoice associated with a sales order.
+	InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
 
 	// Memo A memo or comments for the sales order.
 	Memo *string `json:"memo,omitempty"`
@@ -1383,8 +1383,8 @@ type SalesOrderWithoutCustomer struct {
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo *string `json:"internalMemo,omitempty"`
 
-	// Invoice Details of an invoice associated with a sales order.
-	Invoice *Invoice1 `json:"invoice,omitempty"`
+	// InvoiceWithTransaction Details of an invoice associated with a sales order.
+	InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
 
 	// Memo A memo or comments for the sales order.
 	Memo *string `json:"memo,omitempty"`
@@ -1526,8 +1526,8 @@ type Transaction struct {
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	Currency  *Currency  `json:"currency,omitempty"`
 
-	// Customer Details of a customer used within 24SevenOffice CRM.
-	Customer *Customer `json:"customer,omitempty"`
+	// CustomerIdOnly Details of a customer used within 24SevenOffice CRM.
+	CustomerIdOnly *CustomerIdOnly `json:"customer,omitempty"`
 
 	// Date The date when the transaction line was posted.
 	Date openapi_types.Date `json:"date"`
@@ -1549,18 +1549,18 @@ type Transaction struct {
 	// Note: Many other Norway-based accounting systems refer to transactions as "vouchers".
 	Transaction *Voucher `json:"transaction,omitempty"`
 
-	// TransactionType Details of a transaction type used within the 24SevenOffice accounting module.
-	TransactionType *TransactionType `json:"transactionType,omitempty"`
+	// TransactionTypeIdOnly Details of a transaction type used within the 24SevenOffice accounting module.
+	TransactionTypeIdOnly *TransactionTypeIdOnly `json:"transactionType,omitempty"`
 }
 
-// TransactionType Details of a transaction type used within the 24SevenOffice accounting module.
-type TransactionType struct {
+// TransactionTypeIdOnly Details of a transaction type used within the 24SevenOffice accounting module.
+type TransactionTypeIdOnly struct {
 	// Id A unique identifier for the transaction type within 24SevenOffice accounting module.
 	Id *int `json:"id,omitempty"`
 }
 
-// TransactionType1 Information about a single transaction type within the 24SevenOffice accounting module.
-type TransactionType1 struct {
+// TransactionType Information about a single transaction type within the 24SevenOffice accounting module.
+type TransactionType struct {
 	// Id A unique identifier for the transaction type within 24SevenOffice accounting module.
 	Id *int `json:"id,omitempty"`
 
@@ -1572,7 +1572,7 @@ type TransactionType1 struct {
 }
 
 // TransactionTypes List of transaction types available within the 24SevenOffice accounting module.
-type TransactionTypes = []TransactionType1
+type TransactionTypes = []TransactionType
 
 // Type defines model for Type.
 type Type string
@@ -1896,8 +1896,8 @@ type PostSalesordersJSONBody struct {
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo *string `json:"internalMemo,omitempty"`
 
-	// Invoice Details of an invoice associated with a sales order.
-	Invoice *Invoice1 `json:"invoice,omitempty"`
+	// InvoiceWithTransaction Details of an invoice associated with a sales order.
+	InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
 
 	// Memo A memo or comments for the sales order.
 	Memo *string `json:"memo,omitempty"`
@@ -6666,7 +6666,7 @@ func (r GetLicensesResponse) StatusCode() int {
 type GetMeLicensesIdOrganizationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OrganizationModel
+	JSON200      *OrganizationModelShortend
 }
 
 // Status returns HTTPResponse.Status
@@ -6688,7 +6688,7 @@ func (r GetMeLicensesIdOrganizationResponse) StatusCode() int {
 type GetOrganizationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OrganizationModel1
+	JSON200      *OrganizationModel
 }
 
 // Status returns HTTPResponse.Status
@@ -7055,7 +7055,7 @@ type GetSalesordersIdResponse struct {
 		CreatedAt *time.Time `json:"createdAt,omitempty"`
 
 		// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
-		Customer *Customer1 `json:"customer,omitempty"`
+		Customer *Customer `json:"customer,omitempty"`
 
 		// Date The date when the sales order was issued.
 		Date *openapi_types.Date `json:"date,omitempty"`
@@ -7072,8 +7072,8 @@ type GetSalesordersIdResponse struct {
 		// InternalMemo An internal memo for the sales order.
 		InternalMemo *string `json:"internalMemo,omitempty"`
 
-		// Invoice Details of an invoice associated with a sales order.
-		Invoice *Invoice1 `json:"invoice,omitempty"`
+		// InvoiceWithTransaction Details of an invoice associated with a sales order.
+		InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
 
 		// Memo A memo or comments for the sales order.
 		Memo *string `json:"memo,omitempty"`
@@ -8510,7 +8510,7 @@ func ParseGetMeLicensesIdOrganizationResponse(rsp *http.Response) (*GetMeLicense
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OrganizationModel
+		var dest OrganizationModelShortend
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8536,7 +8536,7 @@ func ParseGetOrganizationResponse(rsp *http.Response) (*GetOrganizationResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OrganizationModel1
+		var dest OrganizationModel
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8967,7 +8967,7 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 			CreatedAt *time.Time `json:"createdAt,omitempty"`
 
 			// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
-			Customer *Customer1 `json:"customer,omitempty"`
+			Customer *Customer `json:"customer,omitempty"`
 
 			// Date The date when the sales order was issued.
 			Date *openapi_types.Date `json:"date,omitempty"`
@@ -8984,8 +8984,8 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 			// InternalMemo An internal memo for the sales order.
 			InternalMemo *string `json:"internalMemo,omitempty"`
 
-			// Invoice Details of an invoice associated with a sales order.
-			Invoice *Invoice1 `json:"invoice,omitempty"`
+			// InvoiceWithTransaction Details of an invoice associated with a sales order.
+			InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
 
 			// Memo A memo or comments for the sales order.
 			Memo *string `json:"memo,omitempty"`
