@@ -862,11 +862,11 @@ type EmailsDto struct {
 
 // FirstnameLastnameDto Email addresses for the customer.
 type FirstnameLastnameDto struct {
-	// Billing The billing email address for the customer.
-	Billing *string `json:"billing"`
+	// FirstName The first name of a person if the customer is a person.
+	FirstName *string `json:"firstName"`
 
-	// Contact The email address for contacting the customer.
-	Contact *string `json:"contact"`
+	// LastName The last name of a person if the customer is a person.
+	LastName *string `json:"lastName"`
 }
 
 // Fiscal defines model for Fiscal.
