@@ -728,8 +728,7 @@ type CustomerPostRequest0 struct {
 	IsCompany CustomerPostRequest0IsCompany `json:"isCompany"`
 
 	// Name A human-readable name or label for a customer, making it easily identifiable to users.
-	Name   string  `json:"name"`
-	Person *string `json:"person"`
+	Name string `json:"name"`
 }
 
 // CustomerPostRequest0IsCompany A flag variable indicating whether the customer is a company (true) or a person (false).
@@ -738,9 +737,7 @@ type CustomerPostRequest0IsCompany bool
 // CustomerPostRequest1 A new customer is a private person.
 type CustomerPostRequest1 struct {
 	// IsCompany A flag variable indicating whether the customer is a company (true) or a person (false).
-	IsCompany          CustomerPostRequest1IsCompany `json:"isCompany"`
-	Name               *string                       `json:"name"`
-	OrganizationNumber *string                       `json:"organizationNumber"`
+	IsCompany CustomerPostRequest1IsCompany `json:"isCompany"`
 
 	// Person Email addresses for the customer.
 	Person FirstnameLastnameDto `json:"person"`

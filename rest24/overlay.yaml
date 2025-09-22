@@ -279,6 +279,18 @@ actions:
     update:
       $ref: "#/components/schemas/FirstnameLastnameDto"
 
+  - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[0].properties.person"
+    description: Remove person from company customer
+    remove: true
+
+  - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[1].properties.organizationNumber"
+    description: Remove organizationNumber from private customer
+    remove: true
+
+  - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[1].properties.name"
+    description: Remove name from private customer
+    remove: true
+
   - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[1].properties.person"
     description: Use FirstnameLastnameDto
     update:
