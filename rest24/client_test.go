@@ -2,7 +2,6 @@ package rest24
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"os"
 	"testing"
@@ -237,9 +236,6 @@ func TestCreateProduct(t *testing.T) {
 		// Units:    &UnitsRequest{Id: u.R(float32(4))},
 		// Supplier: &SupplierRequest{Id: u.R(float32(u.SafeDeref(resCustomer.JSON200.Id)))},
 	}
-
-	fmt.Println(u.DebugJSON(pPostRequest))
-
 	resProduct, err := c.CreateProductWithResponse(t.Context(), pPostRequest)
 	require.NoError(err)
 	require.NotNil(resProduct.JSON201, "no product was created")
