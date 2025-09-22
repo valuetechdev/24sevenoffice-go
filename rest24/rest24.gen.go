@@ -143,37 +143,37 @@ type Account struct {
 // AddressBasic defines model for AddressBasic.
 type AddressBasic struct {
 	// CountrySubdivision The geographical subdivision for the address, like a county ("fylke" in Norway) or a state.
-	CountrySubdivision *string `json:"countrySubdivision"`
+	CountrySubdivision *string `json:"countrySubdivision,omitempty"`
 
 	// PostalArea The postal area for the address.
-	PostalArea *string `json:"postalArea"`
+	PostalArea *string `json:"postalArea,omitempty"`
 
 	// PostalCode The postal code for the address.
-	PostalCode *string `json:"postalCode"`
+	PostalCode *string `json:"postalCode,omitempty"`
 
 	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-	Street *string `json:"street"`
+	Street *string `json:"street,omitempty"`
 }
 
 // AddressModel The address of the organization.
 type AddressModel struct {
 	// City The city for the address.
-	City *string `json:"city"`
+	City *string `json:"city,omitempty"`
 
 	// CountryCode The two-letter country code for the address, as in ISO 3166-1 alpha-2 standard.
-	CountryCode *string `json:"countryCode"`
+	CountryCode *string `json:"countryCode,omitempty"`
 
 	// CountrySubdivision The geographical subdivision for the address, like a county ("fylke" in Norway) or a state.
-	CountrySubdivision *string `json:"countrySubdivision"`
+	CountrySubdivision *string `json:"countrySubdivision,omitempty"`
 
 	// PostalArea The postal area for the address.
-	PostalArea *string `json:"postalArea"`
+	PostalArea *string `json:"postalArea,omitempty"`
 
 	// PostalCode The postal code for the address.
-	PostalCode *string `json:"postalCode"`
+	PostalCode *string `json:"postalCode,omitempty"`
 
 	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-	Street *string `json:"street"`
+	Street *string `json:"street,omitempty"`
 }
 
 // AddressesDto Addresses for the customer.
@@ -317,7 +317,7 @@ type BankAccountBase struct {
 // BankAccountExternal The originating bank account for transactions. This is automatically set for outbound transactions i.e. the property is always returned in the API responses for outbound transactions.
 type BankAccountExternal struct {
 	// Number Number of the originating bank account for outbound transactions.
-	Number *string `json:"number"`
+	Number *string `json:"number,omitempty"`
 
 	// Type Type of the originating bank account for outbound transactions.
 	Type *BankAccountTypeEnum `json:"type"`
@@ -398,13 +398,13 @@ type BankTransactionAmountResponse struct {
 	Currency BankTransactionAmountCurrencyResponse `json:"currency"`
 
 	// Value The amount in the currency specified. Must be a positive number.
-	Value float32 `json:"value"`
+	Value float32 `json:"value,omitempty"`
 }
 
 // BankTransactionBankAccountResponse Details of the bank account involved in the transaction.
 type BankTransactionBankAccountResponse struct {
 	// Id A unique identifier for the bank account within 24SevenOffice.
-	Id string `json:"id"`
+	Id string `json:"id,omitempty"`
 }
 
 // BankTransactionBase Base fields of bank transactions.
@@ -451,13 +451,13 @@ type BankTransactionBase struct {
 // * The subfamily code is used to group the transaction codes within a family.
 type BankTransactionCodesResponse struct {
 	// DomainCode Domain code of the bank transaction.
-	DomainCode *string `json:"domainCode"`
+	DomainCode *string `json:"domainCode,omitempty"`
 
 	// FamilyCode Family code of the bank transaction.
-	FamilyCode *string `json:"familyCode"`
+	FamilyCode *string `json:"familyCode,omitempty"`
 
 	// SubFamilyCode Subfamily code of the bank transaction.
-	SubFamilyCode *string `json:"subFamilyCode"`
+	SubFamilyCode *string `json:"subFamilyCode,omitempty"`
 }
 
 // BankTransactionRequestPost Base fields of bank transactions.
@@ -526,19 +526,19 @@ type BillingAddress struct {
 	CountryCode *string `json:"countryCode"`
 
 	// CountrySubdivision The geographical subdivision for the address, like a county ("fylke" in Norway) or a state.
-	CountrySubdivision *string `json:"countrySubdivision"`
+	CountrySubdivision *string `json:"countrySubdivision,omitempty"`
 
 	// Name The name for the address.
 	Name *string `json:"name"`
 
 	// PostalArea The postal area for the address.
-	PostalArea *string `json:"postalArea"`
+	PostalArea *string `json:"postalArea,omitempty"`
 
 	// PostalCode The postal code for the address.
-	PostalCode *string `json:"postalCode"`
+	PostalCode *string `json:"postalCode,omitempty"`
 
 	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-	Street *string `json:"street"`
+	Street *string `json:"street,omitempty"`
 }
 
 // Categories List of product categories
@@ -598,16 +598,16 @@ type CategoryResponseIdAndName struct {
 // ClientContactModel Contact information for the organization.
 type ClientContactModel struct {
 	// Email The email address for contacting the organization's contact person.
-	Email *string `json:"email"`
+	Email *string `json:"email,omitempty"`
 
 	// Language The contact person's language setting.
-	Language *string `json:"language"`
+	Language *string `json:"language,omitempty"`
 
 	// Name The name of the organization's contact person.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// Phone The phone number for contacting the organization's contact person.
-	Phone *string `json:"phone"`
+	Phone *string `json:"phone,omitempty"`
 }
 
 // ClientStateType The state of the organization.
@@ -682,16 +682,16 @@ type CustomerPatchRequest struct {
 	IsSupplier *bool `json:"isSupplier,omitempty"`
 
 	// Name A human-readable name or label for a customer, making it easily identifiable to users.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
-	OrganizationNumber *string `json:"organizationNumber"`
+	OrganizationNumber *string `json:"organizationNumber,omitempty"`
 
 	// Person Email addresses for the customer.
 	Person *FirstnameLastnameDto `json:"person,omitempty"`
 
 	// Phone A phone number for contacting the customer.
-	Phone *string `json:"phone"`
+	Phone *string `json:"phone,omitempty"`
 }
 
 // CustomerPostRequest defines model for CustomerPostRequest.
@@ -709,16 +709,16 @@ type CustomerPostRequest struct {
 	IsSupplier *bool `json:"isSupplier,omitempty"`
 
 	// Name A human-readable name or label for a customer, making it easily identifiable to users.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
-	OrganizationNumber *string `json:"organizationNumber"`
+	OrganizationNumber *string `json:"organizationNumber,omitempty"`
 
 	// Person Email addresses for the customer.
 	Person *FirstnameLastnameDto `json:"person,omitempty"`
 
 	// Phone A phone number for contacting the customer.
-	Phone *string `json:"phone"`
+	Phone *string `json:"phone,omitempty"`
 	union json.RawMessage
 }
 
@@ -770,16 +770,16 @@ type CustomerProperties struct {
 	ModifiedAt *ModifiedAt `json:"modifiedAt,omitempty"`
 
 	// Name A human-readable name or label for a customer, making it easily identifiable to users.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
-	OrganizationNumber *string `json:"organizationNumber"`
+	OrganizationNumber *string `json:"organizationNumber,omitempty"`
 
 	// Person Email addresses for the customer.
 	Person *FirstnameLastnameDto `json:"person,omitempty"`
 
 	// Phone A phone number for contacting the customer.
-	Phone *string `json:"phone"`
+	Phone *string `json:"phone,omitempty"`
 }
 
 // CustomerResponse defines model for CustomerResponse.
@@ -797,19 +797,19 @@ type DeliveryAddress struct {
 	CountryCode *string `json:"countryCode"`
 
 	// CountrySubdivision The geographical subdivision for the address, like a county ("fylke" in Norway) or a state.
-	CountrySubdivision *string `json:"countrySubdivision"`
+	CountrySubdivision *string `json:"countrySubdivision,omitempty"`
 
 	// Name The name for the address.
 	Name *string `json:"name"`
 
 	// PostalArea The postal area for the address.
-	PostalArea *string `json:"postalArea"`
+	PostalArea *string `json:"postalArea,omitempty"`
 
 	// PostalCode The postal code for the address.
-	PostalCode *string `json:"postalCode"`
+	PostalCode *string `json:"postalCode,omitempty"`
 
 	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-	Street *string `json:"street"`
+	Street *string `json:"street,omitempty"`
 }
 
 // DeliveryCustomer Delivery details for the sales order.
@@ -851,19 +851,19 @@ type DimensionDto struct {
 // EmailsDto Email addresses for the customer.
 type EmailsDto struct {
 	// Billing The billing email address for the customer.
-	Billing *string `json:"billing"`
+	Billing *string `json:"billing,omitempty"`
 
 	// Contact The email address for contacting the customer.
-	Contact *string `json:"contact"`
+	Contact *string `json:"contact,omitempty"`
 }
 
 // FirstnameLastnameDto Email addresses for the customer.
 type FirstnameLastnameDto struct {
 	// FirstName The first name of a person if the customer is a person.
-	FirstName *string `json:"firstName"`
+	FirstName *string `json:"firstName,omitempty"`
 
 	// LastName The last name of a person if the customer is a person.
-	LastName *string `json:"lastName"`
+	LastName *string `json:"lastName,omitempty"`
 }
 
 // Fiscal defines model for Fiscal.
@@ -879,10 +879,10 @@ type IdentifierModel struct {
 	Status *CommunicationStatusType `json:"status,omitempty"`
 
 	// Type The type of the identifier.
-	Type *string `json:"type"`
+	Type *string `json:"type,omitempty"`
 
 	// Value The value of the identifier.
-	Value *string `json:"value"`
+	Value *string `json:"value,omitempty"`
 }
 
 // Invoice Details of an invoice used within 24SevenOffice.
@@ -930,16 +930,16 @@ type LicenseModel struct {
 	Id *openapi_types.UUID `json:"id,omitempty"`
 
 	// IdentityId The identifier for the connected person's identity.
-	IdentityId *openapi_types.UUID `json:"identityId"`
+	IdentityId *openapi_types.UUID `json:"identityId,omitempty"`
 
 	// Name The name of the organization.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// OrganizationId The identifier for the organization.
-	OrganizationId *int64 `json:"organizationId"`
+	OrganizationId *int64 `json:"organizationId,omitempty"`
 
 	// PersonId The identifier for the connected person.
-	PersonId *int32 `json:"personId"`
+	PersonId *int32 `json:"personId,omitempty"`
 }
 
 // Line defines model for Line.
@@ -1044,16 +1044,16 @@ type OrganizationModel struct {
 	Contact *ClientContactModel `json:"contact,omitempty"`
 
 	// Email The email address of the organization.
-	Email *string `json:"email"`
+	Email *string `json:"email,omitempty"`
 
 	// Id The unique identifier for the organization within 24SevenOffice.
 	Id *int64 `json:"id,omitempty"`
 
 	// InvoiceEmail The email address for invoices.
-	InvoiceEmail *string `json:"invoiceEmail"`
+	InvoiceEmail *string `json:"invoiceEmail,omitempty"`
 
 	// Name The name of the organization.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// Settings Settings for the organization.
 	Settings *OrganizationSettingsModel `json:"settings,omitempty"`
@@ -1065,7 +1065,7 @@ type OrganizationModel struct {
 // OrganizationSettingsModel Settings for the organization.
 type OrganizationSettingsModel struct {
 	// CurrencyCode The currency code for the organization.
-	CurrencyCode *string `json:"currencyCode"`
+	CurrencyCode *string `json:"currencyCode,omitempty"`
 }
 
 // PaymenReferenceDto The payment reference must be one of the following types: text ocr invoiceRef.
@@ -1078,7 +1078,7 @@ type PaymenReferenceDto struct {
 	Type PaymenReferenceTypeEnum `json:"type"`
 
 	// Value This must be a string of max 1000 characters.
-	Value string `json:"value"`
+	Value string `json:"value,omitempty"`
 }
 
 // PaymenReferenceTypeEnum defines model for PaymenReferenceTypeEnum.
@@ -1099,28 +1099,28 @@ type Product struct {
 // ProductBase Base fields of products.
 type ProductBase struct {
 	// CostPrice The cost of buying the product from the supplier.
-	CostPrice *float32 `json:"costPrice"`
+	CostPrice *float32 `json:"costPrice,omitempty"`
 
 	// Description The description of the product.
-	Description *string `json:"description"`
+	Description *string `json:"description,omitempty"`
 
 	// Ean The product's 13-digit European Article Number (EAN).
-	Ean *string `json:"ean"`
+	Ean *string `json:"ean,omitempty"`
 
 	// EanAlternative An alternative article number field, supporting up to 25 digits.
-	EanAlternative *string `json:"eanAlternative"`
+	EanAlternative *string `json:"eanAlternative,omitempty"`
 
 	// IndirectCost The sum of indirect costs related to the product.
-	IndirectCost *float32 `json:"indirectCost"`
+	IndirectCost *float32 `json:"indirectCost,omitempty"`
 
 	// Name The name of the product.
 	Name *string `json:"name,omitempty"`
 
 	// Number The alternative user-defined product number.
-	Number *string `json:"number"`
+	Number *string `json:"number,omitempty"`
 
 	// SalesPrice The selling price of the product.
-	SalesPrice *float32 `json:"salesPrice"`
+	SalesPrice *float32 `json:"salesPrice,omitempty"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
 	Status *ProductStatusEnum `json:"status,omitempty"`
@@ -1141,28 +1141,28 @@ type ProductRequestPatch struct {
 	Category *CategoryRequest `json:"category,omitempty"`
 
 	// CostPrice The cost of buying the product from the supplier.
-	CostPrice *float32 `json:"costPrice"`
+	CostPrice *float32 `json:"costPrice,omitempty"`
 
 	// Description The description of the product.
-	Description *string `json:"description"`
+	Description *string `json:"description,omitempty"`
 
 	// Ean The product's 13-digit European Article Number (EAN).
-	Ean *string `json:"ean"`
+	Ean *string `json:"ean,omitempty"`
 
 	// EanAlternative An alternative article number field, supporting up to 25 digits.
-	EanAlternative *string `json:"eanAlternative"`
+	EanAlternative *string `json:"eanAlternative,omitempty"`
 
 	// IndirectCost The sum of indirect costs related to the product.
-	IndirectCost *float32 `json:"indirectCost"`
+	IndirectCost *float32 `json:"indirectCost,omitempty"`
 
 	// Name The name of the product.
 	Name *string `json:"name,omitempty"`
 
 	// Number The alternative user-defined product number.
-	Number *string `json:"number"`
+	Number *string `json:"number,omitempty"`
 
 	// SalesPrice The selling price of the product.
-	SalesPrice *float32 `json:"salesPrice"`
+	SalesPrice *float32 `json:"salesPrice,omitempty"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
 	Status *ProductStatusEnum `json:"status,omitempty"`
@@ -1189,28 +1189,28 @@ type ProductRequestPost struct {
 	Category *CategoryRequest `json:"category,omitempty"`
 
 	// CostPrice The cost of buying the product from the supplier.
-	CostPrice *float32 `json:"costPrice"`
+	CostPrice *float32 `json:"costPrice,omitempty"`
 
 	// Description The description of the product.
-	Description *string `json:"description"`
+	Description *string `json:"description,omitempty"`
 
 	// Ean The product's 13-digit European Article Number (EAN).
-	Ean *string `json:"ean"`
+	Ean *string `json:"ean,omitempty"`
 
 	// EanAlternative An alternative article number field, supporting up to 25 digits.
-	EanAlternative *string `json:"eanAlternative"`
+	EanAlternative *string `json:"eanAlternative,omitempty"`
 
 	// IndirectCost The sum of indirect costs related to the product.
-	IndirectCost *float32 `json:"indirectCost"`
+	IndirectCost *float32 `json:"indirectCost,omitempty"`
 
 	// Name The name of the product.
 	Name *string `json:"name,omitempty"`
 
 	// Number The alternative user-defined product number.
-	Number *string `json:"number"`
+	Number *string `json:"number,omitempty"`
 
 	// SalesPrice The selling price of the product.
-	SalesPrice *float32 `json:"salesPrice"`
+	SalesPrice *float32 `json:"salesPrice,omitempty"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
 	Status *ProductStatusEnum `json:"status,omitempty"`
@@ -1237,25 +1237,25 @@ type ProductResponse struct {
 	CategoryResponseIdAndName *CategoryResponseIdAndName `json:"category,omitempty"`
 
 	// CostPrice The cost of buying the product from the supplier.
-	CostPrice *float32 `json:"costPrice"`
+	CostPrice *float32 `json:"costPrice,omitempty"`
 
 	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
 	CreatedAt *CreatedAt `json:"createdAt,omitempty"`
 
 	// Description The description of the product.
-	Description *string `json:"description"`
+	Description *string `json:"description,omitempty"`
 
 	// Ean The product's 13-digit European Article Number (EAN).
-	Ean *string `json:"ean"`
+	Ean *string `json:"ean,omitempty"`
 
 	// EanAlternative An alternative article number field, supporting up to 25 digits.
-	EanAlternative *string `json:"eanAlternative"`
+	EanAlternative *string `json:"eanAlternative,omitempty"`
 
 	// Id A unique identifier for the product within 24SevenOffice ERP-modules.
 	Id *int `json:"id,omitempty"`
 
 	// IndirectCost The sum of indirect costs related to the product.
-	IndirectCost *float32 `json:"indirectCost"`
+	IndirectCost *float32 `json:"indirectCost,omitempty"`
 
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 	ModifiedAt *ModifiedAt `json:"modifiedAt,omitempty"`
@@ -1264,10 +1264,10 @@ type ProductResponse struct {
 	Name *string `json:"name,omitempty"`
 
 	// Number The alternative user-defined product number.
-	Number *string `json:"number"`
+	Number *string `json:"number,omitempty"`
 
 	// SalesPrice The selling price of the product.
-	SalesPrice *float32 `json:"salesPrice"`
+	SalesPrice *float32 `json:"salesPrice,omitempty"`
 
 	// Status Specifies whether the product's status is active or inactive (expired).
 	Status *ProductStatusEnum `json:"status,omitempty"`
@@ -1300,25 +1300,25 @@ type Products = []ProductResponse
 // ProfileModel defines model for ProfileModel.
 type ProfileModel struct {
 	// CountryCode The two-letter country code for the user, as in ISO 3166-1 alpha-2 standard.
-	CountryCode *string `json:"countryCode"`
+	CountryCode *string `json:"countryCode,omitempty"`
 
 	// Culture The culture setting of the user.
-	Culture *string `json:"culture"`
+	Culture *string `json:"culture,omitempty"`
 
 	// FirstName The first name of the user.
-	FirstName *string `json:"firstName"`
+	FirstName *string `json:"firstName,omitempty"`
 
 	// Id The unique identifier for the profile.
 	Id *openapi_types.UUID `json:"id,omitempty"`
 
 	// Language The language preference of the user.
-	Language *string `json:"language"`
+	Language *string `json:"language,omitempty"`
 
 	// LastName The last name of the user.
-	LastName *string `json:"lastName"`
+	LastName *string `json:"lastName,omitempty"`
 
 	// TimeZone The time zone of the user.
-	TimeZone *string `json:"timeZone"`
+	TimeZone *string `json:"timeZone,omitempty"`
 }
 
 // SalesOrder defines model for SalesOrder.
@@ -1426,7 +1426,7 @@ type StockDto struct {
 	IsManaged *bool `json:"isManaged,omitempty"`
 
 	// Location The location identifier for the product like a shelf or a facility number for inventory management.
-	Location *string `json:"location"`
+	Location *string `json:"location,omitempty"`
 
 	// Quantity The quantity of products that are in stock.
 	Quantity *float32 `json:"quantity,omitempty"`
@@ -1435,31 +1435,31 @@ type StockDto struct {
 // SupplierProductDto Collection of properties related to the supplier's product.
 type SupplierProductDto struct {
 	// ItemCode The item code of the supplier product.
-	ItemCode *string `json:"itemCode"`
+	ItemCode *string `json:"itemCode,omitempty"`
 
 	// Name The name of the supplier product.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// Number The item number of the supplier product.
-	Number *string `json:"number"`
+	Number *string `json:"number,omitempty"`
 
 	// Price The price of the supplier product.
-	Price *float32 `json:"price"`
+	Price *float32 `json:"price,omitempty"`
 }
 
 // SupplierRequest Information about the supplier of the product.
 type SupplierRequest struct {
 	// Id The ID of the supplier. Product suppliers can be retrieved from the separate `/customers` endpoint (suppliers are customers with a flag variable "isSupplier" set to "true").
-	Id *float32 `json:"id"`
+	Id *float32 `json:"id,omitempty"`
 }
 
 // SupplierResponse Information about the supplier of the product.
 type SupplierResponse struct {
 	// Id The ID of the supplier. Product suppliers can be retrieved from the separate `/customers` endpoint (suppliers are customers with a flag variable "isSupplier" set to "true").
-	Id *float32 `json:"id"`
+	Id *float32 `json:"id,omitempty"`
 
 	// Name The name of the supplier.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 }
 
 // Tax Details of a tax used within 24SevenOffice.
@@ -1492,7 +1492,7 @@ type TfsoApiOrganizationModelsUserType string
 // TfsoApiOrganizationUnitOfWorkModelsPersonModel defines model for TfsoApiOrganizationUnitOfWorkModelsPersonModel.
 type TfsoApiOrganizationUnitOfWorkModelsPersonModel struct {
 	// FirstName The first name of the person.
-	FirstName *string `json:"firstName"`
+	FirstName *string `json:"firstName,omitempty"`
 
 	// HasLicense A flag variable indicating whether the person has a license.
 	HasLicense *bool `json:"hasLicense,omitempty"`
@@ -1501,10 +1501,10 @@ type TfsoApiOrganizationUnitOfWorkModelsPersonModel struct {
 	Id *int32 `json:"id,omitempty"`
 
 	// IdentityId The identifier for the connected identity.
-	IdentityId *openapi_types.UUID `json:"identityId"`
+	IdentityId *openapi_types.UUID `json:"identityId,omitempty"`
 
 	// LastName The last name of the person.
-	LastName   *string                            `json:"lastName"`
+	LastName   *string                            `json:"lastName,omitempty"`
 	PersonType *TfsoApiOrganizationModelsUserType `json:"personType,omitempty"`
 }
 
@@ -1580,19 +1580,19 @@ type Units = []UnitsResponse
 // UnitsRequest Information about the units of measurement for the product.
 type UnitsRequest struct {
 	// Id The ID of the units of measurement. Product units can be retrieved from the separate `/productunits` endpoint.
-	Id *float32 `json:"id"`
+	Id *float32 `json:"id,omitempty"`
 }
 
 // UnitsResponse A single unit of measurement.
 type UnitsResponse struct {
 	// Id The ID of the unit of measurement.
-	Id *float32 `json:"id"`
+	Id *float32 `json:"id,omitempty"`
 
 	// Name The name of the unit of measurement.
-	Name *string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// Symbol The symbol of the unit of measurement.
-	Symbol *string `json:"symbol"`
+	Symbol *string `json:"symbol,omitempty"`
 }
 
 // ValidationError defines model for ValidationError.
@@ -1628,16 +1628,16 @@ type VisitAddress struct {
 	CountryCode *string `json:"countryCode"`
 
 	// CountrySubdivision The geographical subdivision for the address, like a county ("fylke" in Norway) or a state.
-	CountrySubdivision *string `json:"countrySubdivision"`
+	CountrySubdivision *string `json:"countrySubdivision,omitempty"`
 
 	// PostalArea The postal area for the address.
-	PostalArea *string `json:"postalArea"`
+	PostalArea *string `json:"postalArea,omitempty"`
 
 	// PostalCode The postal code for the address.
-	PostalCode *string `json:"postalCode"`
+	PostalCode *string `json:"postalCode,omitempty"`
 
 	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-	Street *string `json:"street"`
+	Street *string `json:"street,omitempty"`
 }
 
 // Voucher Details of the transaction within the 24SevenOffice accounting module to which the transaction line pertains.

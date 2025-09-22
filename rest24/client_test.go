@@ -2,6 +2,7 @@ package rest24
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"os"
 	"testing"
@@ -15,6 +16,21 @@ import (
 
 // SO24 project: "WooCommerce-integrasjon (DEMO)"
 const orgId = "543819716587312"
+
+var cachedClient *Rest24Client
+
+func getClient(t *testing.T) *Rest24Client {
+	if cachedClient != nil {
+		return cachedClient
+	}
+	cachedClient = New(&Credentials{
+		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
+		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
+		OrganizationId: orgId,
+	})
+	require.NoError(t, cachedClient.Authenticate(), "client should authenticate")
+	return cachedClient
+}
 
 func TestClientInitialization(t *testing.T) {
 	require := require.New(t)
@@ -86,36 +102,31 @@ func TestTransactionLines(t *testing.T) {
 func TestCreatePrivateCustomer(t *testing.T) {
 	require := require.New(t)
 
-	c := New(&Credentials{
-		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
-		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
-		OrganizationId: orgId,
-	})
-	require.NoError(c.Authenticate(), "client should authenticate")
+	c := getClient(t)
 
 	cPostRequest := CustomerPostRequest{
 		Email: &EmailsDto{
-			Billing: u.Ref("billing@example.org"),
-			Contact: u.Ref("contact@example.org"),
+			Billing: u.R("billing@example.org"),
+			Contact: u.R("contact@example.org"),
 		},
-		Phone: u.Ref("+47-12345678"),
+		Phone: u.R("+47-12345678"),
 
 		Address: &AddressesDto{
 			Visit: &VisitAddress{
-				Street:             u.Ref("Torgallmenningen 1"),
-				PostalArea:         u.Ref("Bergen"),
-				PostalCode:         u.Ref("5009"),
-				CountryCode:        u.Ref("NO"),
-				CountrySubdivision: u.Ref("Vestland"),
+				Street:             u.R("Torgallmenningen 1"),
+				PostalArea:         u.R("Bergen"),
+				PostalCode:         u.R("5009"),
+				CountryCode:        u.R("NO"),
+				CountrySubdivision: u.R("Vestland"),
 			},
 		},
-		IsSupplier: u.Ref(false),
+		IsSupplier: u.R(false),
 	}
 	err := cPostRequest.FromCustomerPostRequest1(CustomerPostRequest1{
 		IsCompany: CustomerPostRequest1IsCompany(false),
 		Person: FirstnameLastnameDto{
-			FirstName: u.Ref("John"),
-			LastName:  u.Ref("Doe"),
+			FirstName: u.R("John"),
+			LastName:  u.R("Doe"),
 		},
 	})
 	require.NoError(err)
@@ -128,30 +139,25 @@ func TestCreatePrivateCustomer(t *testing.T) {
 func TestCreateCompanyCustomer(t *testing.T) {
 	require := require.New(t)
 
-	c := New(&Credentials{
-		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
-		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
-		OrganizationId: orgId,
-	})
-	require.NoError(c.Authenticate(), "client should authenticate")
+	c := getClient(t)
 
 	cPostRequest := CustomerPostRequest{
 		Email: &EmailsDto{
-			Billing: u.Ref("billing@example.org"),
-			Contact: u.Ref("contact@example.org"),
+			Billing: u.R("billing@example.org"),
+			Contact: u.R("contact@example.org"),
 		},
-		Phone: u.Ref("+47-12345678"),
+		Phone: u.R("+47-12345678"),
 		Address: &AddressesDto{
 			Visit: &VisitAddress{
-				Street:             u.Ref("Torgallmenningen 1"),
-				PostalArea:         u.Ref("Bergen"),
-				PostalCode:         u.Ref("5009"),
-				CountryCode:        u.Ref("NO"),
-				CountrySubdivision: u.Ref("Vestland"),
+				Street:             u.R("Torgallmenningen 1"),
+				PostalArea:         u.R("Bergen"),
+				PostalCode:         u.R("5009"),
+				CountryCode:        u.R("NO"),
+				CountrySubdivision: u.R("Vestland"),
 			},
 		},
-		IsSupplier:         u.Ref(false),
-		OrganizationNumber: u.Ref("123456789"),
+		IsSupplier:         u.R(false),
+		OrganizationNumber: u.R("123456789"),
 	}
 	err := cPostRequest.FromCustomerPostRequest0(CustomerPostRequest0{
 		IsCompany: CustomerPostRequest0IsCompany(true),
@@ -162,4 +168,79 @@ func TestCreateCompanyCustomer(t *testing.T) {
 	res, err := c.CreateCustomerWithResponse(t.Context(), cPostRequest)
 	require.NoError(err)
 	require.NotNil(res.JSON200, "no company customer was created")
+}
+
+func TestRetrieveProductUnits(t *testing.T) {
+	require := require.New(t)
+	c := getClient(t)
+	res, err := c.GetUnitsWithResponse(t.Context())
+	require.NoError(err)
+	require.NotNil(res.JSON200, "did not fetch product units")
+}
+
+func TestCreateProduct(t *testing.T) {
+	require := require.New(t)
+
+	c := getClient(t)
+
+	cPostRequest := CustomerPostRequest{
+		Email: &EmailsDto{
+			Billing: u.R("billing@example.org"),
+			Contact: u.R("contact@example.org"),
+		},
+		Phone: u.R("+47-12345678"),
+		Address: &AddressesDto{
+			Visit: &VisitAddress{
+				Street:             u.R("Torgallmenningen 1"),
+				PostalArea:         u.R("Bergen"),
+				PostalCode:         u.R("5009"),
+				CountryCode:        u.R("NO"),
+				CountrySubdivision: u.R("Vestland"),
+			},
+		},
+		IsSupplier:         u.R(true),
+		OrganizationNumber: u.R("123456789"),
+	}
+	err := cPostRequest.FromCustomerPostRequest0(CustomerPostRequest0{
+		IsCompany: CustomerPostRequest0IsCompany(true),
+		Name:      "ACME INC.",
+	})
+	require.NoError(err)
+	resCustomer, err := c.CreateCustomerWithResponse(t.Context(), cPostRequest)
+	require.NoError(err)
+	require.NotNil(resCustomer.JSON200, "no customer was created")
+
+	pPostRequest := ProductRequestPost{
+		Name:         u.R("Badeball"),
+		Number:       u.R(u.RandSeq(10)),
+		Type:         u.R(ProductTypeEnum(Default)),
+		Status:       u.R(ProductStatusEnumActive),
+		Description:  u.R("Rund og flytende"),
+		CostPrice:    u.R(float32(30)),
+		IndirectCost: u.R(float32(20)),
+		SalesPrice:   u.R(float32(100)),
+		Stock: &StockDto{
+			IsManaged: u.R(true),
+			Quantity:  u.R(float32(129)),
+			Location:  u.R("B-301"),
+		},
+		Category: &CategoryRequest{Id: u.R(-1)},
+		// Optional fields
+		// Ean: u.R("0123456789000"),
+		// EanAlternative: u.R("0123456789022345678901234"),
+		// SupplierProduct: &SupplierProductDto{
+		// 	ItemCode: u.R("T1234"),
+		// 	Number:   u.R("1234"),
+		// 	Name:     u.R("Cheap beach ball"),
+		// 	Price:    u.R(float32(5)),
+		// },
+		// Units:    &UnitsRequest{Id: u.R(float32(4))},
+		// Supplier: &SupplierRequest{Id: u.R(float32(u.SafeDeref(resCustomer.JSON200.Id)))},
+	}
+
+	fmt.Println(u.DebugJSON(pPostRequest))
+
+	resProduct, err := c.CreateProductWithResponse(t.Context(), pPostRequest)
+	require.NoError(err)
+	require.NotNil(resProduct.JSON201, "no product was created")
 }

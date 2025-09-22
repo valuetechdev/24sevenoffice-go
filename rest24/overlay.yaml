@@ -656,3 +656,10 @@ actions:
       type: array
       items:
         $ref: "#/components/schemas/Transaction"
+
+  # FIXME: this seems to be broken in OAPI.
+  # see: https://github.com/oapi-codegen/oapi-codegen/issues/2091
+  - target: "$.components.schemas.*.properties..[?(@.nullable)]"
+    description: Ensure that nullable fields, results in omitempty
+    update:
+      x-omitempty: true
