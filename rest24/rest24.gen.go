@@ -728,8 +728,7 @@ type CustomerPostRequest0 struct {
 	IsCompany CustomerPostRequest0IsCompany `json:"isCompany"`
 
 	// Name A human-readable name or label for a customer, making it easily identifiable to users.
-	Name   string  `json:"name"`
-	Person *string `json:"person"`
+	Name string `json:"name"`
 }
 
 // CustomerPostRequest0IsCompany A flag variable indicating whether the customer is a company (true) or a person (false).
@@ -738,9 +737,7 @@ type CustomerPostRequest0IsCompany bool
 // CustomerPostRequest1 A new customer is a private person.
 type CustomerPostRequest1 struct {
 	// IsCompany A flag variable indicating whether the customer is a company (true) or a person (false).
-	IsCompany          CustomerPostRequest1IsCompany `json:"isCompany"`
-	Name               *string                       `json:"name"`
-	OrganizationNumber *string                       `json:"organizationNumber"`
+	IsCompany CustomerPostRequest1IsCompany `json:"isCompany"`
 
 	// Person Email addresses for the customer.
 	Person FirstnameLastnameDto `json:"person"`
@@ -862,11 +859,11 @@ type EmailsDto struct {
 
 // FirstnameLastnameDto Email addresses for the customer.
 type FirstnameLastnameDto struct {
-	// Billing The billing email address for the customer.
-	Billing *string `json:"billing"`
+	// FirstName The first name of a person if the customer is a person.
+	FirstName *string `json:"firstName"`
 
-	// Contact The email address for contacting the customer.
-	Contact *string `json:"contact"`
+	// LastName The last name of a person if the customer is a person.
+	LastName *string `json:"lastName"`
 }
 
 // Fiscal defines model for Fiscal.

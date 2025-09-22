@@ -263,22 +263,33 @@ actions:
         description: "Email addresses for the customer."
         type: "object"
         properties:
-          contact:
+          firstName:
             type: "string"
             nullable: true
-            description: "The email address for contacting the customer."
-            example: "contact@example.com"
-
-          billing:
+            description: "The first name of a person if the customer is a person."
+            example: "John"
+          lastName:
             type: "string"
             nullable: true
-            description: "The billing email address for the customer."
-            example: "billing@example.com"
+            description: "The last name of a person if the customer is a person."
+            example: "Doe"
 
   - target: "$.components.schemas.CustomerPatchRequest.properties.person"
     description: Use FirstnameLastnameDto
     update:
       $ref: "#/components/schemas/FirstnameLastnameDto"
+
+  - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[0].properties.person"
+    description: Remove person from company customer
+    remove: true
+
+  - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[1].properties.organizationNumber"
+    description: Remove organizationNumber from private customer
+    remove: true
+
+  - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[1].properties.name"
+    description: Remove name from private customer
+    remove: true
 
   - target: "$.components.schemas.CustomerPostRequest.allOf[0].oneOf[1].properties.person"
     description: Use FirstnameLastnameDto

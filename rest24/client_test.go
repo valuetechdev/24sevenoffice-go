@@ -9,10 +9,12 @@ import (
 
 	"github.com/oapi-codegen/runtime/types"
 	"github.com/stretchr/testify/require"
+	u "github.com/valuetechdev/24sevenoffice-go/rest24/internal"
 	"golang.org/x/oauth2"
 )
 
-const orgId = "214517124256245"
+// SO24 project: "WooCommerce-integrasjon (DEMO)"
+const orgId = "543819716587312"
 
 func TestClientInitialization(t *testing.T) {
 	require := require.New(t)
@@ -79,4 +81,85 @@ func TestTransactionLines(t *testing.T) {
 	require.Equal(http.StatusOK, res.StatusCode(), "GetTransactionlines status should be OK")
 	require.NotNil(res.JSON200, "GetTransactionlines JSON200 should not be nil")
 	require.NotEmpty(*res.JSON200, "GetTransactionlines JSON200 should not be empty")
+}
+
+func TestCreatePrivateCustomer(t *testing.T) {
+	require := require.New(t)
+
+	c := New(&Credentials{
+		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
+		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
+		OrganizationId: orgId,
+	})
+	require.NoError(c.Authenticate(), "client should authenticate")
+
+	cPostRequest := CustomerPostRequest{
+		Email: &EmailsDto{
+			Billing: u.Ref("billing@example.org"),
+			Contact: u.Ref("contact@example.org"),
+		},
+		Phone: u.Ref("+47-12345678"),
+
+		Address: &AddressesDto{
+			Visit: &VisitAddress{
+				Street:             u.Ref("Torgallmenningen 1"),
+				PostalArea:         u.Ref("Bergen"),
+				PostalCode:         u.Ref("5009"),
+				CountryCode:        u.Ref("NO"),
+				CountrySubdivision: u.Ref("Vestland"),
+			},
+		},
+		IsSupplier: u.Ref(false),
+	}
+	err := cPostRequest.FromCustomerPostRequest1(CustomerPostRequest1{
+		IsCompany: CustomerPostRequest1IsCompany(false),
+		Person: FirstnameLastnameDto{
+			FirstName: u.Ref("John"),
+			LastName:  u.Ref("Doe"),
+		},
+	})
+	require.NoError(err)
+
+	res, err := c.CreateCustomerWithResponse(t.Context(), cPostRequest)
+	require.NoError(err)
+	require.NotNil(res.JSON200, "no private customer was created")
+}
+
+func TestCreateCompanyCustomer(t *testing.T) {
+	require := require.New(t)
+
+	c := New(&Credentials{
+		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
+		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
+		OrganizationId: orgId,
+	})
+	require.NoError(c.Authenticate(), "client should authenticate")
+
+	cPostRequest := CustomerPostRequest{
+		Email: &EmailsDto{
+			Billing: u.Ref("billing@example.org"),
+			Contact: u.Ref("contact@example.org"),
+		},
+		Phone: u.Ref("+47-12345678"),
+		Address: &AddressesDto{
+			Visit: &VisitAddress{
+				Street:             u.Ref("Torgallmenningen 1"),
+				PostalArea:         u.Ref("Bergen"),
+				PostalCode:         u.Ref("5009"),
+				CountryCode:        u.Ref("NO"),
+				CountrySubdivision: u.Ref("Vestland"),
+			},
+		},
+		IsSupplier:         u.Ref(false),
+		OrganizationNumber: u.Ref("123456789"),
+	}
+	err := cPostRequest.FromCustomerPostRequest0(CustomerPostRequest0{
+		IsCompany: CustomerPostRequest0IsCompany(true),
+		Name:      "ACME INC.",
+	})
+	require.NoError(err)
+
+	res, err := c.CreateCustomerWithResponse(t.Context(), cPostRequest)
+	require.NoError(err)
+	require.NotNil(res.JSON200, "no company customer was created")
 }
