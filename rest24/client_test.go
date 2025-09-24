@@ -224,19 +224,97 @@ func TestCreateProduct(t *testing.T) {
 			Location:  u.R("B-301"),
 		},
 		Category: &CategoryRequest{Id: u.R(-1)},
-		// Optional fields
-		// Ean: u.R("0123456789000"),
-		// EanAlternative: u.R("0123456789022345678901234"),
-		// SupplierProduct: &SupplierProductDto{
-		// 	ItemCode: u.R("T1234"),
-		// 	Number:   u.R("1234"),
-		// 	Name:     u.R("Cheap beach ball"),
-		// 	Price:    u.R(float32(5)),
-		// },
-		// Units:    &UnitsRequest{Id: u.R(float32(4))},
-		// Supplier: &SupplierRequest{Id: u.R(float32(u.SafeDeref(resCustomer.JSON200.Id)))},
 	}
 	resProduct, err := c.CreateProductWithResponse(t.Context(), pPostRequest)
 	require.NoError(err)
 	require.NotNil(resProduct.JSON201, "no product was created")
+}
+
+func TestCreateOrder(t *testing.T) {
+	require := require.New(t)
+
+	c := getClient(t)
+
+	pPostRequest := ProductRequestPost{
+		Name:         u.R("Badeball"),
+		Number:       u.R(u.RandSeq(10)),
+		Type:         u.R(ProductTypeEnum(Default)),
+		Status:       u.R(ProductStatusEnumActive),
+		Description:  u.R("Rund og flytende"),
+		CostPrice:    u.R(float32(30)),
+		IndirectCost: u.R(float32(20)),
+		SalesPrice:   u.R(float32(100)),
+		Stock: &StockDto{
+			IsManaged: u.R(true),
+			Quantity:  u.R(float32(129)),
+			Location:  u.R("B-301"),
+		},
+		Category: &CategoryRequest{Id: u.R(-1)},
+	}
+	resProduct, err := c.CreateProductWithResponse(t.Context(), pPostRequest)
+	require.NoError(err)
+	require.NotNil(resProduct.JSON201, "no product was created")
+
+	cPostRequest := CustomerPostRequest{
+		Email: &EmailsDto{
+			Billing: u.R("billing@example.org"),
+			Contact: u.R("contact@example.org"),
+		},
+		Phone: u.R("+47-12345678"),
+		Address: &AddressesDto{
+			Visit: &VisitAddress{
+				Street:             u.R("Torgallmenningen 1"),
+				PostalArea:         u.R("Bergen"),
+				PostalCode:         u.R("5009"),
+				CountryCode:        u.R("NO"),
+				CountrySubdivision: u.R("Vestland"),
+			},
+		},
+		IsSupplier:         u.R(true),
+		OrganizationNumber: u.R("123456789"),
+	}
+	err = cPostRequest.FromCustomerPostRequest0(CustomerPostRequest0{
+		IsCompany: CustomerPostRequest0IsCompany(true),
+		Name:      "ACME INC.",
+	})
+	require.NoError(err)
+	resCustomer, err := c.CreateCustomerWithResponse(t.Context(), cPostRequest)
+	require.NoError(err)
+	require.NotNil(resCustomer.JSON200, "no customer was created")
+
+	orderPostRequest := PostSalesordersJSONRequestBody{
+		Status:       u.R(SalesOrderStatusEnumDraft),
+		InternalMemo: u.R("some internal memo"),
+		Memo:         u.R("a customer facing memo"),
+		Customer: &struct {
+			City                  *string        "json:\"city,omitempty\""
+			CountryCode           *string        "json:\"countryCode,omitempty\""
+			CountrySubdivision    *string        "json:\"countrySubdivision,omitempty\""
+			Gln                   *string        "json:\"gln,omitempty\""
+			Id                    int            "json:\"id\""
+			InvoiceEmailAddresses *[]types.Email "json:\"invoiceEmailAddresses,omitempty\""
+			Name                  string         "json:\"name\""
+			OrganizationNumber    *string        "json:\"organizationNumber,omitempty\""
+			PostalArea            *string        "json:\"postalArea,omitempty\""
+			PostalCode            *string        "json:\"postalCode,omitempty\""
+		}{
+			Id:   int(*resCustomer.JSON200.Id),
+			Name: "CoolCustomer: what we know of them at the time of purchase",
+		},
+	}
+	orderRes, err := c.PostSalesordersWithResponse(t.Context(), orderPostRequest)
+	require.NoError(err)
+	require.NotNil(orderRes.JSON200, "no order created")
+
+	salesLineRes, err := c.PostSalesordersIdLinesWithResponse(t.Context(), int32(u.D(orderRes.JSON200.Id)), LineWithoutId{
+		Type: u.R(LineTypeEnumProduct),
+		Product: &Product{
+			Id: resProduct.JSON201.Id,
+		},
+		Description: u.R("Badeball!"),
+		Price:       u.R(float32(100)),
+		Quantity:    u.R(float32(10)),
+	})
+	require.NoError(err)
+	require.NotNil(salesLineRes.JSON200, "no salesLine added")
 }
