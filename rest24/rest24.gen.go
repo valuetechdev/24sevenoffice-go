@@ -22,6 +22,12 @@ const (
 	TfsoScopes = "tfso.Scopes"
 )
 
+// Defines values for AccountingPeriodType.
+const (
+	AccountingPeriodTypePeriod AccountingPeriodType = "Period"
+	AccountingPeriodTypeYear   AccountingPeriodType = "Year"
+)
+
 // Defines values for BadRequestErrorErrorName.
 const (
 	BadRequestErrorErrorNameBadRequestError BadRequestErrorErrorName = "BadRequestError"
@@ -119,13 +125,20 @@ const (
 
 // Defines values for Type.
 const (
-	Date   Type = "Date"
-	Period Type = "Period"
+	TypeDate   Type = "Date"
+	TypePeriod Type = "Period"
 )
 
 // Defines values for ValidationErrorErrorName.
 const (
 	ValidationErrorErrorNameValidationError ValidationErrorErrorName = "ValidationError"
+)
+
+// Defines values for GetFiscalperiodsParamsType.
+const (
+	All    GetFiscalperiodsParamsType = "All"
+	Period GetFiscalperiodsParamsType = "Period"
+	Year   GetFiscalperiodsParamsType = "Year"
 )
 
 // Account Information about the account for which the balances belong to.
@@ -139,6 +152,24 @@ type Account struct {
 	// Number The unique number that indicates which type of account it belongs to.
 	Number *int `json:"number,omitempty"`
 }
+
+// AccountingPeriod Details of a financial year/accounting period within the 24SevenOffice accounting module.
+type AccountingPeriod struct {
+	// EndingDate The last day of the financial year or accounting period.
+	EndingDate *string `json:"endingDate,omitempty"`
+
+	// Id A unique identifier for the accounting period within 24SevenOffice.
+	Id *string `json:"id,omitempty"`
+
+	// StartingDate The first day of the financial year or accounting period.
+	StartingDate *string `json:"startingDate,omitempty"`
+
+	// Type The type of accounting period, either "Year" for a full financial year or "Period" for a sub-period within a financial year.
+	Type *AccountingPeriodType `json:"type,omitempty"`
+}
+
+// AccountingPeriodType The type of accounting period, either "Year" for a full financial year or "Period" for a sub-period within a financial year.
+type AccountingPeriodType string
 
 // AddressBasic defines model for AddressBasic.
 type AddressBasic struct {
@@ -421,7 +452,7 @@ type BankTransactionBase struct {
 	// * The subfamily code is used to group the transaction codes within a family.
 	BankTransactionCode *BankTransactionCodesResponse `json:"bankTransactionCode,omitempty"`
 
-	// BankTransactionReference Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case.
+	// BankTransactionReference Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case. Min 10 and max 130 characters.
 	BankTransactionReference *string `json:"bankTransactionReference,omitempty"`
 
 	// Date Date of the transaction.
@@ -477,7 +508,7 @@ type BankTransactionResponse struct {
 	// * The subfamily code is used to group the transaction codes within a family.
 	BankTransactionCode *BankTransactionCodesResponse `json:"bankTransactionCode,omitempty"`
 
-	// BankTransactionReference Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case.
+	// BankTransactionReference Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case. Min 10 and max 130 characters.
 	BankTransactionReference *string `json:"bankTransactionReference,omitempty"`
 
 	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
@@ -836,6 +867,15 @@ type DeliveryCustomer struct {
 	PostalCode *string `json:"postalCode,omitempty"`
 }
 
+// Dimension defines model for Dimension.
+type Dimension struct {
+	// Id ID of the dimension type
+	Id int `json:"id"`
+
+	// Name Name of the dimension type
+	Name string `json:"name"`
+}
+
 // DimensionDto defines model for DimensionDto.
 type DimensionDto struct {
 	// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
@@ -845,6 +885,18 @@ type DimensionDto struct {
 	Name string `json:"name"`
 
 	// Value The value (ie key) for the dimension.
+	Value string `json:"value"`
+}
+
+// DimensionElement defines model for DimensionElement.
+type DimensionElement struct {
+	// DimensionType ID of the dimension type (ie 1=project, 2=department etc)
+	DimensionType int32 `json:"dimensionType"`
+
+	// Name Name of the dimension element
+	Name string `json:"name"`
+
+	// Value Value (id) of the dimension element
 	Value string `json:"value"`
 }
 
@@ -1353,11 +1405,51 @@ type SalesOrder struct {
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
 
+	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+	OurReference *struct {
+		// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
+		Id *float32 `json:"id,omitempty"`
+	} `json:"ourReference,omitempty"`
+
+	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+	ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
 	// SalesType The sales type for the sales order.
 	SalesType *SalesTypeDto `json:"salesType,omitempty"`
 
 	// Status Current status of the sales order.
 	Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+	YourReference *struct {
+		// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
+		Id *float32 `json:"id,omitempty"`
+
+		// Name The name of the person.
+		Name *string `json:"name,omitempty"`
+	} `json:"yourReference,omitempty"`
+}
+
+// SalesOrderAttachment Details of an attachment associated with a sales order.
+type SalesOrderAttachment struct {
+	// FileId The unique identifier for the file associated with the attachment.
+	FileId *string `json:"fileId,omitempty"`
+
+	// FileName The name of the attached file.
+	FileName *string `json:"fileName,omitempty"`
+
+	// MediaType The media type (MIME type) of the attached file.
+	MediaType *string `json:"mediaType,omitempty"`
+
+	// OrderId The unique identifier for the sales order to which the attachment belongs.
+	OrderId *int `json:"orderId,omitempty"`
+
+	// Size The size of the attached file in bytes.
+	Size *int64    `json:"size,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
+
+	// Timestamp A timestamp for when the attachment was created, in ISO 8601 format.
+	Timestamp *time.Time `json:"timestamp,omitempty"`
 }
 
 // SalesOrderStatusEnum Current status of the sales order.
@@ -1389,11 +1481,29 @@ type SalesOrderWithoutCustomer struct {
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
 
+	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+	OurReference *struct {
+		// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
+		Id *float32 `json:"id,omitempty"`
+	} `json:"ourReference,omitempty"`
+
+	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+	ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
 	// SalesType The sales type for the sales order.
 	SalesType *SalesTypeDto `json:"salesType,omitempty"`
 
 	// Status Current status of the sales order.
 	Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+	YourReference *struct {
+		// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
+		Id *float32 `json:"id,omitempty"`
+
+		// Name The name of the person.
+		Name *string `json:"name,omitempty"`
+	} `json:"yourReference,omitempty"`
 }
 
 // SalesType defines model for SalesType.
@@ -1528,6 +1638,21 @@ type Transaction struct {
 
 	// Date The date when the transaction line was posted.
 	Date openapi_types.Date `json:"date"`
+
+	// Dimensions A list of dimensions and dimension values associated with the transaction line, such as department or project. Included if `includeDimensions=true` is specified in the query parameters.
+	Dimensions *[]struct {
+		// DimensionType The type identifier for the dimension within 24SevenOffice ERP modules.
+		DimensionType int `json:"dimensionType"`
+
+		// DimensionTypeName The human-readable name for the dimension type.
+		DimensionTypeName *string `json:"dimensionTypeName,omitempty"`
+
+		// Name The display name associated with the value of the dimension.
+		Name string `json:"name"`
+
+		// Value The value (ie key) for the dimension.
+		Value string `json:"value"`
+	} `json:"dimensions,omitempty"`
 
 	// Id A unique identifier for the transaction line within 24SevenOffice accounting module.
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -1749,6 +1874,24 @@ type GetCustomersParams struct {
 	SortBy *SortInput `form:"sortBy,omitempty" json:"sortBy,omitempty"`
 }
 
+// GetDimensionsDimensionTypeElementsParams defines parameters for GetDimensionsDimensionTypeElements.
+type GetDimensionsDimensionTypeElementsParams struct {
+	// Limit The maximum number of elements to retrieve.
+	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// ContinuationToken A token for continuing the retrieval of sales orders. This is used for pagination and is prepopulated from the Link-header with rel=next from a previous request.
+	ContinuationToken *string `form:"continuationToken,omitempty" json:"continuationToken,omitempty"`
+}
+
+// GetFiscalperiodsParams defines parameters for GetFiscalperiods.
+type GetFiscalperiodsParams struct {
+	// Type Filter the results by type of accounting period. Use "Period" to retrieve only sub-periods within financial years, "Year" to retrieve only full financial years, or "All" to retrieve both financial years and their associated periods.
+	Type *GetFiscalperiodsParamsType `form:"type,omitempty" json:"type,omitempty"`
+}
+
+// GetFiscalperiodsParamsType defines parameters for GetFiscalperiods.
+type GetFiscalperiodsParamsType string
+
 // GetMeParams defines parameters for GetMe.
 type GetMeParams struct {
 	// Thumb A flag variable to include a thumbnail image in the response.
@@ -1902,11 +2045,40 @@ type PostSalesordersJSONBody struct {
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
 
+	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+	OurReference *struct {
+		// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
+		Id *float32 `json:"id,omitempty"`
+	} `json:"ourReference,omitempty"`
+
+	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+	ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
 	// SalesType The sales type for the sales order.
 	SalesType *SalesTypeDto `json:"salesType,omitempty"`
 
 	// Status Current status of the sales order.
 	Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+	YourReference *struct {
+		// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
+		Id *float32 `json:"id,omitempty"`
+
+		// Name The name of the person.
+		Name *string `json:"name,omitempty"`
+	} `json:"yourReference,omitempty"`
+}
+
+// PostSalesordersIdAttachmentsMultipartBody defines parameters for PostSalesordersIdAttachments.
+type PostSalesordersIdAttachmentsMultipartBody = openapi_types.File
+
+// PostSalesordersIdAttachmentsParams defines parameters for PostSalesordersIdAttachments.
+type PostSalesordersIdAttachmentsParams struct {
+	ContentDisposition *string `json:"Content-Disposition,omitempty"`
+
+	// ContentType The Content-Type for the attachment
+	ContentType string `json:"Content-Type"`
 }
 
 // GetTransactionlinesParams defines parameters for GetTransactionlines.
@@ -1940,6 +2112,9 @@ type GetTransactionlinesParams struct {
 
 	// Limit The maximum number of transactions to retrieve.
 	Limit *int `form:"limit,omitempty" json:"limit,omitempty"`
+
+	// IncludeDimensions Whether to include dimension information in the response.
+	IncludeDimensions *bool `form:"includeDimensions,omitempty" json:"includeDimensions,omitempty"`
 
 	// Page The page number of the results to retrieve.
 	Page *int `form:"page,omitempty" json:"page,omitempty"`
@@ -1977,6 +2152,9 @@ type PostSalesordersJSONRequestBody PostSalesordersJSONBody
 
 // PatchSalesordersIdJSONRequestBody defines body for PatchSalesordersId for application/json ContentType.
 type PatchSalesordersIdJSONRequestBody = SalesOrder
+
+// PostSalesordersIdAttachmentsMultipartRequestBody defines body for PostSalesordersIdAttachments for multipart/form-data ContentType.
+type PostSalesordersIdAttachmentsMultipartRequestBody = PostSalesordersIdAttachmentsMultipartBody
 
 // PostSalesordersIdLinesJSONRequestBody defines body for PostSalesordersIdLines for application/json ContentType.
 type PostSalesordersIdLinesJSONRequestBody = LineWithoutId
@@ -2312,6 +2490,21 @@ type ClientInterface interface {
 
 	UpdateCustomer(ctx context.Context, id Id, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetDimensions request
+	GetDimensions(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetDimensionsDimensionType request
+	GetDimensionsDimensionType(ctx context.Context, dimensionType int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetDimensionsDimensionTypeElements request
+	GetDimensionsDimensionTypeElements(ctx context.Context, dimensionType int, params *GetDimensionsDimensionTypeElementsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetDimensionsDimensionTypeElementsValue request
+	GetDimensionsDimensionTypeElementsValue(ctx context.Context, dimensionType int, value string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetFiscalperiods request
+	GetFiscalperiods(ctx context.Context, params *GetFiscalperiodsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetMe request
 	GetMe(ctx context.Context, params *GetMeParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -2392,6 +2585,9 @@ type ClientInterface interface {
 	PatchSalesordersIdWithBody(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PatchSalesordersId(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostSalesordersIdAttachmentsWithBody request with any body
+	PostSalesordersIdAttachmentsWithBody(ctx context.Context, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSalesordersIdLines request
 	GetSalesordersIdLines(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2685,6 +2881,66 @@ func (c *WriteClient) UpdateCustomerWithBody(ctx context.Context, id Id, content
 
 func (c *WriteClient) UpdateCustomer(ctx context.Context, id Id, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUpdateCustomerRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetDimensions(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDimensionsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetDimensionsDimensionType(ctx context.Context, dimensionType int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDimensionsDimensionTypeRequest(c.Server, dimensionType)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetDimensionsDimensionTypeElements(ctx context.Context, dimensionType int, params *GetDimensionsDimensionTypeElementsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDimensionsDimensionTypeElementsRequest(c.Server, dimensionType, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetDimensionsDimensionTypeElementsValue(ctx context.Context, dimensionType int, value string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetDimensionsDimensionTypeElementsValueRequest(c.Server, dimensionType, value)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetFiscalperiods(ctx context.Context, params *GetFiscalperiodsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetFiscalperiodsRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -3033,6 +3289,18 @@ func (c *WriteClient) PatchSalesordersIdWithBody(ctx context.Context, id int32, 
 
 func (c *WriteClient) PatchSalesordersId(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPatchSalesordersIdRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) PostSalesordersIdAttachmentsWithBody(ctx context.Context, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostSalesordersIdAttachmentsRequestWithBody(c.Server, id, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4193,6 +4461,229 @@ func NewUpdateCustomerRequestWithBody(server string, id Id, contentType string, 
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetDimensionsRequest generates requests for GetDimensions
+func NewGetDimensionsRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/dimensions")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetDimensionsDimensionTypeRequest generates requests for GetDimensionsDimensionType
+func NewGetDimensionsDimensionTypeRequest(server string, dimensionType int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "dimensionType", runtime.ParamLocationPath, dimensionType)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/dimensions/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetDimensionsDimensionTypeElementsRequest generates requests for GetDimensionsDimensionTypeElements
+func NewGetDimensionsDimensionTypeElementsRequest(server string, dimensionType int, params *GetDimensionsDimensionTypeElementsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "dimensionType", runtime.ParamLocationPath, dimensionType)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/dimensions/%s/elements", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit", runtime.ParamLocationQuery, *params.Limit); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ContinuationToken != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "continuationToken", runtime.ParamLocationQuery, *params.ContinuationToken); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetDimensionsDimensionTypeElementsValueRequest generates requests for GetDimensionsDimensionTypeElementsValue
+func NewGetDimensionsDimensionTypeElementsValueRequest(server string, dimensionType int, value string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "dimensionType", runtime.ParamLocationPath, dimensionType)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "value", runtime.ParamLocationPath, value)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/dimensions/%s/elements/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetFiscalperiodsRequest generates requests for GetFiscalperiods
+func NewGetFiscalperiodsRequest(server string, params *GetFiscalperiodsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/fiscalperiods")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -5415,6 +5906,66 @@ func NewPatchSalesordersIdRequestWithBody(server string, id int32, contentType s
 	return req, nil
 }
 
+// NewPostSalesordersIdAttachmentsRequestWithBody generates requests for PostSalesordersIdAttachments with any type of body
+func NewPostSalesordersIdAttachmentsRequestWithBody(server string, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/salesorders/%s/attachments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.ContentDisposition != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithLocation("simple", false, "Content-Disposition", runtime.ParamLocationHeader, *params.ContentDisposition)
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("Content-Disposition", headerParam0)
+		}
+
+		var headerParam1 string
+
+		headerParam1, err = runtime.StyleParamWithLocation("simple", false, "Content-Type", runtime.ParamLocationHeader, params.ContentType)
+		if err != nil {
+			return nil, err
+		}
+
+		req.Header.Set("Content-Type", headerParam1)
+
+	}
+
+	return req, nil
+}
+
 // NewGetSalesordersIdLinesRequest generates requests for GetSalesordersIdLines
 func NewGetSalesordersIdLinesRequest(server string, id int32) (*http.Request, error) {
 	var err error
@@ -5887,6 +6438,22 @@ func NewGetTransactionlinesRequest(server string, params *GetTransactionlinesPar
 
 		}
 
+		if params.IncludeDimensions != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "includeDimensions", runtime.ParamLocationQuery, *params.IncludeDimensions); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -6079,6 +6646,21 @@ type ClientWithResponsesInterface interface {
 
 	UpdateCustomerWithResponse(ctx context.Context, id Id, body UpdateCustomerJSONRequestBody, reqEditors ...RequestEditorFn) (*UpdateCustomerResponse, error)
 
+	// GetDimensionsWithResponse request
+	GetDimensionsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetDimensionsResponse, error)
+
+	// GetDimensionsDimensionTypeWithResponse request
+	GetDimensionsDimensionTypeWithResponse(ctx context.Context, dimensionType int, reqEditors ...RequestEditorFn) (*GetDimensionsDimensionTypeResponse, error)
+
+	// GetDimensionsDimensionTypeElementsWithResponse request
+	GetDimensionsDimensionTypeElementsWithResponse(ctx context.Context, dimensionType int, params *GetDimensionsDimensionTypeElementsParams, reqEditors ...RequestEditorFn) (*GetDimensionsDimensionTypeElementsResponse, error)
+
+	// GetDimensionsDimensionTypeElementsValueWithResponse request
+	GetDimensionsDimensionTypeElementsValueWithResponse(ctx context.Context, dimensionType int, value string, reqEditors ...RequestEditorFn) (*GetDimensionsDimensionTypeElementsValueResponse, error)
+
+	// GetFiscalperiodsWithResponse request
+	GetFiscalperiodsWithResponse(ctx context.Context, params *GetFiscalperiodsParams, reqEditors ...RequestEditorFn) (*GetFiscalperiodsResponse, error)
+
 	// GetMeWithResponse request
 	GetMeWithResponse(ctx context.Context, params *GetMeParams, reqEditors ...RequestEditorFn) (*GetMeResponse, error)
 
@@ -6159,6 +6741,9 @@ type ClientWithResponsesInterface interface {
 	PatchSalesordersIdWithBodyWithResponse(ctx context.Context, id int32, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error)
 
 	PatchSalesordersIdWithResponse(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error)
+
+	// PostSalesordersIdAttachmentsWithBodyWithResponse request with any body
+	PostSalesordersIdAttachmentsWithBodyWithResponse(ctx context.Context, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdAttachmentsResponse, error)
 
 	// GetSalesordersIdLinesWithResponse request
 	GetSalesordersIdLinesWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdLinesResponse, error)
@@ -6566,6 +7151,116 @@ func (r UpdateCustomerResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UpdateCustomerResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetDimensionsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Dimension
+}
+
+// Status returns HTTPResponse.Status
+func (r GetDimensionsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetDimensionsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetDimensionsDimensionTypeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Dimension
+}
+
+// Status returns HTTPResponse.Status
+func (r GetDimensionsDimensionTypeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetDimensionsDimensionTypeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetDimensionsDimensionTypeElementsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]DimensionElement
+}
+
+// Status returns HTTPResponse.Status
+func (r GetDimensionsDimensionTypeElementsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetDimensionsDimensionTypeElementsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetDimensionsDimensionTypeElementsValueResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DimensionElement
+}
+
+// Status returns HTTPResponse.Status
+func (r GetDimensionsDimensionTypeElementsValueResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetDimensionsDimensionTypeElementsValueResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetFiscalperiodsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AccountingPeriod
+}
+
+// Status returns HTTPResponse.Status
+func (r GetFiscalperiodsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetFiscalperiodsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7078,11 +7773,29 @@ type GetSalesordersIdResponse struct {
 		// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 		ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
 
+		// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+		OurReference *struct {
+			// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
+			Id *float32 `json:"id,omitempty"`
+		} `json:"ourReference,omitempty"`
+
+		// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+		ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
 		// SalesType The sales type for the sales order.
 		SalesType *SalesTypeDto `json:"salesType,omitempty"`
 
 		// Status Current status of the sales order.
 		Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+		// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+		YourReference *struct {
+			// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
+			Id *float32 `json:"id,omitempty"`
+
+			// Name The name of the person.
+			Name *string `json:"name,omitempty"`
+		} `json:"yourReference,omitempty"`
 	}
 	JSON200 *SalesOrder
 }
@@ -7123,6 +7836,28 @@ func (r PatchSalesordersIdResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PatchSalesordersIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PostSalesordersIdAttachmentsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SalesOrderAttachment
+}
+
+// Status returns HTTPResponse.Status
+func (r PostSalesordersIdAttachmentsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostSalesordersIdAttachmentsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7314,7 +8049,6 @@ func (r GetTaxesIdResponse) StatusCode() int {
 type GetTransactionlinesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *[]Transaction
 	JSON200      *[]Transaction
 }
 
@@ -7337,7 +8071,6 @@ func (r GetTransactionlinesResponse) StatusCode() int {
 type GetTransactionlinesIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *Transaction
 	JSON200      *Transaction
 }
 
@@ -7571,6 +8304,51 @@ func (c *ClientWithResponses) UpdateCustomerWithResponse(ctx context.Context, id
 		return nil, err
 	}
 	return ParseUpdateCustomerResponse(rsp)
+}
+
+// GetDimensionsWithResponse request returning *GetDimensionsResponse
+func (c *ClientWithResponses) GetDimensionsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetDimensionsResponse, error) {
+	rsp, err := c.GetDimensions(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDimensionsResponse(rsp)
+}
+
+// GetDimensionsDimensionTypeWithResponse request returning *GetDimensionsDimensionTypeResponse
+func (c *ClientWithResponses) GetDimensionsDimensionTypeWithResponse(ctx context.Context, dimensionType int, reqEditors ...RequestEditorFn) (*GetDimensionsDimensionTypeResponse, error) {
+	rsp, err := c.GetDimensionsDimensionType(ctx, dimensionType, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDimensionsDimensionTypeResponse(rsp)
+}
+
+// GetDimensionsDimensionTypeElementsWithResponse request returning *GetDimensionsDimensionTypeElementsResponse
+func (c *ClientWithResponses) GetDimensionsDimensionTypeElementsWithResponse(ctx context.Context, dimensionType int, params *GetDimensionsDimensionTypeElementsParams, reqEditors ...RequestEditorFn) (*GetDimensionsDimensionTypeElementsResponse, error) {
+	rsp, err := c.GetDimensionsDimensionTypeElements(ctx, dimensionType, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDimensionsDimensionTypeElementsResponse(rsp)
+}
+
+// GetDimensionsDimensionTypeElementsValueWithResponse request returning *GetDimensionsDimensionTypeElementsValueResponse
+func (c *ClientWithResponses) GetDimensionsDimensionTypeElementsValueWithResponse(ctx context.Context, dimensionType int, value string, reqEditors ...RequestEditorFn) (*GetDimensionsDimensionTypeElementsValueResponse, error) {
+	rsp, err := c.GetDimensionsDimensionTypeElementsValue(ctx, dimensionType, value, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetDimensionsDimensionTypeElementsValueResponse(rsp)
+}
+
+// GetFiscalperiodsWithResponse request returning *GetFiscalperiodsResponse
+func (c *ClientWithResponses) GetFiscalperiodsWithResponse(ctx context.Context, params *GetFiscalperiodsParams, reqEditors ...RequestEditorFn) (*GetFiscalperiodsResponse, error) {
+	rsp, err := c.GetFiscalperiods(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetFiscalperiodsResponse(rsp)
 }
 
 // GetMeWithResponse request returning *GetMeResponse
@@ -7826,6 +8604,15 @@ func (c *ClientWithResponses) PatchSalesordersIdWithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParsePatchSalesordersIdResponse(rsp)
+}
+
+// PostSalesordersIdAttachmentsWithBodyWithResponse request with arbitrary body returning *PostSalesordersIdAttachmentsResponse
+func (c *ClientWithResponses) PostSalesordersIdAttachmentsWithBodyWithResponse(ctx context.Context, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdAttachmentsResponse, error) {
+	rsp, err := c.PostSalesordersIdAttachmentsWithBody(ctx, id, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostSalesordersIdAttachmentsResponse(rsp)
 }
 
 // GetSalesordersIdLinesWithResponse request returning *GetSalesordersIdLinesResponse
@@ -8378,6 +9165,136 @@ func ParseUpdateCustomerResponse(rsp *http.Response) (*UpdateCustomerResponse, e
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CustomerResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetDimensionsResponse parses an HTTP response from a GetDimensionsWithResponse call
+func ParseGetDimensionsResponse(rsp *http.Response) (*GetDimensionsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetDimensionsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Dimension
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetDimensionsDimensionTypeResponse parses an HTTP response from a GetDimensionsDimensionTypeWithResponse call
+func ParseGetDimensionsDimensionTypeResponse(rsp *http.Response) (*GetDimensionsDimensionTypeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetDimensionsDimensionTypeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Dimension
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetDimensionsDimensionTypeElementsResponse parses an HTTP response from a GetDimensionsDimensionTypeElementsWithResponse call
+func ParseGetDimensionsDimensionTypeElementsResponse(rsp *http.Response) (*GetDimensionsDimensionTypeElementsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetDimensionsDimensionTypeElementsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []DimensionElement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetDimensionsDimensionTypeElementsValueResponse parses an HTTP response from a GetDimensionsDimensionTypeElementsValueWithResponse call
+func ParseGetDimensionsDimensionTypeElementsValueResponse(rsp *http.Response) (*GetDimensionsDimensionTypeElementsValueResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetDimensionsDimensionTypeElementsValueResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DimensionElement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetFiscalperiodsResponse parses an HTTP response from a GetFiscalperiodsWithResponse call
+func ParseGetFiscalperiodsResponse(rsp *http.Response) (*GetFiscalperiodsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetFiscalperiodsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AccountingPeriod
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -8990,11 +9907,29 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 			// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 			ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
 
+			// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+			OurReference *struct {
+				// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
+				Id *float32 `json:"id,omitempty"`
+			} `json:"ourReference,omitempty"`
+
+			// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+			ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
 			// SalesType The sales type for the sales order.
 			SalesType *SalesTypeDto `json:"salesType,omitempty"`
 
 			// Status Current status of the sales order.
 			Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+			// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+			YourReference *struct {
+				// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
+				Id *float32 `json:"id,omitempty"`
+
+				// Name The name of the person.
+				Name *string `json:"name,omitempty"`
+			} `json:"yourReference,omitempty"`
 		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -9049,6 +9984,32 @@ func ParsePatchSalesordersIdResponse(rsp *http.Response) (*PatchSalesordersIdRes
 			return nil, err
 		}
 		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePostSalesordersIdAttachmentsResponse parses an HTTP response from a PostSalesordersIdAttachmentsWithResponse call
+func ParsePostSalesordersIdAttachmentsResponse(rsp *http.Response) (*PostSalesordersIdAttachmentsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostSalesordersIdAttachmentsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SalesOrderAttachment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
@@ -9295,14 +10256,7 @@ func ParseGetTransactionlinesResponse(rsp *http.Response) (*GetTransactionlinesR
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest []Transaction
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.HALJSON200 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []Transaction
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -9328,14 +10282,7 @@ func ParseGetTransactionlinesIdResponse(rsp *http.Response) (*GetTransactionline
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest Transaction
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.HALJSON200 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Transaction
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err

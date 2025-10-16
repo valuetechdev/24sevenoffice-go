@@ -1,6 +1,6 @@
 {
   "openapi": "3.0.3",
-  "info": { "title": "24SevenOffice Public API", "version": "0.25.4" },
+  "info": { "title": "24SevenOffice Public API", "version": "0.31.0" },
   "servers": [{ "url": "https://rest.api.24sevenoffice.com/v1" }],
   "paths": {
     "/accountbalances": {
@@ -354,6 +354,53 @@
         ]
       }
     },
+    "/fiscalperiods": {
+      "get": {
+        "summary": "Read fiscal periods",
+        "description": "Read a list of fiscal periods.",
+        "tags": ["fiscalPeriods"],
+        "security": [{ "tfso": ["api.accounting.fiscalperiod:read"] }],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter the results by type of accounting period. Use \"Period\" to retrieve only sub-periods within financial years, \"Year\" to retrieve only full financial years, or \"All\" to retrieve both financial years and their associated periods.",
+            "schema": {
+              "type": "string",
+              "enum": ["Year", "Period", "All"],
+              "default": "Year"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization header",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of fiscal periods.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/AccountingPeriod" }
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Credentials": {
+                "schema": { "type": "string" }
+              },
+              "X-Trace-Id": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
     "/taxes": {
       "get": {
         "summary": "Read tax codes",
@@ -510,6 +557,12 @@
             "description": "The maximum number of transactions to retrieve."
           },
           {
+            "name": "includeDimensions",
+            "in": "query",
+            "schema": { "type": "boolean", "default": false },
+            "description": "Whether to include dimension information in the response."
+          },
+          {
             "name": "page",
             "in": "query",
             "schema": { "type": "integer", "default": 1 },
@@ -545,14 +598,6 @@
                     "$ref": "#/components/examples/TransactionLinesReadAllResponseExample"
                   }
                 }
-              },
-              "application/hal+json": {
-                "schema": { "$ref": "#/components/schemas/Transactions" },
-                "examples": {
-                  "TransactionLinesReadAllResponseExample": {
-                    "$ref": "#/components/examples/TransactionLinesReadAllResponseExample"
-                  }
-                }
               }
             }
           }
@@ -579,9 +624,6 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Transaction" }
-              },
-              "application/hal+json": {
                 "schema": { "$ref": "#/components/schemas/Transaction" }
               }
             },
@@ -1363,6 +1405,190 @@
         "security": [{ "tfso": ["api.crm.customer:write"] }]
       }
     },
+    "/dimensions": {
+      "get": {
+        "description": "Get a list of all dimension-types in the system. Elements with id below 100 are system dimension-types and will be the same across all clients. Elements with id above 100 are custom dimension-types specific to the client.",
+        "tags": ["Dimensions"],
+        "responses": {
+          "200": {
+            "description": "A list of dimension-types.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Dimension" }
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Credentials": {
+                "schema": { "type": "string" }
+              },
+              "X-Trace-Id": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "security": [{ "tfso": ["api.accounting.dimension:read"] }],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization header",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ]
+      }
+    },
+    "/dimensions/{dimensionType}": {
+      "parameters": [
+        {
+          "name": "dimensionType",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "integer" }
+        }
+      ],
+      "get": {
+        "description": "Get description of a single dimension-type by id.",
+        "tags": ["Dimensions"],
+        "responses": {
+          "200": {
+            "description": "The dimension-type with the specified id.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Dimension" }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Credentials": {
+                "schema": { "type": "string" }
+              },
+              "X-Trace-Id": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "security": [{ "tfso": ["api.accounting.dimension:read"] }],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization header",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ]
+      }
+    },
+    "/dimensions/{dimensionType}/elements": {
+      "parameters": [
+        {
+          "name": "dimensionType",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "integer" }
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "description": "The maximum number of elements to retrieve.",
+          "schema": { "type": "integer" }
+        },
+        {
+          "name": "continuationToken",
+          "in": "query",
+          "description": "A token for continuing the retrieval of sales orders. This is used for pagination and is prepopulated from the Link-header with rel=next from a previous request.",
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "description": "Get a list of active dimension elements for a specific dimension type.\nIf there are many elements, the results will be paginated, and a Link-header with rel=next will provide the path to the next page.\n",
+        "tags": ["Dimensions"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization header",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of dimension elements for the specified dimension type.",
+            "headers": {
+              "Link": {
+                "description": "The Link header includes information on where to find `next` page. Refer to https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link'",
+                "schema": { "type": "string" }
+              },
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Credentials": {
+                "schema": { "type": "string" }
+              },
+              "X-Trace-Id": { "schema": { "type": "string" } }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/DimensionElement" }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "tfso": ["api.accounting.dimension:read"] }]
+      }
+    },
+    "/dimensions/{dimensionType}/elements/{value}": {
+      "parameters": [
+        {
+          "name": "dimensionType",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "integer" }
+        },
+        {
+          "name": "value",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "description": "Get a single dimension element by dimension type (id) and value (id).",
+        "tags": ["Dimensions"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization header",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Single dimension element for the specified dimension type and value.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DimensionElement" }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Credentials": {
+                "schema": { "type": "string" }
+              },
+              "X-Trace-Id": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "security": [{ "tfso": ["api.accounting.dimension:read"] }]
+      }
+    },
     "/salesorders": {
       "post": {
         "summary": "Create a sales order",
@@ -1700,6 +1926,85 @@
             "schema": { "type": "string" }
           }
         ]
+      }
+    },
+    "/salesorders/{id}/attachments": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "integer", "format": "int32" }
+        }
+      ],
+      "post": {
+        "parameters": [
+          {
+            "name": "Content-Disposition",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "filename=\"attachment.pdf\""
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "description": "The Content-Type for the attachment",
+            "schema": { "type": "string", "example": "application/pdf" }
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Authorization header",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "summary": "Add an attachment to a sales order",
+        "description": "Add a new attachment to a specific sales order. The filename should be specified in the `Content-Disposition` header, and the `Content-Type` header must reflect the MIME type of the attachment being uploaded. The file itself should be included in the request body, and should be less than 4 MB in size.",
+        "requestBody": {
+          "content": {
+            "application/pdf": {
+              "schema": { "type": "string", "format": "binary" }
+            },
+            "image/png": { "schema": { "type": "string", "format": "binary" } },
+            "multipart/form-data": {
+              "schema": { "type": "string", "format": "binary" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Newly created attachment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalesOrderAttachment"
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Credentials": {
+                "schema": { "type": "string" }
+              },
+              "X-Trace-Id": { "schema": { "type": "string" } }
+            }
+          },
+          "403": {
+            "description": "Order is already invoiced, cannot add attachments",
+            "headers": {
+              "Access-Control-Allow-Origin": { "schema": { "type": "string" } },
+              "Access-Control-Allow-Credentials": {
+                "schema": { "type": "string" }
+              },
+              "X-Trace-Id": { "schema": { "type": "string" } }
+            }
+          }
+        },
+        "security": [{ "tfso": ["api.invoicing.salesorder.attachment:write"] }]
       }
     },
     "/salesorders/{id}/lines": {
@@ -3081,6 +3386,33 @@
           }
         }
       },
+      "AccountingPeriod": {
+        "type": "object",
+        "description": "Details of a financial year/accounting period within the 24SevenOffice accounting module.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique identifier for the accounting period within 24SevenOffice.",
+            "example": "3acda329-3074-4036-a1a2-499397dd6dc3"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Year", "Period"],
+            "description": "The type of accounting period, either \"Year\" for a full financial year or \"Period\" for a sub-period within a financial year.",
+            "example": "Year"
+          },
+          "startingDate": {
+            "type": "string",
+            "description": "The first day of the financial year or accounting period.",
+            "example": "2023-01-01"
+          },
+          "endingDate": {
+            "type": "string",
+            "description": "The last day of the financial year or accounting period.",
+            "example": "2023-12-31"
+          }
+        }
+      },
       "TaxResponse": {
         "description": "A single tax code",
         "type": "object",
@@ -3259,6 +3591,37 @@
           },
           "invoice": { "$ref": "#/components/schemas/Invoice" },
           "customer": { "$ref": "#/components/schemas/Customer" },
+          "dimensions": {
+            "type": "array",
+            "description": "A list of dimensions and dimension values associated with the transaction line, such as department or project. Included if `includeDimensions=true` is specified in the query parameters.",
+            "items": {
+              "type": "object",
+              "required": ["dimensionType", "value", "name"],
+              "properties": {
+                "dimensionType": {
+                  "type": "integer",
+                  "description": "The type identifier for the dimension within 24SevenOffice ERP modules.",
+                  "example": 1
+                },
+                "dimensionTypeName": {
+                  "type": "string",
+                  "description": "The human-readable name for the dimension type.",
+                  "example": "Project"
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The value (ie key) for the dimension.",
+                  "example": "13"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The display name associated with the value of the dimension.",
+                  "example": "Project with ID 13"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
           "comment": {
             "type": "string",
             "description": "A brief description of the transaction.",
@@ -3542,11 +3905,9 @@
         "properties": {
           "bankTransactionReference": {
             "type": "string",
-            "description": "Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case.",
+            "description": "Unique identifier for the bank transaction supplied by the bank that manages the bank account. It must be globally unique across all bank accounts for the client. A duplication warning is returned if this is not the case. Min 10 and max 130 characters.",
             "example": "10001-987-654-321",
-            "nullable": false,
-            "minLength": 10,
-            "maxLength": 130
+            "nullable": false
           },
           "type": {
             "type": "string",
@@ -3584,8 +3945,7 @@
                 "type": "string",
                 "description": "This must be a string of max 1000 characters.",
                 "example": "Payment for shipment AA-001.",
-                "nullable": false,
-                "maxLength": 1000
+                "nullable": false
               }
             }
           },
@@ -4047,6 +4407,46 @@
         "type": "string",
         "pattern": "^(name|createdAt|modifiedAt|organizationNumber|id):(asc|desc)$"
       },
+      "Dimension": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": {
+            "description": "ID of the dimension type",
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "description": "Name of the dimension type",
+            "type": "string",
+            "maxLength": 150,
+            "example": "Project"
+          }
+        }
+      },
+      "DimensionElement": {
+        "type": "object",
+        "required": ["dimensionType", "value", "name"],
+        "properties": {
+          "dimensionType": {
+            "description": "ID of the dimension type (ie 1=project, 2=department etc)",
+            "type": "integer",
+            "format": "int32",
+            "example": 1
+          },
+          "value": {
+            "description": "Value (id) of the dimension element",
+            "type": "string",
+            "example": "13"
+          },
+          "name": {
+            "description": "Name of the dimension element",
+            "type": "string",
+            "maxLength": 510,
+            "example": "Project 13"
+          }
+        }
+      },
       "SalesOrder": {
         "allOf": [
           {
@@ -4103,6 +4503,39 @@
             "type": "string",
             "description": "A memo or comments for the sales order.",
             "example": "Urgent delivery."
+          },
+          "yourReference": {
+            "type": "object",
+            "description": "Details of the contact person at the customer side who is the sales order's point of contact at the customer",
+            "properties": {
+              "id": {
+                "type": "number",
+                "description": "Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.",
+                "example": 123
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the person.",
+                "example": "John Doe"
+              }
+            }
+          },
+          "ourReference": {
+            "type": "object",
+            "description": "Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.",
+            "properties": {
+              "id": {
+                "type": "number",
+                "description": "Identifier of the contact person (candidates provided by `/organization/people` endpoint).",
+                "example": 123
+              }
+            }
+          },
+          "referenceNumber": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "A reference number for the sales order, like a purchase order number provided by the customer.",
+            "example": "PO12345"
           },
           "salesType": {
             "type": "object",
@@ -4463,6 +4896,52 @@
             "type": "integer",
             "description": "A unique identifier for the product within 24SevenOffice ERP-modules.",
             "example": 101
+          }
+        }
+      },
+      "SalesOrderAttachment": {
+        "type": "object",
+        "description": "Details of an attachment associated with a sales order.",
+        "properties": {
+          "fileId": {
+            "type": "string",
+            "description": "The unique identifier for the file associated with the attachment.",
+            "example": "file-1234567890"
+          },
+          "orderId": {
+            "type": "integer",
+            "description": "The unique identifier for the sales order to which the attachment belongs.",
+            "example": 1234
+          },
+          "fileName": {
+            "type": "string",
+            "description": "The name of the attached file.",
+            "example": "attachment.pdf"
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "The media type (MIME type) of the attached file.",
+            "example": "application/pdf"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The size of the attached file in bytes.",
+            "example": 2048000
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "A timestamp for when the attachment was created, in ISO 8601 format.",
+            "example": "2023-06-01T12:00:00Z"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Tags associated with the attachment for categorization or search purposes.",
+              "example": ["invoice", "urgent"]
+            }
           }
         }
       },
