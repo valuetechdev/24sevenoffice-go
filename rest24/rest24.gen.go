@@ -699,6 +699,9 @@ type Customer struct {
 
 	// PostalCode The postal code for the address.
 	PostalCode *string `json:"postalCode,omitempty"`
+
+	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
+	Street *MultilineString `json:"street,omitempty"`
 }
 
 // CustomerPatchRequest defines model for CustomerPatchRequest.
@@ -865,6 +868,9 @@ type DeliveryCustomer struct {
 
 	// PostalCode The postal code for the address.
 	PostalCode *string `json:"postalCode,omitempty"`
+
+	// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
+	Street *MultilineString `json:"street,omitempty"`
 }
 
 // Dimension defines model for Dimension.
@@ -2022,6 +2028,9 @@ type PostSalesordersJSONBody struct {
 
 		// PostalCode The postal code for the address.
 		PostalCode *string `json:"postalCode,omitempty"`
+
+		// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
+		Street *MultilineString `json:"street,omitempty"`
 	} `json:"customer,omitempty"`
 
 	// Date The date when the sales order was issued.

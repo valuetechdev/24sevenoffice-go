@@ -40,20 +40,16 @@ actions:
       format: uuid
 
   - target: "$.components.schemas.Customer1.properties.street"
-    description: FIXME(@timharek) temporary fix, removes street Customer
+    description: Use MultilineString type for street
     update:
-      oneOf:
-        - type: string
-        - type: array
-          items: string
+      type: string
+      x-go-type: MultilineString
 
   - target: "$.components.schemas.DeliveryCustomer.properties.street"
-    description: FIXME(@timharek) temporary fix, removes street Customer
+    description: Use MultilineString type for street
     update:
-      oneOf:
-        - type: string
-        - type: array
-          items: string
+      type: string
+      x-go-type: MultilineString
 
   - target: "$.paths['/organization/information'].get"
     description: Rename cryptic GetClient to GetOrganization

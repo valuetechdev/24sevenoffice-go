@@ -265,16 +265,17 @@ func TestCreateOrder(t *testing.T) {
 		InternalMemo: u.R("some internal memo"),
 		Memo:         u.R("a customer facing memo"),
 		Customer: &struct {
-			City                  *string        "json:\"city,omitempty\""
-			CountryCode           *string        "json:\"countryCode,omitempty\""
-			CountrySubdivision    *string        "json:\"countrySubdivision,omitempty\""
-			Gln                   *string        "json:\"gln,omitempty\""
-			Id                    int            "json:\"id\""
-			InvoiceEmailAddresses *[]types.Email "json:\"invoiceEmailAddresses,omitempty\""
-			Name                  string         "json:\"name\""
-			OrganizationNumber    *string        "json:\"organizationNumber,omitempty\""
-			PostalArea            *string        "json:\"postalArea,omitempty\""
-			PostalCode            *string        "json:\"postalCode,omitempty\""
+			City                  *string          "json:\"city,omitempty\""
+			CountryCode           *string          "json:\"countryCode,omitempty\""
+			CountrySubdivision    *string          "json:\"countrySubdivision,omitempty\""
+			Gln                   *string          "json:\"gln,omitempty\""
+			Id                    int              "json:\"id\""
+			InvoiceEmailAddresses *[]types.Email   "json:\"invoiceEmailAddresses,omitempty\""
+			Name                  string           "json:\"name\""
+			OrganizationNumber    *string          "json:\"organizationNumber,omitempty\""
+			PostalArea            *string          "json:\"postalArea,omitempty\""
+			PostalCode            *string          "json:\"postalCode,omitempty\""
+			Street                *MultilineString "json:\"street,omitempty\""
 		}{
 			Id:   int(*resCustomer.JSON200.Id),
 			Name: "CoolCustomer: what we know of them at the time of purchase",
