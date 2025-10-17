@@ -2,6 +2,7 @@ package rest24
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
 )
 
@@ -21,7 +22,7 @@ func (m *MultilineString) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	return nil
+	return fmt.Errorf("failed to unmarshal to MultilineString")
 }
 
 func (m MultilineString) MarshalJSON() ([]byte, error) {
