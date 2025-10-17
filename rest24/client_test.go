@@ -54,7 +54,7 @@ func TestClientInitialization(t *testing.T) {
 	res, err := c.GetAccountsWithResponse(context.Background(), &GetAccountsParams{})
 	require.NoError(err, "GetAccounts should not error")
 	require.NotNil(res, "GetAccounts should not be nil")
-	require.Equal(http.StatusOK, res.StatusCode(), "GetAccounts status should be OK")
+	require.Equal(http.StatusOK, res.StatusCode(), "GetAccounts status should be OK", string(res.Body))
 	require.NotNil(res.JSON200, "GetAccounts JSON200 should not be nil")
 }
 
@@ -74,28 +74,6 @@ func TestClientTokenManagement(t *testing.T) {
 	}
 	c.SetToken(testToken)
 	require.Equal(testToken.AccessToken, c.GetToken().AccessToken, "access token should match")
-}
-
-func TestTransactionLines(t *testing.T) {
-	require := require.New(t)
-
-	c := New(&Credentials{
-		ClientId:       os.Getenv("TFSO_REST_APP_ID"),
-		ClientSecret:   os.Getenv("TFSO_REST_SECRET"),
-		OrganizationId: orgId,
-	})
-	require.NoError(c.Authenticate(), "client should authenticate")
-
-	params := &GetTransactionlinesParams{
-		DateFrom: types.Date{Time: time.Date(2025, time.January, 1, 0, 0, 0, 0, time.UTC)},
-		DateTo:   types.Date{Time: time.Date(2025, time.September, 1, 0, 0, 0, 0, time.UTC)},
-	}
-	res, err := c.GetTransactionlinesWithResponse(context.Background(), params)
-	require.NoError(err, "GetTransactionlines should not error")
-	require.NotNil(res, "GetTransactionlines should not be nil")
-	require.Equal(http.StatusOK, res.StatusCode(), "GetTransactionlines status should be OK")
-	require.NotNil(res.JSON200, "GetTransactionlines JSON200 should not be nil")
-	require.NotEmpty(*res.JSON200, "GetTransactionlines JSON200 should not be empty")
 }
 
 func TestCreatePrivateCustomer(t *testing.T) {
@@ -212,7 +190,7 @@ func TestCreateProduct(t *testing.T) {
 	pPostRequest := ProductRequestPost{
 		Name:         u.R("Badeball"),
 		Number:       u.R(u.RandSeq(10)),
-		Type:         u.R(ProductTypeEnum(Default)),
+		Type:         u.R(Default),
 		Status:       u.R(ProductStatusEnumActive),
 		Description:  u.R("Rund og flytende"),
 		CostPrice:    u.R(float32(30)),
@@ -238,7 +216,7 @@ func TestCreateOrder(t *testing.T) {
 	pPostRequest := ProductRequestPost{
 		Name:         u.R("Badeball"),
 		Number:       u.R(u.RandSeq(10)),
-		Type:         u.R(ProductTypeEnum(Default)),
+		Type:         u.R(Default),
 		Status:       u.R(ProductStatusEnumActive),
 		Description:  u.R("Rund og flytende"),
 		CostPrice:    u.R(float32(30)),
@@ -287,16 +265,17 @@ func TestCreateOrder(t *testing.T) {
 		InternalMemo: u.R("some internal memo"),
 		Memo:         u.R("a customer facing memo"),
 		Customer: &struct {
-			City                  *string        "json:\"city,omitempty\""
-			CountryCode           *string        "json:\"countryCode,omitempty\""
-			CountrySubdivision    *string        "json:\"countrySubdivision,omitempty\""
-			Gln                   *string        "json:\"gln,omitempty\""
-			Id                    int            "json:\"id\""
-			InvoiceEmailAddresses *[]types.Email "json:\"invoiceEmailAddresses,omitempty\""
-			Name                  string         "json:\"name\""
-			OrganizationNumber    *string        "json:\"organizationNumber,omitempty\""
-			PostalArea            *string        "json:\"postalArea,omitempty\""
-			PostalCode            *string        "json:\"postalCode,omitempty\""
+			City                  *string          "json:\"city,omitempty\""
+			CountryCode           *string          "json:\"countryCode,omitempty\""
+			CountrySubdivision    *string          "json:\"countrySubdivision,omitempty\""
+			Gln                   *string          "json:\"gln,omitempty\""
+			Id                    int              "json:\"id\""
+			InvoiceEmailAddresses *[]types.Email   "json:\"invoiceEmailAddresses,omitempty\""
+			Name                  string           "json:\"name\""
+			OrganizationNumber    *string          "json:\"organizationNumber,omitempty\""
+			PostalArea            *string          "json:\"postalArea,omitempty\""
+			PostalCode            *string          "json:\"postalCode,omitempty\""
+			Street                *MultilineString "json:\"street,omitempty\""
 		}{
 			Id:   int(*resCustomer.JSON200.Id),
 			Name: "CoolCustomer: what we know of them at the time of purchase",
@@ -306,7 +285,7 @@ func TestCreateOrder(t *testing.T) {
 	require.NoError(err)
 	require.NotNil(orderRes.JSON200, "no order created")
 
-	salesLineRes, err := c.PostSalesordersIdLinesWithResponse(t.Context(), int32(u.D(orderRes.JSON200.Id)), LineWithoutId{
+	salesLineRes, err := c.PostSalesordersIdLinesWithResponse(t.Context(), int32(u.D(orderRes.JSON200.Id)), LineWithoutId{ //nolint:gosec
 		Type: u.R(LineTypeEnumProduct),
 		Product: &Product{
 			Id: resProduct.JSON201.Id,

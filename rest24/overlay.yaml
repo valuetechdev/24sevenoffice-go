@@ -39,15 +39,17 @@ actions:
       type: string
       format: uuid
 
-  # FIXME: Temporary fix until 24SO fixes its API
   - target: "$.components.schemas.Customer1.properties.street"
-    description: FIXME(@timharek) temporary fix, removes street Customer
-    remove: true
+    description: Use MultilineString type for street
+    update:
+      type: string
+      x-go-type: MultilineString
 
-  # FIXME: Temporary fix until 24SO fixes its API
   - target: "$.components.schemas.DeliveryCustomer.properties.street"
-    description: FIXME(@timharek) temporary fix, removes street Customer
-    remove: true
+    description: Use MultilineString type for street
+    update:
+      type: string
+      x-go-type: MultilineString
 
   - target: "$.paths['/organization/information'].get"
     description: Rename cryptic GetClient to GetOrganization
