@@ -1878,6 +1878,9 @@ type GetCustomersParams struct {
 
 	// SortBy Sort customers by field and direction. Takes in a pair of field and direction separated by a colon symbol ':'
 	SortBy *SortInput `form:"sortBy,omitempty" json:"sortBy,omitempty"`
+
+	// Page Page number for pagination
+	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 }
 
 // GetDimensionsDimensionTypeElementsParams defines parameters for GetDimensionsDimensionTypeElements.
@@ -4295,6 +4298,22 @@ func NewGetCustomersRequest(server string, params *GetCustomersParams) (*http.Re
 		if params.SortBy != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sortBy", runtime.ParamLocationQuery, *params.SortBy); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err

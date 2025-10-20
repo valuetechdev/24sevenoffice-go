@@ -11,6 +11,16 @@ actions:
       type: integer
       format: int32
 
+  - target: "$.paths['/customers'].get.parameters"
+    description: Add page parameter to customer query params
+    update:
+      - name: "page"
+        in: "query"
+        description: "Page number for pagination"
+        schema: 
+          type: integer
+          format: int32
+
   - target: "$.paths['/salesorders'].get.parameters[0].schema"
     description: Fix salesorders limit parameter - change to integer type
     update:
