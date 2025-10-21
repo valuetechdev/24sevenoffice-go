@@ -2598,6 +2598,9 @@ type ClientInterface interface {
 
 	PatchSalesordersId(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetSalesordersIdAttachments request
+	GetSalesordersIdAttachments(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PostSalesordersIdAttachmentsWithBody request with any body
 	PostSalesordersIdAttachmentsWithBody(ctx context.Context, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -3301,6 +3304,18 @@ func (c *WriteClient) PatchSalesordersIdWithBody(ctx context.Context, id int32, 
 
 func (c *WriteClient) PatchSalesordersId(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPatchSalesordersIdRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetSalesordersIdAttachments(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSalesordersIdAttachmentsRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -5934,6 +5949,40 @@ func NewPatchSalesordersIdRequestWithBody(server string, id int32, contentType s
 	return req, nil
 }
 
+// NewGetSalesordersIdAttachmentsRequest generates requests for GetSalesordersIdAttachments
+func NewGetSalesordersIdAttachmentsRequest(server string, id int32) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/salesorders/%s/attachments", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewPostSalesordersIdAttachmentsRequestWithBody generates requests for PostSalesordersIdAttachments with any type of body
 func NewPostSalesordersIdAttachmentsRequestWithBody(server string, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -6770,6 +6819,9 @@ type ClientWithResponsesInterface interface {
 
 	PatchSalesordersIdWithResponse(ctx context.Context, id int32, body PatchSalesordersIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchSalesordersIdResponse, error)
 
+	// GetSalesordersIdAttachmentsWithResponse request
+	GetSalesordersIdAttachmentsWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdAttachmentsResponse, error)
+
 	// PostSalesordersIdAttachmentsWithBodyWithResponse request with any body
 	PostSalesordersIdAttachmentsWithBodyWithResponse(ctx context.Context, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdAttachmentsResponse, error)
 
@@ -7056,7 +7108,6 @@ func (r GetBanktransactionsBankTransactionReferenceResponse) StatusCode() int {
 type GetCurrenciesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *Currencies
 	JSON200      *Currencies
 }
 
@@ -7714,12 +7765,7 @@ func (r GetUnitsResponse) StatusCode() int {
 type GetSalesordersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *struct {
-		UnderscoreEmbedded *struct {
-			Salesorders *[]SalesOrder `json:"salesorders,omitempty"`
-		} `json:"_embedded,omitempty"`
-	}
-	JSON200 *[]SalesOrder
+	JSON200      *[]SalesOrder
 }
 
 // Status returns HTTPResponse.Status
@@ -7766,66 +7812,7 @@ func (r PostSalesordersResponse) StatusCode() int {
 type GetSalesordersIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *struct {
-		UnderscoreEmbedded *struct {
-			Lines *[]Line `json:"lines,omitempty"`
-		} `json:"_embedded,omitempty"`
-
-		// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
-		CreatedAt *time.Time `json:"createdAt,omitempty"`
-
-		// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
-		Customer *Customer `json:"customer,omitempty"`
-
-		// Date The date when the sales order was issued.
-		Date *openapi_types.Date `json:"date,omitempty"`
-
-		// DeliveryCustomer Delivery details for the sales order.
-		DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
-
-		// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-		Dimensions *[]DimensionDto `json:"dimensions,omitempty"`
-
-		// Id A unique identifier for the sales order within 24SevenOffice ERP.
-		Id *int `json:"id,omitempty"`
-
-		// InternalMemo An internal memo for the sales order.
-		InternalMemo *string `json:"internalMemo,omitempty"`
-
-		// InvoiceWithTransaction Details of an invoice associated with a sales order.
-		InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
-
-		// Memo A memo or comments for the sales order.
-		Memo *string `json:"memo,omitempty"`
-
-		// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
-		ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
-
-		// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
-		OurReference *struct {
-			// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
-			Id *float32 `json:"id,omitempty"`
-		} `json:"ourReference,omitempty"`
-
-		// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
-		ReferenceNumber *string `json:"referenceNumber,omitempty"`
-
-		// SalesType The sales type for the sales order.
-		SalesType *SalesTypeDto `json:"salesType,omitempty"`
-
-		// Status Current status of the sales order.
-		Status *SalesOrderStatusEnum `json:"status,omitempty"`
-
-		// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
-		YourReference *struct {
-			// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
-			Id *float32 `json:"id,omitempty"`
-
-			// Name The name of the person.
-			Name *string `json:"name,omitempty"`
-		} `json:"yourReference,omitempty"`
-	}
-	JSON200 *SalesOrder
+	JSON200      *SalesOrder
 }
 
 // Status returns HTTPResponse.Status
@@ -7847,7 +7834,6 @@ func (r GetSalesordersIdResponse) StatusCode() int {
 type PatchSalesordersIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *SalesOrder
 	JSON200      *SalesOrder
 	JSON400      *struct {
 		union json.RawMessage
@@ -7864,6 +7850,28 @@ func (r PatchSalesordersIdResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PatchSalesordersIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetSalesordersIdAttachmentsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SalesOrderAttachment
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSalesordersIdAttachmentsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSalesordersIdAttachmentsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -8121,7 +8129,6 @@ func (r GetTransactionlinesIdResponse) StatusCode() int {
 type GetTransactiontypesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	HALJSON200   *TransactionTypes
 	JSON200      *TransactionTypes
 }
 
@@ -8634,6 +8641,15 @@ func (c *ClientWithResponses) PatchSalesordersIdWithResponse(ctx context.Context
 	return ParsePatchSalesordersIdResponse(rsp)
 }
 
+// GetSalesordersIdAttachmentsWithResponse request returning *GetSalesordersIdAttachmentsResponse
+func (c *ClientWithResponses) GetSalesordersIdAttachmentsWithResponse(ctx context.Context, id int32, reqEditors ...RequestEditorFn) (*GetSalesordersIdAttachmentsResponse, error) {
+	rsp, err := c.GetSalesordersIdAttachments(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSalesordersIdAttachmentsResponse(rsp)
+}
+
 // PostSalesordersIdAttachmentsWithBodyWithResponse request with arbitrary body returning *PostSalesordersIdAttachmentsResponse
 func (c *ClientWithResponses) PostSalesordersIdAttachmentsWithBodyWithResponse(ctx context.Context, id int32, params *PostSalesordersIdAttachmentsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostSalesordersIdAttachmentsResponse, error) {
 	rsp, err := c.PostSalesordersIdAttachmentsWithBody(ctx, id, params, contentType, body, reqEditors...)
@@ -9064,14 +9080,7 @@ func ParseGetCurrenciesResponse(rsp *http.Response) (*GetCurrenciesResponse, err
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest Currencies
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.HALJSON200 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Currencies
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -9827,18 +9836,7 @@ func ParseGetSalesordersResponse(rsp *http.Response) (*GetSalesordersResponse, e
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest struct {
-			UnderscoreEmbedded *struct {
-				Salesorders *[]SalesOrder `json:"salesorders,omitempty"`
-			} `json:"_embedded,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.HALJSON200 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []SalesOrder
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -9899,72 +9897,7 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest struct {
-			UnderscoreEmbedded *struct {
-				Lines *[]Line `json:"lines,omitempty"`
-			} `json:"_embedded,omitempty"`
-
-			// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
-			CreatedAt *time.Time `json:"createdAt,omitempty"`
-
-			// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
-			Customer *Customer `json:"customer,omitempty"`
-
-			// Date The date when the sales order was issued.
-			Date *openapi_types.Date `json:"date,omitempty"`
-
-			// DeliveryCustomer Delivery details for the sales order.
-			DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
-
-			// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-			Dimensions *[]DimensionDto `json:"dimensions,omitempty"`
-
-			// Id A unique identifier for the sales order within 24SevenOffice ERP.
-			Id *int `json:"id,omitempty"`
-
-			// InternalMemo An internal memo for the sales order.
-			InternalMemo *string `json:"internalMemo,omitempty"`
-
-			// InvoiceWithTransaction Details of an invoice associated with a sales order.
-			InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
-
-			// Memo A memo or comments for the sales order.
-			Memo *string `json:"memo,omitempty"`
-
-			// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
-			ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
-
-			// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
-			OurReference *struct {
-				// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
-				Id *float32 `json:"id,omitempty"`
-			} `json:"ourReference,omitempty"`
-
-			// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
-			ReferenceNumber *string `json:"referenceNumber,omitempty"`
-
-			// SalesType The sales type for the sales order.
-			SalesType *SalesTypeDto `json:"salesType,omitempty"`
-
-			// Status Current status of the sales order.
-			Status *SalesOrderStatusEnum `json:"status,omitempty"`
-
-			// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
-			YourReference *struct {
-				// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
-				Id *float32 `json:"id,omitempty"`
-
-				// Name The name of the person.
-				Name *string `json:"name,omitempty"`
-			} `json:"yourReference,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.HALJSON200 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SalesOrder
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -9990,14 +9923,7 @@ func ParsePatchSalesordersIdResponse(rsp *http.Response) (*PatchSalesordersIdRes
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest SalesOrder
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.HALJSON200 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SalesOrder
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
@@ -10012,6 +9938,32 @@ func ParsePatchSalesordersIdResponse(rsp *http.Response) (*PatchSalesordersIdRes
 			return nil, err
 		}
 		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSalesordersIdAttachmentsResponse parses an HTTP response from a GetSalesordersIdAttachmentsWithResponse call
+func ParseGetSalesordersIdAttachmentsResponse(rsp *http.Response) (*GetSalesordersIdAttachmentsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSalesordersIdAttachmentsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SalesOrderAttachment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
@@ -10336,14 +10288,7 @@ func ParseGetTransactiontypesResponse(rsp *http.Response) (*GetTransactiontypesR
 	}
 
 	switch {
-	case rsp.Header.Get("Content-Type") == "application/hal+json" && rsp.StatusCode == 200:
-		var dest TransactionTypes
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.HALJSON200 = &dest
-
-	case rsp.Header.Get("Content-Type") == "application/json" && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest TransactionTypes
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
