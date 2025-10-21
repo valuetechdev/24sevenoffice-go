@@ -12,12 +12,12 @@ generate:
 .PHONY: api-payroll24
 api-payroll24:
 	@echo "openapi: getting latest Swagger from Payroll24 and converting to OpenAPI 3"
-	@curl https://converter.swagger.io/api/convert?url=https://me.24sevenoffice.com/swagger.json > ./api/openapi/payroll.json
+	@curl https://converter.swagger.io/api/convert?url=https://me.24sevenoffice.com/swagger.json | jq > ./api/openapi/payroll.json
 
 .PHONY: api-rest24
 api-rest24:
 	@echo "openapi: getting latest Rest24"
-	@curl https://rest-api.developer.24sevenoffice.com/doc/v1.json > ./api/openapi/rest.json
+	@curl https://rest-api.developer.24sevenoffice.com/doc/v1.json | jq > ./api/openapi/rest.json
 
 .PHONY: api
 api:
