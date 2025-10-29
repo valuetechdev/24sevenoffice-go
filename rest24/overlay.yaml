@@ -17,7 +17,7 @@ actions:
       - name: "page"
         in: "query"
         description: "Page number for pagination"
-        schema: 
+        schema:
           type: integer
           format: int32
 
@@ -186,44 +186,6 @@ actions:
       $ref: "#/components/schemas/Account1"
 
   - target: "$.components.schemas"
-    description: Add Dimension DTO
-    update:
-      DimensionDto:
-        type: "object"
-        required:
-          - "dimensionType"
-          - "value"
-          - "name"
-        properties:
-          dimensionType:
-            type: "integer"
-            description: "The unique identifier for the dimension within 24SevenOffice ERP modules."
-            example: 1
-          value:
-            type: "string"
-            description: "The value (ie key) for the dimension."
-            example: "13"
-          name:
-            type: "string"
-            description: "The display name asociated with the value of the dimension."
-            example: "Project with ID 13"
-
-  - target: "$.components.schemas.LineWithoutId.properties.dimensions.items"
-    description: Use DimensionDto
-    update:
-      $ref: "#/components/schemas/DimensionDto"
-
-  - target: "$.components.schemas.SalesOrderWithoutCustomer.properties.dimensions.items"
-    description: Use DimensionDto
-    update:
-      $ref: "#/components/schemas/DimensionDto"
-
-  - target: "$.components.schemas.SalesOrderWithoutCustomer.properties.dimensions.items"
-    description: Use DimensionDto
-    update:
-      $ref: "#/components/schemas/DimensionDto"
-
-  - target: "$.components.schemas"
     description: Add Addresses DTO
     update:
       AddressesDto:
@@ -335,8 +297,8 @@ actions:
             description: "The unique identifier for the sales type. A negative value stands for a system-defined ID."
             example: -100
 
-  - target: "$.components.schemas.SalesOrderWithoutCustomer.properties.salesType"
-    description: Use SalesTypeDto
+  - target: "$.components.schemas.SalesOrderBasic.properties.salesType"
+    description: Use SalesTypeDto for SalesOrderBasic
     update:
       $ref: "#/components/schemas/SalesTypeDto"
 
@@ -555,29 +517,6 @@ actions:
       $ref: "#/components/schemas/ProductStatusEnum"
 
   - target: "$.components.schemas"
-    description: Add SalesOrderStatusEnum
-    update:
-      SalesOrderStatusEnum:
-        type: "string"
-        description: "Current status of the sales order."
-        enum:
-          - "Draft"
-          - "Proposal"
-          - "Confirmed"
-          - "Invoice"
-          - "AdvanceInvoice"
-        example: "Invoice"
-  - target: "$.components.schemas.SalesOrderWithoutCustomer.properties.status"
-    description: Use SalesOrderStatusEnum
-    update:
-      $ref: "#/components/schemas/SalesOrderStatusEnum"
-
-  - target: "$.paths['/salesorders'].get.parameters[5].schema"
-    description: Add SalesOrderStatusEnum
-    update:
-      $ref: "#/components/schemas/SalesOrderStatusEnum"
-
-  - target: "$.components.schemas"
     description: Add LineTypeEnum
     update:
       LineTypeEnum:
@@ -668,6 +607,72 @@ actions:
       type: array
       items:
         $ref: "#/components/schemas/Transaction"
+
+  - target: "$.components.schemas.SalesOrderBasic.properties.currency"
+    description: Use LineTypeEnum
+    update:
+      $ref: "#/components/schemas/Currency"
+
+  - target: "$.components.schemas"
+    description: Add OurReferenceContactPersonDto
+    update:
+      OurReferenceContactPersonDto:
+        type: "object"
+        description: "Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint."
+        properties:
+          id:
+            type: "number"
+            description: "Identifier of the contact person (candidates provided by `/organization/people` endpoint)."
+            example: 123
+
+  - target: "$.components.schemas.SalesOrderBasic.properties.ourReference"
+    description: Use OurReferenceContactPersonDto for SalesOrderBasic
+    update:
+      $ref: "#/components/schemas/OurReferenceContactPersonDto"
+
+  - target: "$.components.schemas"
+    description: Add YourReferenceContactPersonDto
+    update:
+      YourReferenceContactPersonDto:
+        type: "object"
+        description: "Details of the contact person at the customer side who is the sales order's point of contact at the customer"
+        properties:
+          id:
+            type: "number"
+            description: "Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person."
+            example: 123
+          name:
+            type: "string"
+            description: "The name of the person."
+            example: "John Doe"
+
+  - target: "$.components.schemas.SalesOrderBasic.properties.yourReference"
+    description: Use YourReferenceContactPersonDto for SalesOrderBasic
+    update:
+      $ref: "#/components/schemas/YourReferenceContactPersonDto"
+
+  - target: "$.components.schemas"
+    description: Add SalesOrderStatusEnum
+    update:
+      SalesOrderStatusEnum:
+        type: "string"
+        description: "Current status of the sales order."
+        enum:
+          - "Draft"
+          - "Proposal"
+          - "Confirmed"
+          - "Invoice"
+          - "AdvanceInvoice"
+        example: "Invoice"
+  - target: "$.components.schemas.SalesOrderBasic.properties.status"
+    description: Use SalesOrderStatusEnum
+    update:
+      $ref: "#/components/schemas/SalesOrderStatusEnum"
+
+  - target: "$.paths['/salesorders'].get.parameters[5].schema"
+    description: Add SalesOrderStatusEnum
+    update:
+      $ref: "#/components/schemas/SalesOrderStatusEnum"
 
   # FIXME: this seems to be broken in OAPI.
   # see: https://github.com/oapi-codegen/oapi-codegen/issues/2091
