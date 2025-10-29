@@ -17,7 +17,7 @@ api-payroll24:
 .PHONY: api-rest24
 api-rest24:
 	@echo "openapi: getting latest Rest24"
-	@curl https://rest-api.developer.24sevenoffice.com/doc/v1.json | jq > ./api/openapi/rest.json
+	@curl https://rest-api.developer.24sevenoffice.com/doc/v1.yaml > ./api/openapi/rest.yaml
 
 .PHONY: api
 api:

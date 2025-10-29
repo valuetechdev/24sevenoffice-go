@@ -882,12 +882,12 @@ type Dimension struct {
 	Name string `json:"name"`
 }
 
-// DimensionDto defines model for DimensionDto.
-type DimensionDto struct {
+// Dimension1 defines model for Dimension1.
+type Dimension1 struct {
 	// DimensionType The unique identifier for the dimension within 24SevenOffice ERP modules.
 	DimensionType int `json:"dimensionType"`
 
-	// Name The display name asociated with the value of the dimension.
+	// Name The display name associated with the value of the dimension.
 	Name string `json:"name"`
 
 	// Value The value (ie key) for the dimension.
@@ -904,6 +904,15 @@ type DimensionElement struct {
 
 	// Value Value (id) of the dimension element
 	Value string `json:"value"`
+}
+
+// Dimensions A list of dimensions such as department or project.
+type Dimensions = []Dimension1
+
+// DimensionsObject defines model for DimensionsObject.
+type DimensionsObject struct {
+	// Dimensions A list of dimensions such as department or project.
+	Dimensions *Dimensions `json:"dimensions,omitempty"`
 }
 
 // EmailsDto Email addresses for the customer.
@@ -1008,8 +1017,8 @@ type Line struct {
 	// Description A description for the line item.
 	Description *string `json:"description,omitempty"`
 
-	// Dimensions A list of dimensions associated with the line item, such as department or project.
-	Dimensions *[]DimensionDto `json:"dimensions,omitempty"`
+	// Dimensions A list of dimensions such as department or project.
+	Dimensions *Dimensions `json:"dimensions,omitempty"`
 
 	// DiscountRate The discount rate applied to the line item, expressed as a whole number. For example, a discount rate of 10% is represented as 10.
 	DiscountRate *float32 `json:"discountRate,omitempty"`
@@ -1044,8 +1053,8 @@ type LineWithoutId struct {
 	// Description A description for the line item.
 	Description *string `json:"description,omitempty"`
 
-	// Dimensions A list of dimensions associated with the line item, such as department or project.
-	Dimensions *[]DimensionDto `json:"dimensions,omitempty"`
+	// Dimensions A list of dimensions such as department or project.
+	Dimensions *Dimensions `json:"dimensions,omitempty"`
 
 	// DiscountRate The discount rate applied to the line item, expressed as a whole number. For example, a discount rate of 10% is represented as 10.
 	DiscountRate *float32 `json:"discountRate,omitempty"`
@@ -1124,6 +1133,12 @@ type OrganizationModel struct {
 type OrganizationSettingsModel struct {
 	// CurrencyCode The currency code for the organization.
 	CurrencyCode *string `json:"currencyCode,omitempty"`
+}
+
+// OurReferenceContactPersonDto Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+type OurReferenceContactPersonDto struct {
+	// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
+	Id *float32 `json:"id,omitempty"`
 }
 
 // PaymenReferenceDto The payment reference must be one of the following types: text ocr invoiceRef.
@@ -1383,6 +1398,7 @@ type ProfileModel struct {
 type SalesOrder struct {
 	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	Currency  *Currency  `json:"currency,omitempty"`
 
 	// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
 	Customer *Customer `json:"customer,omitempty"`
@@ -1393,8 +1409,8 @@ type SalesOrder struct {
 	// DeliveryCustomer Delivery details for the sales order.
 	DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
 
-	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-	Dimensions *[]DimensionDto `json:"dimensions,omitempty"`
+	// GrossAmount The total amount for the sales order, including taxes.
+	GrossAmount *float32 `json:"grossAmount,omitempty"`
 
 	// Id A unique identifier for the sales order within 24SevenOffice ERP.
 	Id *int `json:"id,omitempty"`
@@ -1411,11 +1427,11 @@ type SalesOrder struct {
 	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
 	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
 
+	// NetAmount The total amount for the sales order, excluding taxes.
+	NetAmount *float32 `json:"netAmount,omitempty"`
+
 	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
-	OurReference *struct {
-		// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
-		Id *float32 `json:"id,omitempty"`
-	} `json:"ourReference,omitempty"`
+	OurReference *OurReferenceContactPersonDto `json:"ourReference,omitempty"`
 
 	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
 	ReferenceNumber *string `json:"referenceNumber,omitempty"`
@@ -1426,14 +1442,11 @@ type SalesOrder struct {
 	// Status Current status of the sales order.
 	Status *SalesOrderStatusEnum `json:"status,omitempty"`
 
-	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
-	YourReference *struct {
-		// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
-		Id *float32 `json:"id,omitempty"`
+	// TaxAmount The total tax amount for the sales order.
+	TaxAmount *float32 `json:"taxAmount,omitempty"`
 
-		// Name The name of the person.
-		Name *string `json:"name,omitempty"`
-	} `json:"yourReference,omitempty"`
+	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+	YourReference *YourReferenceContactPersonDto `json:"yourReference,omitempty"`
 }
 
 // SalesOrderAttachment Details of an attachment associated with a sales order.
@@ -1458,22 +1471,17 @@ type SalesOrderAttachment struct {
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 }
 
-// SalesOrderStatusEnum Current status of the sales order.
-type SalesOrderStatusEnum string
-
-// SalesOrderWithoutCustomer defines model for SalesOrderWithoutCustomer.
-type SalesOrderWithoutCustomer struct {
+// SalesOrderBasic defines model for SalesOrderBasic.
+type SalesOrderBasic struct {
 	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	Currency  *Currency  `json:"currency,omitempty"`
 
 	// Date The date when the sales order was issued.
 	Date *openapi_types.Date `json:"date,omitempty"`
 
 	// DeliveryCustomer Delivery details for the sales order.
 	DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
-
-	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-	Dimensions *[]DimensionDto `json:"dimensions,omitempty"`
 
 	// InternalMemo An internal memo for the sales order.
 	InternalMemo *string `json:"internalMemo,omitempty"`
@@ -1488,10 +1496,7 @@ type SalesOrderWithoutCustomer struct {
 	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
 
 	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
-	OurReference *struct {
-		// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
-		Id *float32 `json:"id,omitempty"`
-	} `json:"ourReference,omitempty"`
+	OurReference *OurReferenceContactPersonDto `json:"ourReference,omitempty"`
 
 	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
 	ReferenceNumber *string `json:"referenceNumber,omitempty"`
@@ -1503,14 +1508,192 @@ type SalesOrderWithoutCustomer struct {
 	Status *SalesOrderStatusEnum `json:"status,omitempty"`
 
 	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
-	YourReference *struct {
-		// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
-		Id *float32 `json:"id,omitempty"`
-
-		// Name The name of the person.
-		Name *string `json:"name,omitempty"`
-	} `json:"yourReference,omitempty"`
+	YourReference *YourReferenceContactPersonDto `json:"yourReference,omitempty"`
 }
+
+// SalesOrderExtended defines model for SalesOrderExtended.
+type SalesOrderExtended struct {
+	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	Currency  *Currency  `json:"currency,omitempty"`
+
+	// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
+	Customer *Customer `json:"customer,omitempty"`
+
+	// Date The date when the sales order was issued.
+	Date *openapi_types.Date `json:"date,omitempty"`
+
+	// DeliveryCustomer Delivery details for the sales order.
+	DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
+
+	// Dimensions A list of dimensions such as department or project.
+	Dimensions *Dimensions `json:"dimensions,omitempty"`
+
+	// GrossAmount The total amount for the sales order, including taxes.
+	GrossAmount *float32 `json:"grossAmount,omitempty"`
+
+	// Id A unique identifier for the sales order within 24SevenOffice ERP.
+	Id *int `json:"id,omitempty"`
+
+	// InternalMemo An internal memo for the sales order.
+	InternalMemo *string `json:"internalMemo,omitempty"`
+
+	// InvoiceWithTransaction Details of an invoice associated with a sales order.
+	InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
+
+	// Memo A memo or comments for the sales order.
+	Memo *string `json:"memo,omitempty"`
+
+	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
+	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
+
+	// NetAmount The total amount for the sales order, excluding taxes.
+	NetAmount *float32 `json:"netAmount,omitempty"`
+
+	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+	OurReference *OurReferenceContactPersonDto `json:"ourReference,omitempty"`
+
+	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+	ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
+	// SalesType The sales type for the sales order.
+	SalesType *SalesTypeDto `json:"salesType,omitempty"`
+
+	// Status Current status of the sales order.
+	Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+	// TaxAmount The total tax amount for the sales order.
+	TaxAmount *float32 `json:"taxAmount,omitempty"`
+
+	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+	YourReference *YourReferenceContactPersonDto `json:"yourReference,omitempty"`
+}
+
+// SalesOrderRequestPatch defines model for SalesOrderRequestPatch.
+type SalesOrderRequestPatch struct {
+	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	Currency  *Currency  `json:"currency,omitempty"`
+
+	// Customer Customer details for the sales order. Note that the `customer` object for the `/salesOrders` endpoint is not the same as the customer that can be retrieved from the `/customers` endpoint, even though both share the same ID reference and their schemas are similar. The `customer` object in the context of `/salesOrders` contains the customer details as they were at the time the sales order was created. In contrast, the `/customers` endpoint always provides the latest state values for the customer properties.
+	Customer *Customer `json:"customer,omitempty"`
+
+	// Date The date when the sales order was issued.
+	Date *openapi_types.Date `json:"date,omitempty"`
+
+	// DeliveryCustomer Delivery details for the sales order.
+	DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
+
+	// Dimensions A list of dimensions such as department or project.
+	Dimensions *Dimensions `json:"dimensions,omitempty"`
+
+	// InternalMemo An internal memo for the sales order.
+	InternalMemo *string `json:"internalMemo,omitempty"`
+
+	// InvoiceWithTransaction Details of an invoice associated with a sales order.
+	InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
+
+	// Memo A memo or comments for the sales order.
+	Memo *string `json:"memo,omitempty"`
+
+	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
+	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
+
+	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+	OurReference *OurReferenceContactPersonDto `json:"ourReference,omitempty"`
+
+	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+	ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
+	// SalesType The sales type for the sales order.
+	SalesType *SalesTypeDto `json:"salesType,omitempty"`
+
+	// Status Current status of the sales order.
+	Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+	YourReference *YourReferenceContactPersonDto `json:"yourReference,omitempty"`
+}
+
+// SalesOrderRequestPost defines model for SalesOrderRequestPost.
+type SalesOrderRequestPost struct {
+	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	Currency  *Currency  `json:"currency,omitempty"`
+	Customer  *struct {
+		// City The city for the address.
+		City *string `json:"city,omitempty"`
+
+		// CountryCode The two-letter country code for the address, as in ISO 3166-1 alpha-2 standard.
+		CountryCode *string `json:"countryCode,omitempty"`
+
+		// CountrySubdivision The geographical subdivision for the address, like a county ("fylke" in Norway) or a state.
+		CountrySubdivision *string `json:"countrySubdivision,omitempty"`
+
+		// Gln The Global Location Number (GLN) for the customer.
+		Gln *string `json:"gln,omitempty"`
+
+		// Id A unique identifier for the customer within 24SevenOffice CRM.
+		Id int `json:"id"`
+
+		// InvoiceEmailAddresses A list of email addresses to which the invoice should be sent.
+		InvoiceEmailAddresses *[]openapi_types.Email `json:"invoiceEmailAddresses,omitempty"`
+
+		// Name The customer name as it appears on the sales order and an invoice associated with the sales order.
+		Name string `json:"name"`
+
+		// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
+		OrganizationNumber *string `json:"organizationNumber,omitempty"`
+
+		// PostalArea The postal area for the address.
+		PostalArea *string `json:"postalArea,omitempty"`
+
+		// PostalCode The postal code for the address.
+		PostalCode *string `json:"postalCode,omitempty"`
+
+		// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
+		Street *MultilineString `json:"street,omitempty"`
+	} `json:"customer,omitempty"`
+
+	// Date The date when the sales order was issued.
+	Date *openapi_types.Date `json:"date,omitempty"`
+
+	// DeliveryCustomer Delivery details for the sales order.
+	DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
+
+	// Dimensions A list of dimensions such as department or project.
+	Dimensions *Dimensions `json:"dimensions,omitempty"`
+
+	// InternalMemo An internal memo for the sales order.
+	InternalMemo *string `json:"internalMemo,omitempty"`
+
+	// InvoiceWithTransaction Details of an invoice associated with a sales order.
+	InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
+
+	// Memo A memo or comments for the sales order.
+	Memo *string `json:"memo,omitempty"`
+
+	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
+	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
+
+	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
+	OurReference *OurReferenceContactPersonDto `json:"ourReference,omitempty"`
+
+	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
+	ReferenceNumber *string `json:"referenceNumber,omitempty"`
+
+	// SalesType The sales type for the sales order.
+	SalesType *SalesTypeDto `json:"salesType,omitempty"`
+
+	// Status Current status of the sales order.
+	Status *SalesOrderStatusEnum `json:"status,omitempty"`
+
+	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
+	YourReference *YourReferenceContactPersonDto `json:"yourReference,omitempty"`
+}
+
+// SalesOrderStatusEnum Current status of the sales order.
+type SalesOrderStatusEnum string
 
 // SalesType defines model for SalesType.
 type SalesType struct {
@@ -1782,6 +1965,15 @@ type Voucher struct {
 	Number *int `json:"number,omitempty"`
 }
 
+// YourReferenceContactPersonDto Details of the contact person at the customer side who is the sales order's point of contact at the customer
+type YourReferenceContactPersonDto struct {
+	// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
+	Id *float32 `json:"id,omitempty"`
+
+	// Name The name of the person.
+	Name *string `json:"name,omitempty"`
+}
+
 // Id defines model for id.
 type Id = int32
 
@@ -1997,91 +2189,6 @@ type GetSalesordersParams struct {
 	ModifiedTo *time.Time `form:"modifiedTo,omitempty" json:"modifiedTo,omitempty"`
 }
 
-// PostSalesordersJSONBody defines parameters for PostSalesorders.
-type PostSalesordersJSONBody struct {
-	// CreatedAt A timestamp for when a record was created, in ISO 8601 format.
-	CreatedAt *time.Time `json:"createdAt,omitempty"`
-	Customer  *struct {
-		// City The city for the address.
-		City *string `json:"city,omitempty"`
-
-		// CountryCode The two-letter country code for the address, as in ISO 3166-1 alpha-2 standard.
-		CountryCode *string `json:"countryCode,omitempty"`
-
-		// CountrySubdivision The geographical subdivision for the address, like a county ("fylke" in Norway) or a state.
-		CountrySubdivision *string `json:"countrySubdivision,omitempty"`
-
-		// Gln The Global Location Number (GLN) for the customer.
-		Gln *string `json:"gln,omitempty"`
-
-		// Id A unique identifier for the customer within 24SevenOffice CRM.
-		Id int `json:"id"`
-
-		// InvoiceEmailAddresses A list of email addresses to which the invoice should be sent.
-		InvoiceEmailAddresses *[]openapi_types.Email `json:"invoiceEmailAddresses,omitempty"`
-
-		// Name The customer name as it appears on the sales order and an invoice associated with the sales order.
-		Name string `json:"name"`
-
-		// OrganizationNumber The organization number issued by authorities, like a VAT number, of the customer if the customer is a company.
-		OrganizationNumber *string `json:"organizationNumber,omitempty"`
-
-		// PostalArea The postal area for the address.
-		PostalArea *string `json:"postalArea,omitempty"`
-
-		// PostalCode The postal code for the address.
-		PostalCode *string `json:"postalCode,omitempty"`
-
-		// Street The street for the address. Can contain a street name, building and apartment number, a PO box number, or similar.
-		Street *MultilineString `json:"street,omitempty"`
-	} `json:"customer,omitempty"`
-
-	// Date The date when the sales order was issued.
-	Date *openapi_types.Date `json:"date,omitempty"`
-
-	// DeliveryCustomer Delivery details for the sales order.
-	DeliveryCustomer *DeliveryCustomer `json:"deliveryCustomer,omitempty"`
-
-	// Dimensions A list of dimensions and dimension values associated with the sales order, such as department or project.
-	Dimensions *[]DimensionDto `json:"dimensions,omitempty"`
-
-	// InternalMemo An internal memo for the sales order.
-	InternalMemo *string `json:"internalMemo,omitempty"`
-
-	// InvoiceWithTransaction Details of an invoice associated with a sales order.
-	InvoiceWithTransaction *InvoiceWithTransaction `json:"invoice,omitempty"`
-
-	// Memo A memo or comments for the sales order.
-	Memo *string `json:"memo,omitempty"`
-
-	// ModifiedAt A timestamp for when one of the properties of a record was last modified, in ISO 8601 format.
-	ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
-
-	// OurReference Details of the person at your organization who is the sales order's point of contact within your organization. It should be one of the people provided by `/organization/people` endpoint.
-	OurReference *struct {
-		// Id Identifier of the contact person (candidates provided by `/organization/people` endpoint).
-		Id *float32 `json:"id,omitempty"`
-	} `json:"ourReference,omitempty"`
-
-	// ReferenceNumber A reference number for the sales order, like a purchase order number provided by the customer.
-	ReferenceNumber *string `json:"referenceNumber,omitempty"`
-
-	// SalesType The sales type for the sales order.
-	SalesType *SalesTypeDto `json:"salesType,omitempty"`
-
-	// Status Current status of the sales order.
-	Status *SalesOrderStatusEnum `json:"status,omitempty"`
-
-	// YourReference Details of the contact person at the customer side who is the sales order's point of contact at the customer
-	YourReference *struct {
-		// Id Identifier of the contact person. Used for reference only, as the 'name'-property contains the actual name of the contact person.
-		Id *float32 `json:"id,omitempty"`
-
-		// Name The name of the person.
-		Name *string `json:"name,omitempty"`
-	} `json:"yourReference,omitempty"`
-}
-
 // PostSalesordersIdAttachmentsMultipartBody defines parameters for PostSalesordersIdAttachments.
 type PostSalesordersIdAttachmentsMultipartBody = openapi_types.File
 
@@ -2160,10 +2267,10 @@ type CreateProductJSONRequestBody = ProductRequestPost
 type UpdateProductJSONRequestBody = ProductRequestPatch
 
 // PostSalesordersJSONRequestBody defines body for PostSalesorders for application/json ContentType.
-type PostSalesordersJSONRequestBody PostSalesordersJSONBody
+type PostSalesordersJSONRequestBody = SalesOrderRequestPost
 
 // PatchSalesordersIdJSONRequestBody defines body for PatchSalesordersId for application/json ContentType.
-type PatchSalesordersIdJSONRequestBody = SalesOrder
+type PatchSalesordersIdJSONRequestBody = SalesOrderRequestPatch
 
 // PostSalesordersIdAttachmentsMultipartRequestBody defines body for PostSalesordersIdAttachments for multipart/form-data ContentType.
 type PostSalesordersIdAttachmentsMultipartRequestBody = PostSalesordersIdAttachmentsMultipartBody
@@ -7787,7 +7894,7 @@ func (r GetSalesordersResponse) StatusCode() int {
 type PostSalesordersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SalesOrder
+	JSON200      *SalesOrderExtended
 	JSON400      *struct {
 		union json.RawMessage
 	}
@@ -7812,7 +7919,7 @@ func (r PostSalesordersResponse) StatusCode() int {
 type GetSalesordersIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SalesOrder
+	JSON200      *SalesOrderExtended
 }
 
 // Status returns HTTPResponse.Status
@@ -7834,7 +7941,7 @@ func (r GetSalesordersIdResponse) StatusCode() int {
 type PatchSalesordersIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SalesOrder
+	JSON200      *SalesOrderExtended
 	JSON400      *struct {
 		union json.RawMessage
 	}
@@ -9863,7 +9970,7 @@ func ParsePostSalesordersResponse(rsp *http.Response) (*PostSalesordersResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SalesOrder
+		var dest SalesOrderExtended
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9898,7 +10005,7 @@ func ParseGetSalesordersIdResponse(rsp *http.Response) (*GetSalesordersIdRespons
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SalesOrder
+		var dest SalesOrderExtended
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -9924,7 +10031,7 @@ func ParsePatchSalesordersIdResponse(rsp *http.Response) (*PatchSalesordersIdRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SalesOrder
+		var dest SalesOrderExtended
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
