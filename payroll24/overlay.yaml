@@ -205,6 +205,7 @@ actions:
               type: "array"
               items:
                 $ref: "#/components/schemas/AccountingDTO"
+          additionalProperties: true
 
         # Employment DTO
         EmploymentDTO:
@@ -248,6 +249,7 @@ actions:
             working_times:
               type: "string"
               description: "Working times"
+          additionalProperties: true
 
         # Payroll Run DTO
         PayrollRunDTO:
@@ -473,7 +475,7 @@ actions:
             externalId:
               type: "string"
               description: "External ID"
-              x-go-type: StringInt
+              x-go-type: string
 
         # Absence Type DTO
         AbsenceTypeDTO:
@@ -626,6 +628,11 @@ actions:
               type: "string"
               description: "First 60 days"
               x-go-type: StringBool
+            dimensions:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/DimensionDTO"
+              description: "Dimension values for accounting"
 
         # Wage Type DTO
         WageTypeDTO:
@@ -755,10 +762,35 @@ actions:
             country_code:
               type: "string"
               enum: ["NO", "SE"]
-          sites:
-            type: "array"
-            items:
-              $ref: "#/components/schemas/SiteDTO"
+            sites:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/SiteDTO"
+
+        # Employee Field DTO
+        EmployeeFieldDTO:
+          type: "object"
+          properties:
+            id:
+              type: "string"
+              description: "Employee field ID"
+              x-go-type: StringInt
+            name:
+              type: "string"
+              description: "Field name"
+            type:
+              type: "string"
+              description: "Field type (0=free text, 1=enum)"
+              x-go-type: StringInt
+            export:
+              type: "string"
+              description: "Export flag"
+              x-go-type: StringBool
+            available_values:
+              type: "array"
+              items:
+                type: "string"
+              description: "Available values for enum fields"
 
   # Update response schemas to use proper DTOs
   - target: "$.paths['/employee/v2'].get.responses['200']"
@@ -958,3 +990,21 @@ actions:
         "application/json":
           schema:
             $ref: "#/components/schemas/OrganizationDTO"
+
+  - target: "$.paths['/employee_field/v2/'].get.responses['200']"
+    description: Update employee field list response schema
+    update:
+      content:
+        "application/json":
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/EmployeeFieldDTO"
+
+  - target: "$.paths['/employee_field/v2/{id}'].get.responses['200']"
+    description: Update single employee field response schema
+    update:
+      content:
+        "application/json":
+          schema:
+            $ref: "#/components/schemas/EmployeeFieldDTO"

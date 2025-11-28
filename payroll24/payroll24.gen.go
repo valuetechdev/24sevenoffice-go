@@ -96,7 +96,7 @@ type AbsenceDTO struct {
 	EndDate *StringDate `json:"endDate,omitempty"`
 
 	// ExternalId External ID
-	ExternalId *StringInt `json:"externalId,omitempty"`
+	ExternalId *string `json:"externalId,omitempty"`
 
 	// LastChanged Last changed date
 	LastChanged *StringDate `json:"lastChanged,omitempty"`
@@ -308,11 +308,30 @@ type EmployeeDTO struct {
 	VacationPercentValidFrom *string `json:"vacation_percent_valid_from,omitempty"`
 
 	// Zipcode Zip code
-	Zipcode *string `json:"zipcode,omitempty"`
+	Zipcode              *string                `json:"zipcode,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // EmployeeDTOSalaryType defines model for EmployeeDTO.SalaryType.
 type EmployeeDTOSalaryType string
+
+// EmployeeFieldDTO defines model for EmployeeFieldDTO.
+type EmployeeFieldDTO struct {
+	// AvailableValues Available values for enum fields
+	AvailableValues *[]string `json:"available_values,omitempty"`
+
+	// Export Export flag
+	Export *StringBool `json:"export,omitempty"`
+
+	// Id Employee field ID
+	Id *StringInt `json:"id,omitempty"`
+
+	// Name Field name
+	Name *string `json:"name,omitempty"`
+
+	// Type Field type (0=free text, 1=enum)
+	Type *StringInt `json:"type,omitempty"`
+}
 
 // EmploymentDTO defines model for EmploymentDTO.
 type EmploymentDTO struct {
@@ -347,7 +366,8 @@ type EmploymentDTO struct {
 	Startdate *openapi_types.Date `json:"startdate,omitempty"`
 
 	// WorkingTimes Working times
-	WorkingTimes *string `json:"working_times,omitempty"`
+	WorkingTimes         *string                `json:"working_times,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // InternationalIDDTO defines model for InternationalIDDTO.
@@ -385,7 +405,8 @@ type OrganizationDTO struct {
 	Orgno *string `json:"orgno,omitempty"`
 
 	// RetirementAge Retirement age
-	RetirementAge *string `json:"retirement_age,omitempty"`
+	RetirementAge *string    `json:"retirement_age,omitempty"`
+	Sites         *[]SiteDTO `json:"sites,omitempty"`
 
 	// TaxAccount Tax account
 	TaxAccount *string                 `json:"tax_account,omitempty"`
@@ -499,6 +520,21 @@ type PayslipJSONDTO struct {
 	PayrollrunId *StringInt `json:"payrollrunId,omitempty"`
 }
 
+// SiteDTO defines model for SiteDTO.
+type SiteDTO struct {
+	// EnterpriseNumber Enterprise number
+	EnterpriseNumber *string `json:"enterprise_number,omitempty"`
+
+	// Id Site ID
+	Id *StringInt `json:"id,omitempty"`
+
+	// Name Site name
+	Name *string `json:"name,omitempty"`
+
+	// TaxZone Tax zone
+	TaxZone *string `json:"tax_zone,omitempty"`
+}
+
 // TaxExemptionDTO defines model for TaxExemptionDTO.
 type TaxExemptionDTO struct {
 	// Amount Exemption amount
@@ -527,6 +563,9 @@ type TransactionDTO struct {
 
 	// Description Description
 	Description *string `json:"description,omitempty"`
+
+	// Dimensions Dimension values for accounting
+	Dimensions *[]DimensionDTO `json:"dimensions,omitempty"`
 
 	// EarningCountry Earning country
 	EarningCountry *string `json:"earning_country,omitempty"`
@@ -646,6 +685,30 @@ type WageTypeDTO struct {
 	WageDescription *string `json:"wage_description,omitempty"`
 }
 
+// GetAbsenceV2Params defines parameters for GetAbsenceV2.
+type GetAbsenceV2Params struct {
+	// SerialNo Internal ID of an absence
+	SerialNo *int `form:"serialNo,omitempty" json:"serialNo,omitempty"`
+
+	// Datefrom Start date of the search interval. Format YYYY-MM-DD.
+	Datefrom *string `form:"datefrom,omitempty" json:"datefrom,omitempty"`
+
+	// Dateto End date of the search interval. Format YYYY-MM-DD.
+	Dateto *string `form:"dateto,omitempty" json:"dateto,omitempty"`
+}
+
+// GetAbsenceV2EmpIdParams defines parameters for GetAbsenceV2EmpId.
+type GetAbsenceV2EmpIdParams struct {
+	// SerialNo Internal ID of an absence
+	SerialNo *int `form:"serialNo,omitempty" json:"serialNo,omitempty"`
+
+	// Datefrom Start date of the search interval. Format YYYY-MM-DD.
+	Datefrom *string `form:"datefrom,omitempty" json:"datefrom,omitempty"`
+
+	// Dateto End date of the search interval. Format YYYY-MM-DD.
+	Dateto *string `form:"dateto,omitempty" json:"dateto,omitempty"`
+}
+
 // GetAuthParams defines parameters for GetAuth.
 type GetAuthParams struct {
 	// Token persistent token
@@ -660,6 +723,12 @@ type PostEmployeeV2JSONBody = string
 
 // PostEmployeeV2EmpIdJSONBody defines parameters for PostEmployeeV2EmpId.
 type PostEmployeeV2EmpIdJSONBody = string
+
+// PostEmployeeFieldV2JSONBody defines parameters for PostEmployeeFieldV2.
+type PostEmployeeFieldV2JSONBody = string
+
+// PostEmployeeFieldV2IdJSONBody defines parameters for PostEmployeeFieldV2Id.
+type PostEmployeeFieldV2IdJSONBody = string
 
 // PostEmploymentV2EmpIdJSONBody defines parameters for PostEmploymentV2EmpId.
 type PostEmploymentV2EmpIdJSONBody = string
@@ -712,11 +781,828 @@ type PostEmployeeV2JSONRequestBody = PostEmployeeV2JSONBody
 // PostEmployeeV2EmpIdJSONRequestBody defines body for PostEmployeeV2EmpId for application/json ContentType.
 type PostEmployeeV2EmpIdJSONRequestBody = PostEmployeeV2EmpIdJSONBody
 
+// PostEmployeeFieldV2JSONRequestBody defines body for PostEmployeeFieldV2 for application/json ContentType.
+type PostEmployeeFieldV2JSONRequestBody = PostEmployeeFieldV2JSONBody
+
+// PostEmployeeFieldV2IdJSONRequestBody defines body for PostEmployeeFieldV2Id for application/json ContentType.
+type PostEmployeeFieldV2IdJSONRequestBody = PostEmployeeFieldV2IdJSONBody
+
 // PostEmploymentV2EmpIdJSONRequestBody defines body for PostEmploymentV2EmpId for application/json ContentType.
 type PostEmploymentV2EmpIdJSONRequestBody = PostEmploymentV2EmpIdJSONBody
 
 // PostTransactionV2JSONRequestBody defines body for PostTransactionV2 for application/json ContentType.
 type PostTransactionV2JSONRequestBody = PostTransactionV2JSONBody
+
+// Getter for additional properties for EmployeeDTO. Returns the specified
+// element and whether it was found
+func (a EmployeeDTO) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for EmployeeDTO
+func (a *EmployeeDTO) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for EmployeeDTO to handle AdditionalProperties
+func (a *EmployeeDTO) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["account"]; found {
+		err = json.Unmarshal(raw, &a.Account)
+		if err != nil {
+			return fmt.Errorf("error reading 'account': %w", err)
+		}
+		delete(object, "account")
+	}
+
+	if raw, found := object["accounting"]; found {
+		err = json.Unmarshal(raw, &a.Accounting)
+		if err != nil {
+			return fmt.Errorf("error reading 'accounting': %w", err)
+		}
+		delete(object, "accounting")
+	}
+
+	if raw, found := object["address"]; found {
+		err = json.Unmarshal(raw, &a.Address)
+		if err != nil {
+			return fmt.Errorf("error reading 'address': %w", err)
+		}
+		delete(object, "address")
+	}
+
+	if raw, found := object["bic"]; found {
+		err = json.Unmarshal(raw, &a.Bic)
+		if err != nil {
+			return fmt.Errorf("error reading 'bic': %w", err)
+		}
+		delete(object, "bic")
+	}
+
+	if raw, found := object["city"]; found {
+		err = json.Unmarshal(raw, &a.City)
+		if err != nil {
+			return fmt.Errorf("error reading 'city': %w", err)
+		}
+		delete(object, "city")
+	}
+
+	if raw, found := object["clearingno"]; found {
+		err = json.Unmarshal(raw, &a.Clearingno)
+		if err != nil {
+			return fmt.Errorf("error reading 'clearingno': %w", err)
+		}
+		delete(object, "clearingno")
+	}
+
+	if raw, found := object["continental_shelf"]; found {
+		err = json.Unmarshal(raw, &a.ContinentalShelf)
+		if err != nil {
+			return fmt.Errorf("error reading 'continental_shelf': %w", err)
+		}
+		delete(object, "continental_shelf")
+	}
+
+	if raw, found := object["countryCode"]; found {
+		err = json.Unmarshal(raw, &a.CountryCode)
+		if err != nil {
+			return fmt.Errorf("error reading 'countryCode': %w", err)
+		}
+		delete(object, "countryCode")
+	}
+
+	if raw, found := object["email"]; found {
+		err = json.Unmarshal(raw, &a.Email)
+		if err != nil {
+			return fmt.Errorf("error reading 'email': %w", err)
+		}
+		delete(object, "email")
+	}
+
+	if raw, found := object["email_copy"]; found {
+		err = json.Unmarshal(raw, &a.EmailCopy)
+		if err != nil {
+			return fmt.Errorf("error reading 'email_copy': %w", err)
+		}
+		delete(object, "email_copy")
+	}
+
+	if raw, found := object["empId"]; found {
+		err = json.Unmarshal(raw, &a.EmpId)
+		if err != nil {
+			return fmt.Errorf("error reading 'empId': %w", err)
+		}
+		delete(object, "empId")
+	}
+
+	if raw, found := object["employee_date"]; found {
+		err = json.Unmarshal(raw, &a.EmployeeDate)
+		if err != nil {
+			return fmt.Errorf("error reading 'employee_date': %w", err)
+		}
+		delete(object, "employee_date")
+	}
+
+	if raw, found := object["employment_rate"]; found {
+		err = json.Unmarshal(raw, &a.EmploymentRate)
+		if err != nil {
+			return fmt.Errorf("error reading 'employment_rate': %w", err)
+		}
+		delete(object, "employment_rate")
+	}
+
+	if raw, found := object["employment_rate_valid_from"]; found {
+		err = json.Unmarshal(raw, &a.EmploymentRateValidFrom)
+		if err != nil {
+			return fmt.Errorf("error reading 'employment_rate_valid_from': %w", err)
+		}
+		delete(object, "employment_rate_valid_from")
+	}
+
+	if raw, found := object["firstname"]; found {
+		err = json.Unmarshal(raw, &a.Firstname)
+		if err != nil {
+			return fmt.Errorf("error reading 'firstname': %w", err)
+		}
+		delete(object, "firstname")
+	}
+
+	if raw, found := object["hidden"]; found {
+		err = json.Unmarshal(raw, &a.Hidden)
+		if err != nil {
+			return fmt.Errorf("error reading 'hidden': %w", err)
+		}
+		delete(object, "hidden")
+	}
+
+	if raw, found := object["hours_per_week"]; found {
+		err = json.Unmarshal(raw, &a.HoursPerWeek)
+		if err != nil {
+			return fmt.Errorf("error reading 'hours_per_week': %w", err)
+		}
+		delete(object, "hours_per_week")
+	}
+
+	if raw, found := object["hours_per_week_valid_from"]; found {
+		err = json.Unmarshal(raw, &a.HoursPerWeekValidFrom)
+		if err != nil {
+			return fmt.Errorf("error reading 'hours_per_week_valid_from': %w", err)
+		}
+		delete(object, "hours_per_week_valid_from")
+	}
+
+	if raw, found := object["internationalID"]; found {
+		err = json.Unmarshal(raw, &a.InternationalID)
+		if err != nil {
+			return fmt.Errorf("error reading 'internationalID': %w", err)
+		}
+		delete(object, "internationalID")
+	}
+
+	if raw, found := object["lastname"]; found {
+		err = json.Unmarshal(raw, &a.Lastname)
+		if err != nil {
+			return fmt.Errorf("error reading 'lastname': %w", err)
+		}
+		delete(object, "lastname")
+	}
+
+	if raw, found := object["percentage_tax_bi_employer"]; found {
+		err = json.Unmarshal(raw, &a.PercentageTaxBiEmployer)
+		if err != nil {
+			return fmt.Errorf("error reading 'percentage_tax_bi_employer': %w", err)
+		}
+		delete(object, "percentage_tax_bi_employer")
+	}
+
+	if raw, found := object["percentage_tax_main_employer"]; found {
+		err = json.Unmarshal(raw, &a.PercentageTaxMainEmployer)
+		if err != nil {
+			return fmt.Errorf("error reading 'percentage_tax_main_employer': %w", err)
+		}
+		delete(object, "percentage_tax_main_employer")
+	}
+
+	if raw, found := object["personnr"]; found {
+		err = json.Unmarshal(raw, &a.Personnr)
+		if err != nil {
+			return fmt.Errorf("error reading 'personnr': %w", err)
+		}
+		delete(object, "personnr")
+	}
+
+	if raw, found := object["postaddress"]; found {
+		err = json.Unmarshal(raw, &a.Postaddress)
+		if err != nil {
+			return fmt.Errorf("error reading 'postaddress': %w", err)
+		}
+		delete(object, "postaddress")
+	}
+
+	if raw, found := object["postalcode"]; found {
+		err = json.Unmarshal(raw, &a.Postalcode)
+		if err != nil {
+			return fmt.Errorf("error reading 'postalcode': %w", err)
+		}
+		delete(object, "postalcode")
+	}
+
+	if raw, found := object["salary"]; found {
+		err = json.Unmarshal(raw, &a.Salary)
+		if err != nil {
+			return fmt.Errorf("error reading 'salary': %w", err)
+		}
+		delete(object, "salary")
+	}
+
+	if raw, found := object["salary_type"]; found {
+		err = json.Unmarshal(raw, &a.SalaryType)
+		if err != nil {
+			return fmt.Errorf("error reading 'salary_type': %w", err)
+		}
+		delete(object, "salary_type")
+	}
+
+	if raw, found := object["salary_valid_from"]; found {
+		err = json.Unmarshal(raw, &a.SalaryValidFrom)
+		if err != nil {
+			return fmt.Errorf("error reading 'salary_valid_from': %w", err)
+		}
+		delete(object, "salary_valid_from")
+	}
+
+	if raw, found := object["tax_resident_country"]; found {
+		err = json.Unmarshal(raw, &a.TaxResidentCountry)
+		if err != nil {
+			return fmt.Errorf("error reading 'tax_resident_country': %w", err)
+		}
+		delete(object, "tax_resident_country")
+	}
+
+	if raw, found := object["taxexemption"]; found {
+		err = json.Unmarshal(raw, &a.Taxexemption)
+		if err != nil {
+			return fmt.Errorf("error reading 'taxexemption': %w", err)
+		}
+		delete(object, "taxexemption")
+	}
+
+	if raw, found := object["taxtable"]; found {
+		err = json.Unmarshal(raw, &a.Taxtable)
+		if err != nil {
+			return fmt.Errorf("error reading 'taxtable': %w", err)
+		}
+		delete(object, "taxtable")
+	}
+
+	if raw, found := object["telefon"]; found {
+		err = json.Unmarshal(raw, &a.Telefon)
+		if err != nil {
+			return fmt.Errorf("error reading 'telefon': %w", err)
+		}
+		delete(object, "telefon")
+	}
+
+	if raw, found := object["vacation_days"]; found {
+		err = json.Unmarshal(raw, &a.VacationDays)
+		if err != nil {
+			return fmt.Errorf("error reading 'vacation_days': %w", err)
+		}
+		delete(object, "vacation_days")
+	}
+
+	if raw, found := object["vacation_percent"]; found {
+		err = json.Unmarshal(raw, &a.VacationPercent)
+		if err != nil {
+			return fmt.Errorf("error reading 'vacation_percent': %w", err)
+		}
+		delete(object, "vacation_percent")
+	}
+
+	if raw, found := object["vacation_percent_valid_from"]; found {
+		err = json.Unmarshal(raw, &a.VacationPercentValidFrom)
+		if err != nil {
+			return fmt.Errorf("error reading 'vacation_percent_valid_from': %w", err)
+		}
+		delete(object, "vacation_percent_valid_from")
+	}
+
+	if raw, found := object["zipcode"]; found {
+		err = json.Unmarshal(raw, &a.Zipcode)
+		if err != nil {
+			return fmt.Errorf("error reading 'zipcode': %w", err)
+		}
+		delete(object, "zipcode")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for EmployeeDTO to handle AdditionalProperties
+func (a EmployeeDTO) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Account != nil {
+		object["account"], err = json.Marshal(a.Account)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'account': %w", err)
+		}
+	}
+
+	if a.Accounting != nil {
+		object["accounting"], err = json.Marshal(a.Accounting)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'accounting': %w", err)
+		}
+	}
+
+	if a.Address != nil {
+		object["address"], err = json.Marshal(a.Address)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'address': %w", err)
+		}
+	}
+
+	if a.Bic != nil {
+		object["bic"], err = json.Marshal(a.Bic)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'bic': %w", err)
+		}
+	}
+
+	if a.City != nil {
+		object["city"], err = json.Marshal(a.City)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'city': %w", err)
+		}
+	}
+
+	if a.Clearingno != nil {
+		object["clearingno"], err = json.Marshal(a.Clearingno)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'clearingno': %w", err)
+		}
+	}
+
+	if a.ContinentalShelf != nil {
+		object["continental_shelf"], err = json.Marshal(a.ContinentalShelf)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'continental_shelf': %w", err)
+		}
+	}
+
+	if a.CountryCode != nil {
+		object["countryCode"], err = json.Marshal(a.CountryCode)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'countryCode': %w", err)
+		}
+	}
+
+	if a.Email != nil {
+		object["email"], err = json.Marshal(a.Email)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'email': %w", err)
+		}
+	}
+
+	if a.EmailCopy != nil {
+		object["email_copy"], err = json.Marshal(a.EmailCopy)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'email_copy': %w", err)
+		}
+	}
+
+	if a.EmpId != nil {
+		object["empId"], err = json.Marshal(a.EmpId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'empId': %w", err)
+		}
+	}
+
+	if a.EmployeeDate != nil {
+		object["employee_date"], err = json.Marshal(a.EmployeeDate)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'employee_date': %w", err)
+		}
+	}
+
+	if a.EmploymentRate != nil {
+		object["employment_rate"], err = json.Marshal(a.EmploymentRate)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'employment_rate': %w", err)
+		}
+	}
+
+	if a.EmploymentRateValidFrom != nil {
+		object["employment_rate_valid_from"], err = json.Marshal(a.EmploymentRateValidFrom)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'employment_rate_valid_from': %w", err)
+		}
+	}
+
+	if a.Firstname != nil {
+		object["firstname"], err = json.Marshal(a.Firstname)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'firstname': %w", err)
+		}
+	}
+
+	if a.Hidden != nil {
+		object["hidden"], err = json.Marshal(a.Hidden)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'hidden': %w", err)
+		}
+	}
+
+	if a.HoursPerWeek != nil {
+		object["hours_per_week"], err = json.Marshal(a.HoursPerWeek)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'hours_per_week': %w", err)
+		}
+	}
+
+	if a.HoursPerWeekValidFrom != nil {
+		object["hours_per_week_valid_from"], err = json.Marshal(a.HoursPerWeekValidFrom)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'hours_per_week_valid_from': %w", err)
+		}
+	}
+
+	if a.InternationalID != nil {
+		object["internationalID"], err = json.Marshal(a.InternationalID)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'internationalID': %w", err)
+		}
+	}
+
+	if a.Lastname != nil {
+		object["lastname"], err = json.Marshal(a.Lastname)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'lastname': %w", err)
+		}
+	}
+
+	if a.PercentageTaxBiEmployer != nil {
+		object["percentage_tax_bi_employer"], err = json.Marshal(a.PercentageTaxBiEmployer)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'percentage_tax_bi_employer': %w", err)
+		}
+	}
+
+	if a.PercentageTaxMainEmployer != nil {
+		object["percentage_tax_main_employer"], err = json.Marshal(a.PercentageTaxMainEmployer)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'percentage_tax_main_employer': %w", err)
+		}
+	}
+
+	if a.Personnr != nil {
+		object["personnr"], err = json.Marshal(a.Personnr)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'personnr': %w", err)
+		}
+	}
+
+	if a.Postaddress != nil {
+		object["postaddress"], err = json.Marshal(a.Postaddress)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'postaddress': %w", err)
+		}
+	}
+
+	if a.Postalcode != nil {
+		object["postalcode"], err = json.Marshal(a.Postalcode)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'postalcode': %w", err)
+		}
+	}
+
+	if a.Salary != nil {
+		object["salary"], err = json.Marshal(a.Salary)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'salary': %w", err)
+		}
+	}
+
+	if a.SalaryType != nil {
+		object["salary_type"], err = json.Marshal(a.SalaryType)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'salary_type': %w", err)
+		}
+	}
+
+	if a.SalaryValidFrom != nil {
+		object["salary_valid_from"], err = json.Marshal(a.SalaryValidFrom)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'salary_valid_from': %w", err)
+		}
+	}
+
+	if a.TaxResidentCountry != nil {
+		object["tax_resident_country"], err = json.Marshal(a.TaxResidentCountry)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'tax_resident_country': %w", err)
+		}
+	}
+
+	if a.Taxexemption != nil {
+		object["taxexemption"], err = json.Marshal(a.Taxexemption)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'taxexemption': %w", err)
+		}
+	}
+
+	if a.Taxtable != nil {
+		object["taxtable"], err = json.Marshal(a.Taxtable)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'taxtable': %w", err)
+		}
+	}
+
+	if a.Telefon != nil {
+		object["telefon"], err = json.Marshal(a.Telefon)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'telefon': %w", err)
+		}
+	}
+
+	if a.VacationDays != nil {
+		object["vacation_days"], err = json.Marshal(a.VacationDays)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'vacation_days': %w", err)
+		}
+	}
+
+	if a.VacationPercent != nil {
+		object["vacation_percent"], err = json.Marshal(a.VacationPercent)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'vacation_percent': %w", err)
+		}
+	}
+
+	if a.VacationPercentValidFrom != nil {
+		object["vacation_percent_valid_from"], err = json.Marshal(a.VacationPercentValidFrom)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'vacation_percent_valid_from': %w", err)
+		}
+	}
+
+	if a.Zipcode != nil {
+		object["zipcode"], err = json.Marshal(a.Zipcode)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'zipcode': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for EmploymentDTO. Returns the specified
+// element and whether it was found
+func (a EmploymentDTO) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for EmploymentDTO
+func (a *EmploymentDTO) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for EmploymentDTO to handle AdditionalProperties
+func (a *EmploymentDTO) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["employment_form"]; found {
+		err = json.Unmarshal(raw, &a.EmploymentForm)
+		if err != nil {
+			return fmt.Errorf("error reading 'employment_form': %w", err)
+		}
+		delete(object, "employment_form")
+	}
+
+	if raw, found := object["employment_id"]; found {
+		err = json.Unmarshal(raw, &a.EmploymentId)
+		if err != nil {
+			return fmt.Errorf("error reading 'employment_id': %w", err)
+		}
+		delete(object, "employment_id")
+	}
+
+	if raw, found := object["employment_rate"]; found {
+		err = json.Unmarshal(raw, &a.EmploymentRate)
+		if err != nil {
+			return fmt.Errorf("error reading 'employment_rate': %w", err)
+		}
+		delete(object, "employment_rate")
+	}
+
+	if raw, found := object["employment_type"]; found {
+		err = json.Unmarshal(raw, &a.EmploymentType)
+		if err != nil {
+			return fmt.Errorf("error reading 'employment_type': %w", err)
+		}
+		delete(object, "employment_type")
+	}
+
+	if raw, found := object["enddate"]; found {
+		err = json.Unmarshal(raw, &a.Enddate)
+		if err != nil {
+			return fmt.Errorf("error reading 'enddate': %w", err)
+		}
+		delete(object, "enddate")
+	}
+
+	if raw, found := object["enddate_reason"]; found {
+		err = json.Unmarshal(raw, &a.EnddateReason)
+		if err != nil {
+			return fmt.Errorf("error reading 'enddate_reason': %w", err)
+		}
+		delete(object, "enddate_reason")
+	}
+
+	if raw, found := object["enterprise_number"]; found {
+		err = json.Unmarshal(raw, &a.EnterpriseNumber)
+		if err != nil {
+			return fmt.Errorf("error reading 'enterprise_number': %w", err)
+		}
+		delete(object, "enterprise_number")
+	}
+
+	if raw, found := object["primary_employment"]; found {
+		err = json.Unmarshal(raw, &a.PrimaryEmployment)
+		if err != nil {
+			return fmt.Errorf("error reading 'primary_employment': %w", err)
+		}
+		delete(object, "primary_employment")
+	}
+
+	if raw, found := object["profession_code"]; found {
+		err = json.Unmarshal(raw, &a.ProfessionCode)
+		if err != nil {
+			return fmt.Errorf("error reading 'profession_code': %w", err)
+		}
+		delete(object, "profession_code")
+	}
+
+	if raw, found := object["startdate"]; found {
+		err = json.Unmarshal(raw, &a.Startdate)
+		if err != nil {
+			return fmt.Errorf("error reading 'startdate': %w", err)
+		}
+		delete(object, "startdate")
+	}
+
+	if raw, found := object["working_times"]; found {
+		err = json.Unmarshal(raw, &a.WorkingTimes)
+		if err != nil {
+			return fmt.Errorf("error reading 'working_times': %w", err)
+		}
+		delete(object, "working_times")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for EmploymentDTO to handle AdditionalProperties
+func (a EmploymentDTO) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.EmploymentForm != nil {
+		object["employment_form"], err = json.Marshal(a.EmploymentForm)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'employment_form': %w", err)
+		}
+	}
+
+	if a.EmploymentId != nil {
+		object["employment_id"], err = json.Marshal(a.EmploymentId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'employment_id': %w", err)
+		}
+	}
+
+	if a.EmploymentRate != nil {
+		object["employment_rate"], err = json.Marshal(a.EmploymentRate)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'employment_rate': %w", err)
+		}
+	}
+
+	if a.EmploymentType != nil {
+		object["employment_type"], err = json.Marshal(a.EmploymentType)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'employment_type': %w", err)
+		}
+	}
+
+	if a.Enddate != nil {
+		object["enddate"], err = json.Marshal(a.Enddate)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'enddate': %w", err)
+		}
+	}
+
+	if a.EnddateReason != nil {
+		object["enddate_reason"], err = json.Marshal(a.EnddateReason)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'enddate_reason': %w", err)
+		}
+	}
+
+	if a.EnterpriseNumber != nil {
+		object["enterprise_number"], err = json.Marshal(a.EnterpriseNumber)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'enterprise_number': %w", err)
+		}
+	}
+
+	if a.PrimaryEmployment != nil {
+		object["primary_employment"], err = json.Marshal(a.PrimaryEmployment)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'primary_employment': %w", err)
+		}
+	}
+
+	if a.ProfessionCode != nil {
+		object["profession_code"], err = json.Marshal(a.ProfessionCode)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'profession_code': %w", err)
+		}
+	}
+
+	if a.Startdate != nil {
+		object["startdate"], err = json.Marshal(a.Startdate)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'startdate': %w", err)
+		}
+	}
+
+	if a.WorkingTimes != nil {
+		object["working_times"], err = json.Marshal(a.WorkingTimes)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'working_times': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -792,13 +1678,13 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 // The interface specification for the client above.
 type ClientInterface interface {
 	// GetAbsenceV2 request
-	GetAbsenceV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetAbsenceV2(ctx context.Context, params *GetAbsenceV2Params, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostAbsenceV2WithBody request with any body
 	PostAbsenceV2WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAbsenceV2EmpId request
-	GetAbsenceV2EmpId(ctx context.Context, empId int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetAbsenceV2EmpId(ctx context.Context, empId int, params *GetAbsenceV2EmpIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetAbsencetypesV2 request
 	GetAbsencetypesV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -844,6 +1730,22 @@ type ClientInterface interface {
 	PostEmployeeV2EmpIdWithBody(ctx context.Context, empId int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PostEmployeeV2EmpId(ctx context.Context, empId int, body PostEmployeeV2EmpIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetEmployeeFieldV2 request
+	GetEmployeeFieldV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostEmployeeFieldV2WithBody request with any body
+	PostEmployeeFieldV2WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostEmployeeFieldV2(ctx context.Context, body PostEmployeeFieldV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetEmployeeFieldV2Id request
+	GetEmployeeFieldV2Id(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostEmployeeFieldV2IdWithBody request with any body
+	PostEmployeeFieldV2IdWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostEmployeeFieldV2Id(ctx context.Context, id int, body PostEmployeeFieldV2IdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetEmploymentV2EmpId request
 	GetEmploymentV2EmpId(ctx context.Context, empId int, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -895,8 +1797,8 @@ type ClientInterface interface {
 	GetWagetypesV2Payrollcode(ctx context.Context, payrollcode int, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
-func (c *WriteClient) GetAbsenceV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAbsenceV2Request(c.Server)
+func (c *WriteClient) GetAbsenceV2(ctx context.Context, params *GetAbsenceV2Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAbsenceV2Request(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -919,8 +1821,8 @@ func (c *WriteClient) PostAbsenceV2WithBody(ctx context.Context, contentType str
 	return c.Client.Do(req)
 }
 
-func (c *WriteClient) GetAbsenceV2EmpId(ctx context.Context, empId int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAbsenceV2EmpIdRequest(c.Server, empId)
+func (c *WriteClient) GetAbsenceV2EmpId(ctx context.Context, empId int, params *GetAbsenceV2EmpIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAbsenceV2EmpIdRequest(c.Server, empId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -1113,6 +2015,78 @@ func (c *WriteClient) PostEmployeeV2EmpIdWithBody(ctx context.Context, empId int
 
 func (c *WriteClient) PostEmployeeV2EmpId(ctx context.Context, empId int, body PostEmployeeV2EmpIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPostEmployeeV2EmpIdRequest(c.Server, empId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetEmployeeFieldV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEmployeeFieldV2Request(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) PostEmployeeFieldV2WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostEmployeeFieldV2RequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) PostEmployeeFieldV2(ctx context.Context, body PostEmployeeFieldV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostEmployeeFieldV2Request(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) GetEmployeeFieldV2Id(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetEmployeeFieldV2IdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) PostEmployeeFieldV2IdWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostEmployeeFieldV2IdRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *WriteClient) PostEmployeeFieldV2Id(ctx context.Context, id int, body PostEmployeeFieldV2IdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostEmployeeFieldV2IdRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -1328,7 +2302,7 @@ func (c *WriteClient) GetWagetypesV2Payrollcode(ctx context.Context, payrollcode
 }
 
 // NewGetAbsenceV2Request generates requests for GetAbsenceV2
-func NewGetAbsenceV2Request(server string) (*http.Request, error) {
+func NewGetAbsenceV2Request(server string, params *GetAbsenceV2Params) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -1344,6 +2318,60 @@ func NewGetAbsenceV2Request(server string) (*http.Request, error) {
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.SerialNo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "serialNo", runtime.ParamLocationQuery, *params.SerialNo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Datefrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "datefrom", runtime.ParamLocationQuery, *params.Datefrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Dateto != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "dateto", runtime.ParamLocationQuery, *params.Dateto); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -1384,7 +2412,7 @@ func NewPostAbsenceV2RequestWithBody(server string, contentType string, body io.
 }
 
 // NewGetAbsenceV2EmpIdRequest generates requests for GetAbsenceV2EmpId
-func NewGetAbsenceV2EmpIdRequest(server string, empId int) (*http.Request, error) {
+func NewGetAbsenceV2EmpIdRequest(server string, empId int, params *GetAbsenceV2EmpIdParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -1407,6 +2435,60 @@ func NewGetAbsenceV2EmpIdRequest(server string, empId int) (*http.Request, error
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.SerialNo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "serialNo", runtime.ParamLocationQuery, *params.SerialNo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Datefrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "datefrom", runtime.ParamLocationQuery, *params.Datefrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Dateto != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "dateto", runtime.ParamLocationQuery, *params.Dateto); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -1864,6 +2946,154 @@ func NewPostEmployeeV2EmpIdRequestWithBody(server string, empId int, contentType
 	}
 
 	operationPath := fmt.Sprintf("/employee/v2/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetEmployeeFieldV2Request generates requests for GetEmployeeFieldV2
+func NewGetEmployeeFieldV2Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/employee_field/v2/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPostEmployeeFieldV2Request calls the generic PostEmployeeFieldV2 builder with application/json body
+func NewPostEmployeeFieldV2Request(server string, body PostEmployeeFieldV2JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPostEmployeeFieldV2RequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPostEmployeeFieldV2RequestWithBody generates requests for PostEmployeeFieldV2 with any type of body
+func NewPostEmployeeFieldV2RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/employee_field/v2/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetEmployeeFieldV2IdRequest generates requests for GetEmployeeFieldV2Id
+func NewGetEmployeeFieldV2IdRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/employee_field/v2/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPostEmployeeFieldV2IdRequest calls the generic PostEmployeeFieldV2Id builder with application/json body
+func NewPostEmployeeFieldV2IdRequest(server string, id int, body PostEmployeeFieldV2IdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPostEmployeeFieldV2IdRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPostEmployeeFieldV2IdRequestWithBody generates requests for PostEmployeeFieldV2Id with any type of body
+func NewPostEmployeeFieldV2IdRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/employee_field/v2/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -2619,13 +3849,13 @@ func WithBaseURL(baseURL string) ClientOption {
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
 	// GetAbsenceV2WithResponse request
-	GetAbsenceV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAbsenceV2Response, error)
+	GetAbsenceV2WithResponse(ctx context.Context, params *GetAbsenceV2Params, reqEditors ...RequestEditorFn) (*GetAbsenceV2Response, error)
 
 	// PostAbsenceV2WithBodyWithResponse request with any body
 	PostAbsenceV2WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostAbsenceV2Response, error)
 
 	// GetAbsenceV2EmpIdWithResponse request
-	GetAbsenceV2EmpIdWithResponse(ctx context.Context, empId int, reqEditors ...RequestEditorFn) (*GetAbsenceV2EmpIdResponse, error)
+	GetAbsenceV2EmpIdWithResponse(ctx context.Context, empId int, params *GetAbsenceV2EmpIdParams, reqEditors ...RequestEditorFn) (*GetAbsenceV2EmpIdResponse, error)
 
 	// GetAbsencetypesV2WithResponse request
 	GetAbsencetypesV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAbsencetypesV2Response, error)
@@ -2671,6 +3901,22 @@ type ClientWithResponsesInterface interface {
 	PostEmployeeV2EmpIdWithBodyWithResponse(ctx context.Context, empId int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostEmployeeV2EmpIdResponse, error)
 
 	PostEmployeeV2EmpIdWithResponse(ctx context.Context, empId int, body PostEmployeeV2EmpIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PostEmployeeV2EmpIdResponse, error)
+
+	// GetEmployeeFieldV2WithResponse request
+	GetEmployeeFieldV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetEmployeeFieldV2Response, error)
+
+	// PostEmployeeFieldV2WithBodyWithResponse request with any body
+	PostEmployeeFieldV2WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2Response, error)
+
+	PostEmployeeFieldV2WithResponse(ctx context.Context, body PostEmployeeFieldV2JSONRequestBody, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2Response, error)
+
+	// GetEmployeeFieldV2IdWithResponse request
+	GetEmployeeFieldV2IdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetEmployeeFieldV2IdResponse, error)
+
+	// PostEmployeeFieldV2IdWithBodyWithResponse request with any body
+	PostEmployeeFieldV2IdWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2IdResponse, error)
+
+	PostEmployeeFieldV2IdWithResponse(ctx context.Context, id int, body PostEmployeeFieldV2IdJSONRequestBody, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2IdResponse, error)
 
 	// GetEmploymentV2EmpIdWithResponse request
 	GetEmploymentV2EmpIdWithResponse(ctx context.Context, empId int, reqEditors ...RequestEditorFn) (*GetEmploymentV2EmpIdResponse, error)
@@ -3068,6 +4314,92 @@ func (r PostEmployeeV2EmpIdResponse) StatusCode() int {
 	return 0
 }
 
+type GetEmployeeFieldV2Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]EmployeeFieldDTO
+}
+
+// Status returns HTTPResponse.Status
+func (r GetEmployeeFieldV2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetEmployeeFieldV2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PostEmployeeFieldV2Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r PostEmployeeFieldV2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostEmployeeFieldV2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetEmployeeFieldV2IdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *EmployeeFieldDTO
+}
+
+// Status returns HTTPResponse.Status
+func (r GetEmployeeFieldV2IdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetEmployeeFieldV2IdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PostEmployeeFieldV2IdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r PostEmployeeFieldV2IdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostEmployeeFieldV2IdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetEmploymentV2EmpIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -3394,8 +4726,8 @@ func (r GetWagetypesV2PayrollcodeResponse) StatusCode() int {
 }
 
 // GetAbsenceV2WithResponse request returning *GetAbsenceV2Response
-func (c *ClientWithResponses) GetAbsenceV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAbsenceV2Response, error) {
-	rsp, err := c.GetAbsenceV2(ctx, reqEditors...)
+func (c *ClientWithResponses) GetAbsenceV2WithResponse(ctx context.Context, params *GetAbsenceV2Params, reqEditors ...RequestEditorFn) (*GetAbsenceV2Response, error) {
+	rsp, err := c.GetAbsenceV2(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -3412,8 +4744,8 @@ func (c *ClientWithResponses) PostAbsenceV2WithBodyWithResponse(ctx context.Cont
 }
 
 // GetAbsenceV2EmpIdWithResponse request returning *GetAbsenceV2EmpIdResponse
-func (c *ClientWithResponses) GetAbsenceV2EmpIdWithResponse(ctx context.Context, empId int, reqEditors ...RequestEditorFn) (*GetAbsenceV2EmpIdResponse, error) {
-	rsp, err := c.GetAbsenceV2EmpId(ctx, empId, reqEditors...)
+func (c *ClientWithResponses) GetAbsenceV2EmpIdWithResponse(ctx context.Context, empId int, params *GetAbsenceV2EmpIdParams, reqEditors ...RequestEditorFn) (*GetAbsenceV2EmpIdResponse, error) {
+	rsp, err := c.GetAbsenceV2EmpId(ctx, empId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -3559,6 +4891,58 @@ func (c *ClientWithResponses) PostEmployeeV2EmpIdWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParsePostEmployeeV2EmpIdResponse(rsp)
+}
+
+// GetEmployeeFieldV2WithResponse request returning *GetEmployeeFieldV2Response
+func (c *ClientWithResponses) GetEmployeeFieldV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetEmployeeFieldV2Response, error) {
+	rsp, err := c.GetEmployeeFieldV2(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetEmployeeFieldV2Response(rsp)
+}
+
+// PostEmployeeFieldV2WithBodyWithResponse request with arbitrary body returning *PostEmployeeFieldV2Response
+func (c *ClientWithResponses) PostEmployeeFieldV2WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2Response, error) {
+	rsp, err := c.PostEmployeeFieldV2WithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostEmployeeFieldV2Response(rsp)
+}
+
+func (c *ClientWithResponses) PostEmployeeFieldV2WithResponse(ctx context.Context, body PostEmployeeFieldV2JSONRequestBody, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2Response, error) {
+	rsp, err := c.PostEmployeeFieldV2(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostEmployeeFieldV2Response(rsp)
+}
+
+// GetEmployeeFieldV2IdWithResponse request returning *GetEmployeeFieldV2IdResponse
+func (c *ClientWithResponses) GetEmployeeFieldV2IdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetEmployeeFieldV2IdResponse, error) {
+	rsp, err := c.GetEmployeeFieldV2Id(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetEmployeeFieldV2IdResponse(rsp)
+}
+
+// PostEmployeeFieldV2IdWithBodyWithResponse request with arbitrary body returning *PostEmployeeFieldV2IdResponse
+func (c *ClientWithResponses) PostEmployeeFieldV2IdWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2IdResponse, error) {
+	rsp, err := c.PostEmployeeFieldV2IdWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostEmployeeFieldV2IdResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostEmployeeFieldV2IdWithResponse(ctx context.Context, id int, body PostEmployeeFieldV2IdJSONRequestBody, reqEditors ...RequestEditorFn) (*PostEmployeeFieldV2IdResponse, error) {
+	rsp, err := c.PostEmployeeFieldV2Id(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostEmployeeFieldV2IdResponse(rsp)
 }
 
 // GetEmploymentV2EmpIdWithResponse request returning *GetEmploymentV2EmpIdResponse
@@ -4070,6 +5454,90 @@ func ParsePostEmployeeV2EmpIdResponse(rsp *http.Response) (*PostEmployeeV2EmpIdR
 	}
 
 	response := &PostEmployeeV2EmpIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseGetEmployeeFieldV2Response parses an HTTP response from a GetEmployeeFieldV2WithResponse call
+func ParseGetEmployeeFieldV2Response(rsp *http.Response) (*GetEmployeeFieldV2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetEmployeeFieldV2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EmployeeFieldDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePostEmployeeFieldV2Response parses an HTTP response from a PostEmployeeFieldV2WithResponse call
+func ParsePostEmployeeFieldV2Response(rsp *http.Response) (*PostEmployeeFieldV2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostEmployeeFieldV2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseGetEmployeeFieldV2IdResponse parses an HTTP response from a GetEmployeeFieldV2IdWithResponse call
+func ParseGetEmployeeFieldV2IdResponse(rsp *http.Response) (*GetEmployeeFieldV2IdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetEmployeeFieldV2IdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EmployeeFieldDTO
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePostEmployeeFieldV2IdResponse parses an HTTP response from a PostEmployeeFieldV2IdWithResponse call
+func ParsePostEmployeeFieldV2IdResponse(rsp *http.Response) (*PostEmployeeFieldV2IdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostEmployeeFieldV2IdResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
