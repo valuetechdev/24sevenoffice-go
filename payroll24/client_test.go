@@ -18,7 +18,7 @@ func TestClient(t *testing.T) {
 	require.NoError(c.Authenticate(), "client should authenticate")
 	require.True(c.IsTokenValid(), "token should be valid after authentication")
 
-	a, err := c.GetAbsenceV2WithResponse(context.TODO())
+	a, err := c.GetAbsenceV2WithResponse(context.TODO(), &GetAbsenceV2Params{})
 	require.NoError(err, "GetAbsenceV2EmpIdWithResponse")
 	require.Empty(a.JSON200)
 }

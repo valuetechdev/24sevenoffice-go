@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Payroll API documentation",
-    "description": "<br>This is 24SevenOffice Payroll API documentation. Before testing on server:<br><br><p><ul> <li>  Generate Access Token from https://payroll.24sevenoffice.com/index.php?page=register/installningar24.php&tab=7</li><li>Run GET request manually with Access token to receive Auth token /api/auth?token={Access token}</li><li> Use Auth token in future requests using \"Authorization: Bearer {Auth token}\" </li></ul><br/>",
+    "description": "<br>This is Finago Payday's API documentation. Before testing on server:<br><br><p><ul> <li>  Generate Access Token from https://payroll.24sevenoffice.com/index.php?page=register/installningar24.php&tab=7</li><li>Run GET request manually with Access token to receive Auth token /api/auth?token={Access token}</li><li> Use Auth token in future requests using \"Authorization: Bearer {Auth token}\" </li></ul><br/>",
     "contact": {
       "name": "Help Center",
       "url": "https://support.24sevenoffice.com/hc/no/"
@@ -61,7 +61,7 @@
           "Employee (ansatt)"
         ],
         "summary": "Get all employee information",
-        "description": "Get all employee information for the company.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) employee is hidden. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li></ul>",
+        "description": "Get all employee information for the company.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) employee is hidden. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li><li><b>employee_field_{ID}</b> (egendefinert ansatt felt) custom employee field. The ID is the ID of the employee field. Get all custom employee fields, IDs and available values from endpoint /employee_field</li></ul>",
         "responses": {
           "200": {
             "description": "Array of all employee information for the company.",
@@ -76,10 +76,8 @@
                       "email_copy": "",
                       "firstname": "Pers",
                       "lastname": "Person",
-                      "address": "Oslogatan 32",
                       "postaddress": "Oslogatan 32",
                       "zipcode": "4805",
-                      "postalcode": "4805",
                       "city": "OSLO",
                       "countryCode": "NO",
                       "clearingno": "",
@@ -136,7 +134,9 @@
                             }
                           ]
                         }
-                      ]
+                      ],
+                      "employee_field_1": "",
+                      "employee_field_2": "Value"
                     },
                     {
                       "empId": "2",
@@ -144,10 +144,8 @@
                       "email_copy": "",
                       "firstname": "Test",
                       "lastname": "Testsson",
-                      "address": "Kopenhavnveien 23",
                       "postaddress": "Kopenhavnveien 23",
                       "zipcode": "3520",
-                      "postalcode": "3520",
                       "city": "Köpenhamn",
                       "countryCode": "DK",
                       "clearingno": "",
@@ -181,7 +179,9 @@
                         "percentage": "",
                         "amount": ""
                       },
-                      "accounting": []
+                      "accounting": [],
+                      "employee_field_1": "",
+                      "employee_field_2": ""
                     }
                   ]
                 }
@@ -203,13 +203,13 @@
           "Employee (ansatt)"
         ],
         "summary": "Add new employee",
-        "description": "Add a new employee to the company. It is not allowed to create a new employee with an already existing empId.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) hide employee. Cannot be changed when employee has open transactions. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li></ul>",
+        "description": "Add a new employee to the company. It is not allowed to create a new employee with an already existing empId.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) hide employee. Cannot be changed when employee has open transactions. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li><li><b>employee_field_{ID}</b> (egendefinert ansatt felt) custom employee field. The ID is the ID of the employee field. Get all custom employee fields, IDs and available values from endpoint /employee_field</li></ul>",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "string",
-                "example": "{empId=26, email=test55vcccx@gmail.com, email_copy=, firstname=Kalle, lastname=Anka, postaddress=Storgatan 1, zipcode=1701, city=, countryCode=NO, clearingno=, account=, bic=NDEANOKK, employee_date=2023-01-01, telefon=782193784, personnr=191010101010, internationalID={countryCode=SE, ID=12312as, type=passnummer}, salary_type=monthly, salary=25000, salary_valid_from=2023-01-01, taxtable=6300, employment_rate=90, employment_rate_valid_from=2023-07-01, hours_per_week=37.50, hours_per_week_valid_from=2020-09-01, vacation_percent=12, vacation_percent_valid_from=2023-06-01, vacation_days=25, hidden=0, percentage_tax_main_employer=31.00, percentage_tax_bi_employer=, taxexemption={percentage=20, amount=1000}, accounting=[{percentage=50.00, dimensions=[{dimid=1, value=1}, {dimid=2, value=10}]}, {percentage=50.00, dimensions=[{dimid=1, value=11}]}]}"
+                "example": "{empId=26, email=test55vcccx@gmail.com, email_copy=, firstname=Kalle, lastname=Anka, postaddress=Storgatan 1, zipcode=1701, city=, countryCode=NO, clearingno=, account=, bic=NDEANOKK, employee_date=2023-01-01, telefon=782193784, personnr=191010101010, internationalID={countryCode=SE, ID=12312as, type=passnummer}, salary_type=monthly, salary=25000, salary_valid_from=2023-01-01, taxtable=6300, employment_rate=90, employment_rate_valid_from=2023-07-01, hours_per_week=37.50, hours_per_week_valid_from=2020-09-01, vacation_percent=12, vacation_percent_valid_from=2023-06-01, vacation_days=25, hidden=0, percentage_tax_main_employer=31.00, percentage_tax_bi_employer=, taxexemption={percentage=20, amount=1000}, accounting=[{percentage=50.00, dimensions=[{dimid=1, value=1}, {dimid=2, value=10}]}, {percentage=50.00, dimensions=[{dimid=1, value=11}]}], employee_field_1=, employee_field_2=Value}"
               }
             }
           },
@@ -246,7 +246,7 @@
           "Employee (ansatt)"
         ],
         "summary": "Get employee information for an employee",
-        "description": "Get all employee information for a specific employee.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) employee is hidden. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li></ul>",
+        "description": "Get all employee information for a specific employee.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) employee is hidden. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li><li><b>employee_field_{ID}</b> (egendefinert ansatt felt) custom employee field. The ID is the ID of the employee field. Get all custom employee fields, IDs and available values from endpoint /employee_field</li></ul>",
         "parameters": [
           {
             "name": "empId",
@@ -272,10 +272,8 @@
                       "email_copy": "",
                       "firstname": "Test",
                       "lastname": "Feriepeng",
-                      "address": "",
                       "postaddress": "",
                       "zipcode": "",
-                      "postalcode": "",
                       "city": "",
                       "countryCode": "NO",
                       "clearingno": "1234",
@@ -332,7 +330,9 @@
                             }
                           ]
                         }
-                      ]
+                      ],
+                      "employee_field_1": "",
+                      "employee_field_2": "Value"
                     }
                   ]
                 }
@@ -354,7 +354,7 @@
           "Employee (ansatt)"
         ],
         "summary": "Update existing employee in the company.",
-        "description": "Update an existing employee.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) hide employee. Cannot be changed when employee has open transactions. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li></ul>",
+        "description": "Update an existing employee.\n\nDescription of fields:<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>email</b></li><li><b>email_copy</b> emails are also sent to this email address</li><li><b>firstname</b></li><li><b>lastname</b></li><li><b>postaddress</b></li><li><b>zipcode</b></li><li><b>city</b></li><li><b>countryCode</b></li><li><b>clearingno</b> bank account clearing number</li><li><b>account</b> (bankkonto) bank account number. Can be IBAN or standard BBAN-format.</li><li><b>bic</b> BIC/SWIFT code identifying the bank of the employee</li><li><b>employee_date</b> (ansettelsesdato) start date of employment. Format YYYY-MM-DD</li><li><b>telefon</b></li><li><b>personnr</b> can also be d-number for foreign workers or just birth date.</li><li><b>internationalID</b> (Internasjonal ID) to identify an employee without a personnr or d-number<ul><li><b>countryCode</b></li><li><b>ID</b></li><li><b>type</b> type of identifier. Default is \"passnummer\". Available values are:<ul><li><b>passnummer</b></li><li><b>socialSecurityNumber</b></li><li><b>taxIdentificationNumber</b></li><li><b>valueAddedTaxNumber</b></li></ul></li></ul></li><li><b>salary_type</b> type of salary. Availble values are:<ul><li><b>monthly</b> (månedslønn)</li><li><b>hourly</b> (timelønn)</li></ul></li><li><b>salary</b> (lønn) if salary_type is monthly this value is salary per month. If salary_type is hourly this value is salary per hour.</li><li><b>salary_valid_from</b> (gjelder fra) start date of current salary. Format YYYY-MM-DD</li><li><b>taxtable</b> (trekktabell)</li><li><b>employment_rate</b> (stillingsprosent)</li><li><b>employment_rate_valid_from</b> (gjelder fra) start date of current employment rate. Format YYYY-MM-DD<li><b>hours_per_week</b> (timer pr. uke) hours worked per week. Default is 37.5</li><li><b>hours_per_week_valid_from</b> (gjelder fra) start date of current hours_per_week. Format YYYY-MM-DD</li><li><b>vacation_percent</b> (ferieprosent)</li><li><b>vacation_percent_valid_from</b> (gjelder fra) start date of current vacation percent. Format YYYY-MM-DD</li><li><b>vacation_days</b> (feriedager) starting balance of vacation days per year</li><li><b>hidden</b> (skjult) hide employee. Cannot be changed when employee has open transactions. Available values are:<ul><li><b>0</b> (hidden)</li><li><b>1</b> (not hidden)</li></ul></li><li><b>percentage_tax_main_employer</b> (prosentsats, hovedarbeidsgiver) default is 50</li><li><b>percentage_tax_bi_employer</b> (prosentsats, biarbeidsgiver)</li><li><b>tax_resident_country</b> (skattemessig bosatt land) available values are valid 2 letter country codes</li><li><b>continental_shelf</b> (Kontinentalsokkel) available values are:<ul><li><b>1</b> (yes)</li><li><b>-1</b> (no)</li></ul></li><li><b>taxexemption</b> only relevant for swedish clients, will be nulled for others<ul><li><b>percentage</b></li><li><b>amount</b></li></ul></li><li><b>accounting</b> (kontering) the standard accounting of the employee. Array of different distributions. Percentages cannot be more than 100% in total.<ul><li><b>percentage</b> percentage of this distribution</li><li><b>dimensions</b> array of dimensions of this distribution<ul><li><b>dimid</b> accessible via /dimensions</li><li><b>value</b> dimension value. Need to be an existing value for this dimension</li></ul></li></ul></li><li><b>employee_field_{ID}</b> (egendefinert ansatt felt) custom employee field. The ID is the ID of the employee field. Get all custom employee fields, IDs and available values from endpoint /employee_field</li></ul>",
         "parameters": [
           {
             "name": "empId",
@@ -371,7 +371,7 @@
             "application/json": {
               "schema": {
                 "type": "string",
-                "example": "{empId=23, email=test@gmail.com, email_copy=test_copy@gmail.com, firstname=Kalle, lastname=Anka, postaddress=Storgatan 1, zipcode=1054, city=Copenhagen, countryCode=DK, clearingno=, account=, bic=NDEANOKK, employee_date=2023-01-01, salary_type=monthly, salary=25000, salary_valid_from=2023-01-01, taxtable=32, employment_rate=100.00, employment_rate_valid_from=2023-07-01, hours_per_week=37.50, hours_per_week_valid_from=2020-09-01, vacation_percent=12.80, vacation_percent_valid_from=2023-06-01, vacation_days=28, hidden=0, percentage_tax_main_employer=31.00, percentage_tax_bi_employer=, taxexemption={percentage=20, amount=1000}, accounting=[{percentage=50.00, dimensions=[{dimid=1, value=1}, {dimid=2, value=10}]}, {percentage=50.00, dimensions=[{dimid=1, value=11}]}]}"
+                "example": "{empId=23, email=test@gmail.com, email_copy=test_copy@gmail.com, firstname=Kalle, lastname=Anka, postaddress=Storgatan 1, zipcode=1054, city=Copenhagen, countryCode=DK, clearingno=, account=, bic=NDEANOKK, employee_date=2023-01-01, salary_type=monthly, salary=25000, salary_valid_from=2023-01-01, taxtable=32, employment_rate=100.00, employment_rate_valid_from=2023-07-01, hours_per_week=37.50, hours_per_week_valid_from=2020-09-01, vacation_percent=12.80, vacation_percent_valid_from=2023-06-01, vacation_days=28, hidden=0, percentage_tax_main_employer=31.00, percentage_tax_bi_employer=, taxexemption={percentage=20, amount=1000}, accounting=[{percentage=50.00, dimensions=[{dimid=1, value=1}, {dimid=2, value=10}]}, {percentage=50.00, dimensions=[{dimid=1, value=11}]}], employee_field_1=, employee_field_2=Value}"
               }
             }
           },
@@ -398,18 +398,195 @@
         "x-codegen-request-body-name": "body"
       }
     },
+    "/employee_field/v2/": {
+      "get": {
+        "tags": [
+          "Employee field (egendefinert ansatt felt)"
+        ],
+        "summary": "Get list of custom employee fields",
+        "description": "Get a JSON-encoded list of all custom employee fields for the client.\n\nDescription of fields:<ul><li><b>id</b></li><li><b>name</b></li><li><b>type</b> type of input. Available values:<ul><li><b>0</b> free text. Values of the employee field can be anything</li><li><b>1</b> enum field. Available values is given in 'available_values'</li></ul></li><li><b>export</b> determines if the field is exported in employee lists and can be used for import.</li></ul>",
+        "responses": {
+          "200": {
+            "description": "Array of all custom employee fields for the client.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": [
+                    {
+                      "id": "1",
+                      "name": "Field 1",
+                      "type": "1",
+                      "export": "1",
+                      "available_values": [
+                        "Value 1",
+                        "Value 2",
+                        "Value 3"
+                      ]
+                    },
+                    {
+                      "id": "2",
+                      "name": "Field 2",
+                      "type": "0",
+                      "export": "0",
+                      "available_values": []
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error, bad input parameter",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. Contact support for more info.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Employee field (egendefinert ansatt felt)"
+        ],
+        "summary": "Post a new custom employee field",
+        "description": "Add a new custom employee field.\n\nDescription of fields:<ul><li><b>id</b></li><li><b>name</b></li><li><b>type</b> type of input. Available values:<ul><li><b>0</b> free text. Values of the employee field can be anything</li><li><b>1</b> enum field. Available values is given in 'available_values'</li></ul></li><li><b>export</b> determines if the field is exported in employee lists and can be used for import.</li></ul>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": "{name=Field 1, type=1, export=1, available_values=[Value 1, Value 2, Value 3]}"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "JSON object of the employee field created",
+            "content": {}
+          },
+          "401": {
+            "description": "Error, bad input parameter",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. Contact support for more info.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/employee_field/v2/{id}": {
+      "get": {
+        "tags": [
+          "Employee field (egendefinert ansatt felt)"
+        ],
+        "summary": "Get a specific custom employee fields",
+        "description": "Get a JSON object of the custom employee fields with the specified ID.\n\nDescription of fields:<ul><li><b>id</b></li><li><b>name</b></li><li><b>type</b> type of input. Available values:<ul><li><b>0</b> free text. Values of the employee field can be anything</li><li><b>1</b> enum field. Available values is given in 'available_values'</li></ul></li><li><b>export</b> determines if the field is exported in employee lists and can be used for import.</li></ul>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Employee field ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Custom employee fields with the specified ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "id": "1",
+                    "name": "Field 1",
+                    "type": "1",
+                    "export": "1",
+                    "available_values": [
+                      "Value 1",
+                      "Value 2",
+                      "Value 3"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error, bad input parameter",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. Contact support for more info.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Employee field (egendefinert ansatt felt)"
+        ],
+        "summary": "Update an existing custom employee field",
+        "description": "Update an existing custom employee field with the specified ID.\n\nDescription of fields:<ul><li><b>id</b></li><li><b>name</b></li><li><b>type</b> type of input. Available values:<ul><li><b>0</b> free text. Values of the employee field can be anything</li><li><b>1</b> enum field. Available values is given in 'available_values'</li></ul></li><li><b>export</b> determines if the field is exported in employee lists and can be used for import.</li></ul>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Employee field ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": "{name=Field 1, type=1, export=1, available_values=[Value 1, Value 2, Value 3]}"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "JSON object of the employee field created",
+            "content": {}
+          },
+          "401": {
+            "description": "Error, bad input parameter",
+            "content": {}
+          },
+          "500": {
+            "description": "Internal server error. Contact support for more info.",
+            "content": {}
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
     "/employment/v2/{empId}": {
       "get": {
         "tags": [
           "Employment (arbeidsforhold)"
         ],
-        "summary": "Get list of emplyments for employee",
-        "description": "Get a JSON-encoded list of all employments for the employee with the specified employee Id (ansattnr). \n\nDescription of fields:<ul><li><b>employment_id</b> (arbeidsforhold ID) identifier of the employment.</li><li><b>primary_employment</b> (primært) specifies the primary employment</li><li><b>startdate</b> start date of the employment. Required for new employments. Format YYYY-MM-DD</li><li><b>enddate</b> end date of employment. enddate_reason is required if enddate is specified. Format YYYY-MM-DD</li><li><b>enddate_reason</b> (oppsigelse type) reason for terminating the employment. Available values are:<br><b>(norwegian clients)</b><ul><b><li>arbeidsforholdetSkulleAldriVaertRapportert</li><li>arbeidsgiverHarSagtOppArbeidstaker</li><li>arbeidstakerHarSagtOppSelv</li><li>byttetLoenssystemEllerRegnskapsfoerer</li><li>endringIOrganisasjonsstrukturEllerByttetJobbInternt</li><li>kontraktEngasjementEllerVikariatErUtloept</li></b></ul><b>(swedish clients)</b><ul><li><b>Ingen</b></li><li><b>UppsagdArbetsbrist</b></li><li><b>TidsbegransadAnstallning</b></li><li><b>EgenBegaran</b></li><li><b>SlutProvanstallningAnstalldBeslut</b></li><li><b>SlutProvanstallningArbetsgivareBeslut</b></li><li><b>Konkurs</b></li><li><b>AnnanOrsak</b></li></ul><li><b>employment_form</b> (ansatt type) available values are:<br><b>(norwegian clients)</b><ul><b><li>fast</li><li>fastAnsattUtleid</li><li>midlertidig</li><li>midlertidigAnsattUtleid</li><li>midlertidigAnsattSomTilkallingsvikar</li></b></ul><b>(swedish clients)</b><ul><b><li>Ingen</li><li>Tillsvidare</li><li>Provanstallning</li><li>Behovsanstalld</li><li>Tidsbegransad</li></b></ul></li><li><b>profession_code</b> (yrkeskode) code of the employee's profession</li><li><b>employment_rate</b> (stillingsprosent) employement rate in this employment</li><li><b>employment_type</b> (arbeidsforhold) available values are:<ul><b><li>ordinaertArbeidsforhold</li><li>maritimtArbeidsforhold</li><li>frilanserOppdragstakerHonorarPersonerMm</li><li>pensjonOgAndreTyperYtelserUtenAnsettelsesforhold</li></b></ul></li><li><b>enterprise_number</b> (virksomhetsnummer) enterprise number of the organization which this employment is tied to</li><li><b>working_times</b> (arbeidstidsordning) available values are:<ul><b><li>ikkeSkift</li><li>offshore336</li><li>doegnkontinuerligSkiftOgTurnus355</li><li>helkontinuerligSkiftOgAndreOrdninger336</li><li>skift365</li><li>andreSkift</li></b></ul></li></ul>",
+        "summary": "Get list of employments for employee",
+        "description": "Get a JSON-encoded list of all employments for the employee with the specified employee ID (ansattnr). \n\nDescription of fields:<ul><li><b>employment_id</b> (arbeidsforhold ID) identifier of the employment.</li><li><b>primary_employment</b> (primært) specifies the primary employment</li><li><b>startdate</b> start date of the employment. Required for new employments. Format YYYY-MM-DD</li><li><b>enddate</b> end date of employment. enddate_reason is required if enddate is specified. Format YYYY-MM-DD</li><li><b>enddate_reason</b> (oppsigelse type) reason for terminating the employment. Available values are:<br><b>(norwegian clients)</b><ul><b><li>arbeidsforholdetSkulleAldriVaertRapportert</li><li>arbeidsgiverHarSagtOppArbeidstaker</li><li>arbeidstakerHarSagtOppSelv</li><li>byttetLoenssystemEllerRegnskapsfoerer</li><li>endringIOrganisasjonsstrukturEllerByttetJobbInternt</li><li>kontraktEngasjementEllerVikariatErUtloept</li></b></ul><b>(swedish clients)</b><ul><li><b>Ingen</b></li><li><b>UppsagdArbetsbrist</b></li><li><b>TidsbegransadAnstallning</b></li><li><b>EgenBegaran</b></li><li><b>SlutProvanstallningAnstalldBeslut</b></li><li><b>SlutProvanstallningArbetsgivareBeslut</b></li><li><b>Konkurs</b></li><li><b>AnnanOrsak</b></li></ul><li><b>employment_form</b> (ansatt type) available values are:<br><b>(norwegian clients)</b><ul><b><li>fast</li><li>fastAnsattUtleid</li><li>midlertidig</li><li>midlertidigAnsattUtleid</li><li>midlertidigAnsattSomTilkallingsvikar</li></b></ul><b>(swedish clients)</b><ul><b><li>Ingen</li><li>Tillsvidare</li><li>Provanstallning</li><li>Behovsanstalld</li><li>Tidsbegransad</li></b></ul></li><li><b>profession_code</b> (yrkeskode) code of the employee's profession</li><li><b>employment_rate</b> (stillingsprosent) employement rate in this employment</li><li><b>employment_type</b> (arbeidsforhold) available values are:<ul><b><li>ordinaertArbeidsforhold</li><li>maritimtArbeidsforhold</li><li>frilanserOppdragstakerHonorarPersonerMm</li><li>pensjonOgAndreTyperYtelserUtenAnsettelsesforhold</li></b></ul></li><li><b>enterprise_number</b> (virksomhetsnummer) enterprise number of the organization which this employment is tied to</li><li><b>working_times</b> (arbeidstidsordning) available values are:<ul><b><li>ikkeSkift</li><li>offshore336</li><li>doegnkontinuerligSkiftOgTurnus355</li><li>helkontinuerligSkiftOgAndreOrdninger336</li><li>skift365</li><li>andreSkift</li></b></ul></li></ul>",
         "parameters": [
           {
             "name": "empId",
             "in": "path",
-            "description": "Employment Id (ansattnr) of the person to get employments for.",
+            "description": "Employment ID (ansattnr) of the person to get employments for.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -475,7 +652,7 @@
           {
             "name": "empId",
             "in": "path",
-            "description": "Employment Id (ansattnr) of the person to post employments for.",
+            "description": "Employment ID (ansattnr) of the person to post employments for.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -1419,7 +1596,33 @@
           "Absence (fravær)"
         ],
         "summary": "Get all absence",
-        "description": "Get all registered absence data for all employees in the company.\n\nDescription of fields:\n<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>serialNo</b> (løpenr) serial number of the absence. Required if you wish to post an update to an existing absence</li><li><b>startDate</b> (startdato) start date of the absence. Format YYYY-MM-DD</li><li><b>endDate</b> (sluttdato) end date of the absence. Can be empty for absence type category 'leave_of_absence'. Format YYYY-MM-DD</li><li><b>comment</b></li><li><b>approved</b> (godkjent) approved-status. Available values:<ul><li><b>1</b> approved</li><li><b>2</b> rejected</li></ul></li><li><b>percent</b> (fravær prosent) absence percentage</li><li><b>absenceType</b> (fraværstype) type of absence. List of available absence types can be retrieved from the absencetypes-endpoint</li><li><b>description</b> (beskrivelse) absenceType description</li><li><b>childId</b> barnId) internal ID of the child registered on this absence. Only used together with absence type 2 (sick child)</li><li><b>numberOfDays</b> (antall dager) number of days of absence. Only used together with absence type 4 (vacation)</li><li><b>permisjonId</b> ID of permisjon (leave of absence). Will be automatically generated if not provided for absenceTypes with property permisjonId.</li><li><b>startdateParental</b> (startdato foreldrepengeperioden) start date of parental leave. Only used together with absence type permisjonMedForeldrepenger. Format YYYY-MM-DD</li><li><b>externalId</b> can be used via API to keep track of absence periods</li></ul>",
+        "description": "Get all registered absence data for all employees in the company. Result can be limited with the search filter criteria.\n\n<b>Filter</b>\nFilters can be added as query parameters by adding a question mark (?) at the end of the URL and then separate different filters with ampersands (&). Available filters can be found below in the Parameters-section.\n<u>Example</u>: payroll.24sevenoffice.com/api/absence/v2?datefrom=2025-01-01&dateto=2025-01-31&serialNo=1\n\nDescription of fields:\n<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>serialNo</b> (løpenr) serial number of the absence. Required if you wish to post an update to an existing absence</li><li><b>startDate</b> (startdato) start date of the absence. Format YYYY-MM-DD</li><li><b>endDate</b> (sluttdato) end date of the absence. Can be empty for absence type category 'leave_of_absence'. Format YYYY-MM-DD</li><li><b>comment</b></li><li><b>approved</b> (godkjent) approved-status. Available values:<ul><li><b>1</b> approved</li><li><b>2</b> rejected</li></ul></li><li><b>percent</b> (fravær prosent) absence percentage</li><li><b>absenceType</b> (fraværstype) type of absence. List of available absence types can be retrieved from the absencetypes-endpoint</li><li><b>description</b> (beskrivelse) absenceType description</li><li><b>childId</b> barnId) internal ID of the child registered on this absence. Only used together with absence type 2 (sick child)</li><li><b>numberOfDays</b> (antall dager) number of days of absence. Only used together with absence type 4 (vacation)</li><li><b>permisjonId</b> ID of permisjon (leave of absence). Will be automatically generated if not provided for absenceTypes with property permisjonId.</li><li><b>startdateParental</b> (startdato foreldrepengeperioden) start date of parental leave. Only used together with absence type permisjonMedForeldrepenger. Format YYYY-MM-DD</li><li><b>externalId</b> can be used via API to keep track of absence periods</li></ul>",
+        "parameters": [
+          {
+            "name": "serialNo",
+            "in": "query",
+            "description": "Internal ID of an absence",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "datefrom",
+            "in": "query",
+            "description": "Start date of the search interval. Format YYYY-MM-DD.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateto",
+            "in": "query",
+            "description": "End date of the search interval. Format YYYY-MM-DD.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Array of all absence periods registered in the company.",
@@ -1521,7 +1724,7 @@
           "Absence (fravær)"
         ],
         "summary": "Get all absence for an employee",
-        "description": "Get all registered absence data for an employee.\n\nDescription of fields:\n<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>serialNo</b> (løpenr) serial number of the absence. Required if you wish to post an update to an existing absence</li><li><b>startDate</b> (startdato) start date of the absence. Format YYYY-MM-DD</li><li><b>endDate</b> (sluttdato) end date of the absence. Can be empty for absence type category 'leave_of_absence'. Format YYYY-MM-DD</li><li><b>comment</b></li><li><b>approved</b> (godkjent) approved-status. Available values:<ul><li><b>1</b> approved</li><li><b>2</b> rejected</li></ul></li><li><b>percent</b> (fravær prosent) absence percentage</li><li><b>absenceType</b> (fraværstype) type of absence. List of available absence types can be retrieved from the absencetypes-endpoint</li><li><b>description</b> (beskrivelse) absenceType description</li><li><b>childId</b> barnId) internal ID of the child registered on this absence. Only used together with absence type 2 (sick child)</li><li><b>numberOfDays</b> (antall dager) number of days of absence. Only used together with absence type 4 (vacation)</li><li><b>permisjonId</b> ID of permisjon (leave of absence). Will be automatically generated if not provided for absenceTypes with property permisjonId.</li><li><b>startdateParental</b> (startdato foreldrepengeperioden) start date of parental leave. Only used together with absence type permisjonMedForeldrepenger. Format YYYY-MM-DD</li><li><b>externalId</b> can be used via API to keep track of absence periods</li></ul>",
+        "description": "Get all registered absence data for an employee. Result can be limited with the search filter criteria.\n\n<b>Filter</b>\nFilters can be added as query parameters by adding a question mark (?) at the end of the URL and then separate different filters with ampersands (&). Available filters can be found below in the Parameters-section.\n<u>Example</u>: payroll.24sevenoffice.com/api/absence/v2/1?datefrom=2025-01-01&dateto=2025-01-31&serialNo=1\n\nDescription of fields:\n<ul><li><b>empId</b> (ansattnr) employee number</li><li><b>serialNo</b> (løpenr) serial number of the absence. Required if you wish to post an update to an existing absence</li><li><b>startDate</b> (startdato) start date of the absence. Format YYYY-MM-DD</li><li><b>endDate</b> (sluttdato) end date of the absence. Can be empty for absence type category 'leave_of_absence'. Format YYYY-MM-DD</li><li><b>comment</b></li><li><b>approved</b> (godkjent) approved-status. Available values:<ul><li><b>1</b> approved</li><li><b>2</b> rejected</li></ul></li><li><b>percent</b> (fravær prosent) absence percentage</li><li><b>absenceType</b> (fraværstype) type of absence. List of available absence types can be retrieved from the absencetypes-endpoint</li><li><b>description</b> (beskrivelse) absenceType description</li><li><b>childId</b> barnId) internal ID of the child registered on this absence. Only used together with absence type 2 (sick child)</li><li><b>numberOfDays</b> (antall dager) number of days of absence. Only used together with absence type 4 (vacation)</li><li><b>permisjonId</b> ID of permisjon (leave of absence). Will be automatically generated if not provided for absenceTypes with property permisjonId.</li><li><b>startdateParental</b> (startdato foreldrepengeperioden) start date of parental leave. Only used together with absence type permisjonMedForeldrepenger. Format YYYY-MM-DD</li><li><b>externalId</b> can be used via API to keep track of absence periods</li></ul>",
         "parameters": [
           {
             "name": "empId",
@@ -1530,6 +1733,30 @@
             "required": true,
             "schema": {
               "type": "integer"
+            }
+          },
+          {
+            "name": "serialNo",
+            "in": "query",
+            "description": "Internal ID of an absence",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "datefrom",
+            "in": "query",
+            "description": "Start date of the search interval. Format YYYY-MM-DD.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateto",
+            "in": "query",
+            "description": "End date of the search interval. Format YYYY-MM-DD.",
+            "schema": {
+              "type": "string"
             }
           }
         ],
