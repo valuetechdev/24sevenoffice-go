@@ -90,7 +90,7 @@ type AbsenceDTO struct {
 	Description *string `json:"description,omitempty"`
 
 	// EmpId Employee ID
-	EmpId *StringInt `json:"empId,omitempty"`
+	EmpId *int `json:"empId,omitempty"`
 
 	// EndDate End date
 	EndDate *StringDate `json:"endDate,omitempty"`

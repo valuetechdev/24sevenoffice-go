@@ -410,9 +410,9 @@ actions:
           type: "object"
           properties:
             empId:
-              type: "string"
+              type: "int"
               description: "Employee ID"
-              x-go-type: "StringInt"
+              x-go-type: "int"
             serialNo:
               type: "string"
               description: "Serial number"
