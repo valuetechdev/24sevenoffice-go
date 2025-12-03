@@ -1,5 +1,10 @@
 [![go reference badge](https://pkg.go.dev/badge/github.com/valuetechdev/24sevenoffice-go.svg)](https://pkg.go.dev/github.com/valuetechdev/24sevenoffice-go)
 
+> [!WARNING]  
+> These packages is deprecated.
+>
+> Check out [`finago-go`](https://github.com/valuetechdev/finago-go) instead.
+
 # 24SevenOffice API client for Go
 
 This package contains a generated API clients for 24SevenOffice's APIs.
